@@ -1,29 +1,60 @@
 /**
- * Generic Hero Class for Heroes & Villains Game
+ * Hero Enumerated Type for Heroes & Villains Game
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-public class Hero {
-
-	private HeroType heroType;
+public enum Hero {
 	
-	private int strength = 100; 
+	ALL_BLACK(" to win 80% of games", 100), VOLUNTEER("being very cheap", 100), 
+	RETURNED_SERVICEMAN("being a grumpy old bastard", 100), 
+	FIREFIGHTER("having no fear", 100);
+	
+	private String ability;
+	
+	private int strength;
+	
+	
+	/*
+	 * Hero constructor
+	 */
+	Hero(String abilityArg, int strengthArg){
+		ability = abilityArg;
+		strength = strengthArg;
+	}
+	
+	/**
+	 * Getter method for particular hero's special ability
+	 * @return a String containing a description of the hero's special ability
+	 */
+	public String getAbility() {
+		return ability;
+	}
+	
+	/**
+	 * Getter method for particular hero
+	 * @return an int the hero's current strength
+	 */
+	public int getStrength() {
+		return strength;
+	}
+	
+	public void changeStrength(int strengthChange) {
+		this.strength += strengthChange;
+
+	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String toString (){
-		return (heroType + " whose special ability is" + heroType.getAbility());
-	}
-	/*
-	 * Test code - delete at some point
-	 */
-	public static void main(String[] args) {
-		Hero hero1 = new Hero();
-		hero1.heroType = HeroType.ALL_BLACK;
-		hero1.strength = 100;
-		System.out.println(hero1);
+	public String toString() {
+		switch(this) {
+		case ALL_BLACK: return "An All Black";
+		case VOLUNTEER: return "A Volunteer";
+		case RETURNED_SERVICEMAN: return "A returned serviceman";
+		case FIREFIGHTER: return "A firefighter";
+		default: throw new IllegalArgumentException(); //default case mandatory
+		}
 	}
 
 }
