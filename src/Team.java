@@ -83,8 +83,9 @@ public class Team {
 		System.out.print(team1);
 		System.out.print(team1.removeMember(3));
 		team1.addMember(Hero.RETURNED_SERVICEMAN);
-		//hero1.hero.changeStrength(-100);
-		//hero1.strength = 100;
+		System.out.println();
+		team1.memberList.get(1).changeStrength(-100);
+		System.out.println(team1.memberList.get(1).getStrength());
 		System.out.print(team1);
 
 	}
