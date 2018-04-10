@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>6</zoom_level>
-=======
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
->>>>>>> b3cb0a0f849282d07767ebbcabe8e58ed954d53f
   <element>
     <id>UMLClass</id>
     <coordinates>
@@ -56,8 +50,7 @@ remaining members
 -completed: boolean
 --
 +toString
-+setVillain
-+setDirections
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -277,32 +270,7 @@ with battle?
       <h>42</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-<<<<<<< HEAD
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
-=======
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>20</x>
-      <y>600</y>
-      <w>210</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>Villain
---
--type: VillainType
--supervillain: boolean
--strength: int
---
-+toString
-+getName
-+changeStrength
-
-</panel_attributes>
-    <additional_attributes/>
->>>>>>> b3cb0a0f849282d07767ebbcabe8e58ed954d53f
   </element>
   <element>
     <id>UMLClass</id>
