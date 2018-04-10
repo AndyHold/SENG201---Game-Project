@@ -32,7 +32,7 @@ public class Politician extends Villain{
 	
 	
 	public String toString() {
-		return super.getName() + " says: /n" + getTaunt();
+		return super.getName() + " says: \n" + getTaunt();
 	}
 	
 	
