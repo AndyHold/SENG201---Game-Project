@@ -8,7 +8,7 @@
 public class City {
 	
 	private String cityName;
-	private Villian cityVillain;
+	private Villain cityVillain;
 	private Location centerArea = new Location("HomeBase");
 	private Location northArea;
 	private Location eastArea;
@@ -20,7 +20,7 @@ public class City {
 	
 	public void City(String newName) {
 		cityName = newName;
-		cityVillain = setVillian();
+		cityVillain = setVillain();
 		ruler = cityVillain.getName();
 		setDirections();
 	}
