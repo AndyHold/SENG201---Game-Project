@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>9</zoom_level>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>153</x>
-      <y>504</y>
-      <w>324</w>
-      <h>324</h>
+      <x>0</x>
+      <y>222</y>
+      <w>216</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>Team
 --
@@ -23,7 +24,6 @@
 +addMember(Hero): boolean: member added
 +removeMember(heroIndex int): int: the number of 
 remaining members
-+buildTeam(size: int)
 +addPowerUp(PowerUp)
 +removePowerUp(PowerUp)
 +addHealingItem(HealingItem)
@@ -38,10 +38,10 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>225</y>
-      <w>225</w>
-      <h>207</h>
+      <x>174</x>
+      <y>36</y>
+      <w>150</w>
+      <h>138</h>
     </coordinates>
     <panel_attributes>City
 --
@@ -58,10 +58,10 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>378</y>
-      <w>252</w>
-      <h>171</h>
+      <x>360</x>
+      <y>138</y>
+      <w>168</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Hospital
 --
@@ -76,10 +76,34 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>1008</y>
+      <x>0</x>
+      <y>36</y>
       <w>126</w>
-      <h>72</h>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+-nCities: int
+-nHeroes: int
+-startTime: long
+-cities: [City]
+-heroTeam: Team
+--
+Game()
++buildTeam()
++toString()
++main()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>222</x>
+      <y>558</y>
+      <w>84</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Map
 --
@@ -94,10 +118,10 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1233</x>
-      <y>378</y>
-      <w>225</w>
-      <h>81</h>
+      <x>720</x>
+      <y>138</y>
+      <w>150</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>PowerUpDen
 --
@@ -112,10 +136,10 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>216</y>
-      <w>252</w>
-      <h>81</h>
+      <x>528</x>
+      <y>30</y>
+      <w>168</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Location
 --
@@ -130,10 +154,10 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1467</x>
-      <y>378</y>
-      <w>153</w>
-      <h>171</h>
+      <x>876</x>
+      <y>138</y>
+      <w>102</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>VillainsLair
 --
@@ -152,10 +176,10 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>954</x>
-      <y>378</y>
-      <w>270</w>
-      <h>171</h>
+      <x>534</x>
+      <y>138</y>
+      <w>180</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Shop
 --
@@ -177,10 +201,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1071</x>
-      <y>288</y>
-      <w>495</w>
-      <h>108</h>
+      <x>612</x>
+      <y>78</y>
+      <w>330</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0;530.0;60.0;530.0;100.0</additional_attributes>
@@ -188,10 +212,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1071</x>
-      <y>333</y>
-      <w>27</w>
-      <h>63</h>
+      <x>612</x>
+      <y>108</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -199,10 +223,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1071</x>
-      <y>333</y>
-      <w>693</w>
-      <h>45</h>
+      <x>612</x>
+      <y>108</y>
+      <w>462</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>750.0;30.0;750.0;10.0;10.0;10.0</additional_attributes>
@@ -210,10 +234,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>333</y>
-      <w>27</w>
-      <h>63</h>
+      <x>420</x>
+      <y>108</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -221,10 +245,10 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1629</x>
-      <y>360</y>
-      <w>189</w>
-      <h>171</h>
+      <x>984</x>
+      <y>126</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>HeroHomeBase
 --
@@ -241,10 +265,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1323</x>
-      <y>333</y>
-      <w>27</w>
-      <h>63</h>
+      <x>780</x>
+      <y>108</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -252,10 +276,10 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>1008</y>
-      <w>189</w>
-      <h>72</h>
+      <x>378</x>
+      <y>558</y>
+      <w>126</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>HealingItem
 --
@@ -269,10 +293,10 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>900</y>
-      <w>189</w>
-      <h>72</h>
+      <x>288</x>
+      <y>486</y>
+      <w>126</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>PowerObject
 --
@@ -286,10 +310,10 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>621</x>
-      <y>1008</y>
-      <w>90</w>
-      <h>72</h>
+      <x>312</x>
+      <y>558</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>PowerUp
 --
@@ -303,10 +327,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>963</y>
-      <w>27</w>
-      <h>63</h>
+      <x>348</x>
+      <y>528</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -314,10 +338,10 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>990</y>
-      <w>162</w>
-      <h>36</h>
+      <x>348</x>
+      <y>546</y>
+      <w>108</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>160.0;20.0;160.0;10.0;10.0;10.0</additional_attributes>
@@ -325,32 +349,60 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>990</y>
-      <w>162</w>
-      <h>36</h>
+      <x>258</x>
+      <y>546</y>
+      <w>108</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>160.0;10.0;10.0;10.0;10.0;20.0</additional_attributes>
   </element>
   <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>498</y>
+      <w>186</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Hero
+--
+ALL_BLACK
+VOLUNTEER
+RETURNED_SERVICEMAN
+FIREFIGHTER
+...
+--
+-ability: String
+-strength: int //defaults to 100
+--
++getAbility(): String: hero's special ability
++getStrength(): String : hero's strength
++changeStrength(strengthChange: int)
++toString()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>819</y>
-      <w>126</w>
-      <h>117</h>
+      <x>90</x>
+      <y>426</y>
+      <w>18</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;110.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1539</x>
-      <y>621</y>
-      <w>279</w>
-      <h>288</h>
+      <x>924</x>
+      <y>300</y>
+      <w>186</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 Villain
@@ -366,6 +418,7 @@ BADRUGBYREFEREE
 -currentHealth: int /starts at 100
 -alive: boolean /changes to false when defeated
 -taunts: ArrayList&lt;String&gt; /3 Taunts
+-lairNames: HashMap&lt;String, String&gt; /dictionary of lair names, keys are city names.
 --
 -setTaunts() /part of the constructor
 +getTaunt(): String /returns a random taunt
@@ -373,17 +426,18 @@ BADRUGBYREFEREE
 +getHealth(): int /returns currentHealth
 +isAlive(): boolean
 +toString(): String 2 line representation of Villain.
-
+-setLairNames(): constructor for lairNames uses a switch statement.
++getLairName(String cityName): String returns lair name from lairNames.
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>810</x>
-      <y>873</y>
-      <w>144</w>
-      <h>99</h>
+      <x>438</x>
+      <y>468</y>
+      <w>96</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Note
 Possibly these should be enumerated types too.
@@ -394,10 +448,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1539</x>
-      <y>540</y>
-      <w>27</w>
-      <h>90</h>
+      <x>924</x>
+      <y>246</y>
+      <w>18</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -405,10 +459,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>333</x>
-      <y>270</y>
-      <w>99</w>
-      <h>27</h>
+      <x>120</x>
+      <y>66</y>
+      <w>66</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -416,10 +470,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>243</x>
-      <y>387</y>
-      <w>27</w>
-      <h>135</h>
+      <x>60</x>
+      <y>144</y>
+      <w>18</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
@@ -427,10 +481,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>639</y>
-      <w>180</w>
-      <h>279</h>
+      <x>210</x>
+      <y>312</y>
+      <w>120</w>
+      <h>186</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 ??</panel_attributes>
@@ -439,10 +493,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>234</y>
-      <w>333</w>
-      <h>63</h>
+      <x>318</x>
+      <y>42</y>
+      <w>222</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>350.0;10.0;10.0;50.0</additional_attributes>
@@ -450,10 +504,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>333</y>
-      <w>972</w>
-      <h>27</h>
+      <x>420</x>
+      <y>108</y>
+      <w>648</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>1060.0;10.0;10.0;10.0</additional_attributes>
@@ -461,10 +515,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1161</x>
-      <y>621</y>
-      <w>306</w>
-      <h>234</h>
+      <x>672</x>
+      <y>300</y>
+      <w>204</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>Villains
 --
@@ -478,10 +532,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1458</x>
-      <y>711</y>
-      <w>99</w>
-      <h>27</h>
+      <x>870</x>
+      <y>360</y>
+      <w>66</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
@@ -489,140 +543,12 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>423</y>
-      <w>729</w>
-      <h>216</h>
+      <x>300</x>
+      <y>168</y>
+      <w>486</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0;790.0;170.0;790.0;220.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>153</x>
-      <y>225</y>
-      <w>189</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>Game
---
--nCities: int
--nHeroes: int
--startTime: long
--cities: [City]
--heroTeam: Team
--setup: GameSetup
---
-Game()
-+buildTeam()
-+toString()
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>792</x>
-      <y>639</y>
-      <w>189</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>Game
---
--nCities: int
--nHeroes: int
--startTime: long
--cities: [City]
--heroTeam: Team
---
-Game()
-+buildTeam()
-+toString()
-+main()
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>0</x>
-      <y>225</y>
-      <w>117</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Main
---
---
-
-+main()
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>153</x>
-      <y>0</y>
-      <w>189</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>GameSetup
---
--teamName: String
--numCities: int
--startNumHeroes: int
---
-+GameUI()
-+toString()
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>234</x>
-      <y>162</y>
-      <w>27</w>
-      <h>81</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>63</x>
-      <y>918</y>
-      <w>414</w>
-      <h>270</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
-Hero
---
-ALL_BLACK
-VOLUNTEER
-RETURNED_SERVICEMAN
-FIREFIGHTER
-NURSE
-FOSTER_MUM
---
--name: String
--ability: String
--strength: int //defaults to 100
---
-+setName(newHeroName: String): Sets individual hero's name
-+getName(): String: hero's name
-+getAbility(): String: hero's special ability
-+getStrength(): String : hero's strength
-+changeStrength(strengthChange: int)
-+toString()
-
-</panel_attributes>
-    <additional_attributes/>
   </element>
 </diagram>
