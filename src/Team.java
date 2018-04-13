@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Team Class for Heroes & Villains Game
@@ -7,7 +8,8 @@ import java.util.ArrayList;
  */
 
 public class Team {
-	
+
+	private static final int MAX_HERO_NAME_LENGTH = 12;
 	private String teamName;
 	private int nMembers;
 	private ArrayList<Hero> memberList;
@@ -148,7 +150,7 @@ public class Team {
 
 	@Override
 	public String toString() {
-		String result = "This team contains: \n";
+		String result = "Team " + teamName + " contains: \n";
 		for (Hero who: memberList) {
 			result += (who + "\n");
 		}
@@ -160,16 +162,17 @@ public class Team {
 	 */
 	public static void main(String[] args) {
 		Team team1 = new Team("Awesome", 4);
-		team1.addMember(Hero.ALL_BLACK);
-		team1.addMember(Hero.VOLUNTEER);
-		team1.addMember(Hero.FIREFIGHTER);
-		team1.addMember(Hero.FIREFIGHTER);
-		System.out.print(team1);
-		System.out.print(team1.removeMember(3));
-		team1.addMember(Hero.RETURNED_SERVICEMAN);
-		System.out.println();
-		team1.memberList.get(1).changeStrength(-100);
-		System.out.println(team1.memberList.get(1).getStrength());
+		team1.buildTeam(4);
+//		team1.addMember(Hero.ALL_BLACK);
+//		team1.addMember(Hero.VOLUNTEER);
+//		team1.addMember(Hero.FIREFIGHTER);
+//		team1.addMember(Hero.FIREFIGHTER);
+//		System.out.print(team1);
+//		System.out.print(team1.removeMember(3));
+//		team1.addMember(Hero.RETURNED_SERVICEMAN);
+//		System.out.println();
+//		team1.memberList.get(1).changeStrength(-100);
+//		System.out.println(team1.memberList.get(1).getStrength());
 		System.out.print(team1);
 
 	}

@@ -20,13 +20,8 @@ public class City {
 	
 	public void City(String newName, Villain newVillain) {
 		cityName = newName;
-<<<<<<< HEAD
 		cityVillain = newVillain;
 		ruler = cityVillain.getName();
-=======
-		//cityVillain = setVillain();
-		//ruler = cityVillain.getName();
->>>>>>> 5570e5cd19b4068c85a504a5627079555b2c3000
 		setDirections();
 	}
 	
