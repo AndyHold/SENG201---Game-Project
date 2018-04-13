@@ -16,7 +16,7 @@ public class Game {
 	
 	/**
 	 * Game constructor - uses GameSetup class UI to obtain parameters of
-	 * game from input. Uses buildTeam method in Heroes class o
+	 * game from input. Uses buildTeam method in Heroes class
 	 */
 	Game() {
 		GameSetup setup = new GameSetup();

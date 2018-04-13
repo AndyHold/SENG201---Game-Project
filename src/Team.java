@@ -84,9 +84,12 @@ public class Team {
 	    	while (looping) {
 	    		System.out.println("Enter the hero's name (1-12 Characters)");
 		    	heroName = in.nextLine();
-		    	System.out.println(heroName);
 		    	if (heroName.length() < 1 || heroName.length() > MAX_HERO_NAME_LENGTH) {
 		    		System.out.println("Name must be 1-12 characters.");
+		    	}
+		    	else if (checkNameUnique(heroName) == false) {
+		    		System.out.println("There is already a hero named " 
+		    				+ heroName + " in the team");
 		    	}
 		    	else {
 		    		looping = false;
@@ -129,10 +132,24 @@ public class Team {
 			addMember(currentHero);
 			System.out.println(currentHero +" called " 
 					+ heroName + " has joined the team");
-			System.out.println(memberList.size());
 	    }
 	}
-
+	
+	/**
+	 * Checks the team to see whether a particular name has already been allocated
+	 * @return a boolean false if the name has been allocated, true if it is unique
+	 */
+	public boolean checkNameUnique(String name) {
+		boolean result = true;
+		for (Hero who : memberList) {
+			if (who.getName().toLowerCase().equals(name.toLowerCase())) {
+				result = false;
+			}
+		}
+		return result;
+	}
+	
+	
 	@Override
 	public String toString() {
 		String result = "Team " + teamName + " contains: \n";
