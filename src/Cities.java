@@ -6,7 +6,8 @@
  */
 
 public class Cities {
-
+	
+	// ****Hey man, what's this for?
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
