@@ -9,7 +9,7 @@ public class City {
 	
 	private String cityName;
 	private Villain cityVillain;
-	private Location centerArea = new Location("HomeBase");
+	private HomeBase centerArea = new HomeBase(cityName);
 	private Location northArea;
 	private Location eastArea;
 	private Location southArea;
@@ -18,17 +18,14 @@ public class City {
 	private boolean completed = false;
 	
 	
-	public void City(String newName) {
+	public void City(String newName, Villain newVillain) {
 		cityName = newName;
-		cityVillain = setVillain();
+		cityVillain = newVillain;
 		ruler = cityVillain.getName();
 		setDirections();
 	}
 	
 	
-	public void setVillian() {
-		
-	}
 	
 	
 	public String toString() {
@@ -37,10 +34,7 @@ public class City {
 	
 	
 	public void setDirections() {
-		// create a hospital
-		// random number between 0-3
-		// set hospital to direction of number
-		// repeat for VillainsLair etc
+		
 	}
 	
 	

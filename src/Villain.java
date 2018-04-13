@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.HashMap;
 
 
 /**
@@ -35,6 +36,7 @@ public enum Villain {
 	private int currentHealth;
 	private boolean alive = true;
 	private ArrayList<String> taunts = new ArrayList<String>();
+	private HashMap<String, String> lairNames = new HashMap<String, String>();
 	
 	
 	/**
@@ -46,6 +48,69 @@ public enum Villain {
 		name = newName;
 		currentHealth = 100;
 		setTaunts(taunt1, taunt2, taunt3);
+		setLairNames();
+	}
+	
+	
+	/**
+	 * setsLairNames for type of Villain selected and places them in a dictionary with city names as keys.
+	 */
+	private void setLairNames() {
+		switch (this) {
+			case POLITICIAN:
+				lairNames.put("Springfield", "Springfield Giant Donut Statue");
+				lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
+				lairNames.put("Gore", "Gore Giant Trout Statue");
+				lairNames.put("Ohakune", "Ohakune Giant Carrot Statue");
+				lairNames.put("Paeroa", "Paeroa L&P Statue");
+				lairNames.put("Taihape", "Taihape Giant Gumboot Statue");
+				break;
+				
+			case LAWYER:
+				lairNames.put("Springfield", "Christchurch District Court Chambers");
+				lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
+				lairNames.put("Gore", "Gore District Court");
+				lairNames.put("Ohakune", "Ohakune District Court");
+				lairNames.put("Paeroa", "Hauraki District Court");
+				lairNames.put("Taihape", "Taihape District Court");
+				break;
+				
+			case BOUNCER:
+				lairNames.put("Springfield", "The Springfield Hotel");
+				lairNames.put("Te Puke", "Molly O'Connors Pub");
+				lairNames.put("Gore", "Howl at the Moon, Cafe and Bar");
+				lairNames.put("Ohakune", "Powderkeg Restaurant and Bar");
+				lairNames.put("Paeroa", "The Paeroa Hotel");
+				lairNames.put("Taihape", "Gumboot Manor Restaurant and Bar");
+				break;
+				
+			case CALLCENTREOPERATOR:
+				lairNames.put("Springfield", "Springfield Telephone Exchange");
+				lairNames.put("Te Puke", "Te Puke Telephone Exchange");
+				lairNames.put("Gore", "Gore Telephone Exchange");
+				lairNames.put("Ohakune", "Ohakune Telephone Exchange");
+				lairNames.put("Paeroa", "Paeroa Telephone Exchange");
+				lairNames.put("Taihape", "Taihape Telephone Exchange");
+				break;
+				
+			case BADRUGBYREFEREE:
+				lairNames.put("Springfield", "Selwyn Rugby Club");
+				lairNames.put("Te Puke", "Centenial Park, Te Puke");
+				lairNames.put("Gore", "Newman Park, Gore");
+				lairNames.put("Ohakune", "Rochfort Park, Ohakune");
+				lairNames.put("Paeroa", "Paeroa Old Boys Football Ground");
+				lairNames.put("Taihape", "Memorial Park, Taihape");
+				break;
+		}	
+	}
+	
+	
+	/**
+	 * gets the lair name from the dictionary and returns it.
+	 * @return String lair name for given City and Villain type.
+	 */
+	public String getLairName(String cityName) {
+		return lairNames.get(cityName);
 	}
 	
 	
@@ -59,6 +124,15 @@ public enum Villain {
 		taunts.add(taunt1);
 		taunts.add(taunt2);
 		taunts.add(taunt3);
+	}
+	
+	
+	/**
+	 * gets the name of the Villain
+	 * @return String name of the Villain
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	

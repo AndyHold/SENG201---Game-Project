@@ -10,7 +10,17 @@ public class Location {
 	private String placeName;
 	
 	
-	public Location(String newName) {
+	protected Location(String cityName) {
+		this.placeName = cityName;
+	}
+	
+	
+	public String getLocationName() {
+		return placeName;
+	}
+	
+	
+	protected void setName(String newName) {
 		placeName = newName;
 	}
 

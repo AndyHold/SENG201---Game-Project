@@ -418,6 +418,7 @@ BADRUGBYREFEREE
 -currentHealth: int /starts at 100
 -alive: boolean /changes to false when defeated
 -taunts: ArrayList&lt;String&gt; /3 Taunts
+-lairNames: HashMap&lt;String, String&gt; /dictionary of lair names, keys are city names.
 --
 -setTaunts() /part of the constructor
 +getTaunt(): String /returns a random taunt
@@ -425,7 +426,8 @@ BADRUGBYREFEREE
 +getHealth(): int /returns currentHealth
 +isAlive(): boolean
 +toString(): String 2 line representation of Villain.
-
+-setLairNames(): constructor for lairNames uses a switch statement.
++getLairName(String cityName): String returns lair name from lairNames.
 </panel_attributes>
     <additional_attributes/>
   </element>
