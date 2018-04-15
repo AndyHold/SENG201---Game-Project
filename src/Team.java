@@ -88,11 +88,12 @@ public class Team {
 	    				"Choice must be between 1 & " + numPossibleHeroes);
  
 	    		switch (heroNum) { //Implemented this way until we see how GUI will work
+	    		//Terribly non-OO. Needs fixing
 	    		case 1:
 	    			currentHero = Hero.ALL_BLACK;
 	    			break;
 	    		case 2:
-	    			currentHero = Hero.VOLUNTEER;
+	    			currentHero = Hero.SURVEYOR;
 	    			break;
 	    		case 3:
 	    			currentHero = Hero.RETURNED_SERVICEMAN;
@@ -128,7 +129,23 @@ public class Team {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * Print to output a list of the current team members, their special ability 
+	 * and their current strength.
+	 */
+	public void teamStatus() {
+		System.out.println("At this point, the members of " + teamName + " are:");
+		for (Hero who : memberList) {
+			System.out.print(memberList.indexOf(who) + ". ");
+			System.out.print(who.getName() + ", ");
+			System.out.print(who.toString().toLowerCase());
+			System.out.print(" with the ability to " + who.getAbility());
+			System.out.print(". " + who.getName() + "'s strength is ");
+			System.out.print(who.getStrength() + "\n");
+		}
+	}
+	
 	@Override
 	public String toString() {
 		String result = "Team " + teamName + " contains: \n";
@@ -142,8 +159,8 @@ public class Team {
 	 * Test Code Only
 	 */
 	public static void main(String[] args) {
-		Team team1 = new Team("Awesome", 4);
-		team1.buildTeam(4);
+		Team team1 = new Team("Awesome", 2);
+		team1.buildTeam(2);
 //		team1.addMember(Hero.ALL_BLACK);
 //		team1.addMember(Hero.VOLUNTEER);
 //		team1.addMember(Hero.FIREFIGHTER);
@@ -154,7 +171,8 @@ public class Team {
 //		System.out.println();
 //		team1.memberList.get(1).changeStrength(-100);
 //		System.out.println(team1.memberList.get(1).getStrength());
-		System.out.print(team1);
+		//System.out.print(team1);
+		team1.teamStatus();
 
 	}
 
