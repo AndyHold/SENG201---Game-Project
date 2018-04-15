@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Game Class for Heroes & Villains Game
  * SENG201 2018S1

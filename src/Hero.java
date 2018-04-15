@@ -5,22 +5,23 @@
  */
 public enum Hero {
 	
-	ALL_BLACK(null, "have a virtually unprecendented success in games. Wins 50% more games", 100), 
-	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100), 
-	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100), 
-	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting strength of 120", 120), 
-	NURSE(null, "make your health dollars go further by doubling health bonuses", 110),
-	FOSTER_MUM(null,"be immune to taunts", 100);
+	ALL_BLACK(null, "have a virtually unprecendented success in games. Wins 50% more games", 100, null), 
+	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100, null), 
+	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100, null), 
+	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting strength of 120", 120, null), 
+	NURSE(null, "make your health dollars go further by doubling health bonuses", 110, null),
+	FOSTER_MUM(null,"be immune to taunts", 100, null);
 	
 	private String heroName;	
 	private String ability;
 	private int strength;
+	private PowerUp powerUpEaten;
 	
 	
 	/*
 	 * Hero constructor
 	 */
-	Hero(String heroName, String abilityArg, int strengthArg){
+	Hero(String heroName, String abilityArg, int strengthArg, PowerUp powerUpArg){
 		ability = abilityArg;
 		strength = strengthArg;
 	}
@@ -68,12 +69,29 @@ public enum Hero {
 	}
 	
 	/**
+	 * Getter method to return any PowerUp that the Hero has eaten
+	 * @return a PowerUp, the PowerUp most recently eaten by the hero
+	 */
+	public PowerUp getPowerUp() {
+		return powerUpEaten;
+	}
+	
+	/**
+	 * Setter method to have hero eat power up
+	 * @param powerUpToEat
+	 */
+	public void eatPowerUp(PowerUp powerUpToEat) {
+		this.powerUpEaten = powerUpToEat;
+		System.out.println(this.heroName + " " + powerUpToEat.getResponse());
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	public String toString() {
 		switch(this) {
 		case ALL_BLACK: return "An All Black";
-		case SURVEYOR: return "A surveyorer";
+		case SURVEYOR: return "A surveyor";
 		case RETURNED_SERVICEMAN: return "A returned serviceman";
 		case FIREFIGHTER: return "A firefighter";
 		case NURSE: return "A nurse";

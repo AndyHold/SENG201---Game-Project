@@ -10,10 +10,11 @@ import java.util.Scanner;
 public class Team {
 
 	private static final int MAX_HERO_NAME_LENGTH = 12;
+	private static final double STARTING_MONEY = 10;
 	private String teamName;
 	private int nMembers;
 	private ArrayList<Hero> memberList;
-	//private ArrayList<PowerUp> powerUps;
+	private ArrayList<PowerUp> powerUps;
 	//private ArrayList<HealingItem> healingItems;
 	//private ArrayList<map> maps;
 	double money;
@@ -28,6 +29,10 @@ public class Team {
 		this.teamName = teamName;
 		this.nMembers = nMembers;
 		this.memberList = new ArrayList<Hero>();
+		this.powerUps = new ArrayList<PowerUp>();
+		//this.healingItems = new ArrayList<HealingItem>();
+		//this.maps = new ArrayList<Map>();
+		this.money = STARTING_MONEY;
 	}
 	
 	/**
@@ -146,6 +151,44 @@ public class Team {
 		}
 	}
 	
+	/**
+	 * Buy a powerup. Remove the relevant amount from the 
+	 * team's money. If money is insufficient for the transaction, prints a statement
+	 * to this effect, and powerup is not added
+	 * @param powerUpBought a PowerUp the powerUp to be bought
+	 */
+	//This method may end up in shop class. Possibly
+	public void buyPowerUp(PowerUp powerUpBought) {
+		if (this.money >= powerUpBought.getCost()) {
+			this.powerUps.add(powerUpBought);
+			this.money -= powerUpBought.getCost();
+			System.out.println(teamName + " have bought a " + powerUpBought.toString().toLowerCase());
+			System.out.println("The ballsy band of heroes have " + this.money + " remaining");
+		} else {
+			System.out.println("We're too broke mate! Anyone want to sell a kidney?");
+		}
+	}
+	
+	/**
+	 * Removes the power up at a given index from the list
+	 * @param powerUpIndex an int, the index of the power up to remove in the ArrayList of power ups 
+	 */
+	public void removePowerUp(int powerUpIndex){
+		this.powerUps.remove(powerUpIndex);
+	}
+	
+	/**
+	 * Makes the team member at index teamMember eat the powerup at index powerUpIndex. Removes the 
+	 * power up from the team's inventory 
+	 * @param powerUpIndex an int the index of the power up to apply
+	 * @param teamMemberIndex an int the index of the team member who is to eat the power up
+	 */
+	public void applyPowerUp(int powerUpIndex, int teamMemberIndex){
+		memberList.get(teamMemberIndex).eatPowerUp(powerUps.get(powerUpIndex));
+		removePowerUp(powerUpIndex);
+	}
+	
+	
 	@Override
 	public String toString() {
 		String result = "Team " + teamName + " contains: \n";
@@ -172,7 +215,11 @@ public class Team {
 //		team1.memberList.get(1).changeStrength(-100);
 //		System.out.println(team1.memberList.get(1).getStrength());
 		//System.out.print(team1);
+		
 		team1.teamStatus();
+		team1.buyPowerUp(PowerUp.PAVLOVA);
+		team1.buyPowerUp(PowerUp.PINEAPPLE_LUMPS);
+		team1.applyPowerUp(0, 0);
 
 	}
 
