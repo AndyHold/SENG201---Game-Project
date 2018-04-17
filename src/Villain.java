@@ -10,27 +10,39 @@ import java.util.HashMap;
  */
 public enum Villain {
 	
+	BADRUGBYREFEREE("Barry the Bad Referee", 
+			"I'm going to penalize you off the paddock!", 
+			"Do you even know the rules?!", 
+			"Thats a red card for you buddy!", 
+			0),
+	
+	BOUNCER("Dan the Doorman", 
+			"Sorry cuz, you've had a bit much to come in tonight!", 
+			"This isn't your I.D.!", 
+			"You look like you need a few waters!", 
+			1), 
+	
+	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
+			"I'll put you on hold for the rest of your life!", 
+			"Your call is not important to us!", 
+			"Let me put you through to our complaints department, Oh wait we don't have one!", 
+			2), 
+	
+	LAWYER("Lionel the Lawyer", 
+			"I object to your presence!", 
+			"I'm going to take you for every penny you have!", 
+			"You're contractually obliged to lose!",
+			3), 
 	
 	POLITICIAN("Peter the Politician", 
 			"The people want what I say they want!", 
 			"Let's mine the national parks for oil!", 
-			"Election promises are for losers!"), 
-	LAWYER("Lionel the Lawyer", 
-			"I object to your presence!", 
-			"I'm going to take you for every penny you have!", 
-			"You're contractually obliged to lose!"), 
-	BOUNCER("Dan the Doorman", 
-			"Sorry cuz, you've had a bit much to come in tonight!", 
-			"This isn't your I.D.!", 
-			"You look like you need a few waters!"), 
-	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
-			"I'll put you on hold for the rest of your life!", 
-			"Your call is not important to us!", 
-			"Let me put you through to our complaints department, Oh wait we don't have one!"), 
-	BADRUGBYREFEREE("Barry the Bad Referee", 
-			"I'm going to penalize you off the paddock!", 
-			"Do you even know the rules?!", 
-			"Thats a red card for you buddy!");
+			"Election promises are for losers!",
+			4); 
+
+
+
+
 	
 	private String name;
 	private int currentHealth;
@@ -39,43 +51,42 @@ public enum Villain {
 	private HashMap<String, String> lairNames = new HashMap<String, String>();
 	
 	
+	
 	/**
 	 * Constructor for Villain Super Class
 	 * @param newName name of the Villain
 	 * @param currentHealth health of the Villain
 	 */
-	private Villain(String newName, String taunt1, String taunt2, String taunt3) {
+	private Villain(String newName, String taunt1, String taunt2, String taunt3, int typeInt) {
 		name = newName;
 		currentHealth = 100;
 		setTaunts(taunt1, taunt2, taunt3);
-		setLairNames();
+		setLairNames(typeInt);
 	}
 	
 	
 	/**
 	 * setsLairNames for type of Villain selected and places them in a dictionary with city names as keys.
+	 * Int selectors correspond as follows:
+	 * 0 = Bad Rugby Referee
+	 * 1 = Bouncer
+	 * 2 = Call Centre operator
+	 * 3 = Lawyer
+	 * 4 = Politician
 	 */
-	private void setLairNames() {
-		switch (this) {
-			case POLITICIAN:
-				lairNames.put("Springfield", "Springfield Giant Donut Statue");
-				lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
-				lairNames.put("Gore", "Gore Giant Trout Statue");
-				lairNames.put("Ohakune", "Ohakune Giant Carrot Statue");
-				lairNames.put("Paeroa", "Paeroa L&P Statue");
-				lairNames.put("Taihape", "Taihape Giant Gumboot Statue");
+	private void setLairNames(int typeInt) {
+		switch (typeInt) {
+		
+			case 0:
+				lairNames.put("Springfield", "Selwyn Rugby Club");
+				lairNames.put("Te Puke", "Centenial Park, Te Puke");
+				lairNames.put("Gore", "Newman Park, Gore");
+				lairNames.put("Ohakune", "Rochfort Park, Ohakune");
+				lairNames.put("Paeroa", "Paeroa Old Boys Football Ground");
+				lairNames.put("Taihape", "Memorial Park, Taihape");
 				break;
-				
-			case LAWYER:
-				lairNames.put("Springfield", "Christchurch District Court Chambers");
-				lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
-				lairNames.put("Gore", "Gore District Court");
-				lairNames.put("Ohakune", "Ohakune District Court");
-				lairNames.put("Paeroa", "Hauraki District Court");
-				lairNames.put("Taihape", "Taihape District Court");
-				break;
-				
-			case BOUNCER:
+			
+			case 1:
 				lairNames.put("Springfield", "The Springfield Hotel");
 				lairNames.put("Te Puke", "Molly O'Connors Pub");
 				lairNames.put("Gore", "Howl at the Moon, Cafe and Bar");
@@ -83,8 +94,8 @@ public enum Villain {
 				lairNames.put("Paeroa", "The Paeroa Hotel");
 				lairNames.put("Taihape", "Gumboot Manor Restaurant and Bar");
 				break;
-				
-			case CALLCENTREOPERATOR:
+			
+			case 2:
 				lairNames.put("Springfield", "Springfield Telephone Exchange");
 				lairNames.put("Te Puke", "Te Puke Telephone Exchange");
 				lairNames.put("Gore", "Gore Telephone Exchange");
@@ -93,13 +104,22 @@ public enum Villain {
 				lairNames.put("Taihape", "Taihape Telephone Exchange");
 				break;
 				
-			case BADRUGBYREFEREE:
-				lairNames.put("Springfield", "Selwyn Rugby Club");
-				lairNames.put("Te Puke", "Centenial Park, Te Puke");
-				lairNames.put("Gore", "Newman Park, Gore");
-				lairNames.put("Ohakune", "Rochfort Park, Ohakune");
-				lairNames.put("Paeroa", "Paeroa Old Boys Football Ground");
-				lairNames.put("Taihape", "Memorial Park, Taihape");
+			case 3:
+				lairNames.put("Springfield", "Christchurch District Court Chambers");
+				lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
+				lairNames.put("Gore", "Gore District Court");
+				lairNames.put("Ohakune", "Ohakune District Court");
+				lairNames.put("Paeroa", "Hauraki District Court");
+				lairNames.put("Taihape", "Taihape District Court");
+				break;
+				
+			case 4:
+				lairNames.put("Springfield", "Springfield Giant Donut Statue");
+				lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
+				lairNames.put("Gore", "Gore Giant Trout Statue");
+				lairNames.put("Ohakune", "Ohakune Giant Carrot Statue");
+				lairNames.put("Paeroa", "Paeroa L&P Statue");
+				lairNames.put("Taihape", "Taihape Giant Gumboot Statue");
 				break;
 		}	
 	}
@@ -151,13 +171,17 @@ public enum Villain {
 	 * Takes 25 damage and updates boolean alive if Villain is defeated
 	 * @return String representation of the damage done and notifies when villain is defeated.
 	 */
-	public String takeDamage() {
-		currentHealth -= 25;
-		if(currentHealth <= 0) {
+	public String takeDamage(int amount) {
+		if(amount > currentHealth) {
+			amount = currentHealth;
+		}
+		currentHealth -= amount;
+		if(currentHealth == 0) {
 			alive = false;
-			return name + " has taken 25 damage \n" + name + " has been defeated!";
+			currentHealth = 0;
+			return name + " has taken " + amount + " damage \n" + name + " has been defeated!";
 		} else {
-			return name + " has taken 25 damage";
+			return name + " has taken " + amount + " damage";
 		}
 	}
 	
@@ -191,14 +215,88 @@ public enum Villain {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		Villain baddie = new Villain.POLITICIAN;
-//		baddie.getTaunt();
-//		System.out.println(barister);
-//		System.out.println(barister);
-//		System.out.println(barister);
-//		System.out.println(barister);
-//		System.out.println(barister);
-	
-	
-
-}}
+		// REFEREE TESTS
+//		Villain ref = Villain.BADRUGBYREFEREE;
+//		System.out.println(ref.getTaunt());
+//		System.out.println(ref);
+//		System.out.println(ref);
+//		System.out.println(ref);
+//		System.out.println(ref);
+//		System.out.println(ref);
+//		System.out.println(ref.getLairName("Springfield"));
+//		System.out.println(ref.getLairName("Te Puke"));
+//		System.out.println(ref.getLairName("Gore"));
+//		System.out.println(ref.getLairName("Ohakune"));
+//		System.out.println(ref.getLairName("Paeroa"));
+//		System.out.println(ref.getLairName("Taihape"));
+//		
+//		// BOUNCER TESTS
+//		Villain doorman = Villain.BOUNCER;
+//		System.out.println(doorman.getTaunt());
+//		System.out.println(doorman);
+//		System.out.println(doorman);
+//		System.out.println(doorman);
+//		System.out.println(doorman);
+//		System.out.println(doorman);
+//		System.out.println(doorman.getLairName("Springfield"));
+//		System.out.println(doorman.getLairName("Te Puke"));
+//		System.out.println(doorman.getLairName("Gore"));
+//		System.out.println(doorman.getLairName("Ohakune"));
+//		System.out.println(doorman.getLairName("Paeroa"));
+//		System.out.println(doorman.getLairName("Taihape"));
+//		
+//		// CALLCENTREOPERATOR TESTS
+//		Villain operator = Villain.CALLCENTREOPERATOR;
+//		System.out.println(operator.getTaunt());
+//		System.out.println(operator);
+//		System.out.println(operator);
+//		System.out.println(operator);
+//		System.out.println(operator);
+//		System.out.println(operator);
+//		System.out.println(operator.getLairName("Springfield"));
+//		System.out.println(operator.getLairName("Te Puke"));
+//		System.out.println(operator.getLairName("Gore"));
+//		System.out.println(operator.getLairName("Ohakune"));
+//		System.out.println(operator.getLairName("Paeroa"));
+//		System.out.println(operator.getLairName("Taihape"));
+//		
+//		// LAWYER TESTS
+//		Villain lawyer = Villain.LAWYER;
+//		System.out.println(lawyer.getTaunt());
+//		System.out.println(lawyer);
+//		System.out.println(lawyer);
+//		System.out.println(lawyer);
+//		System.out.println(lawyer);
+//		System.out.println(lawyer);
+//		System.out.println(lawyer.getLairName("Springfield"));
+//		System.out.println(lawyer.getLairName("Te Puke"));
+//		System.out.println(lawyer.getLairName("Gore"));
+//		System.out.println(lawyer.getLairName("Ohakune"));
+//		System.out.println(lawyer.getLairName("Paeroa"));
+//		System.out.println(lawyer.getLairName("Taihape"));
+//		
+//		//POLITICIAN TESTS
+//		Villain minister = Villain.POLITICIAN;
+//		System.out.println(minister.getTaunt());
+//		System.out.println(minister);
+//		System.out.println(minister);
+//		System.out.println(minister);
+//		System.out.println(minister);
+//		System.out.println(minister);
+//		System.out.println(minister.getLairName("Springfield"));
+//		System.out.println(minister.getLairName("Te Puke"));
+//		System.out.println(minister.getLairName("Gore"));
+//		System.out.println(minister.getLairName("Ohakune"));
+//		System.out.println(minister.getLairName("Paeroa"));
+//		System.out.println(minister.getLairName("Taihape"));
+//		
+//		// OTHER METHOD TESTS
+//		System.out.println(ref.isAlive());
+//		System.out.println(ref.getHealth());
+//		System.out.println(ref.takeDamage(30));
+//		System.out.println(ref.getHealth());
+//		System.out.println(ref.takeDamage(300));
+//		System.out.println(ref.getHealth());
+//		System.out.println(ref.isAlive());
+	}
+}

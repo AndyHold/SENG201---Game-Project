@@ -23,6 +23,11 @@ public class Location {
 	protected void setName(String newName) {
 		placeName = newName;
 	}
+	
+	
+	public String getName() {
+		return placeName;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

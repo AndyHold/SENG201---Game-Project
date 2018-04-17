@@ -2,7 +2,7 @@
 public class VilliansLair extends Location {
 	
 	
-	private VilliansLair(String cityName, Villain currentVillian) {
+	VilliansLair(String cityName, Villain currentVillian) {
 		super(currentVillian.getLairName(cityName));
 	}
 
