@@ -22,7 +22,7 @@ public class City {
 	private boolean mapped = false;
 	
 	
-	public void City(String newName, Villain newVillain, Team newTeam) {
+	City(String newName, Villain newVillain, Team newTeam) {
 		cityName = newName;
 		cityVillain = newVillain;
 		ruler = cityVillain.getName();

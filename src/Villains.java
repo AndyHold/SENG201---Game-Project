@@ -17,7 +17,7 @@ public class Villains {
 	 * Constructor for Villains Super Class
 	 * @param availableVillains ArrayList<Villain> list of all available villains
 	 */
-	private Villains() {
+	Villains() {
 		availableVillains.add(Villain.AUSSIECRICKETER);
 		availableVillains.add(Villain.BADRUGBYREFEREE);
 		availableVillains.add(Villain.BOUNCER);
@@ -40,7 +40,7 @@ public class Villains {
 	 * Chooses a random villain for use and removes it from availableVillains
 	 * @return Villain a random villain picked from availableVillains.
 	 */
-	public static Villain getVillain() {
+	public Villain getVillain() {
 		Random rand = new Random();
 		int n = rand.nextInt(getNumberOfVillains());
 		Villain currentVillain = availableVillains.get(n);
