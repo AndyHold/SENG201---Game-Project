@@ -10,35 +10,40 @@ import java.util.HashMap;
  */
 public enum Villain {
 	
+	AUSSIECRICKETER("Darin the Aussie Cricketer", 
+			"Crikey! A bit of sand paper will deadset sort you out ya drongo!", 
+			"Strewth! An under arm bowl from me and you'll be in the dunny but!",
+			"Fair Dinkum! No chocky bikkies for you ya mongrel!", 
+			0),
 	BADRUGBYREFEREE("Barry the Bad Referee", 
 			"I'm going to penalize you off the paddock!", 
 			"Do you even know the rules?!", 
 			"Thats a red card for you buddy!", 
-			0),
+			1),
 	
 	BOUNCER("Dan the Doorman", 
 			"Sorry cuz, you've had a bit much to come in tonight!", 
 			"This isn't your I.D.!", 
 			"You look like you need a few waters!", 
-			1), 
+			2), 
 	
 	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
 			"I'll put you on hold for the rest of your life!", 
 			"Your call is not important to us!", 
 			"Let me put you through to our complaints department, Oh wait we don't have one!", 
-			2), 
+			3), 
 	
 	LAWYER("Lionel the Lawyer", 
 			"I object to your presence!", 
 			"I'm going to take you for every penny you have!", 
 			"You're contractually obliged to lose!",
-			3), 
+			4), 
 	
 	POLITICIAN("Peter the Politician", 
 			"The people want what I say they want!", 
 			"Let's mine the national parks for oil!", 
 			"Election promises are for losers!",
-			4); 
+			5); 
 
 
 
@@ -78,6 +83,15 @@ public enum Villain {
 		switch (typeInt) {
 		
 			case 0:
+				lairNames.put("Springfield", "Hagley Oval");
+				lairNames.put("Te Puke", "Bay Oval");
+				lairNames.put("Gore", "The Grove Park");
+				lairNames.put("Ohakune", "Ohakune Domain");
+				lairNames.put("Paeroa", "Centennial Park");
+				lairNames.put("Taihape", "Memorial Park, Taihape");
+				break;
+				
+			case 1:
 				lairNames.put("Springfield", "Selwyn Rugby Club");
 				lairNames.put("Te Puke", "Centenial Park, Te Puke");
 				lairNames.put("Gore", "Newman Park, Gore");
@@ -86,7 +100,7 @@ public enum Villain {
 				lairNames.put("Taihape", "Memorial Park, Taihape");
 				break;
 			
-			case 1:
+			case 2:
 				lairNames.put("Springfield", "The Springfield Hotel");
 				lairNames.put("Te Puke", "Molly O'Connors Pub");
 				lairNames.put("Gore", "Howl at the Moon, Cafe and Bar");
@@ -95,7 +109,7 @@ public enum Villain {
 				lairNames.put("Taihape", "Gumboot Manor Restaurant and Bar");
 				break;
 			
-			case 2:
+			case 3:
 				lairNames.put("Springfield", "Springfield Telephone Exchange");
 				lairNames.put("Te Puke", "Te Puke Telephone Exchange");
 				lairNames.put("Gore", "Gore Telephone Exchange");
@@ -104,7 +118,7 @@ public enum Villain {
 				lairNames.put("Taihape", "Taihape Telephone Exchange");
 				break;
 				
-			case 3:
+			case 4:
 				lairNames.put("Springfield", "Christchurch District Court Chambers");
 				lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
 				lairNames.put("Gore", "Gore District Court");
@@ -113,7 +127,7 @@ public enum Villain {
 				lairNames.put("Taihape", "Taihape District Court");
 				break;
 				
-			case 4:
+			case 5:
 				lairNames.put("Springfield", "Springfield Giant Donut Statue");
 				lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
 				lairNames.put("Gore", "Gore Giant Trout Statue");
@@ -215,6 +229,21 @@ public enum Villain {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		// CRICKETER TESTS
+//		Villain cricketer = Villain.AUSSIECRICKETER;
+//		System.out.println(cricketer.getTaunt());
+//		System.out.println(cricketer);
+//		System.out.println(cricketer);
+//		System.out.println(cricketer);
+//		System.out.println(cricketer);
+//		System.out.println(cricketer);
+//		System.out.println(cricketer.getLairName("Springfield"));
+//		System.out.println(cricketer.getLairName("Te Puke"));
+//		System.out.println(cricketer.getLairName("Gore"));
+//		System.out.println(cricketer.getLairName("Ohakune"));
+//		System.out.println(cricketer.getLairName("Paeroa"));
+//		System.out.println(cricketer.getLairName("Taihape"));
+//
 		// REFEREE TESTS
 //		Villain ref = Villain.BADRUGBYREFEREE;
 //		System.out.println(ref.getTaunt());

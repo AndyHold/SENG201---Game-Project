@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -415,20 +416,20 @@ FOSTER_MUM
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1576</x>
-      <y>576</y>
-      <w>248</w>
-      <h>256</h>
+      <x>1440</x>
+      <y>568</y>
+      <w>304</w>
+      <h>296</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 Villain
 --
-POLITICIAN
-BOUNCER
-LAWYER
-CALLCENTREOPERATOR
+AUSSIECRICKETER
 BADRUGBYREFEREE
-...
+BOUNCER
+CALLCENTREOPERATOR
+LAWYER
+POLITICIAN
 --
 -name: String
 -currentHealth: int /starts at 100
@@ -504,7 +505,7 @@ bg=red</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;.
 ??</panel_attributes>
-    <additional_attributes>100.0;290.0;90.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;290.0;100.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -512,10 +513,10 @@ bg=red</panel_attributes>
       <x>768</x>
       <y>232</y>
       <w>296</w>
-      <h>56</h>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>350.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>350.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -531,7 +532,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1240</x>
+      <x>1056</x>
       <y>576</y>
       <w>272</w>
       <h>208</h>
@@ -548,24 +549,24 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1504</x>
-      <y>656</y>
-      <w>88</w>
+      <x>1320</x>
+      <y>648</y>
+      <w>136</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>744</x>
       <y>400</y>
-      <w>648</w>
+      <w>464</w>
       <h>192</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0;790.0;170.0;790.0;220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;560.0;180.0;560.0;220.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
