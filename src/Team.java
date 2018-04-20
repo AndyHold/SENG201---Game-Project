@@ -221,6 +221,7 @@ public class Team {
 		team1.buyPowerUp(PowerUp.PINEAPPLE_LUMPS);
 		team1.applyPowerUp(0, 0);
 
+		
 	}
 
 }

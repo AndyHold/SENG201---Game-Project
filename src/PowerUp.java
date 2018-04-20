@@ -1,3 +1,9 @@
+/**
+ * Selector Class for Heroes & Villains Game
+ * Contains tools for command line interface
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 
 public enum PowerUp {
 	PAVLOVA(4.99, "A slice of pavlova topped with cream and kiwifruit", 
@@ -30,23 +36,39 @@ public enum PowerUp {
 		this.response = responseArg;
 	}
 	
+	/**
+	 * Getter method for cost of power up
+	 * @return a double the cost of the power up
+	 */
 	public double getCost() {
 		return cost;
 	}
 	
+	/**
+	 * Getter method for the long description of a power up
+	 * @return a String the long description of a power up
+	 */
 	public String getLongdescription() {
 		return longDescription;
 	}
 	
+	/**
+	 * Getter method for the effect String of a power up
+	 * @return a String the purported effect of the power up
+	 */
 	public String getEffect() {
 		return effect;
 	}
 	
+	/**
+	 * Getter method for the hero's response to a power up
+	 * @return a String the hero's response upon receiving the power up
+	 */
 	public String getResponse() {
 		return response;
 	}
 	
-	
+	@Override
 	public String toString() {
 		switch(this) {
 		case PAVLOVA: return "A slice of pavlova";
