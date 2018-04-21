@@ -5,25 +5,27 @@
  */
 public enum Hero {
 	
-	ALL_BLACK(null, "have a virtually unprecendented success in games. Wins 50% more games", 100, null), 
-	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100, null), 
-	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100, null), 
-	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting strength of 120", 120, null), 
-	NURSE(null, "make your health dollars go further by doubling health bonuses", 110, null),
-	FOSTER_MUM(null,"be immune to taunts", 100, null);
+	ALL_BLACK(null, "have a virtually unprecendented success in games. Wins 50% more games", 100, 100, null), 
+	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100, 100, null), 
+	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100, 100, null), 
+	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting health of 125", 100, 125, null), 
+	NURSE(null, "make your health dollars go further by doubling health bonuses", 100, 100, null),
+	FOSTER_MUM(null,"see into the future, as she has seen it all before (Can sometimes predict the outcome of games)", 100, 100, null);
 	
 	private String heroName;	
 	private String ability;
 	private int strength;
+	private int health;
 	private PowerUp powerUpEaten;
 	
 	
 	/*
 	 * Hero constructor
 	 */
-	Hero(String heroName, String abilityArg, int strengthArg, PowerUp powerUpArg){
+	Hero(String heroName, String abilityArg, int strengthArg, int healthArg, PowerUp powerUpArg){
 		ability = abilityArg;
 		strength = strengthArg;
+		health = healthArg;
 	}
 	
 	/**
@@ -51,7 +53,7 @@ public enum Hero {
 	}
 	
 	/**
-	 * Getter method for particular hero
+	 * Getter method for particular hero's strength
 	 * @return an int the hero's current strength
 	 */
 	public int getStrength() {
@@ -66,6 +68,24 @@ public enum Hero {
 	public int changeStrength(int strengthChange) {
 		this.strength += strengthChange;
 		return this.strength;
+	}
+	
+	/**
+	 * Getter method for particular hero's health
+	 * @return an int the hero's current health
+	 */
+	public int getHealth() {
+		return health;
+	}
+	
+	/**
+	 * Method for adding or subtracting health from Hero
+	 * @param healthChange an int, the amount by which the hero's health is to be changed
+	 * @return an int, the hero's health after the change
+	 */
+	public int changeHealth(int healthChange) {
+		this.health += healthChange;
+		return this.health;
 	}
 	
 	/**

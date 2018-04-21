@@ -15,8 +15,8 @@ public class Team {
 	private int nMembers;
 	private ArrayList<Hero> memberList;
 	private ArrayList<PowerUp> powerUps;
-	//private ArrayList<HealingItem> healingItems;
-	//private ArrayList<map> maps;
+	private ArrayList<HealingItem> healingItems;
+	private int maps;
 	double money;
 	
 	
@@ -30,8 +30,8 @@ public class Team {
 		this.nMembers = nMembers;
 		this.memberList = new ArrayList<Hero>();
 		this.powerUps = new ArrayList<PowerUp>();
-		//this.healingItems = new ArrayList<HealingItem>();
-		//this.maps = new ArrayList<Map>();
+		this.healingItems = new ArrayList<HealingItem>();
+		this.maps = 0;
 		this.money = STARTING_MONEY;
 	}
 	
@@ -42,6 +42,8 @@ public class Team {
 	public int getTeamSize() {
 		return memberList.size();
 	}
+
+	//**************************Heroes*****************************************
 	
 	/**
 	 * Adds a new hero to the team
@@ -147,9 +149,11 @@ public class Team {
 			System.out.print(who.toString().toLowerCase());
 			System.out.print(" with the ability to " + who.getAbility());
 			System.out.print(". " + who.getName() + "'s strength is ");
-			System.out.print(who.getStrength() + "\n");
+			System.out.print(who.getStrength());
+			System.out.print(" and their health is " + who.getHealth() + "\n");
 		}
 	}
+	//*********************************Power Ups*******************************
 	
 	/**
 	 * Buy a powerup. Remove the relevant amount from the 
@@ -157,16 +161,26 @@ public class Team {
 	 * to this effect, and powerup is not added
 	 * @param powerUpBought a PowerUp the powerUp to be bought
 	 */
-	//This method may end up in shop class. Possibly
+	//Andy to move into shop class
+	//************************************************************************
 	public void buyPowerUp(PowerUp powerUpBought) {
 		if (this.money >= powerUpBought.getCost()) {
-			this.powerUps.add(powerUpBought);
+			this.powerUps.add(powerUpBought);//Will need to use Team .addPowerUp method
 			this.money -= powerUpBought.getCost();
 			System.out.println(teamName + " have bought a " + powerUpBought.toString().toLowerCase());
 			System.out.println("The ballsy band of heroes have " + this.money + " remaining");
 		} else {
 			System.out.println("We're too broke mate! Anyone want to sell a kidney?");
 		}
+	}
+	//************************************************************************
+	
+	/**
+	 * Adds a power up to the team's inventory
+	 * @param powerUp a PowerUp, the power up to add to the team's inventory 
+	 */
+	public void addPowerUp(PowerUp powerUp){
+		this.powerUps.add(powerUp);
 	}
 	
 	/**
@@ -188,6 +202,72 @@ public class Team {
 		removePowerUp(powerUpIndex);
 	}
 	
+	/**
+	 * Prints to output a list of the power ups in the team's inventory, and the index of each
+	 */
+	public void showPowerUps(){
+		System.out.println("Team " + teamName + " are carrying the following power ups:");
+		for (int i = 0; i < powerUps.size(); i++){
+			System.out.print(i + ". " + powerUps.get(i) + "\n");
+		}
+	}
+	
+	//**********************************Healing Items***************************
+	
+	/**
+	 * Adds a healing item to the team's inventory
+	 * @param healingItem a HealingItem, the healing item to add to the team's inventory 
+	 */
+	public void addHealingItem(HealingItem healingItem){
+		this.healingItems.add(healingItem);
+	}
+	
+	/**
+	 * Removes the healing at a given index from the list
+	 * @param healingItemIndex an int, the index of the healing item to remove in the ArrayList of healing items 
+	 */
+	public void removeHealingItem(int healingItemIndex){
+		this.healingItems.remove(healingItemIndex);
+	}
+	
+	/**
+	 * Makes the team member at index teamMember drink the healing item at index healingItemIndex. Removes the 
+	 * healing item from the team's inventory 
+	 * @param healingItemIndex an int the index of the healing item to apply
+	 * @param teamMemberIndex an int the index of the team member who is to drink the healing item
+	 */
+	public void applyHealingItem(int healingItemIndex, int teamMemberIndex){
+		//memberList.get(teamMemberIndex).drinkHealingItem(healingItems.get(powerUpIndex));
+		removeHealingItem(healingItemIndex);
+	}
+	
+	/**
+	 * Prints to output a list of the healing items in the team's inventory, and the index of each
+	 */
+	public void showHealingItems(){
+		System.out.println("Team " + teamName + " are carrying the following healing items:");
+		for (int i = 0; i < healingItems.size(); i++){
+			System.out.print(i + ". " + healingItems.get(i) + "\n");
+		}
+	}	
+	
+	//***************************Maps******************************************
+	
+	/**
+	 * Outputs the number of maps the team is carrying
+	 */
+	public void getMaps(){
+		System.out.println("Team " + teamName + " are carrying " + maps + " maps");
+	}
+	
+	/**
+	 * Setter method for the number of maps the team is carrying
+	 * @param mapChange an int the amount by which the number of maps is to change
+	 */
+	public void changeMaps(int mapChange) {
+		this.maps += mapChange;
+		getMaps();
+	}
 	
 	@Override
 	public String toString() {
@@ -217,9 +297,15 @@ public class Team {
 		//System.out.print(team1);
 		
 		team1.teamStatus();
-		team1.buyPowerUp(PowerUp.PAVLOVA);
-		team1.buyPowerUp(PowerUp.PINEAPPLE_LUMPS);
+		team1.addPowerUp(PowerUp.PAVLOVA);
+		team1.addPowerUp(PowerUp.PINEAPPLE_LUMPS);
+		team1.addHealingItem(HealingItem.LINDAUER);
+		team1.addHealingItem(HealingItem.LION_RED);
 		team1.applyPowerUp(0, 0);
+		team1.showPowerUps();
+		team1.showHealingItems();
+		team1.changeMaps(1);
+		team1.getMaps();
 
 		
 	}
