@@ -81,60 +81,60 @@ public enum Villain {
 	 */
 	private void setLairNames(int typeInt) {
 		switch (typeInt) {
-		
-			case 0:
-				lairNames.put("Springfield", "Hagley Oval");
-				lairNames.put("Te Puke", "Bay Oval");
-				lairNames.put("Gore", "The Grove Park");
-				lairNames.put("Ohakune", "Ohakune Domain");
-				lairNames.put("Paeroa", "Centennial Park");
-				lairNames.put("Taihape", "Memorial Park, Taihape");
-				break;
-				
-			case 1:
-				lairNames.put("Springfield", "Selwyn Rugby Club");
-				lairNames.put("Te Puke", "Centenial Park, Te Puke");
-				lairNames.put("Gore", "Newman Park, Gore");
-				lairNames.put("Ohakune", "Rochfort Park, Ohakune");
-				lairNames.put("Paeroa", "Paeroa Old Boys Football Ground");
-				lairNames.put("Taihape", "Memorial Park, Taihape");
-				break;
-			
-			case 2:
-				lairNames.put("Springfield", "The Springfield Hotel");
-				lairNames.put("Te Puke", "Molly O'Connors Pub");
-				lairNames.put("Gore", "Howl at the Moon, Cafe and Bar");
-				lairNames.put("Ohakune", "Powderkeg Restaurant and Bar");
-				lairNames.put("Paeroa", "The Paeroa Hotel");
-				lairNames.put("Taihape", "Gumboot Manor Restaurant and Bar");
-				break;
-			
-			case 3:
-				lairNames.put("Springfield", "Springfield Telephone Exchange");
-				lairNames.put("Te Puke", "Te Puke Telephone Exchange");
-				lairNames.put("Gore", "Gore Telephone Exchange");
-				lairNames.put("Ohakune", "Ohakune Telephone Exchange");
-				lairNames.put("Paeroa", "Paeroa Telephone Exchange");
-				lairNames.put("Taihape", "Taihape Telephone Exchange");
-				break;
-				
-			case 4:
-				lairNames.put("Springfield", "Christchurch District Court Chambers");
-				lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
-				lairNames.put("Gore", "Gore District Court");
-				lairNames.put("Ohakune", "Ohakune District Court");
-				lairNames.put("Paeroa", "Hauraki District Court");
-				lairNames.put("Taihape", "Taihape District Court");
-				break;
-				
-			case 5:
-				lairNames.put("Springfield", "Springfield Giant Donut Statue");
-				lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
-				lairNames.put("Gore", "Gore Giant Trout Statue");
-				lairNames.put("Ohakune", "Ohakune Giant Carrot Statue");
-				lairNames.put("Paeroa", "Paeroa L&P Statue");
-				lairNames.put("Taihape", "Taihape Giant Gumboot Statue");
-				break;
+
+		case 0:
+			lairNames.put("Springfield", "Hagley Oval");
+			lairNames.put("Te Puke", "Bay Oval");
+			lairNames.put("Gore", "The Grove Park");
+			lairNames.put("Ohakune", "Ohakune Domain");
+			lairNames.put("Paeroa", "Centennial Park");
+			lairNames.put("Taihape", "Memorial Park, Taihape");
+			break;
+
+		case 1:
+			lairNames.put("Springfield", "Selwyn Rugby Club");
+			lairNames.put("Te Puke", "Centenial Park, Te Puke");
+			lairNames.put("Gore", "Newman Park, Gore");
+			lairNames.put("Ohakune", "Rochfort Park, Ohakune");
+			lairNames.put("Paeroa", "Paeroa Old Boys Football Ground");
+			lairNames.put("Taihape", "Memorial Park, Taihape");
+			break;
+
+		case 2:
+			lairNames.put("Springfield", "The Springfield Hotel");
+			lairNames.put("Te Puke", "Molly O'Connors Pub");
+			lairNames.put("Gore", "Howl at the Moon, Cafe and Bar");
+			lairNames.put("Ohakune", "Powderkeg Restaurant and Bar");
+			lairNames.put("Paeroa", "The Paeroa Hotel");
+			lairNames.put("Taihape", "Gumboot Manor Restaurant and Bar");
+			break;
+
+		case 3:
+			lairNames.put("Springfield", "Springfield Telephone Exchange");
+			lairNames.put("Te Puke", "Te Puke Telephone Exchange");
+			lairNames.put("Gore", "Gore Telephone Exchange");
+			lairNames.put("Ohakune", "Ohakune Telephone Exchange");
+			lairNames.put("Paeroa", "Paeroa Telephone Exchange");
+			lairNames.put("Taihape", "Taihape Telephone Exchange");
+			break;
+
+		case 4:
+			lairNames.put("Springfield", "Christchurch District Court Chambers");
+			lairNames.put("Te Puke", "Te Awamutu District Court Chambers");
+			lairNames.put("Gore", "Gore District Court");
+			lairNames.put("Ohakune", "Ohakune District Court");
+			lairNames.put("Paeroa", "Hauraki District Court");
+			lairNames.put("Taihape", "Taihape District Court");
+			break;
+
+		case 5:
+			lairNames.put("Springfield", "Springfield Giant Donut Statue");
+			lairNames.put("Te Puke", "Te Puke Giant Kiwifruit Statue");
+			lairNames.put("Gore", "Gore Giant Trout Statue");
+			lairNames.put("Ohakune", "Ohakune Giant Carrot Statue");
+			lairNames.put("Paeroa", "Paeroa L&P Statue");
+			lairNames.put("Taihape", "Taihape Giant Gumboot Statue");
+			break;
 		}	
 	}
 	

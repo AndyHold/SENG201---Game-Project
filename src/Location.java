@@ -8,20 +8,14 @@
 public class Location {
 	
 	private String placeName;
+	protected Team heroTeam;
+	protected String cityName;
 	
 	
-	protected Location(String cityName) {
-		this.placeName = cityName;
-	}
-	
-	
-	public String getLocationName() {
-		return placeName;
-	}
-	
-	
-	protected void setName(String newName) {
-		placeName = newName;
+	Location(String locationName, Team newTeam, String newCityName) {
+		this.placeName = locationName;
+		this.heroTeam = newTeam;
+		this.cityName = newCityName;
 	}
 	
 	

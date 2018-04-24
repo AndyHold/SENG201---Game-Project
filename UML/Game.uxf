@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
+      <x>344</x>
       <y>472</y>
       <w>344</w>
       <h>344</h>
@@ -41,7 +42,7 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>664</x>
+      <x>576</x>
       <y>224</y>
       <w>200</w>
       <h>184</h>
@@ -61,7 +62,7 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>912</x>
+      <x>824</x>
       <y>360</y>
       <w>224</w>
       <h>152</h>
@@ -79,7 +80,7 @@ remaining members
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
+      <x>344</x>
       <y>224</y>
       <w>168</w>
       <h>160</h>
@@ -104,7 +105,7 @@ Game()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1392</x>
+      <x>1304</x>
       <y>360</y>
       <w>200</w>
       <h>72</h>
@@ -122,7 +123,7 @@ Game()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1136</x>
+      <x>1048</x>
       <y>216</y>
       <w>224</w>
       <h>72</h>
@@ -140,7 +141,7 @@ Game()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1600</x>
+      <x>1512</x>
       <y>360</y>
       <w>136</w>
       <h>152</h>
@@ -162,7 +163,7 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1144</x>
+      <x>1056</x>
       <y>360</y>
       <w>240</w>
       <h>168</h>
@@ -188,7 +189,7 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1248</x>
+      <x>1160</x>
       <y>280</y>
       <w>440</w>
       <h>96</h>
@@ -199,7 +200,7 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1248</x>
+      <x>1160</x>
       <y>320</y>
       <w>24</w>
       <h>56</h>
@@ -210,7 +211,7 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1248</x>
+      <x>1160</x>
       <y>320</y>
       <w>616</w>
       <h>40</h>
@@ -221,7 +222,7 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>992</x>
+      <x>904</x>
       <y>320</y>
       <w>24</w>
       <h>56</h>
@@ -232,12 +233,12 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1744</x>
+      <x>1656</x>
       <y>344</y>
       <w>168</w>
       <h>152</h>
     </coordinates>
-    <panel_attributes>HeroHomeBase
+    <panel_attributes>HomeBase
 --
 [position]: // always 0
 --
@@ -252,7 +253,7 @@ with battle?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1472</x>
+      <x>1384</x>
       <y>320</y>
       <w>24</w>
       <h>56</h>
@@ -263,7 +264,7 @@ with battle?
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
+      <x>80</x>
       <y>400</y>
       <w>176</w>
       <h>200</h>
@@ -292,7 +293,7 @@ PINEAPPLE_LUMPS
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>384</x>
+      <x>296</x>
       <y>888</y>
       <w>328</w>
       <h>320</h>
@@ -330,7 +331,7 @@ FOSTER_MUM
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
+      <x>464</x>
       <y>808</y>
       <w>24</w>
       <h>96</h>
@@ -341,7 +342,7 @@ FOSTER_MUM
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1528</x>
+      <x>1440</x>
       <y>568</y>
       <w>304</w>
       <h>296</h>
@@ -376,7 +377,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1664</x>
+      <x>1576</x>
       <y>504</y>
       <w>24</w>
       <h>80</h>
@@ -387,7 +388,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>592</x>
+      <x>504</x>
       <y>264</y>
       <w>88</w>
       <h>24</h>
@@ -398,7 +399,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
+      <x>424</x>
       <y>376</y>
       <w>24</w>
       <h>112</h>
@@ -409,7 +410,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>856</x>
+      <x>768</x>
       <y>232</y>
       <w>296</w>
       <h>24</h>
@@ -420,7 +421,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>992</x>
+      <x>904</x>
       <y>320</y>
       <w>864</w>
       <h>24</h>
@@ -431,7 +432,7 @@ POLITICIAN
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1144</x>
+      <x>1056</x>
       <y>576</y>
       <w>272</w>
       <h>208</h>
@@ -448,7 +449,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
+      <x>1320</x>
       <y>648</y>
       <w>136</w>
       <h>24</h>
@@ -459,7 +460,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>832</x>
+      <x>744</x>
       <y>400</y>
       <w>464</w>
       <h>192</h>
@@ -470,7 +471,7 @@ POLITICIAN
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
+      <x>344</x>
       <y>0</y>
       <w>280</w>
       <h>160</h>
@@ -489,7 +490,7 @@ POLITICIAN
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>88</x>
+      <x>0</x>
       <y>224</y>
       <w>312</w>
       <h>96</h>
@@ -508,7 +509,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
+      <x>424</x>
       <y>152</y>
       <w>24</w>
       <h>88</h>
@@ -519,7 +520,7 @@ POLITICIAN
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
+      <x>304</x>
       <y>248</y>
       <w>56</w>
       <h>24</h>
@@ -530,7 +531,7 @@ POLITICIAN
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
+      <x>80</x>
       <y>640</y>
       <w>176</w>
       <h>256</h>

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -20,6 +21,7 @@ public class City {
 	private String ruler;
 	private boolean completed = false;
 	private boolean mapped = false;
+	private HashMap<String, String> placeNames = new HashMap<String, String>();
 	
 	
 	City(String newName, Villain newVillain, Team newTeam) {
@@ -27,6 +29,7 @@ public class City {
 		cityVillain = newVillain;
 		ruler = cityVillain.getName();
 		currentTeam = newTeam;
+		setPlaceNames();
 		setDirections();
 	}
 	
@@ -53,6 +56,49 @@ public class City {
 	}
 	
 	
+	private void setPlaceNames() {
+		placeNames.put("Springfield HomeBase", "");
+		placeNames.put("Springfield Hospital", "");
+		placeNames.put("Springfield PowerUpDen", "");
+		placeNames.put("Springfield Shop", "");
+		
+		placeNames.put("Te Puke HomeBase", "");
+		placeNames.put("Te Puke Hospital", "");
+		placeNames.put("Te Puke PowerUpDen", "");
+		placeNames.put("Te Puke Shop", "");
+		
+		placeNames.put("Gore HomeBase", "");
+		placeNames.put("Gore Hospital", "");
+		placeNames.put("Gore PowerUpDen", "");
+		placeNames.put("Gore Shop", "");
+		
+		placeNames.put("Ohakune HomeBase", "");
+		placeNames.put("Ohakune Hospital", "");
+		placeNames.put("Ohakune PowerUpDen", "");
+		placeNames.put("Ohakune Shop", "");
+		
+		placeNames.put("Paeroa HomeBase", "");
+		placeNames.put("Paeroa Hospital", "");
+		placeNames.put("Paeroa PowerUpDen", "");
+		placeNames.put("Paeroa Shop", "");
+		
+		placeNames.put("Taihape HomeBase", "");
+		placeNames.put("Taihape Hospital", "");
+		placeNames.put("Taihape PowerUpDen", "");
+		placeNames.put("Taihape Shop", "");
+	}
+	
+	
+	/**
+	 * consults the place name dictionary and returns the place name.
+	 * @param key String place type and city string representation.
+	 * @return String PlaceName for location.
+	 */
+	public String getPlaceName(String key) {
+		return placeNames.get(key);
+	}
+	
+	
 	public String getName() {
 		return cityName;
 	}
@@ -65,8 +111,8 @@ public class City {
 	
 	
 	public void setDirections() {
-		ArrayList<Location> locations = new ArrayList<Location>();
-		locations.add(new VilliansLair(cityName, cityVillain));
+//		ArrayList<Location> locations = new ArrayList<Location>();
+//		locations.add(new VilliansLair(this, cityVillain, this.currentTeam));
 //		locations.add(hospital);
 //		locations.add(powerupden);
 //		locations.add(shop);

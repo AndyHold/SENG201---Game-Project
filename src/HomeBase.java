@@ -6,7 +6,7 @@
  */
 public class HomeBase extends Location {
 	
-	private Team heroTeam;
+	
 	private City currentCity;
 	
 	
@@ -16,8 +16,7 @@ public class HomeBase extends Location {
 	 * @param newTeam current Team being controlled by the Player.
 	 */
 	HomeBase(City thisCity, Team newTeam) {
-		super(thisCity.getName() + " HomeBase");
-		heroTeam = newTeam;
+		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName());
 		currentCity = thisCity;
 	}
 
@@ -26,7 +25,7 @@ public class HomeBase extends Location {
 	 * Shows the Teams Heroes and their current Status
 	 */
 	public void teamStatus() {
-		heroTeam.teamStatus();
+		super.heroTeam.teamStatus();
 	}
 	
 	
