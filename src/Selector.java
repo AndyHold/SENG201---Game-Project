@@ -65,6 +65,28 @@ public class Selector {
 		    }
 	    }
 	    return result;
-	}	
+	}
+	
+	public void returnDetect(){
+    	Scanner in = new Scanner(System.in);		
+        boolean looping = true; 
+	    while (looping) {
+	    	String readLine = in.nextLine();
+	    	if (readLine.equals("")) {
+	    	    looping = false;
+	    	} else {
+	    		System.out.println("Press Enter");
+	    	}
 
+	    }
+	}
+	
+	public static void main(String[] args) {
+		Selector s1 = new Selector();
+		System.out.println("Press Enter to Continue");
+		s1.returnDetect();
+		
+		
+	}
+	
 }

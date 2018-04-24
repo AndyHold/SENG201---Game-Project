@@ -105,9 +105,8 @@ public enum Hero {
 		System.out.println(this.heroName + " " + powerUpToEat.getResponse());
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
+
+	@Override
 	public String toString() {
 		switch(this) {
 		case ALL_BLACK: return "An All Black";

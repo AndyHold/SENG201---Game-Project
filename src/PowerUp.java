@@ -1,6 +1,5 @@
 /**
- * Selector Class for Heroes & Villains Game
- * Contains tools for command line interface
+ * PowerUp Enumerated Type for Heroes & Villains Game
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */

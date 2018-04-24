@@ -138,6 +138,22 @@ public class Team {
 	}
 	
 	/**
+	 * Checks whether a particular Hero is present in a team
+	 * @param heroInQuestion a Hero the Hero to check
+	 * @return a boolean true if heroInQuestion is present, else false
+	 */
+	public boolean checkPresent(Hero heroInQuestion) {
+		boolean result = false;
+		for (Hero who : memberList) {
+			if (who == heroInQuestion){ 
+				result = true;
+			}
+		}
+
+		return result;
+	}
+	
+	/**
 	 * Print to output a list of the current team members, their special ability 
 	 * and their current strength.
 	 */
@@ -306,6 +322,8 @@ public class Team {
 		team1.showHealingItems();
 		team1.changeMaps(1);
 		team1.getMaps();
+		Hero h1 = Hero.FIREFIGHTER;
+		System.out.println(team1.checkPresent(h1));
 
 		
 	}
