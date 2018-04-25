@@ -21,7 +21,7 @@ public class Battle {
 	 * @param baddie a Villain the villain being played
 	 * @return a String "draw", "win" or "lose"
 	 */
-	public String paperScissorsRock(Hero player, Villain baddie){
+	public String paperScissorsRock(Team team, Hero player, Villain baddie){
 		String choices[] = {"Rock", "Paper", "Scissors"}; 
 		
 		System.out.println(baddie + " Now you must play me at Paper Scissors Rock:");
@@ -46,6 +46,7 @@ public class Battle {
 			System.out.println(baddie.getTaunt());
 		}
 		
+		this.battleConsequence(team, player, baddie, playerResult);
 		return player.getName() + " " + playerResult + "s";
 	}
 	
@@ -58,7 +59,7 @@ public class Battle {
 	 * @param baddie a Villain the villain being played
 	 * @return a String "draw", "win" or "lose"
 	 */
-	public String guessNumber(Hero player, Villain baddie){
+	public String guessNumber(Team team, Hero player, Villain baddie){
 		int min_num = 1; //From game specification
 		int max_num = 10; //From game specification
 		int max_attempts = 2; //From game specification
@@ -90,6 +91,7 @@ public class Battle {
 			}
 		}
 		
+		this.battleConsequence(team, player, baddie, playerResult);
 		return player.getName() + " " + playerResult + "s";			
 	}
 	
@@ -100,7 +102,7 @@ public class Battle {
 	 * @param baddie a Villain the villain being played
 	 * @return a String "draw", "win" or "lose"
 	 */
-	public String diceRolls(Hero player, Villain baddie) {
+	public String diceRolls(Team team, Hero player, Villain baddie) {
 		int SMALLEST_ROLL = 1;
 		int LARGEST_ROLL = 6;
 		
@@ -121,13 +123,37 @@ public class Battle {
 		
 		} else if (playerChoice > villainChoice) {//Player win
 			playerResult = outcomes[1];
-		
 		} else {
 			System.out.println(baddie.getTaunt());
 		}
-		return player.getName() + " " + playerResult + "s";	
+		
+		System.out.println(player.getName() + " " + playerResult + "s");	
+		this.battleConsequence(team, player, baddie, playerResult);
+		return playerResult;	
 	}
 	
+	
+	/**
+	 * 
+	 * @param player
+	 * @param baddie
+	 * @param result
+	 */
+	public void battleConsequence(Team team, Hero player, Villain baddie, String result) {
+		int damage = 34; //Damage in a normal fight. 1/3 of normal strength
+		if (result == "win") {
+			System.out.println(baddie.takeDamage(damage));
+		} else if (result == "lose") {
+			if (player == Hero.RETURNED_SERVICEMAN) {//Returned serviceman takes half damage
+				damage /= 2; 
+			}
+			System.out.println(player.getName() + "'s health is now " + player.changeHealth(-damage));
+			if (player.getHealth() <= 0) {
+				System.out.println(player.getName() + " is dead.");
+				team.removeMember(team.getIndex(player));
+			}
+		} 
+	}
 	
 	
 	/**
@@ -135,12 +161,18 @@ public class Battle {
 	 */
 	public static void main(String[] args) {
 		Battle b1 = new Battle();
+		Team t1 = new Team("Awesome", 2);
 		Hero h1 = Hero.ALL_BLACK;
 		h1.setName("JimBob");
+		Hero h2 = Hero.RETURNED_SERVICEMAN;
+		h2.setName("Herbie");
+		t1.addMember(h1);
+		t1.addMember(h2);
 		Villain v1 = Villain.AUSSIECRICKETER;
 		//System.out.print(b1.guessNumber(h1, v1));
 		//System.out.print(b1.paperScissorsRock(h1, v1));
-		System.out.print(b1.diceRolls(h1, v1));
+		System.out.print(b1.diceRolls(t1, h1, v1));
+		t1.teamStatus();
 
 	}
 

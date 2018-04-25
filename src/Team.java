@@ -154,6 +154,16 @@ public class Team {
 	}
 	
 	/**
+	 * Gets the index of a particular Hero, so that they can be removed or have a 
+	 * health bonus applied from outside the class
+	 * @param heroInQuestion a Hero the hero whose index is required
+	 * @return an int the position of the hero in question in the memberList array
+	 */
+	public int getIndex(Hero heroInQuestion) {
+		return memberList.indexOf(heroInQuestion);
+	}
+	
+	/**
 	 * Print to output a list of the current team members, their special ability 
 	 * and their current strength.
 	 */
@@ -167,6 +177,7 @@ public class Team {
 			System.out.print(". " + who.getName() + "'s strength is ");
 			System.out.print(who.getStrength());
 			System.out.print(" and their health is " + who.getHealth() + "\n");
+
 		}
 	}
 	//*********************************Power Ups*******************************
@@ -309,7 +320,8 @@ public class Team {
 //		team1.addMember(Hero.RETURNED_SERVICEMAN);
 //		System.out.println();
 //		team1.memberList.get(1).changeStrength(-100);
-//		System.out.println(team1.memberList.get(1).getStrength());
+		//System.out.println(team1.memberList.get(0).getHealth());
+		//team1.memberList.get(0).changeHealth(-101);
 		//System.out.print(team1);
 		
 		team1.teamStatus();
