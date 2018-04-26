@@ -1,3 +1,4 @@
+package HeroGame;
 
 /**
  * Place Class for Heroes & Villains Game

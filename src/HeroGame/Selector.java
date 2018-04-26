@@ -1,3 +1,4 @@
+package HeroGame;
 import java.util.Scanner;
 
 /**

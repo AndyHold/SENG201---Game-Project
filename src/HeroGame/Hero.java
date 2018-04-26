@@ -1,3 +1,4 @@
+package HeroGame;
 /**
  * Hero Enumerated Type for Heroes & Villains Game
  * SENG201 2018S1
@@ -5,7 +6,7 @@
  */
 public enum Hero {
 	
-	ALL_BLACK(null, "have a virtually unprecendented success in games. Wins 50% more games", 100, 100, null), 
+	ALL_BLACK(null, "have a virtually unprecedented success in games. Wins 50% more games", 100, 100, null), 
 	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100, 100, null), 
 	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100, 100, null), 
 	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting health of 125", 100, 125, null), 
@@ -94,6 +95,13 @@ public enum Hero {
 	 */
 	public PowerUp getPowerUp() {
 		return powerUpEaten;
+	}
+	
+	/**
+	 * Clears any power ups the Hero has eaten back to null
+	 */
+	public void clearPowerUp() {
+		this.powerUpEaten = null;
 	}
 	
 	/**

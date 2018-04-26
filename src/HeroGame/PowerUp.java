@@ -1,3 +1,4 @@
+package HeroGame;
 /**
  * PowerUp Enumerated Type for Heroes & Villains Game
  * SENG201 2018S1

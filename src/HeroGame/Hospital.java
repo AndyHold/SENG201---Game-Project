@@ -1,3 +1,4 @@
+package HeroGame;
 
 /**
  * Hospital Class for Heroes & Villains Game

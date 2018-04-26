@@ -1,3 +1,4 @@
+package HeroGame;
 
 /**
  * VillainsLair Class for Heroes & Villains Game

@@ -1,3 +1,4 @@
+package HeroGame;
 
 /**
  * PowerUpDen Class for Heroes & Villains Game

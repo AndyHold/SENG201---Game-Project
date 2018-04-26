@@ -1,3 +1,4 @@
+package HeroGame;
 import java.util.Random;
 /**
  * Battle Class for Heroes & Villains Game
@@ -29,10 +30,21 @@ public class Battle {
 		for (int i = 0; i < choices.length; i++) {
 			System.out.print(i + ". " + choices[i] + "\n");
 		}
+		villainChoice = rnd.nextInt(choices.length);
+		
+		//*****Skew game if Pavlova PowerUp is present*********
+		if (player.getPowerUp() == PowerUp.PAVLOVA) {
+			System.out.println("The lightning quick reflexes brought on by the slice of pavlova " +
+					player.getName() + " ate earlier enables them to see " + baddie.getName() + 
+					" play a " + choices[villainChoice]); 
+			player.clearPowerUp();
+		}//*******************************************************
+		
+		
 		playerChoice = battleSelector.intSelector(0, choices.length, "Choose a move (0 - " + (choices.length - 1) + "):", 
 				"Move must be 0 - " + (choices.length - 1) + "):");
 		System.out.println(player.getName() + " plays " + choices[playerChoice]);
-		villainChoice = rnd.nextInt(choices.length);
+
 		System.out.println(baddie.getName() +  " plays " +  choices[villainChoice]);
 		
 		if (playerChoice == villainChoice) {
@@ -66,10 +78,18 @@ public class Battle {
 		int attempts = 0;
 		villainChoice = (rnd.nextInt(max_num) + 1);
 		
-		System.out.println(villainChoice); //****Obviously Test Code Must Remove **************
 		System.out.println(baddie + " " +
 				"Now go ahead and guess a number between " + min_num + 
 				" and " + max_num);
+		
+		//*****Skew game if Cheese Roll PowerUp is present*********
+		if (player.getPowerUp() == PowerUp.CHEESE_ROLL) {
+			System.out.println("The strange effects of the mystical cheese roll " +
+					player.getName() + " ate earlier suddenly become strangely relevant. \"" 
+					+ baddie.getName() + " is thinking of the number " + villainChoice +
+					"\" thinks " + player.getName()); 
+			player.clearPowerUp();
+		}//*******************************************************
 		
 		while (attempts < max_attempts && playerResult != outcomes[1]) {
 			playerChoice = battleSelector.intSelector(min_num, max_num, 
@@ -92,7 +112,7 @@ public class Battle {
 		}
 		
 		this.battleConsequence(team, player, baddie, playerResult);
-		return player.getName() + " " + playerResult + "s";			
+		return player.getName() + " " + playerResult + "s\n";			
 	}
 	
 	/**
@@ -113,6 +133,15 @@ public class Battle {
 		battleSelector.returnDetect();
 		
 		playerChoice = (rnd.nextInt(LARGEST_ROLL) + SMALLEST_ROLL);
+		
+		//*****Skew game if Pineapple Lumps PowerUp is present*********
+		if (player.getPowerUp() == PowerUp.PINEAPPLE_LUMPS) {
+			System.out.println("By the magic of Pineapple Lumps " +
+					player.getName() + " plays a " + LARGEST_ROLL);
+			playerChoice = LARGEST_ROLL;
+			player.clearPowerUp();
+		}//*******************************************************
+		
 		System.out.println(player.getName() + " has rolled a " + playerChoice);
 		
 		villainChoice = (rnd.nextInt(LARGEST_ROLL) + SMALLEST_ROLL);
@@ -132,6 +161,7 @@ public class Battle {
 		return playerResult;	
 	}
 	
+
 	
 	/**
 	 * 
@@ -164,13 +194,14 @@ public class Battle {
 		Team t1 = new Team("Awesome", 2);
 		Hero h1 = Hero.ALL_BLACK;
 		h1.setName("JimBob");
+		h1.eatPowerUp(PowerUp.PAVLOVA);
 		Hero h2 = Hero.RETURNED_SERVICEMAN;
 		h2.setName("Herbie");
 		t1.addMember(h1);
 		t1.addMember(h2);
 		Villain v1 = Villain.AUSSIECRICKETER;
-		//System.out.print(b1.guessNumber(h1, v1));
-		//System.out.print(b1.paperScissorsRock(h1, v1));
+		//System.out.print(b1.guessNumber(t1, h1, v1));
+		//System.out.print(b1.paperScissorsRock(t1, h1, v1));
 		System.out.print(b1.diceRolls(t1, h1, v1));
 		t1.teamStatus();
 
