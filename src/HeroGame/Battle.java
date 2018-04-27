@@ -172,9 +172,11 @@ public class Battle {
 	public void battleConsequence(Team team, Hero player, Villain baddie, String result) {
 		int damage = 34; //Damage in a normal fight. 1/3 of normal strength
 		if (result == "win") {
+			damage = ((player.getStrength()/3) + 1);//Roughly 3 games to finish an opponent - per inconsistent game spec
 			System.out.println(baddie.takeDamage(damage));
 		} else if (result == "lose") {
-			if (player == Hero.RETURNED_SERVICEMAN) {//Returned serviceman takes half damage
+			//damage = ((baddie.getStrength()/3) + 1);
+			if (player.getType() == HeroType.RETURNED_SERVICEMAN) {//Returned serviceman takes half damage
 				damage /= 2; 
 			}
 			System.out.println(player.getName() + "'s health is now " + player.changeHealth(-damage));
@@ -192,17 +194,15 @@ public class Battle {
 	public static void main(String[] args) {
 		Battle b1 = new Battle();
 		Team t1 = new Team("Awesome", 2);
-		Hero h1 = Hero.ALL_BLACK;
-		h1.setName("JimBob");
-		h1.eatPowerUp(PowerUp.PAVLOVA);
-		Hero h2 = Hero.RETURNED_SERVICEMAN;
-		h2.setName("Herbie");
+		Hero h1 = new Hero("JimBob", HeroType.ALL_BLACK);
+		h1.eatPowerUp(PowerUp.PINEAPPLE_LUMPS);
+		Hero h2 = new Hero("Herbie", HeroType.FIREFIGHTER);
 		t1.addMember(h1);
 		t1.addMember(h2);
 		Villain v1 = Villain.AUSSIECRICKETER;
 		//System.out.print(b1.guessNumber(t1, h1, v1));
 		//System.out.print(b1.paperScissorsRock(t1, h1, v1));
-		System.out.print(b1.diceRolls(t1, h1, v1));
+		System.out.print(b1.diceRolls(t1, h2, v1));
 		t1.teamStatus();
 
 	}

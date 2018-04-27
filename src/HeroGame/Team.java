@@ -79,8 +79,9 @@ public class Team {
 	 */
 	public void buildTeam(int size) {
 		
-		Hero currentHero = Hero.FIREFIGHTER;
-		int numPossibleHeroes = currentHero.printHeroList();
+		Hero dummyHero = new Hero();
+		HeroType newHeroType;
+		int numPossibleHeroes = (dummyHero.printHeroList() - 1);
 	    Selector teamSelector = new Selector();
 		boolean selected = false;
 		while (memberList.size() < size){
@@ -91,34 +92,14 @@ public class Team {
 	    		System.out.println("There is already a hero named " 
 	    				+ heroName + " in the team");
 	    	} else {
-	    		int heroNum = teamSelector.intSelector(1, numPossibleHeroes, 
-	    				"Choose a type of hero " + "(1-"+ numPossibleHeroes +"):", 
-	    				"Choice must be between 1 & " + numPossibleHeroes);
- 
-	    		switch (heroNum) { //Implemented this way until we see how GUI will work
-	    		//Terribly non-OO. Needs fixing
-	    		case 1:
-	    			currentHero = Hero.ALL_BLACK;
-	    			break;
-	    		case 2:
-	    			currentHero = Hero.SURVEYOR;
-	    			break;
-	    		case 3:
-	    			currentHero = Hero.RETURNED_SERVICEMAN;
-	    			break;
-	    		case 4:
-	    			currentHero = Hero.FIREFIGHTER;
-	    			break;
-	    		case 5:
-	    			currentHero = Hero.NURSE;
-	    			break;
-	    		case 6:
-	    			currentHero = Hero.FOSTER_MUM;
-	    			break;
-	    		}
-	    		currentHero.setName(heroName);
-	    		addMember(currentHero);
-	    		System.out.println(currentHero +" called " 
+	    		int heroNum = teamSelector.intSelector(0, numPossibleHeroes, 
+	    				"Choose a type of hero " + "(0-"+ numPossibleHeroes +"):", 
+	    				"Choice must be between 0 & " + numPossibleHeroes);
+	    		
+	    		newHeroType = HeroType.values()[heroNum];
+	    		
+	    		addMember(new Hero(heroName, newHeroType));
+	    		System.out.println(newHeroType.getDescription() +" called " 
 	    				+ heroName + " has joined the team");
 	    	}
 		}
@@ -139,14 +120,14 @@ public class Team {
 	}
 	
 	/**
-	 * Checks whether a particular Hero is present in a team
-	 * @param heroInQuestion a Hero the Hero to check
-	 * @return a boolean true if heroInQuestion is present, else false
+	 * Checks whether a particular HeroType is present in a team
+	 * @param heroTypeInQuestion a HeroType the HeroType to check
+	 * @return a boolean true if heroTypeInQuestion is present, else false
 	 */
-	public boolean checkPresent(Hero heroInQuestion) {
+	public boolean checkPresent(HeroType heroTypeInQuestion) {
 		boolean result = false;
 		for (Hero who : memberList) {
-			if (who == heroInQuestion){ 
+			if (who.getType() == heroTypeInQuestion){ 
 				result = true;
 			}
 		}
@@ -333,12 +314,10 @@ public class Team {
 		team1.applyPowerUp(0, 0);
 		team1.showPowerUps();
 		team1.showHealingItems();
-		team1.changeMaps(1);
 		team1.getMaps();
-		Hero h1 = Hero.FIREFIGHTER;
-		System.out.println(team1.checkPresent(h1));
+		team1.changeMaps(1);
+		System.out.println(team1.checkPresent(HeroType.FIREFIGHTER));
 
-		
 	}
 
 }

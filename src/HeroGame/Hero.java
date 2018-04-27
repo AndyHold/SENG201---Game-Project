@@ -1,34 +1,40 @@
 package HeroGame;
 /**
- * Hero Enumerated Type for Heroes & Villains Game
+ * Hero Class for Heroes & Villains Game
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-public enum Hero {
+
+public class Hero {
 	
-	ALL_BLACK(null, "have a virtually unprecedented success in games. Wins 50% more games", 100, 100, null), 
-	SURVEYOR(null, "know the layout of a town at a single steely eyed glance", 100, 100, null), 
-	RETURNED_SERVICEMAN(null, "be virtually immune to villainy, having seen it all before. (Takes half damage in all battles)", 100, 100, null), 
-	FIREFIGHTER(null, "be seemingly hewn from stone. Has a starting health of 125", 100, 125, null), 
-	NURSE(null, "make your health dollars go further by doubling health bonuses", 100, 100, null),
-	FOSTER_MUM(null,"see into the future, as she has seen it all before (Can sometimes predict the outcome of games)", 100, 100, null);
-	
-	private String heroName;	
+	private String heroName;
+	private HeroType heroType;
+	private String description;
 	private String ability;
+	private int health = 100;
 	private int strength;
-	private int health;
 	private PowerUp powerUpEaten;
 	
-	
-	/*
-	 * Hero constructor
+	/**
+	 * Empty Hero Constructor. Used as a dummy to access HeroList
 	 */
-	Hero(String heroName, String abilityArg, int strengthArg, int healthArg, PowerUp powerUpArg){
-		ability = abilityArg;
-		strength = strengthArg;
-		health = healthArg;
+	Hero(){
 	}
 	
+	
+	/**
+	 * Parameterised constructor for Hero - used in building team
+	 * @param heroName
+	 * @param heroType
+	 */
+	Hero(String heroName, HeroType heroType) {
+		this.heroName = heroName;
+		this.heroType = heroType;
+		this.description = heroType.getDescription();
+		this.ability = heroType.getAbility();
+		this.strength = heroType.getStrength();
+		}
+			
 	/**
 	 * Setter method for individual hero name
 	 * @param newHeroName a String, the individual hero's name
@@ -44,6 +50,15 @@ public enum Hero {
 	public String getName() {
 		return heroName;
 	}
+	
+	/**
+	 * Getter method for individual hero's type
+	 * @return a HeroType, the hero's type
+	 */
+	public HeroType getType() {
+		return heroType;
+	}
+	
 		
 	/**
 	 * Getter method for particular hero's special ability
@@ -116,15 +131,7 @@ public enum Hero {
 
 	@Override
 	public String toString() {
-		switch(this) {
-		case ALL_BLACK: return "An All Black";
-		case SURVEYOR: return "A surveyor";
-		case RETURNED_SERVICEMAN: return "A returned serviceman";
-		case FIREFIGHTER: return "A firefighter";
-		case NURSE: return "A nurse";
-		case FOSTER_MUM: return "A foster mum";
-		default: throw new IllegalArgumentException(); //default case mandatory
-		}
+		return description;
 	}
 	
 	/**
@@ -134,10 +141,11 @@ public enum Hero {
 	public int printHeroList() {
 		int counter = 0;
 		System.out.println("Available heroes:");
-		for (Hero hero : Hero.values()) {
+		for (HeroType hero : HeroType.values()) {
+
+			System.out.println(counter + ". " + hero.getDescription() + 
+					" with the ability to " + hero.getAbility());
 			counter++;
-			System.out.println(counter + ". " + hero + 
-					" with the ability to " + hero.ability);
 		}
 		return counter;
 	}
