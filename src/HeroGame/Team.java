@@ -13,7 +13,6 @@ public class Team {
 	private static final int MAX_HERO_NAME_LENGTH = 12;
 	private static final double STARTING_MONEY = 10;
 	private String teamName;
-	private int nMembers;
 	private ArrayList<Hero> memberList;
 	private ArrayList<PowerUp> powerUps;
 	private ArrayList<HealingItem> healingItems;
@@ -26,16 +25,15 @@ public class Team {
 	 * @param teamName a String the name of the team
 	 * @param nMembers an int the number of members in the team
 	 */
-	public Team(String teamName, int nMembers){
+	public Team(String teamName){
 		this.teamName = teamName;
-		this.nMembers = nMembers;
 		this.memberList = new ArrayList<Hero>();
 		this.powerUps = new ArrayList<PowerUp>();
 		this.healingItems = new ArrayList<HealingItem>();
 		this.maps = 0;
 		this.money = STARTING_MONEY;
 	}
-	
+	 
 	/**
 	 * The current size of the team
 	 * @return an int the number of members currently in the team
@@ -50,13 +48,8 @@ public class Team {
 	 * Adds a new hero to the team
 	 * @param newHero a Hero type
 	 */
-	public boolean addMember(Hero newHero) {
-		boolean result = false;
-		if (memberList.size() < nMembers) {
-			memberList.add(newHero);
-			result = true;
-		}
-		return result;
+	public void addMember(Hero newHero) {
+		memberList.add(newHero);
 	}
 	
 	/**
@@ -140,9 +133,14 @@ public class Team {
 	 * health bonus applied from outside the class
 	 * @param heroInQuestion a Hero the hero whose index is required
 	 * @return an int the position of the hero in question in the memberList array
+	 * If member is not present, returns -1
 	 */
 	public int getIndex(Hero heroInQuestion) {
-		return memberList.indexOf(heroInQuestion);
+		if(memberList.contains(heroInQuestion)) {
+			return memberList.indexOf(heroInQuestion);
+		} else {
+			return -1;
+		}
 	}
 	
 	/**
@@ -287,37 +285,5 @@ public class Team {
 		return result;
 	}
 	
-	/*
-	 * Test Code Only
-	 */
-	public static void main(String[] args) {
-		Team team1 = new Team("Awesome", 2);
-		team1.buildTeam(2);
-//		team1.addMember(Hero.ALL_BLACK);
-//		team1.addMember(Hero.VOLUNTEER);
-//		team1.addMember(Hero.FIREFIGHTER);
-//		team1.addMember(Hero.FIREFIGHTER);
-//		System.out.print(team1);
-//		System.out.print(team1.removeMember(3));
-//		team1.addMember(Hero.RETURNED_SERVICEMAN);
-//		System.out.println();
-//		team1.memberList.get(1).changeStrength(-100);
-		//System.out.println(team1.memberList.get(0).getHealth());
-		//team1.memberList.get(0).changeHealth(-101);
-		//System.out.print(team1);
-		
-		team1.teamStatus();
-		team1.addPowerUp(PowerUp.PAVLOVA);
-		team1.addPowerUp(PowerUp.PINEAPPLE_LUMPS);
-		team1.addHealingItem(HealingItem.LINDAUER);
-		team1.addHealingItem(HealingItem.LION_RED);
-		team1.applyPowerUp(0, 0);
-		team1.showPowerUps();
-		team1.showHealingItems();
-		team1.getMaps();
-		team1.changeMaps(1);
-		System.out.println(team1.checkPresent(HeroType.FIREFIGHTER));
-
-	}
 
 }

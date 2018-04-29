@@ -108,8 +108,12 @@ public class Hero {
 	 * Getter method to return any PowerUp that the Hero has eaten
 	 * @return a PowerUp, the PowerUp most recently eaten by the hero
 	 */
-	public PowerUp getPowerUp() {
-		return powerUpEaten;
+	public String getPowerUp() {
+		String result = "No power up eaten";
+		if (powerUpEaten != null) {
+			result = powerUpEaten.toString();
+		}
+		return result;
 	}
 	
 	/**
@@ -149,5 +153,11 @@ public class Hero {
 		}
 		return counter;
 	}
-
+	
+	public static void main(String[] args) {
+		Hero h1 = new Hero();
+		PowerUp p1 = new PowerUp(PowerUpType.PAVLOVA);
+		h1.eatPowerUp(p1);
+		h1.getPowerUp();
+	}
 }

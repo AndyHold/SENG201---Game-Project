@@ -33,7 +33,7 @@ public class Battle {
 		villainChoice = rnd.nextInt(choices.length);
 		
 		//*****Skew game if Pavlova PowerUp is present*********
-		if (player.getPowerUp() == PowerUp.PAVLOVA) {
+		if (player.getPowerUp().getType() == PowerUpType.PAVLOVA) {
 			System.out.println("The lightning quick reflexes brought on by the slice of pavlova " +
 					player.getName() + " ate earlier enables them to see " + baddie.getName() + 
 					" play a " + choices[villainChoice]); 
@@ -83,7 +83,7 @@ public class Battle {
 				" and " + max_num);
 		
 		//*****Skew game if Cheese Roll PowerUp is present*********
-		if (player.getPowerUp() == PowerUp.CHEESE_ROLL) {
+		if (player.getPowerUp().getType() == PowerUpType.CHEESE_ROLL) {
 			System.out.println("The strange effects of the mystical cheese roll " +
 					player.getName() + " ate earlier suddenly become strangely relevant. \"" 
 					+ baddie.getName() + " is thinking of the number " + villainChoice +
@@ -135,7 +135,7 @@ public class Battle {
 		playerChoice = (rnd.nextInt(LARGEST_ROLL) + SMALLEST_ROLL);
 		
 		//*****Skew game if Pineapple Lumps PowerUp is present*********
-		if (player.getPowerUp() == PowerUp.PINEAPPLE_LUMPS) {
+		if (player.getPowerUp().getType() == PowerUpType.PINEAPPLE_LUMPS) {
 			System.out.println("By the magic of Pineapple Lumps " +
 					player.getName() + " plays a " + LARGEST_ROLL);
 			playerChoice = LARGEST_ROLL;
@@ -164,7 +164,7 @@ public class Battle {
 
 	
 	/**
-	 * 
+	 *  
 	 * @param player
 	 * @param baddie
 	 * @param result
@@ -193,9 +193,9 @@ public class Battle {
 	 */
 	public static void main(String[] args) {
 		Battle b1 = new Battle();
-		Team t1 = new Team("Awesome", 2);
+		Team t1 = new Team("Awesome");
 		Hero h1 = new Hero("JimBob", HeroType.ALL_BLACK);
-		h1.eatPowerUp(PowerUp.PINEAPPLE_LUMPS);
+		//h1.eatPowerUp(PowerUp.PINEAPPLE_LUMPS);
 		Hero h2 = new Hero("Herbie", HeroType.FIREFIGHTER);
 		t1.addMember(h1);
 		t1.addMember(h2);

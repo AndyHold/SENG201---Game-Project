@@ -63,7 +63,12 @@ public class HeroTest {
 		assertEquals("have a virtually unprecedented success in games. Wins 50% more games", testHero2.getAbility());
 		assertEquals(100, testHero2.getStrength());
 		assertEquals(100, testHero2.getHealth());
-
+		
+		
+		//Check that creating second Hero of same type creates new instance
+		//not pointer to first instance. Seems obvious, is but important.
+		Hero testHero3 = new Hero("Cletus", HeroType.ALL_BLACK);
+		assertEquals("Jim", testHero2.getName()); //testHero2 is unmodified
 	}
 
 	@Test
@@ -104,23 +109,25 @@ public class HeroTest {
 	public void testEatGetClearPowerUp() {
 		Hero testHero = new Hero();
 		
-		//Check defaults to null
-		assertNull(testHero.getPowerUp());
+		//Check defaults to "No power up eaten"
+		assertEquals("No power up eaten", testHero.getPowerUp());
 		
 		//Eat one - check getter
-		testHero.eatPowerUp(PowerUp.PINEAPPLE_LUMPS);
-		assertEquals(PowerUp.PINEAPPLE_LUMPS, testHero.getPowerUp());
+		PowerUp p1 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		testHero.eatPowerUp(p1);
+		assertEquals("Pineapple Lumps", testHero.getPowerUp());
 		
 		//Eat a second. Should overwrite first - check getter
-		testHero.eatPowerUp(PowerUp.PAVLOVA);
-		assertEquals(PowerUp.PAVLOVA, testHero.getPowerUp());
+		PowerUp p2 = new PowerUp(PowerUpType.PAVLOVA);
+		testHero.eatPowerUp(p2);
+		assertEquals("Pavlova", testHero.getPowerUp());
 		
 		//Clear powerup. should now be null
 		testHero.clearPowerUp();
-		assertNull(testHero.getPowerUp());
+		assertEquals("No power up eaten", testHero.getPowerUp());
 		//Clear again
 		testHero.clearPowerUp();
-		assertNull(testHero.getPowerUp());
+		assertEquals("No power up eaten", testHero.getPowerUp());
 		
 	}
 

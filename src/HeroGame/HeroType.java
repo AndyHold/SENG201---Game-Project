@@ -19,7 +19,7 @@ public enum HeroType {
 
 	
 	/*
-	 * Hero constructor
+	 * HeroType constructor
 	 */
 	HeroType(String descriptionArg, String abilityArg, int strengthArg){
 		description = descriptionArg;

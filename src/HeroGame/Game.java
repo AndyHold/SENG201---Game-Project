@@ -40,7 +40,7 @@ public class Game {
 				+ " will battle their way through the petty villains of " + nCities + 
 				" small NZ towns.\n");
 		
-		heroTeam = new Team(teamName, nHeroes);
+		heroTeam = new Team(teamName);
 		heroTeam.buildTeam(nHeroes);
 		System.out.println(heroTeam);
 		/*
