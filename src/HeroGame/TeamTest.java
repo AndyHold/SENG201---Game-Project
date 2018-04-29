@@ -1,5 +1,11 @@
 package HeroGame;
 
+/**
+ * JUnit Tests for Team Class - Heroes & Villains Game
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -117,39 +123,53 @@ public class TeamTest {
 
 	@Test
 	public void testAddRemoveApplyPowerUp() {
-		fail("Not yet implemented");
+		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+		testTeam.addPowerUp(p1);
+		testTeam.addMember(h1);
+		//Remove power up at non-existent index
+		assertEquals(1, testTeam.removePowerUp(1));
+		//Eat power up at non existent index
+		testTeam.applyPowerUp(1, 0);
+		assertNull(h1.getPowerUp());
+		//Eat power up by non-existent team member
+		testTeam.applyPowerUp(-1, 1);
+		//Eat power up
+		testTeam.applyPowerUp(0, 0);
+		assertEquals(h1.getPowerUp().toString(), "Cheese Roll");
+		//Check power up removed from list - can't eat twice
+		h1.clearPowerUp();
+		testTeam.applyPowerUp(0, 0);
+		assertNull(h1.getPowerUp());
 	}
 
 
 
 	@Test
-	public void testAddHealingItem() {
+	public void testAddRemoveApplyHealingItem() {
+		HealingItem hl1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
+		testTeam.addMember(h1);
+		testTeam.addHealingItem(hl1);
+		//Remove healing item at non-existent index
+		assertEquals(1, testTeam.removeHealingItem(1));
+		//Apply healing item at non-existent index
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testRemoveHealingItem() {
-		fail("Not yet implemented");
-	}
+
+
 
 	@Test
-	public void testApplyHealingItem() {
-		fail("Not yet implemented");
+	public void testGetChangeMaps() {
+		assertEquals(0, testTeam.getMaps());
+		//Change maps to negative - should stay at 0
+		testTeam.changeMaps(-1);
+		assertEquals(0, testTeam.getMaps());
+		//Add a map
+		testTeam.changeMaps(1);
+		assertEquals(1, testTeam.getMaps());
+		
+		
 	}
 
-	@Test
-	public void testShowHealingItems() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetMaps() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testChangeMaps() {
-		fail("Not yet implemented");
-	}
 
 }

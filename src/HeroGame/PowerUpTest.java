@@ -1,5 +1,11 @@
 package HeroGame;
 
+/**
+ * JUnit Tests for PowerUp Class and related enum - Heroes & Villains Game
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.After;

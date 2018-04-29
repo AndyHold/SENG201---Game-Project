@@ -20,7 +20,7 @@ public class HealingItem extends PowerItem {
 		this.applyTime = healingItemType.getApplyTime();
 		this.healthValue = healingItemType.getHealthValue();
 		super.setDescription(healingItemType.getDescription());
-		super.setLongDescription(healingItemType.getLongdescription());
+		super.setLongDescription(healingItemType.getLongDescription());
 		super.setResponse(healingItemType.getResponse());
 	}
 

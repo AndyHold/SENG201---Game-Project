@@ -77,7 +77,7 @@ public enum HealingItemType {
 	 * Getter method for the long description of this healing item type
 	 * @return a String the long description of this healing item type
 	 */
-	public String getLongdescription() {
+	public String getLongDescription() {
 		return longDescription;
 	}
 		

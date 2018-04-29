@@ -186,16 +186,20 @@ public class Team {
 	 * Adds a power up to the team's inventory
 	 * @param powerUp a PowerUp, the power up to add to the team's inventory 
 	 */
-	public void addPowerUp(PowerUp powerUp){
+	public int addPowerUp(PowerUp powerUp){
 		this.powerUps.add(powerUp);
+		return powerUps.size();
 	}
 	
 	/**
 	 * Removes the power up at a given index from the list
 	 * @param powerUpIndex an int, the index of the power up to remove in the ArrayList of power ups 
 	 */
-	public void removePowerUp(int powerUpIndex){
-		this.powerUps.remove(powerUpIndex);
+	public int removePowerUp(int powerUpIndex){
+		if (powerUpIndex >= 0 && powerUpIndex < powerUps.size()) {
+			this.powerUps.remove(powerUpIndex);
+		}
+		return powerUps.size();
 	}
 	
 	/**
@@ -205,8 +209,11 @@ public class Team {
 	 * @param teamMemberIndex an int the index of the team member who is to eat the power up
 	 */
 	public void applyPowerUp(int powerUpIndex, int teamMemberIndex){
-		memberList.get(teamMemberIndex).eatPowerUp(powerUps.get(powerUpIndex));
-		removePowerUp(powerUpIndex);
+		if ((powerUpIndex >= 0 && teamMemberIndex >= 0) &&
+				(powerUpIndex < powerUps.size() && teamMemberIndex < memberList.size())) {
+			memberList.get(teamMemberIndex).eatPowerUp(powerUps.get(powerUpIndex));
+			removePowerUp(powerUpIndex);
+		}
 	}
 	
 	/**
@@ -225,16 +232,20 @@ public class Team {
 	 * Adds a healing item to the team's inventory
 	 * @param healingItem a HealingItem, the healing item to add to the team's inventory 
 	 */
-	public void addHealingItem(HealingItem healingItem){
+	public int addHealingItem(HealingItem healingItem){
 		this.healingItems.add(healingItem);
+		return healingItems.size();
 	}
 	
 	/**
 	 * Removes the healing at a given index from the list
 	 * @param healingItemIndex an int, the index of the healing item to remove in the ArrayList of healing items 
 	 */
-	public void removeHealingItem(int healingItemIndex){
-		this.healingItems.remove(healingItemIndex);
+	public int removeHealingItem(int healingItemIndex){
+		if (healingItemIndex >= 0 && healingItemIndex < healingItems.size()) {
+			this.healingItems.remove(healingItemIndex);
+		}
+		return healingItems.size();
 	}
 	
 	/**
@@ -263,8 +274,9 @@ public class Team {
 	/**
 	 * Outputs the number of maps the team is carrying
 	 */
-	public void getMaps(){
+	public int getMaps(){
 		System.out.println("Team " + teamName + " are carrying " + maps + " maps");
+		return maps;
 	}
 	
 	/**
@@ -273,6 +285,9 @@ public class Team {
 	 */
 	public void changeMaps(int mapChange) {
 		this.maps += mapChange;
+		if (this.maps < 0) {
+			this.maps =0;
+		}
 		getMaps();
 	}
 	

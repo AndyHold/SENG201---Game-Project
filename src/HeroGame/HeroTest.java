@@ -110,24 +110,24 @@ public class HeroTest {
 		Hero testHero = new Hero();
 		
 		//Check defaults to "No power up eaten"
-		assertEquals("No power up eaten", testHero.getPowerUp());
+		assertNull(testHero.getPowerUp());
 		
 		//Eat one - check getter
 		PowerUp p1 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
 		testHero.eatPowerUp(p1);
-		assertEquals("Pineapple Lumps", testHero.getPowerUp());
+		assertEquals("Pineapple Lumps", testHero.getPowerUp().toString());
 		
 		//Eat a second. Should overwrite first - check getter
 		PowerUp p2 = new PowerUp(PowerUpType.PAVLOVA);
 		testHero.eatPowerUp(p2);
-		assertEquals("Pavlova", testHero.getPowerUp());
+		assertEquals("Pavlova", testHero.getPowerUp().toString());
 		
 		//Clear powerup. should now be null
 		testHero.clearPowerUp();
-		assertEquals("No power up eaten", testHero.getPowerUp());
+		assertNull(testHero.getPowerUp());
 		//Clear again
 		testHero.clearPowerUp();
-		assertEquals("No power up eaten", testHero.getPowerUp());
+		assertNull(testHero.getPowerUp());
 		
 	}
 
