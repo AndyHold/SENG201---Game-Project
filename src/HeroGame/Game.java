@@ -17,7 +17,7 @@ public class Game {
 	private int nCities;
 	private int nHeroes;
 	private long startTime;//0 until game play starts
-	private City[] cities;
+	private Cities cities;
 	private Team heroTeam; //null pointer until buildTeam() is called
 	private Selector gameSelector = new Selector();
 	/**
@@ -43,13 +43,8 @@ public class Game {
 		heroTeam = new Team(teamName);
 		heroTeam.buildTeam(nHeroes);
 		System.out.println(heroTeam);
-		/*
-	    //this.cities = new city[nCities];
-		for (int i = 0; i < nCities; i++) {
-			//instantiate a city with a randomised layout
-			//add it to nCities at index i
-		}
-		*/
+	    //this.cities = new Cities(heroTeam, nCities);
+	    //this.cities.runCities();
 	}
 	
 	

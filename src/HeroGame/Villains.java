@@ -19,7 +19,6 @@ public class Villains {
 	 * @param availableVillains ArrayList<Villain> list of all available villains
 	 */
 	Villains() {
-		availableVillains.add(Villain.AUSSIECRICKETER);
 		availableVillains.add(Villain.BADRUGBYREFEREE);
 		availableVillains.add(Villain.BOUNCER);
 		availableVillains.add(Villain.CALLCENTREOPERATOR);

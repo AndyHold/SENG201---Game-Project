@@ -1,5 +1,6 @@
 package HeroGame;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.HashMap;
 
 
@@ -23,6 +24,8 @@ public class City {
 	private boolean completed = false;
 	private boolean mapped = false;
 	private HashMap<String, String> placeNames = new HashMap<String, String>();
+	private Random rand = new Random();
+	private ArrayList<Location> availableLocations = new ArrayList<Location>();
 	
 	
 	City(String newName, Villain newVillain, Team newTeam) {
@@ -31,6 +34,7 @@ public class City {
 		ruler = cityVillain.getName();
 		currentTeam = newTeam;
 		setPlaceNames();
+		fillAvailableLocations();
 		setDirections();
 	}
 	
@@ -112,11 +116,127 @@ public class City {
 	
 	
 	public void setDirections() {
-//		ArrayList<Location> locations = new ArrayList<Location>();
-//		locations.add(new VilliansLair(this, cityVillain, this.currentTeam));
-//		locations.add(hospital);
-//		locations.add(powerupden);
-//		locations.add(shop);
+		this.eastArea = getLocation();
+		this.eastArea.setDirection(Direction.EAST);
+		this.westArea = getLocation();
+		this.westArea.setDirection(Direction.WEST);
+		this.southArea = getLocation();
+		this.southArea.setDirection(Direction.SOUTH);
+		this.northArea = getLocation();
+		this.northArea.setDirection(Direction.NORTH);
+	}
+	
+	
+	private Location getLocation() {
+		int n = this.rand.nextInt(availableLocations.size());
+		Location location = availableLocations.get(n);
+		availableLocations.remove(n);
+		return location;
+	}
+	
+	
+	private void fillAvailableLocations() {
+		availableLocations.add(new VilliansLair(this, cityVillain, this.currentTeam));
+		availableLocations.add(new Hospital(this, this.currentTeam));
+		availableLocations.add(new PowerUpDen(this, this.currentTeam));
+		availableLocations.add(new Shop(this, this.currentTeam));
+	}
+	
+	
+	public void runCity() {
+		int n = this.centerArea.runLocation();
+		boolean finishedCity = false;
+		while(!finishedCity) {
+			switch(n) {
+			case 0:
+				n = this.centerArea.runLocation();
+				
+			case 1:
+				switch(this.northArea.getLocationType()) {
+				
+				case HOSPITAL:
+					((Hospital) this.northArea).runLocation();
+					break;
+					
+				case VILLIANSLAIR:
+					((VilliansLair) this.northArea).runLocation();
+					break;
+					
+				case SHOP:
+					((Shop) this.northArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					((PowerUpDen) this.northArea).runLocation();
+					break;
+				}
+				
+				
+			case 2:
+				switch(this.eastArea.getLocationType()) {
+				
+				case HOSPITAL:
+					((Hospital) this.eastArea).runLocation();
+					break;
+					
+				case VILLIANSLAIR:
+					((VilliansLair) this.eastArea).runLocation();
+					break;
+					
+				case SHOP:
+					((Shop) this.eastArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					((PowerUpDen) this.eastArea).runLocation();
+					break;
+				}
+				
+				
+			case 3:
+				switch(this.southArea.getLocationType()) {
+				
+				case HOSPITAL:
+					((Hospital) this.southArea).runLocation();
+					break;
+					
+				case VILLIANSLAIR:
+					((VilliansLair) this.southArea).runLocation();
+					break;
+					
+				case SHOP:
+					((Shop) this.southArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					((PowerUpDen) this.southArea).runLocation();
+					break;
+				}
+				
+				
+			case 4:
+				switch(this.westArea.getLocationType()) {
+				
+				case HOSPITAL:
+					((Hospital) this.westArea).runLocation();
+					break;
+					
+				case VILLIANSLAIR:
+					((VilliansLair) this.westArea).runLocation();
+					break;
+					
+				case SHOP:
+					((Shop) this.westArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					((PowerUpDen) this.westArea).runLocation();
+					break;
+				}
+				
+				
+			}
+		}
 	}
 	
 	

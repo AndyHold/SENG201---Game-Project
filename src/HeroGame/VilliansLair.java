@@ -13,7 +13,41 @@ public class VilliansLair extends Location {
 	 * @param currentVillian Current Villain of this city.
 	 */
 	VilliansLair(City thisCity, Villain currentVillian, Team heroTeam) {
-		super(currentVillian.getLairName(thisCity.getName()), heroTeam, thisCity.getName());
+		super(currentVillian.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR);
+	}
+	
+	
+	public void listOptions() {
+		System.out.println("Current Options Are:");
+		System.out.println("1) Move to another location");
+		System.out.println("2) Enter Villians Lair");
+	}
+	
+	
+	public int runLocation() {
+		boolean finishedInLocation = false;
+		while(!finishedInLocation) {
+			listOptions();
+			int n = this.getSelector().intSelector(1, 2, "Please select an option", "Invalid option, try again");
+			finishedInLocation = runOption(n);
+		}
+		return moveLocations();
+	}
+
+	
+	public boolean runOption(int n) {
+		
+		switch(n) {
+		
+		case 1:
+			return true;
+			
+		case 2:
+			Battle currentBattle = new Battle();
+			//currentBattle.runBattle();
+			return false;		
+		}
+		return false;
 	}
 	
 	

@@ -15,6 +15,7 @@ public class Cities {
 	private Team heroTeam;
 	private ArrayList<City> stages = new ArrayList<City>();
 	private ArrayList<String> cityNames = new ArrayList<String>();
+	private Random rand = new Random();
 	
 	
 	Cities(Team newTeam, int numOfCities) {
@@ -25,14 +26,24 @@ public class Cities {
 	
 	
 	private void createCities(int numOfCities) {
-		for(int x=0; x < numOfCities; x++) {
-			Random rand = new Random();
-			int n = rand.nextInt(6);
+		for(int x=0; x < (numOfCities); x++) {
+			int n = this.rand.nextInt(6);
 			String cityName = cityNames.get(n);
-			Villain cityVillain = availableVillains.getVillain();
-			stages.add(new City(cityName, cityVillain, heroTeam));
+			if(x == numOfCities) {
+				Villain cityVillain = Villain.AUSSIECRICKETER;
+				stages.add(new City(cityName, cityVillain, heroTeam));
+			} else {
+				Villain cityVillain = availableVillains.getVillain();
+				stages.add(new City(cityName, cityVillain, heroTeam));
+			}
 		}
-		
+	}
+	
+	
+	public void runCities() {
+		for(City currentCity: this.stages) {
+			currentCity.runCity();
+		}
 	}
 	
 	

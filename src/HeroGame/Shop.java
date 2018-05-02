@@ -15,7 +15,102 @@ public class Shop extends Location {
 	
 	
 	Shop(City thisCity, Team newTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName());
+		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP);
+	}
+	
+	
+	public void listOptions() {
+		System.out.println("Current Options Are:");
+		System.out.println("1) Move to another location");
+		System.out.println("2) Talk to waitress");
+	}
+	
+	
+	public int runLocation() {
+		boolean finishedInLocation = false;
+		while(!finishedInLocation) {
+			listOptions();
+			int n = this.getSelector().intSelector(1, 2, "Please select an option", "Invalid option, try again");
+			finishedInLocation = runOption(n);
+		}
+		return moveLocations();
+	}
+
+	
+	public boolean runOption(int n) {
+		
+		switch(n) {
+		
+		case 1:
+			return true;
+			
+		case 2:
+			this.runInkeeperLoop();
+			return false;
+		}
+		return false;
+	}
+	
+	
+	public void runInkeeperLoop() {
+		boolean finished = false;
+		System.out.println("Hi there, welcome to " + this.getName() + "how can i help you?:");
+		while(!finished) {
+			listInnKeeperOptions();
+			int n = this.getSelector().intSelector(1, 7, "Please select an option", "Invalid option, try again");
+			finished = runInnKeeperOption(n);
+			if(!finished) {
+				System.out.println("Is there anything else i can do for you?:");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void listInnKeeperOptions() {
+		System.out.println("1) Purchase map");
+		System.out.println("2) Purchase Power up");
+		System.out.println("3) Purchase Healing Item");
+		System.out.println("4) Show prices");
+		System.out.println("5) Show team inventory");
+		System.out.println("6) Show attributes of an item");
+		System.out.println("7) Nothing thanks");
+	}
+	
+	
+	public boolean runInnKeeperOption(int n) {
+		
+		switch(n) {
+		
+		case 1:
+			//this.purchaseMap();
+			return false;
+			
+		case 2:
+			//this.purchasePowerUp();
+			return false;
+		
+		case 3:
+			//this.purchaseHealingItem();
+			return false;
+			
+		case 4:
+			//this.showPrices();
+			return false;
+			
+		case 5:
+			//this.showInventory();
+			return false;
+			
+		case 6:
+			//this.showItem();
+			return false;
+			
+		case 7:
+			return true;
+		}
+		return false;
 	}
 	
 	
