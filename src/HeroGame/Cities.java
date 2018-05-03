@@ -8,7 +8,6 @@ import java.util.Random;
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-
 public class Cities {
 	
 	private Villains availableVillains = new Villains();
@@ -18,6 +17,11 @@ public class Cities {
 	private Random rand = new Random();
 	
 	
+	/**
+	 * Constructor method for Cities class
+	 * @param newTeam Team, Team of heroes being controlled by the player.
+	 * @param numOfCities int, Number of cities to be created
+	 */
 	Cities(Team newTeam, int numOfCities) {
 		this.heroTeam = newTeam;
 		fillCityNames();
@@ -25,6 +29,10 @@ public class Cities {
 	}
 	
 	
+	/**
+	 * Method to create random cities and add them to the ArrayList stages.
+	 * @param numOfCities int, Number of cities to be created
+	 */
 	private void createCities(int numOfCities) {
 		for(int x=0; x < (numOfCities); x++) {
 			int n = this.rand.nextInt(6);
@@ -40,6 +48,9 @@ public class Cities {
 	}
 	
 	
+	/**
+	 * Run loop for Cities class, calls each city in the stages ArrayList until completion.
+	 */
 	public void runCities() {
 		for(City currentCity: this.stages) {
 			currentCity.runCity();
@@ -47,11 +58,19 @@ public class Cities {
 	}
 	
 	
+	/**
+	 * Method to get a city from a given stage number.
+	 * @param stageNumber int, Number of stage to fetch city from.
+	 * @return City, City allocated to given stage number.
+	 */
 	public City getCity(int stageNumber) {
 		return this.stages.get(stageNumber);
 	}
 	
 	
+	/**
+	 * Method to fill cityNames ArrayList
+	 */
 	private void fillCityNames() {
 		cityNames.add("Springfield");
 		cityNames.add("Te Puke");

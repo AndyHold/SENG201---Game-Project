@@ -46,9 +46,6 @@ public enum Villain {
 			"Election promises are for losers!",
 			5); 
 
-
-
-
 	
 	private String name;
 	private int currentHealth;
@@ -57,9 +54,8 @@ public enum Villain {
 	private HashMap<String, String> lairNames = new HashMap<String, String>();
 	
 	
-	
 	/**
-	 * Constructor for Villain Super Class
+	 * Constructor for Villain Class
 	 * @param newName name of the Villain
 	 * @param currentHealth health of the Villain
 	 */
@@ -72,7 +68,7 @@ public enum Villain {
 	
 	
 	/**
-	 * setsLairNames for type of Villain selected and places them in a dictionary with city names as keys.
+	 * Method to set lair names for type of Villain selected and places them in a dictionary with city names as keys.
 	 * Int selectors correspond as follows:
 	 * 0 = Bad Rugby Referee
 	 * 1 = Bouncer
@@ -141,7 +137,7 @@ public enum Villain {
 	
 	
 	/**
-	 * gets the lair name from the dictionary and returns it.
+	 * Method to get the lair name from the dictionary and returns it.
 	 * @return String lair name for given City and Villain type.
 	 */
 	public String getLairName(String cityName) {
@@ -150,10 +146,10 @@ public enum Villain {
 	
 	
 	/**
-	 * Fills the arrayList taunts with three taunts specific to the Villain type
-	 * @param taunts1 first taunt specific to the Villain type
-	 * @param taunts2 second taunt specific to the Villain type
-	 * @param taunts3 third taunt specific to the Villain type
+	 * Method to fill the arrayList taunts with three taunts specific to the Villain type
+	 * @param taunts1 String, First taunt specific to the Villain type
+	 * @param taunts2 String, Second taunt specific to the Villain type
+	 * @param taunts3 String, Third taunt specific to the Villain type
 	 */
 	private void setTaunts(String taunt1, String taunt2, String taunt3){
 		taunts.add(taunt1);
@@ -163,17 +159,17 @@ public enum Villain {
 	
 	
 	/**
-	 * gets the name of the Villain
-	 * @return String name of the Villain
+	 * Method to get the name of the Villain
+	 * @return String, Name of the Villain
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	
 	
 	/**
-	 * Randomly picks a taunt from the arrayList taunts
-	 * @return a random String taunt from the arrayList taunts
+	 * Method to randomly pick a taunt from the arrayList taunts
+	 * @return String, A random taunt from the arrayList taunts
 	 */
 	public String getTaunt() {
 		Random rand = new Random();
@@ -183,7 +179,7 @@ public enum Villain {
 	
 	
 	/**
-	 * Takes 25 damage and updates boolean alive if Villain is defeated
+	 * Takes damage and updates boolean alive if Villain is defeated
 	 * @return String representation of the damage done and notifies when villain is defeated.
 	 */
 	public String takeDamage(int amount) {
@@ -202,8 +198,8 @@ public enum Villain {
 	
 	
 	/**
-	 * current health of the villain
-	 * @return int current health of the villain
+	 * Method to get the current health of the villain
+	 * @return int, Current health of the villain
 	 */
 	public int getHealth() {
 		return currentHealth;
@@ -211,8 +207,8 @@ public enum Villain {
 	
 	
 	/**
-	 * Weather or not the Villain is alive
-	 * @return boolean alive which indicates weather or not the villain is alive.
+	 * Method to get whether or not the Villain is alive
+	 * @return boolean, true if the villain is alive.
 	 */
 	public boolean isAlive() {
 		return alive;

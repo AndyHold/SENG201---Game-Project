@@ -17,6 +17,9 @@ public class VilliansLair extends Location {
 	}
 	
 	
+	/**
+	 * Method to list available options for player to choose from
+	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another location");
@@ -24,6 +27,10 @@ public class VilliansLair extends Location {
 	}
 	
 	
+	/**
+	 * Run loop for VillainsLair class
+	 * @return int, Number corresponding to the direction to move to next.
+	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -35,6 +42,11 @@ public class VilliansLair extends Location {
 	}
 
 	
+	/**
+	 * Method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 */
 	public boolean runOption(int n) {
 		
 		switch(n) {

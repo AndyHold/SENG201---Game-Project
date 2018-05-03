@@ -1,6 +1,7 @@
 package HeroGame;
 import java.util.ArrayList;
 
+
 /**
  * Shop Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -13,12 +14,19 @@ public class Shop extends Location {
 	private ArrayList<PowerUp> powerUps = new ArrayList<PowerUp>();
 	
 	
-	
+	/**
+	 * Constructor method for Shop Class
+	 * @param thisCity City, City containing this shop
+	 * @param newTeam Team, Team being controlled by the user
+	 */
 	Shop(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP);
 	}
 	
 	
+	/**
+	 * Method to list available options for player to choose from
+	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another location");
@@ -26,6 +34,10 @@ public class Shop extends Location {
 	}
 	
 	
+	/**
+	 * Run loop for Shop class
+	 * @return int, Number corresponding to the direction to move to next.
+	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -37,6 +49,11 @@ public class Shop extends Location {
 	}
 
 	
+	/**
+	 * Method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 */
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -52,6 +69,9 @@ public class Shop extends Location {
 	}
 	
 	
+	/**
+	 * run loop for the Innkeeper
+	 */
 	public void runInkeeperLoop() {
 		boolean finished = false;
 		System.out.println("Hi there, welcome to " + this.getName() + "how can i help you?:");
@@ -68,6 +88,9 @@ public class Shop extends Location {
 	}
 	
 	
+	/**
+	 * Innkeeper specific method to list available options for player to choose from
+	 */
 	private void listInnKeeperOptions() {
 		System.out.println("1) Purchase map");
 		System.out.println("2) Purchase Power up");
@@ -79,6 +102,11 @@ public class Shop extends Location {
 	}
 	
 	
+	/**
+	 * Innkeeper specific method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished with Innkeeper and want to return to the previous menu, false if need Innkeeper menu again.
+	 */
 	public boolean runInnKeeperOption(int n) {
 		
 		switch(n) {
@@ -114,6 +142,9 @@ public class Shop extends Location {
 	}
 	
 	
+	/**
+	 * Method to display shop inventory
+	 */
 	public void shopInventory() {
 		System.out.println("Inventory for " + this.getName());
 		System.out.println("Healing Items:");

@@ -8,12 +8,20 @@ package HeroGame;
 public class Hospital extends Location {
 	
 	
+	/**
+	 * Constructor method for Hospital class
+	 * @param thisCity City, City containing the hospital.
+	 * @param newTeam Team, Team being controlled by the user.
+	 */
 	Hospital(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " Hospital"), newTeam, thisCity.getName(), LocationType.HOSPITAL);
 		
 	}
 	
 	
+	/**
+	 * Method to list available options for player to choose from
+	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another Location");
@@ -22,17 +30,26 @@ public class Hospital extends Location {
 	}
 	
 	
+	/**
+	 * Run loop for Hospital class
+	 * @return int, Number corresponding to the direction to move to next.
+	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
-			listOptions();
+			this.listOptions();
 			int n = this.getSelector().intSelector(1, 3, "Please select an option", "Invalid option, try again");
-			finishedInLocation = runOption(n);
+			finishedInLocation = this.runOption(n);
 		}
-		return moveLocations();
+		return this.moveLocations();
 	}
 	
 	
+	/**
+	 * Method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 */
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -54,6 +71,11 @@ public class Hospital extends Location {
 	}
 	
 	
+	/**
+	 * Method to check if given direction is allowable.
+	 * @param n int, Number corresponding to the direction given by the player.
+	 * @return boolean, returns true if player can move in that direction.
+	 */
 	private boolean moveCheck(int n) {
 		switch(n) {
 		

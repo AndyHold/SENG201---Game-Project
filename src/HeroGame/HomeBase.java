@@ -1,5 +1,6 @@
 package HeroGame;
 
+
 /**
  * HomeBase Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -10,13 +11,11 @@ public class HomeBase extends Location {
 	
 	private City currentCity;
 	
-	
-	
-	
+
 	/**
 	 * Constructor for HomeBase Class
-	 * @param cityName String name of the city HomeBase is located in.
-	 * @param newTeam current Team being controlled by the Player.
+	 * @param cityName String, Name of the city HomeBase is located in.
+	 * @param newTeam Team, Team being controlled by the Player.
 	 */
 	HomeBase(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName(), LocationType.HOMEBASE);
@@ -40,29 +39,34 @@ public class HomeBase extends Location {
 	 */
 	public void teamInventory() {
 		System.out.println("Current PowerUps in Inventory:");
-//		heroTeam.showPowerUps();
+		this.heroTeam.showPowerUps();
 		System.out.println("Current Healing Items in Inventory:");
-//		heroTeam.showHealingItems();
+		this.heroTeam.showHealingItems();
 	}
 	
 	
 	/**
-	 * Uses a map and lists the places in the current city.
+	 * If the team has enough maps:
+	 * Consumes a map and lists the places in the current city.
+	 * Or if the city is mapped, lists the places in the current city.
 	 */
 	public void useMap() {
-		if(!currentCity.isMapped() && (heroTeam.getMaps() > 0)) {
-			currentCity.makeMapped();
-			heroTeam.changeMaps(-1);;
-			currentCity.showMap();
+		if(!this.currentCity.isMapped() && (this.heroTeam.getMaps() > 0)) {
+			this.currentCity.makeMapped();
+			this.heroTeam.changeMaps(-1);;
+			this.currentCity.showMap();
 		} else {
-			if(currentCity.isMapped()) {
-				currentCity.showMap();
+			if(this.currentCity.isMapped()) {
+				this.currentCity.showMap();
 			}
 		}
 		System.out.println("Mapping failed, you have insufficient maps.");
 	}
 	
 	
+	/**
+	 * Method to list available options for player to choose from
+	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another location");
@@ -71,17 +75,26 @@ public class HomeBase extends Location {
 	}
 	
 	
+	/**
+	 * Run loop for HomeBase class
+	 * @return int, Number corresponding to the direction to move to next.
+	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
-			listOptions();
+			this.listOptions();
 			int n = this.getSelector().intSelector(1, 3, "Please select an option", "Invalid option, try again");
 			finishedInLocation = runOption(n);
 		}
-		return moveLocations();
+		return this.moveLocations();
 	}
 
 	
+	/**
+	 * Method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 */
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -101,8 +114,6 @@ public class HomeBase extends Location {
 		}
 		return false;
 	}
-	
-	
 	
 	
 	@Override

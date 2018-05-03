@@ -8,12 +8,14 @@ package HeroGame;
 public class PowerUpDen extends Location {
 	
 	
-	
 	PowerUpDen(City thisCity, Team heroTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " PowerUpDen"), heroTeam, thisCity.getName(), LocationType.POWERUPDEN);
 	}
 	
 	
+	/**
+	 * Method to list available options for player to choose from
+	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another location");
@@ -22,6 +24,10 @@ public class PowerUpDen extends Location {
 	}
 	
 	
+	/**
+	 * Run loop for PowerUpDen class
+	 * @return int, Number corresponding to the direction to move to next.
+	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -33,6 +39,11 @@ public class PowerUpDen extends Location {
 	}
 
 	
+	/**
+	 * Method to choose which method to run based on input from the user.
+	 * @param n int, used in the switch statement to find which method to run.
+	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 */
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -48,7 +59,9 @@ public class PowerUpDen extends Location {
 	}
 	
 	
-	
+	/**
+	 * Method to prompt user for a power up and a hero and call the team to apply it.
+	 */
 	public void applyPowerUp() {
 		heroTeam.showPowerUps();
 		int powerUpIndex = this.getSelector().intSelector(0, heroTeam.getPowerUpsSize() - 1, "Please select a power up:", "Invalid selection, Please try again");

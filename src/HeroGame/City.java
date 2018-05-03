@@ -9,7 +9,6 @@ import java.util.HashMap;
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-
 public class City {
 	
 	private String cityName;
@@ -28,18 +27,27 @@ public class City {
 	private ArrayList<Location> availableLocations = new ArrayList<Location>();
 	
 	
+	/**
+	 * Constructor method for City class
+	 * @param newName String, Name of the city
+	 * @param newVillain Villain, Villain in the city
+	 * @param newTeam Team, Team being controlled by the player.
+	 */
 	City(String newName, Villain newVillain, Team newTeam) {
-		cityName = newName;
-		cityVillain = newVillain;
-		ruler = cityVillain.getName();
-		currentTeam = newTeam;
-		setPlaceNames();
-		fillAvailableLocations();
-		centerArea = new HomeBase(this, this.currentTeam);
-		setDirections();
+		this.cityName = newName;
+		this.cityVillain = newVillain;
+		this.ruler = cityVillain.getName();
+		this.currentTeam = newTeam;
+		this.setPlaceNames();
+		this.fillAvailableLocations();
+		this.centerArea = new HomeBase(this, this.currentTeam);
+		this.setDirections();
 	}
 	
 	
+	/**
+	 * prints the name of the location in each direction of the city map.
+	 */
 	public void showMap() {
 		System.out.println("To the South is:");
 		System.out.println(southArea.getName());
@@ -52,90 +60,108 @@ public class City {
 	}
 	
 	
+	/**
+	 * Method to get whether or not the city is mapped yet.
+	 * @return boolean, true if city is mapped already.
+	 */
 	public boolean isMapped() {
-		return mapped;
+		return this.mapped;
 	}
 	
 	
+	/**
+	 * Method to change the city to mapped
+	 */
 	public void makeMapped() {
-		mapped = true;
+		this.mapped = true;
 	}
 	
 	
+	/**
+	 * Method to fill the HashMap with the location names for each city/location type.
+	 */
 	private void setPlaceNames() {
-		placeNames.put("Springfield HomeBase", "");
-		placeNames.put("Springfield Hospital", "");
-		placeNames.put("Springfield PowerUpDen", "");
-		placeNames.put("Springfield Shop", "");
+		this.placeNames.put("Springfield HomeBase", "");
+		this.placeNames.put("Springfield Hospital", "");
+		this.placeNames.put("Springfield PowerUpDen", "");
+		this.placeNames.put("Springfield Shop", "");
 		
-		placeNames.put("Te Puke HomeBase", "");
-		placeNames.put("Te Puke Hospital", "");
-		placeNames.put("Te Puke PowerUpDen", "");
-		placeNames.put("Te Puke Shop", "");
+		this.placeNames.put("Te Puke HomeBase", "");
+		this.placeNames.put("Te Puke Hospital", "");
+		this.placeNames.put("Te Puke PowerUpDen", "");
+		this.placeNames.put("Te Puke Shop", "");
 		
-		placeNames.put("Gore HomeBase", "");
-		placeNames.put("Gore Hospital", "");
-		placeNames.put("Gore PowerUpDen", "");
-		placeNames.put("Gore Shop", "");
+		this.placeNames.put("Gore HomeBase", "");
+		this.placeNames.put("Gore Hospital", "");
+		this.placeNames.put("Gore PowerUpDen", "");
+		this.placeNames.put("Gore Shop", "");
 		
-		placeNames.put("Ohakune HomeBase", "");
-		placeNames.put("Ohakune Hospital", "");
-		placeNames.put("Ohakune PowerUpDen", "");
-		placeNames.put("Ohakune Shop", "");
+		this.placeNames.put("Ohakune HomeBase", "");
+		this.placeNames.put("Ohakune Hospital", "");
+		this.placeNames.put("Ohakune PowerUpDen", "");
+		this.placeNames.put("Ohakune Shop", "");
 		
-		placeNames.put("Paeroa HomeBase", "");
-		placeNames.put("Paeroa Hospital", "");
-		placeNames.put("Paeroa PowerUpDen", "");
-		placeNames.put("Paeroa Shop", "");
+		this.placeNames.put("Paeroa HomeBase", "");
+		this.placeNames.put("Paeroa Hospital", "");
+		this.placeNames.put("Paeroa PowerUpDen", "");
+		this.placeNames.put("Paeroa Shop", "");
 		
-		placeNames.put("Taihape HomeBase", "");
-		placeNames.put("Taihape Hospital", "");
-		placeNames.put("Taihape PowerUpDen", "");
-		placeNames.put("Taihape Shop", "");
+		this.placeNames.put("Taihape HomeBase", "");
+		this.placeNames.put("Taihape Hospital", "");
+		this.placeNames.put("Taihape PowerUpDen", "");
+		this.placeNames.put("Taihape Shop", "");
 	}
 	
 	
 	/**
 	 * consults the place name dictionary and returns the place name.
-	 * @param key String place type and city string representation.
-	 * @return String PlaceName for location.
+	 * @param key String, City name and Place type representation.
+	 * @return String, PlaceName for location.
 	 */
 	public String getPlaceName(String key) {
-		return placeNames.get(key);
+		return this.placeNames.get(key);
 	}
 	
 	
+	/**
+	 * Method to get the city's name
+	 * @return String, Name of the city
+	 */
 	public String getName() {
-		return cityName;
+		return this.cityName;
 	}
 	
 	
-	
-	public String toString() {
-		return "Welcome to " + cityName + "currently ruled by " + ruler;
-	}
-	
-	
+	/**
+	 * Method to set each direction of the map with a random location.
+	 */
 	public void setDirections() {
-		this.eastArea = getLocation();
+		this.eastArea = this.getLocation();
 		this.eastArea.setDirection(Direction.EAST);
-		this.westArea = getLocation();
+		this.westArea = this.getLocation();
 		this.westArea.setDirection(Direction.WEST);
-		this.southArea = getLocation();
+		this.southArea = this.getLocation();
 		this.southArea.setDirection(Direction.SOUTH);
-		this.northArea = getLocation();
+		this.northArea = this.getLocation();
 		this.northArea.setDirection(Direction.NORTH);
 	}
 	
 	
+	/**
+	 * Method to get a random location
+	 * @return Location Returns one of the four location types specific to this city.
+	 */
 	private Location getLocation() {
 		int n = this.rand.nextInt(availableLocations.size());
 		Location location = availableLocations.get(n);
-		availableLocations.remove(n);
+		this.availableLocations.remove(n);
 		return location;
 	}
 	
 	
+	/**
+	 * Method to fill the ArrayList availableLocations with the 4 types of location (excluding HomeBase)
+	 */
 	private void fillAvailableLocations() {
 		availableLocations.add(new VilliansLair(this, cityVillain, this.currentTeam));
 		availableLocations.add(new Hospital(this, this.currentTeam));
@@ -144,6 +170,9 @@ public class City {
 	}
 	
 	
+	/**
+	 * run loop for this city.
+	 */
 	public void runCity() {
 		int n = this.centerArea.runLocation();
 		boolean finishedCity = false;
@@ -241,18 +270,24 @@ public class City {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Welcome to " + cityName + "currently ruled by " + ruler;
+	}
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Team testTeam = new Team("Test Team");
-		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
-		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
-		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
-		testTeam.addMember(h1);
-		testTeam.addMember(h2);
-		testTeam.addMember(h3);
-		Villain peter = Villain.AUSSIECRICKETER;
-		City newCity = new City("Taihape", peter, testTeam);
-		System.out.println(newCity.getName());
+//		Team testTeam = new Team("Test Team");
+//		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
+//		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
+//		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
+//		testTeam.addMember(h1);
+//		testTeam.addMember(h2);
+//		testTeam.addMember(h3);
+//		Villain peter = Villain.AUSSIECRICKETER;
+//		City newCity = new City("Taihape", peter, testTeam);
+//		System.out.println(newCity.getName());
 	}
 
 }
