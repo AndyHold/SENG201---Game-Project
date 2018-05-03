@@ -43,8 +43,8 @@ public class Game {
 		heroTeam = new Team(teamName);
 		heroTeam.buildTeam(nHeroes);
 		System.out.println(heroTeam);
-	    //this.cities = new Cities(heroTeam, nCities);
-	    //this.cities.runCities();
+	    this.cities = new Cities(heroTeam, nCities);
+	    this.cities.runCities();
 	}
 	
 	

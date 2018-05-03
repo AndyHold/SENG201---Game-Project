@@ -15,7 +15,7 @@ public class City {
 	private String cityName;
 	private Team currentTeam;
 	private Villain cityVillain;
-	private HomeBase centerArea = new HomeBase(this, currentTeam);
+	private HomeBase centerArea;
 	private Location northArea;
 	private Location eastArea;
 	private Location southArea;
@@ -35,6 +35,7 @@ public class City {
 		currentTeam = newTeam;
 		setPlaceNames();
 		fillAvailableLocations();
+		centerArea = new HomeBase(this, this.currentTeam);
 		setDirections();
 	}
 	
@@ -242,7 +243,16 @@ public class City {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Team testTeam = new Team("Test Team");
+		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
+		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
+		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
+		testTeam.addMember(h1);
+		testTeam.addMember(h2);
+		testTeam.addMember(h3);
+		Villain peter = Villain.AUSSIECRICKETER;
+		City newCity = new City("Taihape", peter, testTeam);
+		System.out.println(newCity.getName());
 	}
 
 }
