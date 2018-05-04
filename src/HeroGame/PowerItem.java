@@ -54,7 +54,7 @@ public class PowerItem {
 	}
 	
 	/**
-	 * Getter method for reponse to power item
+	 * Getter method for response to power item
 	 * @return a String, the hero's reponse to eating the power item
 	 */
 	public String getResponse() {
@@ -62,8 +62,8 @@ public class PowerItem {
 	}
 	
 	/**
-	 * Setter method for reponse to power item
-	 * @param reponse a String, the hero's reponse to eating the power item
+	 * Setter method for response to power item
+	 * @param reponse a String, the hero's response to eating the power item
 	 */
 	public void setResponse(String response) {
 		this.response = response;

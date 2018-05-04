@@ -144,6 +144,33 @@ public class Team {
 	}
 	
 	/**
+	 * Returns (and prints to output) a list of heroes in the team and their index
+	 * @return
+	 */
+	public String listHeroes() {
+		String result = "Heroes in team:\n";
+		for (int i = 0; i < memberList.size(); i++) {
+			result += (i + ". " + memberList.get(i).getName() + "\n");
+		}
+		System.out.print(result);
+		return result;
+	}
+	
+	/**
+	 * for a valid index, returns the hero at a given index in the private memberList array
+	 * @param heroIndex an int the index of the required hero
+	 * @return the Hero at the given index. Returns a null pointer otherwise
+	 */
+	public Hero getHero(int heroIndex) {
+		Hero result;
+		if (heroIndex >= 0 && heroIndex < memberList.size());{
+			result = memberList.get(heroIndex);
+		} 
+		return result;
+	}
+	
+	
+	/**
 	 * Print to output a list of the current team members, their special ability 
 	 * and their current strength.
 	 */
@@ -200,6 +227,14 @@ public class Team {
 			this.powerUps.remove(powerUpIndex);
 		}
 		return powerUps.size();
+	}
+	
+	/**
+	 * Returns the number of power ups currently held
+	 * @return an int the number of power ups currently held
+	 */
+	public int getPowerUpsSize() {
+		return this.powerUps.size();
 	}
 	
 	/**
@@ -269,6 +304,14 @@ public class Team {
 		}
 	}	
 	
+	/**
+	 * Returns the number of healing items in the team's inventory
+	 * @return an int the number of healing items in the team's inventory
+	 */
+	public int getHealingItemsSize() {
+		return healingItems.size();
+	}
+	
 	//***************************Maps******************************************
 	
 	/**
@@ -289,6 +332,30 @@ public class Team {
 			this.maps =0;
 		}
 		getMaps();
+		
+	}
+	//*************************************************************************
+	
+	/**
+	 * Prints to output and returns the amount of money the team has
+	 * @return a double the amount of money the team has
+	 */
+	public double getMoney() {
+		System.out.println("The members of " + teamName + " have a whip around. They have $" + this.money );
+		return this.money;
+	}
+	
+	/**
+	 * Chnages the amount of money the team has by a positive or negative amount. The value of money has a 'floor' of $0.00
+	 * @param moneyChange a double the amount the teams money chnages by
+	 * @return a double the amount of money the team now has
+	 */
+	public double changeMoney(double moneyChange) {
+		this.money += moneyChange;
+		if (this.money <= 0) {
+			this.money = 0;
+		}
+		return this.getMoney();
 	}
 	
 	@Override

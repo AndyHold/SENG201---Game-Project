@@ -79,7 +79,7 @@ public class Hero {
 	/**
 	 * Method for adding or subtracting strength from Hero
 	 * @param strengthChange an int, the amount by which the hero's strength is to be changed
-	 * @return an int, the hero's stregnth after the change
+	 * @return an int, the hero's strength after the change
 	 */
 	public int changeStrength(int strengthChange) {
 		this.strength += strengthChange;
@@ -156,10 +156,21 @@ public class Hero {
 		return counter;
 	}
 	
+	public String heroStatus () {
+		String result = this.heroName + " is a " + this.getType().getDescription() + " with health " + this.health + " and strength " + this.strength + 
+				". \n";
+		if (this.powerUpEaten != null) {
+			result += this.heroName + " has eaten a delicious " + powerUpEaten + ", which " + powerUpEaten.getEffect();
+		}
+		return result;
+	}
+	
+	//Test Code - delete
 	public static void main(String[] args) {
-		Hero h1 = new Hero();
+		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
 		PowerUp p1 = new PowerUp(PowerUpType.PAVLOVA);
 		h1.eatPowerUp(p1);
 		h1.getPowerUp();
+		System.out.print(h1.heroStatus());
 	}
 }
