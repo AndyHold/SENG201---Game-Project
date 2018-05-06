@@ -39,4 +39,24 @@ public class PowerUp extends PowerItem {
 		return powerUpType;
 	}
 	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		} 
+		
+		if (!(obj instanceof PowerUp)) {
+			return false;
+		} 
+		
+		PowerUp p = (PowerUp) obj;
+		
+		if (p.powerUpType == this.powerUpType) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

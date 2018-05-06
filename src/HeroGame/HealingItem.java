@@ -47,6 +47,25 @@ public class HealingItem extends PowerItem {
 	public int getHealthValue() {
 		return healthValue;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		} 
+		
+		if (!(obj instanceof HealingItem)) {
+			return false;
+		} 
+		
+		HealingItem h = (HealingItem) obj;
+		
+		if (h.healingItemType == this.healingItemType) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 
 }

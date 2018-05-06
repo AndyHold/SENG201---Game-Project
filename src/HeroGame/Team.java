@@ -1,5 +1,6 @@
 package HeroGame;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -240,26 +241,64 @@ public class Team {
 	/**
 	 * Makes the team member at index teamMember eat the powerup at index powerUpIndex. Removes the 
 	 * power up from the team's inventory 
-	 * @param powerUpIndex an int the index of the power up to apply
+	 * @param powerUpType a power up type, the type of power up to apply
 	 * @param teamMemberIndex an int the index of the team member who is to eat the power up
 	 */
-	public void applyPowerUp(int powerUpIndex, int teamMemberIndex){
-		if ((powerUpIndex >= 0 && teamMemberIndex >= 0) &&
-				(powerUpIndex < powerUps.size() && teamMemberIndex < memberList.size())) {
-			memberList.get(teamMemberIndex).eatPowerUp(powerUps.get(powerUpIndex));
-			removePowerUp(powerUpIndex);
+	public String applyPowerUp(PowerUpType powerUpType, int teamMemberIndex) {
+		String result = "Power up not found\n"; //default value
+		boolean applied = false;
+		int counter = 0;
+		if (teamMemberIndex < 0 || teamMemberIndex >= memberList.size()) {
+			result = "No hero found!";
+		} else {
+			while (!applied && counter < powerUps.size()) {
+				if (powerUps.get(counter).getType() == powerUpType) {
+					memberList.get(teamMemberIndex).eatPowerUp(powerUps.get(counter));
+					result = "Power up applied!\n";
+					powerUps.remove(counter);
+					applied = true;
+				} else {
+					counter++;
+				}
+			}
 		}
+		return result;
 	}
 	
 	/**
-	 * Prints to output a list of the power ups in the team's inventory, and the index of each
+	 * Returns a list of the power ups in the team's inventory
+	 * @return a String a list of quantities of each power up carried by the team
 	 */
-	public void showPowerUps(){
-		System.out.println("Team " + teamName + " are carrying the following power ups:");
-		for (int i = 0; i < powerUps.size(); i++){
-			System.out.print(i + ". " + powerUps.get(i) + "\n");
+	public String showPowerUps () {
+		
+		int pavlovaCounter = Collections.frequency(powerUps, new PowerUp(PowerUpType.PAVLOVA));
+		int cheeseRollCounter = Collections.frequency(powerUps, new PowerUp(PowerUpType.CHEESE_ROLL));
+		int pineappleLumpCounter = Collections.frequency(powerUps, new PowerUp(PowerUpType.PINEAPPLE_LUMPS));
+		int total = pavlovaCounter + cheeseRollCounter + pineappleLumpCounter;
+		int counter = 0;
+		String result = "Team " + teamName + " are carrying the following power ups:\n"; 
+		
+		if (pavlovaCounter > 0) {
+			result += pavlovaCounter + " slices of pavlova.\n";
 		}
+		
+		if (cheeseRollCounter > 0) {
+			result += cheeseRollCounter + " cheese rolls.\n";
+		}
+		
+		if (pineappleLumpCounter > 0) {
+			result += pineappleLumpCounter + " packs of pineapple lumps.\n";
+		}
+		
+		if (total != powerUps.size()) {
+			result += powerUps.size() - total + " mystery power ups.\n";
+			
+		}
+		
+		return result;
 	}
+	
+	
 	
 	//**********************************Healing Items***************************
 	
@@ -347,7 +386,7 @@ public class Team {
 	
 	/**
 	 * Chnages the amount of money the team has by a positive or negative amount. The value of money has a 'floor' of $0.00
-	 * @param moneyChange a double the amount the teams money chnages by
+	 * @param moneyChange a double the amount the teams money changes by
 	 * @return a double the amount of money the team now has
 	 */
 	public double changeMoney(double moneyChange) {
@@ -366,6 +405,22 @@ public class Team {
 		}
 		return result;
 	}
-	
+
+	public static void main(String[] args) {
+		Team t1 = new Team("Awesome");
+		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
+		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+		PowerUp p2 = new PowerUp(PowerUpType.CHEESE_ROLL);
+		PowerUp p3 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		t1.addMember(h1);
+		t1.addPowerUp(p1);
+		t1.addPowerUp(p2);
+		t1.addPowerUp(p3);
+		System.out.print(t1.showPowerUps());
+		System.out.print(t1.applyPowerUp(PowerUpType.PAVLOVA, 0));
+		System.out.print(t1.applyPowerUp(PowerUpType.CHEESE_ROLL, 0));
+		System.out.print(t1.showPowerUps());
+		
+	}
 
 }

@@ -31,6 +31,7 @@ public class HomeBase extends Location {
 		super.heroTeam.teamStatus();
 		
 		return "Need to fix this so you can view individual heroes"
+				//Done
 	}
 	
 	
