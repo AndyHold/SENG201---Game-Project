@@ -45,6 +45,10 @@ public class GameManager {
 		nHeroes = newNHeroes;
 	}
 	
+	public Team getTeam() {
+		return heroTeam;
+	}
+	
 	/**
 	 * Launches the game welcome screen
 	 */
@@ -54,7 +58,17 @@ public class GameManager {
 	
 	public void closeWelcomeScreen(WelcomeScreen welcomeScreen) {
 		welcomeScreen.closeScreen();
-		//launch teamBuildScreen
+		heroTeam = new Team(teamName);
+		launchTeamBuildScreen();
+	}
+	
+	public void launchTeamBuildScreen() {
+		TeamBuildScreen teamBuildScreen = new TeamBuildScreen(this);
+	}
+	
+	public void closeTeamBuildScreen(TeamBuildScreen teamBuildScreen) {
+		teamBuildScreen.closeScreen();
+		//launchMainGameLoop
 	}
 	
 	public static void main(String[] args) {

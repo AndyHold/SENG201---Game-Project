@@ -31,9 +31,10 @@ public class WelcomeScreen {
 	
 	private JFrame frmNzCleanUp;
 	private GameManager manager;
-	private JTextField teamNameField;
+	private JTextField teamNameField = new JTextField();
 	private JComboBox<String> nCitiesBox = new JComboBox(NUMCITIES);
 	private JComboBox<String> nHeroesBox = new JComboBox(TEAMSIZE);
+	private JLabel warning = new JLabel("");
 
 	/**
 	 * Create the application.
@@ -53,7 +54,7 @@ public class WelcomeScreen {
 		frmNzCleanUp.setBackground(Color.LIGHT_GRAY);
 		frmNzCleanUp.getContentPane().setBackground(Color.WHITE);
 		frmNzCleanUp.setTitle("NZ Clean Up - Welcome");
-		frmNzCleanUp.setBounds(100, 100, 550, 362);
+		frmNzCleanUp.setBounds(100, 100, 550, 370);
 		frmNzCleanUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNzCleanUp.getContentPane().setLayout(null);
 		
@@ -69,12 +70,12 @@ public class WelcomeScreen {
 		frmNzCleanUp.getContentPane().add(lblNzCleanUp);
 		
 		JLabel lblFirstChoseA = new JLabel("First, chose a team name (2-10 characters):");
-		lblFirstChoseA.setBounds(12, 97, 316, 15);
+		lblFirstChoseA.setBounds(12, 91, 316, 15);
 		frmNzCleanUp.getContentPane().add(lblFirstChoseA);
 		
-		//Name entry text field
-		teamNameField = new JTextField();
-		teamNameField.setText("Enter Team Name");
+		/**
+		 * Run teamname entry field if return is pressed
+		 */
 		teamNameField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent nameArg) {
 				if (teamNameField.getText().length() >= MIN_NAME_LENGTH &&
@@ -86,54 +87,76 @@ public class WelcomeScreen {
 				}
 			}
 		});
-		teamNameField.setBounds(326, 95, 167, 19);
+		teamNameField.setBounds(326, 91, 167, 19);
 		frmNzCleanUp.getContentPane().add(teamNameField);
 		teamNameField.setColumns(10);
 		
 		JLabel lblNextChoseThe = new JLabel("Now chose the number of towns your heroes will sort out (3-6):");
-		lblNextChoseThe.setBounds(12, 141, 458, 15);
+		lblNextChoseThe.setBounds(12, 130, 458, 15);
 		frmNzCleanUp.getContentPane().add(lblNextChoseThe);
 		
-		//Number of heroes combo box
-		nCitiesBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent nCitiesArg) {
-				manager.setNCities(Integer.parseInt(nCitiesBox.getSelectedItem().toString()));
-			}
-		});
+//NOT NEEDED HERE BUT WILL BE HANDY ELSEWHERE
+//		nCitiesBox.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent nCitiesArg) {
+//				manager.setNCities(Integer.parseInt(nCitiesBox.getSelectedItem().toString()));
+//			}
+//		});
 		
 		nCitiesBox.setMaximumRowCount(4);
-		nCitiesBox.setBounds(484, 137, 36, 24);
+		nCitiesBox.setBounds(484, 125, 36, 24);
 		frmNzCleanUp.getContentPane().add(nCitiesBox);
 		
 		JLabel lblNowChooseHow = new JLabel("Now choose how many heroes you want on your team (1-3):");
-		lblNowChooseHow.setBounds(12, 187, 441, 15);
+		lblNowChooseHow.setBounds(12, 168, 441, 15);
 		frmNzCleanUp.getContentPane().add(lblNowChooseHow);
-		
-		nHeroesBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent nHeroesArg) {
-				manager.setNHeroes(Integer.parseInt(nHeroesBox.getSelectedItem().toString()));
-			}
-		});
-		
+				
 		nHeroesBox.setMaximumRowCount(3);
-		nHeroesBox.setBounds(484, 182, 36, 24);
+		nHeroesBox.setBounds(484, 163, 36, 24);
 		frmNzCleanUp.getContentPane().add(nHeroesBox);
 		
+
 		JButton btnChooseYourHeroes = new JButton("Choose your heroes");
+		
+		/**
+		 *Button to close screen and move to team build screen. If team name input is valid,
+		 *sets team name to current current value. Otherwise brings up warning. Takes current 
+		 *position of nHeroes and nCities comboboxes and sets nCities and nHeroes accordingly. 
+		 */
 		btnChooseYourHeroes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Fix this so that you can't exit if not set up
-				finishedWelcomeScreen();
+			public void actionPerformed(ActionEvent buttonArg) {
+				if (teamNameField.getText().length() >= MIN_NAME_LENGTH &&
+						teamNameField.getText().length() <= MAX_NAME_LENGTH) {
+					manager.setTeamName(teamNameField.getText());
+				} else {
+					teamNameField.setText("2-10 characters please");
+				}
+				
+				manager.setNCities(Integer.parseInt(nCitiesBox.getSelectedItem().toString()));
+				manager.setNHeroes(Integer.parseInt(nHeroesBox.getSelectedItem().toString()));
+				//Test code
+				System.out.print(manager.getTeamName() + manager.getNCities() + manager.getNHeroes());
+				
+				if (manager.getTeamName() != null) {
+					finishedWelcomeScreen();
+				} else {
+					warning.setText("Please enter a suitable team name");
+				}
+				
 			}
 		});
-		btnChooseYourHeroes.setBounds(326, 299, 194, 25);
+		btnChooseYourHeroes.setBounds(326, 262, 194, 25);
 		frmNzCleanUp.getContentPane().add(btnChooseYourHeroes);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setIcon(new ImageIcon(WelcomeScreen.class.getResource("/HeroGame/Images/new-zealander-flag-graphic.png")));
-		lblNewLabel.setBounds(12, 214, 302, 110);
+		lblNewLabel.setBounds(12, 184, 252, 151);
 		frmNzCleanUp.getContentPane().add(lblNewLabel);
+		warning.setForeground(Color.RED);
+		warning.setFont(new Font("Dialog", Font.ITALIC, 10));
+		
+		warning.setBounds(336, 298, 200, 15);
+		frmNzCleanUp.getContentPane().add(warning);
 
 	}
 	
