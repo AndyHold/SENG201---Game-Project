@@ -98,21 +98,25 @@ public class Location {
 			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.SOUTH)) {
 				return true;
 			}
+			break;
 		
 		case 2:
 			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.WEST)) {
 				return true;
 			}
+			break;
 			
 		case 3:
 			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.NORTH)) {
 				return true;
 			}
+			break;
 		
 		case 4:
 			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.EAST)) {
 				return true;
 			}
+			break;
 		}
 		return false;
 		

@@ -81,35 +81,35 @@ public class City {
 	 * Method to fill the HashMap with the location names for each city/location type.
 	 */
 	private void setPlaceNames() {
-		this.placeNames.put("Springfield HomeBase", "");
-		this.placeNames.put("Springfield Hospital", "");
-		this.placeNames.put("Springfield PowerUpDen", "");
-		this.placeNames.put("Springfield Shop", "");
+		this.placeNames.put("Springfield HomeBase", "Springfield HomeBase");
+		this.placeNames.put("Springfield Hospital", "Springfield Hospital");
+		this.placeNames.put("Springfield PowerUpDen", "Springfield PowerUpDen");
+		this.placeNames.put("Springfield Shop", "Springfield Shop");
 		
-		this.placeNames.put("Te Puke HomeBase", "");
-		this.placeNames.put("Te Puke Hospital", "");
-		this.placeNames.put("Te Puke PowerUpDen", "");
-		this.placeNames.put("Te Puke Shop", "");
+		this.placeNames.put("Te Puke HomeBase", "Te Puke HomeBase");
+		this.placeNames.put("Te Puke Hospital", "Te Puke Hospital");
+		this.placeNames.put("Te Puke PowerUpDen", "Te Puke PowerUpDen");
+		this.placeNames.put("Te Puke Shop", "Te Puke Shop");
 		
-		this.placeNames.put("Gore HomeBase", "");
-		this.placeNames.put("Gore Hospital", "");
-		this.placeNames.put("Gore PowerUpDen", "");
-		this.placeNames.put("Gore Shop", "");
+		this.placeNames.put("Gore HomeBase", "Gore HomeBase");
+		this.placeNames.put("Gore Hospital", "Gore Hospital");
+		this.placeNames.put("Gore PowerUpDen", "Gore PowerUpDen");
+		this.placeNames.put("Gore Shop", "Gore Shop");
 		
-		this.placeNames.put("Ohakune HomeBase", "");
-		this.placeNames.put("Ohakune Hospital", "");
-		this.placeNames.put("Ohakune PowerUpDen", "");
-		this.placeNames.put("Ohakune Shop", "");
+		this.placeNames.put("Ohakune HomeBase", "Ohakune HomeBase");
+		this.placeNames.put("Ohakune Hospital", "Ohakune Hospital");
+		this.placeNames.put("Ohakune PowerUpDen", "Ohakune PowerUpDen");
+		this.placeNames.put("Ohakune Shop", "Ohakune Shop");
 		
-		this.placeNames.put("Paeroa HomeBase", "");
-		this.placeNames.put("Paeroa Hospital", "");
-		this.placeNames.put("Paeroa PowerUpDen", "");
-		this.placeNames.put("Paeroa Shop", "");
+		this.placeNames.put("Paeroa HomeBase", "Paeroa HomeBase");
+		this.placeNames.put("Paeroa Hospital", "Paeroa Hospital");
+		this.placeNames.put("Paeroa PowerUpDen", "Paeroa PowerUpDen");
+		this.placeNames.put("Paeroa Shop", "Paeroa Shop");
 		
-		this.placeNames.put("Taihape HomeBase", "");
-		this.placeNames.put("Taihape Hospital", "");
-		this.placeNames.put("Taihape PowerUpDen", "");
-		this.placeNames.put("Taihape Shop", "");
+		this.placeNames.put("Taihape HomeBase", "Taihape HomeBase");
+		this.placeNames.put("Taihape Hospital", "Taihape Hospital");
+		this.placeNames.put("Taihape PowerUpDen", "Taihape PowerUpDen");
+		this.placeNames.put("Taihape Shop", "Taihape Shop");
 	}
 	
 	
@@ -179,91 +179,101 @@ public class City {
 		while(!finishedCity) {
 			switch(n) {
 			case 0:
+				System.out.println("Center Area: ");
 				n = this.centerArea.runLocation();
+				break;
 				
 			case 1:
+				System.out.println("North Area: ");
 				switch(this.northArea.getLocationType()) {
 				
 				case HOSPITAL:
-					((Hospital) this.northArea).runLocation();
+					n = ((Hospital) this.northArea).runLocation();
+					System.out.println(n);
 					break;
 					
 				case VILLIANSLAIR:
-					((VilliansLair) this.northArea).runLocation();
+					n = ((VilliansLair) this.northArea).runLocation();
 					break;
 					
 				case SHOP:
-					((Shop) this.northArea).runLocation();
+					n = ((Shop) this.northArea).runLocation();
 					break;
 					
 				case POWERUPDEN:
-					((PowerUpDen) this.northArea).runLocation();
+					n = ((PowerUpDen) this.northArea).runLocation();
 					break;
 				}
-				
+				break;
 				
 			case 2:
+				System.out.println("East Area: ");
 				switch(this.eastArea.getLocationType()) {
 				
 				case HOSPITAL:
-					((Hospital) this.eastArea).runLocation();
+					n = ((Hospital) this.eastArea).runLocation();
+					System.out.println(n);
 					break;
 					
 				case VILLIANSLAIR:
-					((VilliansLair) this.eastArea).runLocation();
+					n = ((VilliansLair) this.eastArea).runLocation();
 					break;
 					
 				case SHOP:
-					((Shop) this.eastArea).runLocation();
+					n = ((Shop) this.eastArea).runLocation();
 					break;
 					
 				case POWERUPDEN:
-					((PowerUpDen) this.eastArea).runLocation();
+					n = ((PowerUpDen) this.eastArea).runLocation();
 					break;
 				}
-				
+				break;
 				
 			case 3:
+				System.out.println("South Area: ");
 				switch(this.southArea.getLocationType()) {
 				
 				case HOSPITAL:
-					((Hospital) this.southArea).runLocation();
+					n = ((Hospital) this.southArea).runLocation();
+					System.out.println(n);
 					break;
 					
 				case VILLIANSLAIR:
-					((VilliansLair) this.southArea).runLocation();
+					n = ((VilliansLair) this.southArea).runLocation();
 					break;
 					
 				case SHOP:
-					((Shop) this.southArea).runLocation();
+					n = ((Shop) this.southArea).runLocation();
 					break;
 					
 				case POWERUPDEN:
-					((PowerUpDen) this.southArea).runLocation();
+					n = ((PowerUpDen) this.southArea).runLocation();
 					break;
 				}
-				
+				break;
 				
 			case 4:
+				System.out.println("West Area: ");
 				switch(this.westArea.getLocationType()) {
 				
 				case HOSPITAL:
-					((Hospital) this.westArea).runLocation();
+					n = ((Hospital) this.westArea).runLocation();
+					System.out.println(n);
 					break;
 					
 				case VILLIANSLAIR:
-					((VilliansLair) this.westArea).runLocation();
+					n = ((VilliansLair) this.westArea).runLocation();
 					break;
 					
 				case SHOP:
-					((Shop) this.westArea).runLocation();
+					n = ((Shop) this.westArea).runLocation();
 					break;
 					
 				case POWERUPDEN:
-					((PowerUpDen) this.westArea).runLocation();
+					n = ((PowerUpDen) this.westArea).runLocation();
 					break;
 				}
-				
+				break;
 				
 			}
 		}

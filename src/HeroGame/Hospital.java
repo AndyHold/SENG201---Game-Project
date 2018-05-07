@@ -15,7 +15,6 @@ public class Hospital extends Location {
 	 */
 	Hospital(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " Hospital"), newTeam, thisCity.getName(), LocationType.HOSPITAL);
-		
 	}
 	
 	
@@ -23,7 +22,7 @@ public class Hospital extends Location {
 	 * Method to list available options for player to choose from
 	 */
 	public void listOptions() {
-		System.out.println("Current Options Are:");
+		System.out.println("Welcome to " + this.getName() + ":");
 		System.out.println("1) Move to another Location");
 		System.out.println("2) Heal a hero");
 		System.out.println("3) Show current healing timer(s)");
@@ -41,7 +40,8 @@ public class Hospital extends Location {
 			int n = this.getSelector().intSelector(1, 3, "Please select an option", "Invalid option, try again");
 			finishedInLocation = this.runOption(n);
 		}
-		return this.moveLocations();
+		int n = this.moveLocations();
+		return n;
 	}
 	
 	

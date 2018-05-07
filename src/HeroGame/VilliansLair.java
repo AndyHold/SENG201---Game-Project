@@ -21,7 +21,7 @@ public class VilliansLair extends Location {
 	 * Method to list available options for player to choose from
 	 */
 	public void listOptions() {
-		System.out.println("Current Options Are:");
+		System.out.println("Welcome to " + this.getName() + ":");
 		System.out.println("1) Move to another location");
 		System.out.println("2) Enter Villians Lair");
 	}
