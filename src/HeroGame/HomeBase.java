@@ -28,10 +28,9 @@ public class HomeBase extends Location {
 	 * Shows the Teams Heroes and their current Status
 	 */
 	public void teamStatus() {
-		super.heroTeam.teamStatus();
-		
-		return "Need to fix this so you can view individual heroes"
-				//Done
+		super.heroTeam.listHeroes();
+		int n = this.getSelector().intSelector(0, heroTeam.getTeamSize(), "Which Hero would you like to see?", "Invalid Hero choice please try again");
+		System.out.println(this.heroTeam.getHero(n).heroStatus());
 	}
 	
 	

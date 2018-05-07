@@ -17,7 +17,7 @@ public class PowerUp extends PowerItem {
 		this.powerUpType = powerUpType;
 		super.setCost(powerUpType.getCost());
 		super.setDescription(powerUpType.getDescription());
-		super.setLongDescription(powerUpType.getLongdescription());
+		super.setLongDescription(powerUpType.getLongDescription());
 		this.effect = powerUpType.getEffect();
 		super.setResponse(powerUpType.getResponse());
 	}

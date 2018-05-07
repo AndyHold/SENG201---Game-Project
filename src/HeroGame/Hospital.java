@@ -58,7 +58,7 @@ public class Hospital extends Location {
 			return true;
 			
 		case 2:
-			//this.useHealingItem();
+			this.useHealingItem();
 			return false;
 			
 		case 3:
@@ -71,6 +71,20 @@ public class Hospital extends Location {
 	}
 	
 	
+	/**
+	 * Prompts user for which healing item to use and which Hero to apply it to and does so.
+	 */
+	public void useHealingItem() {
+		this.heroTeam.showHealingItems();
+		int healingItemIndex = this.getSelector().intSelector(0, this.heroTeam.getHealingItemsSize(), "Please select a healing item", "Invalid healing item please try again");
+		HealingItemType healingItemType = this.getHealingItemType(healingItemIndex);
+		this.heroTeam.listHeroes();
+		int teamMemberIndex = this.getSelector().intSelector(0, this.heroTeam.getTeamSize(), "Please select a Hero to heal", "Invalid Hero please try again");
+		this.heroTeam.removeHealingItem(healingItemIndex);
+		this.heroTeam.applyHealingItem(healingItemType, teamMemberIndex);
+	}
+
+
 	/**
 	 * Method to check if given direction is allowable.
 	 * @param n int, Number corresponding to the direction given by the player.

@@ -59,7 +59,7 @@ public enum PowerUpType {
 	 * Getter method for the long description of this power up type
 	 * @return a String the long description of this power up type
 	 */
-	public String getLongdescription() {
+	public String getLongDescription() {
 		return longDescription;
 	}
 	

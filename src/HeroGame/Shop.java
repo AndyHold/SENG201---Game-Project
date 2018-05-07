@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class Shop extends Location {
 	
 	
-	private ArrayList<HealingItem> healingItems = new ArrayList<HealingItem>();
-	private ArrayList<PowerUp> powerUps = new ArrayList<PowerUp>();
+	private ArrayList<HealingItemType> healingItems = new ArrayList<HealingItemType>();
+	private ArrayList<PowerUpType> powerUps = new ArrayList<PowerUpType>();
 	
 	
 	/**
@@ -21,6 +21,28 @@ public class Shop extends Location {
 	 */
 	Shop(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP);
+		this.fillHealingItems();
+		this.fillPowerUpItems();
+	}
+	
+	
+	/**
+	 * Method to fill ArrayList healingItems
+	 */
+	private void fillHealingItems() {
+		this.healingItems.add(HealingItemType.DOUBLE_BROWN);
+		this.healingItems.add(HealingItemType.LINDAUER);
+		this.healingItems.add(HealingItemType.LION_RED);
+	}
+	
+	
+	/**
+	 * Method to fill ArrayList powerUpItems
+	 */
+	private void fillPowerUpItems() {
+		this.powerUps.add(PowerUpType.CHEESE_ROLL);
+		this.powerUps.add(PowerUpType.PAVLOVA);
+		this.powerUps.add(PowerUpType.PINEAPPLE_LUMPS);
 	}
 	
 	
@@ -112,27 +134,27 @@ public class Shop extends Location {
 		switch(n) {
 		
 		case 1:
-			//this.purchaseMap();
+			boolean purchasedMap = this.purchaseMap();
 			return false;
 			
 		case 2:
-			//this.purchasePowerUp();
+			boolean purchasedPowerUp = this.purchasePowerUp();
 			return false;
 		
 		case 3:
-			//this.purchaseHealingItem();
+			boolean purchasedHealingItem = this.purchaseHealingItem();
 			return false;
 			
 		case 4:
-			//this.showPrices();
+			this.showPrices();
 			return false;
 			
 		case 5:
-			//this.showInventory();
+			this.shopInventory();
 			return false;
 			
 		case 6:
-			//this.showItem();
+			this.showItem();
 			return false;
 			
 		case 7:
@@ -143,17 +165,131 @@ public class Shop extends Location {
 	
 	
 	/**
+	 * Method to select an item and show its attributes
+	 */
+	private void showItem() {
+		System.out.println("1) Healing Item");
+		System.out.println("2) Power Up");
+		int n = this.getSelector().intSelector(1, 2, "Please Select a Type", "Invalid Selection please try again");
+		
+		switch(n) {
+		case 1:
+			System.out.println("Healing Items:");
+			for(int x = 0; x <= this.healingItems.size() - 1 ; x++) {
+				System.out.println(x + ") " + healingItems.get(x).getDescription());
+			}
+			int healerIndex = this.getSelector().intSelector(0, this.healingItems.size(), "Please Select a Healing Item", "Invalid Selection please try again");
+			System.out.println(this.healingItems.get(healerIndex).getDescription() + ":");
+			System.out.println("Apply Time: " + this.healingItems.get(healerIndex).getApplyTime());
+			System.out.println("Health to replenish: " + this.healingItems.get(healerIndex).getHealthValue());
+			System.out.println("Cost: " + this.healingItems.get(healerIndex).getCost());
+			System.out.println("Description: " + this.healingItems.get(healerIndex).getLongDescription());
+			break;
+			
+		case 2:
+			System.out.println("Power Ups:");
+			for(int x = 0; x<= this.powerUps.size() - 1 ; x++) {
+				System.out.println(x + ") " + powerUps.get(x).getDescription());
+			}
+			int powerIndex = this.getSelector().intSelector(0, this.powerUps.size(), "Please Select a Healing Item", "Invalid Selection please try again");
+			System.out.println(this.powerUps.get(powerIndex).getDescription() + ":");
+			System.out.println("Effect: " + this.powerUps.get(powerIndex).getEffect());
+			System.out.println("Cost: " + this.powerUps.get(powerIndex).getCost());
+			System.out.println("Description: " + this.powerUps.get(powerIndex).getLongDescription());
+			break;
+		}
+		
+		
+	}
+
+
+	/**
+	 * Method to list items and prices available at the shop
+	 */
+	private void showPrices() {
+		System.out.println("Healing Items:");
+		for(HealingItemType healer: this.healingItems) {
+			System.out.println(healer.getCost() + " - " + healer.getDescription());
+		}
+		System.out.println("Power Ups:");
+		for(PowerUpType power: this.powerUps) {
+			System.out.println(power.getCost() + " - " + power.getDescription());
+		}
+		
+	}
+
+
+	/**
+	 * Method to purchase a healing item
+	 * @return boolean, true if purchase successful
+	 */
+	private boolean purchaseHealingItem() {
+		for(int x = 0 ; x < this.healingItems.size() ; x++) {
+			System.out.print(x + ") " + this.healingItems.get(x).getCost() + " - " + this.healingItems.get(x).getDescription());
+		}
+		int n = this.getSelector().intSelector(0, this.healingItems.size(), "Please select a Healing Item", "Invalid Healing Item please try again");
+		if(this.heroTeam.getMoney() >= this.healingItems.get(n).getCost()) {
+			this.heroTeam.changeMoney(this.healingItems.get(n).getCost() * (-1));
+			this.heroTeam.addHealingItem(new HealingItem(this.healingItems.get(n)));
+			return true;
+		}
+		else {
+			System.out.print("Insufficient Funds");
+			return false;
+		}
+	}
+
+
+	/**
+	 * Method to purchase a Power Up item
+	 * @return boolean, true if purchase successful
+	 */
+	private boolean purchasePowerUp() {
+		for(int x = 0 ; x < this.powerUps.size() ; x++) {
+			System.out.print(x + ") " + this.powerUps.get(x).getCost() + " - " + this.powerUps.get(x).getDescription());
+		}
+		int n = this.getSelector().intSelector(0, this.powerUps.size(), "Please select a power up", "Invalid Power Up please try again");
+		if(this.heroTeam.getMoney() >= this.powerUps.get(n).getCost()) {
+			this.heroTeam.changeMoney(this.powerUps.get(n).getCost() * (-1));
+			this.heroTeam.addPowerUp(new PowerUp(this.powerUps.get(n)));
+			return true;
+		}
+		else {
+			System.out.print("Insufficient Funds");
+			return false;
+		}
+	}
+
+
+	/**
+	 * Method to purchase a map
+	 * @return boolean, true if purchase successful
+	 */
+	private boolean purchaseMap() {
+		if(this.heroTeam.getMoney() >= 5.00) {
+			this.heroTeam.changeMaps(1);
+			this.heroTeam.changeMoney(-5.00);
+			return true;
+		}
+		else {
+			System.out.println("Not enough money");
+			return false;
+		}
+	}
+
+
+	/**
 	 * Method to display shop inventory
 	 */
 	public void shopInventory() {
 		System.out.println("Inventory for " + this.getName());
 		System.out.println("Healing Items:");
-		for(int x = 0; x == this.healingItems.size() ; x++) {
-			System.out.println(x + ") " + healingItems.get(x));
+		for(int x = 0; x <= this.healingItems.size() - 1 ; x++) {
+			System.out.println(x + ") " + healingItems.get(x).getDescription());
 		}
 		System.out.println("Power Ups:");
-		for(int x = 0; x == this.powerUps.size() ; x++) {
-			System.out.println(x + ") " + powerUps.get(x));
+		for(int x = 0; x <= this.powerUps.size() - 1 ; x++) {
+			System.out.println(x + ") " + powerUps.get(x).getDescription());
 		}
 	}
 	

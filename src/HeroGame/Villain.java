@@ -15,40 +15,47 @@ public enum Villain {
 			"Crikey! A bit of sand paper will deadset sort you out ya drongo!", 
 			"Strewth! An under arm bowl from me and you'll be in the dunny but!",
 			"Fair Dinkum! No chocky bikkies for you ya mongrel!", 
-			0),
+			0,
+			200),
 	BADRUGBYREFEREE("Barry the Bad Referee", 
 			"I'm going to penalize you off the paddock!", 
 			"Do you even know the rules?!", 
 			"Thats a red card for you buddy!", 
-			1),
+			1,
+			100),
 	
 	BOUNCER("Dan the Doorman", 
 			"Sorry cuz, you've had a bit much to come in tonight!", 
 			"This isn't your I.D.!", 
 			"You look like you need a few waters!", 
-			2), 
+			2,
+			100), 
 	
 	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
 			"I'll put you on hold for the rest of your life!", 
 			"Your call is not important to us!", 
 			"Let me put you through to our complaints department, Oh wait we don't have one!", 
-			3), 
+			3,
+			100), 
 	
 	LAWYER("Lionel the Lawyer", 
 			"I object to your presence!", 
 			"I'm going to take you for every penny you have!", 
 			"You're contractually obliged to lose!",
-			4), 
+			4,
+			100), 
 	
 	POLITICIAN("Peter the Politician", 
 			"The people want what I say they want!", 
 			"Let's mine the national parks for oil!", 
 			"Election promises are for losers!",
-			5); 
+			5,
+			100); 
 
 	
 	private String name;
 	private int currentHealth;
+	private int currentStrength;
 	private boolean alive = true;
 	private ArrayList<String> taunts = new ArrayList<String>();
 	private HashMap<String, String> lairNames = new HashMap<String, String>();
@@ -59,11 +66,29 @@ public enum Villain {
 	 * @param newName name of the Villain
 	 * @param currentHealth health of the Villain
 	 */
-	private Villain(String newName, String taunt1, String taunt2, String taunt3, int typeInt) {
+	private Villain(String newName, String taunt1, String taunt2, String taunt3, int typeInt, int newStrength) {
 		name = newName;
 		currentHealth = 100;
+		currentStrength = newStrength;
 		setTaunts(taunt1, taunt2, taunt3);
 		setLairNames(typeInt);
+	}
+	
+	
+	/**
+	 * Method to change Strength of Villain
+	 */
+	public void changeStrength(int newStrength) {
+		this.currentStrength = newStrength;
+	}
+	
+	
+	/**
+	 * Method to get current strength of Villain
+	 * @Return int, current strength of Villain
+	 */
+	public int getStrength() {
+		return this.currentStrength;
 	}
 	
 	

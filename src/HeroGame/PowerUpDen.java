@@ -62,12 +62,14 @@ public class PowerUpDen extends Location {
 	/**
 	 * Method to prompt user for a power up and a hero and call the team to apply it.
 	 */
-	public void applyPowerUp() {
+	public void applyPowerUp() {		
 		heroTeam.showPowerUps();
 		int powerUpIndex = this.getSelector().intSelector(0, heroTeam.getPowerUpsSize() - 1, "Please select a power up:", "Invalid selection, Please try again");
+		PowerUpType powerUpType = this.getPowerUpType(powerUpIndex);
 		heroTeam.listHeroes();
 		int teamMemberIndex = this.getSelector().intSelector(0, heroTeam.getTeamSize() - 1, "Please select a Hero to apply to:", "Invalid selection, Please try again");
-		heroTeam.applyPowerUp(powerUpIndex, teamMemberIndex);
+		this.heroTeam.removePowerUp(powerUpIndex);
+		heroTeam.applyPowerUp(powerUpType, teamMemberIndex);
 	}
 
 	

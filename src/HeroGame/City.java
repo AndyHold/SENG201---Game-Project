@@ -20,7 +20,6 @@ public class City {
 	private Location southArea;
 	private Location westArea;
 	private String ruler;
-	private boolean completed = false;
 	private boolean mapped = false;
 	private HashMap<String, String> placeNames = new HashMap<String, String>();
 	private Random rand = new Random();
@@ -175,8 +174,7 @@ public class City {
 	 */
 	public void runCity() {
 		int n = this.centerArea.runLocation();
-		boolean finishedCity = false;
-		while(!finishedCity) {
+		while(this.cityVillain.isAlive()) {
 			switch(n) {
 			case 0:
 				System.out.println("Center Area: ");
