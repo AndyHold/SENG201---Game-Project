@@ -239,8 +239,8 @@ public class Team {
 	}
 	
 	/**
-	 * Makes the team member at index teamMember eat the powerup at index powerUpIndex. Removes the 
-	 * power up from the team's inventory 
+	 * Makes the team member at index teamMember eat a powerup of the given type. Removes the 
+	 * first power up of this type from the team's inventory 
 	 * @param powerUpType a power up type, the type of power up to apply
 	 * @param teamMemberIndex an int the index of the team member who is to eat the power up
 	 */
@@ -298,6 +298,14 @@ public class Team {
 		return result;
 	}
 	
+	/**
+	 * Returns the type of power up found at a given index of the power ups ArrayList
+	 * @param powerUpIndex an int the index of the power up for which the type is required
+	 * @return
+	 */
+	public PowerUpType getPowerUpType(int powerUpIndex) {
+		return powerUps.get(powerUpIndex).getType();
+	}
 	
 	
 	//**********************************Healing Items***************************
@@ -323,25 +331,73 @@ public class Team {
 	}
 	
 	/**
-	 * Makes the team member at index teamMember drink the healing item at index healingItemIndex. Removes the 
-	 * healing item from the team's inventory 
-	 * @param healingItemIndex an int the index of the healing item to apply
+	 * Makes the team member at index teamMember drink a healing item of the given type. Removes the 
+	 * first healing item of this type from the team's inventory 
+	 * @param healingItemType a HealingItemType, the type of healing item to apply
 	 * @param teamMemberIndex an int the index of the team member who is to drink the healing item
 	 */
-	public void applyHealingItem(int healingItemIndex, int teamMemberIndex){
-		//memberList.get(teamMemberIndex).drinkHealingItem(healingItems.get(powerUpIndex));
-		removeHealingItem(healingItemIndex);
+	public String applyHealingItem(HealingItemType healingItemType, int teamMemberIndex) {
+		String result = "Healing item not found\n"; //default value
+		boolean applied = false;
+		int counter = 0;
+		if (teamMemberIndex < 0 || teamMemberIndex >= memberList.size()) {
+			result = "No hero found!";
+		} else {
+			while (!applied && counter < healingItems.size()) {
+				if (healingItems.get(counter).getHealingItemType() == healingItemType) {
+					//memberList.get(teamMemberIndex).drinkHealingItem(healingItems.get(counter));
+					result = "Healing item applied!\n";
+					healingItems.remove(counter);
+					applied = true;
+				} else {
+					counter++;
+				}
+			}
+		}
+		return result;
 	}
 	
 	/**
-	 * Prints to output a list of the healing items in the team's inventory, and the index of each
+	 * Returns the type of the healing item at the given index
+	 * @param healingItemIndex an int the index of the healing item for which the type will be returned 
+	 * @return a HealingItemType the type of healing item at the given index in the healing items ArrayList
 	 */
-	public void showHealingItems(){
-		System.out.println("Team " + teamName + " are carrying the following healing items:");
-		for (int i = 0; i < healingItems.size(); i++){
-			System.out.print(i + ". " + healingItems.get(i) + "\n");
+	public HealingItemType getHealingItemType(int healingItemIndex) {
+		return healingItems.get(healingItemIndex).getHealingItemType();
+	}
+	
+	/**
+	 * Returns a String listing the quantities of each healing item in the team's inventory
+	 * @return a multiline String a list of the qunatities of each healing item in the team's inventory
+	 */
+	public String showHealingItems () {
+		
+		int doBroCounter = Collections.frequency(healingItems, new HealingItem(HealingItemType.DOUBLE_BROWN));
+		int lionCounter = Collections.frequency(healingItems, new HealingItem(HealingItemType.LION_RED));
+		int lindauerCounter = Collections.frequency(healingItems, new HealingItem(HealingItemType.LINDAUER));
+		int total = doBroCounter + lionCounter + lindauerCounter;
+		int counter = 0;
+		String result = "Team " + teamName + " are carrying the following healing items:\n"; 
+		
+		if (doBroCounter > 0) {
+			result += doBroCounter + " bottles of double brown.\n";
 		}
-	}	
+		
+		if (lionCounter > 0) {
+			result += lionCounter + " pints of Lion Red.\n";
+		}
+		
+		if (lindauerCounter > 0) {
+			result += lindauerCounter + " bottles of Lindauer.\n";
+		}
+		
+		if (total != healingItems.size()) {
+			result += healingItems.size() - total + " mystery healing items.\n";
+			
+		}
+		
+		return result;
+	}
 	
 	/**
 	 * Returns the number of healing items in the team's inventory

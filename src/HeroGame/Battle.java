@@ -33,11 +33,13 @@ public class Battle {
 		villainChoice = rnd.nextInt(choices.length);
 		
 		//*****Skew game if Pavlova PowerUp is present*********
-		if (player.getPowerUp().getType() == PowerUpType.PAVLOVA) {
-			System.out.println("The lightning quick reflexes brought on by the slice of pavlova " +
-					player.getName() + " ate earlier enables them to see " + baddie.getName() + 
-					" play a " + choices[villainChoice]); 
-			player.clearPowerUp();
+		if (player.getPowerUp() != null) {
+			if (player.getPowerUp().getType() == PowerUpType.PAVLOVA) {
+				System.out.println("The lightning quick reflexes brought on by the slice of pavlova " +
+						player.getName() + " ate earlier enables them to see " + baddie.getName() + 
+						" play a " + choices[villainChoice]); 
+				player.clearPowerUp();
+			}
 		}//*******************************************************
 		
 		
@@ -83,12 +85,14 @@ public class Battle {
 				" and " + max_num);
 		
 		//*****Skew game if Cheese Roll PowerUp is present*********
-		if (player.getPowerUp().getType() == PowerUpType.CHEESE_ROLL) {
-			System.out.println("The strange effects of the mystical cheese roll " +
-					player.getName() + " ate earlier suddenly become strangely relevant. \"" 
-					+ baddie.getName() + " is thinking of the number " + villainChoice +
-					"\" thinks " + player.getName()); 
+		if (player.getPowerUp() != null) {
+			if (player.getPowerUp().getType() == PowerUpType.CHEESE_ROLL) {
+				System.out.println("The strange effects of the mystical cheese roll " +
+						player.getName() + " ate earlier suddenly become strangely relevant. \"" 
+						+ baddie.getName() + " is thinking of the number " + villainChoice +
+						"\" thinks " + player.getName()); 
 			player.clearPowerUp();
+			}
 		}//*******************************************************
 		
 		while (attempts < max_attempts && playerResult != outcomes[1]) {
@@ -135,11 +139,13 @@ public class Battle {
 		playerChoice = (rnd.nextInt(LARGEST_ROLL) + SMALLEST_ROLL);
 		
 		//*****Skew game if Pineapple Lumps PowerUp is present*********
-		if (player.getPowerUp().getType() == PowerUpType.PINEAPPLE_LUMPS) {
-			System.out.println("By the magic of Pineapple Lumps " +
-					player.getName() + " plays a " + LARGEST_ROLL);
-			playerChoice = LARGEST_ROLL;
-			player.clearPowerUp();
+		if (player.getPowerUp() != null) {
+			if (player.getPowerUp().getType() == PowerUpType.PINEAPPLE_LUMPS) {
+				System.out.println("By the magic of Pineapple Lumps " +
+						player.getName() + " plays a " + LARGEST_ROLL);
+				playerChoice = LARGEST_ROLL;
+				player.clearPowerUp();
+			}
 		}//*******************************************************
 		
 		System.out.println(player.getName() + " has rolled a " + playerChoice);

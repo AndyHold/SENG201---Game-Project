@@ -77,7 +77,7 @@ public class Hospital extends Location {
 	public void useHealingItem() {
 		this.heroTeam.showHealingItems();
 		int healingItemIndex = this.getSelector().intSelector(0, this.heroTeam.getHealingItemsSize(), "Please select a healing item", "Invalid healing item please try again");
-		HealingItemType healingItemType = this.getHealingItemType(healingItemIndex);
+		HealingItemType healingItemType = heroTeam.getHealingItemType(healingItemIndex);
 		this.heroTeam.listHeroes();
 		int teamMemberIndex = this.getSelector().intSelector(0, this.heroTeam.getTeamSize(), "Please select a Hero to heal", "Invalid Hero please try again");
 		this.heroTeam.removeHealingItem(healingItemIndex);

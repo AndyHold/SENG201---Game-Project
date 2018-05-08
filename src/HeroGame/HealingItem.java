@@ -48,6 +48,8 @@ public class HealingItem extends PowerItem {
 		return healthValue;
 	}
 	
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) {
