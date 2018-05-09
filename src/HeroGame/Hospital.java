@@ -1,4 +1,5 @@
 package HeroGame;
+import java.text.DecimalFormat;
 
 /**
  * Hospital Class for Heroes & Villains Game
@@ -83,7 +84,24 @@ public class Hospital extends Location {
 		this.heroTeam.removeHealingItem(healingItemIndex);
 		this.heroTeam.applyHealingItem(healingItemType, teamMemberIndex);
 	}
-
+	
+	/**
+	 * Check on healing times for each team member
+	 * @return a string the remaining tiem for each member
+	 */
+	public String checkHealingTimes() {
+		DecimalFormat df2 = new DecimalFormat("#.##"); //Java <= Python
+		String result = "The following team members have healing items applying:\n";
+		
+		for (int i = 0; i < heroTeam.getTeamSize(); i++) {//Iterate through team, check time remaining for each member
+			double remTime = heroTeam.getHero(i).checkHealingItemTime(heroTeam.getTime());//Also applies any health benefits
+			if (remTime > 0) {//If any health benefit still outstanding, adds to the string
+				result += heroTeam.getHero(i).getName() + ": " + df2.format(remTime) + " seconds remaining. \n";
+			}
+			
+		}
+		return result;
+	}
 
 	/**
 	 * Method to check if given direction is allowable.

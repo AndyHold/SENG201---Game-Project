@@ -48,6 +48,13 @@ public class HealingItem extends PowerItem {
 		return healthValue;
 	}
 	
+	/**
+	 * Setter method for the health effect of a healing item
+	 * @param healthValueChange an int the amount the health value changes by. Can be +/-
+	 */
+	public void changeHealthValue(int healthValueChange) {
+		this.healthValue += healthValueChange;
+	}
 	
 	
 	@Override

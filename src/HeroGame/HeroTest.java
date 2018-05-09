@@ -130,6 +130,49 @@ public class HeroTest {
 		assertNull(testHero.getPowerUp());
 		
 	}
+	
+	@Test
+	public void testDrinkCheckHealingItem() {
+		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
+		HealingItem hI1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
+		HealingItem hI2 = new HealingItem(HealingItemType.LINDAUER);
+		
+		//No healing item exists
+		assertEquals(0, (int)h1.checkHealingItemTime(100));
+		
+		//Drink a healing item
+		assertEquals((h1.getName() + " " + hI1.getResponse()), (h1.drinkHealingItem(hI1, 60)));
+		assertEquals(30, (int)h1.checkHealingItemTime(60));
+		
+		//Drink a second, should override first
+		h1.drinkHealingItem(hI2, 70);
+		assertEquals(30, (int)h1.checkHealingItemTime(70));
+		
+		//Healing item of value 100 - check at - 25%, 25%, 50%, 75%, 100%, 125% of apply time
+		hI2.changeHealthValue(50);
+		h1.drinkHealingItem(hI2, 60);//Apply time = 30 secs
+		h1.checkHealingItemTime(52.5);
+		assertEquals(100, h1.getHealth());
+		int expectedValue = 100;
+		for (double d = 60; d < 90; d += 7.5) {
+			h1.checkHealingItemTime(d);
+			assertEquals(expectedValue, h1.getHealth());
+			expectedValue += 25;
+		}
+		h1.checkHealingItemTime(107.5);
+		assertEquals(200, h1.getHealth());
+		
+		//Healing item of value 25 - check at -25%, 50%, 100%, 125% of apply time
+		h1.drinkHealingItem(hI1, 60.0);
+		h1.checkHealingItemTime(52.5);
+		assertEquals(200, h1.getHealth());
+		h1.checkHealingItemTime(75);
+		assertEquals(200, h1.getHealth());
+		h1.checkHealingItemTime(90);
+		assertEquals(225, h1.getHealth());
+		h1.checkHealingItemTime(105);
+		assertEquals(225, h1.getHealth());
+	}
 
 
 	@Test

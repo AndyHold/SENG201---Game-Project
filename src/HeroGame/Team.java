@@ -18,7 +18,8 @@ public class Team {
 	private ArrayList<PowerUp> powerUps;
 	private ArrayList<HealingItem> healingItems;
 	private int maps;
-	double money;
+	private double money;
+	private long startTime;
 	
 	
 	/**
@@ -191,26 +192,6 @@ public class Team {
 	//*********************************Power Ups*******************************
 	
 	/**
-	 * Buy a powerup. Remove the relevant amount from the 
-	 * team's money. If money is insufficient for the transaction, prints a statement
-	 * to this effect, and powerup is not added
-	 * @param powerUpBought a PowerUp the powerUp to be bought
-	 */
-	//Andy to move into shop class
-	//************************************************************************
-	public void buyPowerUp(PowerUp powerUpBought) {
-		if (this.money >= powerUpBought.getCost()) {
-			this.powerUps.add(powerUpBought);//Will need to use Team .addPowerUp method
-			this.money -= powerUpBought.getCost();
-			System.out.println(teamName + " have bought a " + powerUpBought.toString().toLowerCase());
-			System.out.println("The ballsy band of heroes have " + this.money + " remaining");
-		} else {
-			System.out.println("We're too broke mate! Anyone want to sell a kidney?");
-		}
-	}
-	//************************************************************************
-	
-	/**
 	 * Adds a power up to the team's inventory
 	 * @param powerUp a PowerUp, the power up to add to the team's inventory 
 	 */
@@ -311,10 +292,14 @@ public class Team {
 	//**********************************Healing Items***************************
 	
 	/**
-	 * Adds a healing item to the team's inventory
+	 * Adds a healing item to the team's inventory. If nurse is present in team, healing
+	 * power of item doubles
 	 * @param healingItem a HealingItem, the healing item to add to the team's inventory 
 	 */
 	public int addHealingItem(HealingItem healingItem){
+		if (this.checkPresent(HeroType.NURSE)) {//Apply special power of nurse if present 
+			healingItem.changeHealthValue(healingItem.getHealthValue()* 2);
+		}
 		this.healingItems.add(healingItem);
 		return healingItems.size();
 	}
@@ -345,7 +330,7 @@ public class Team {
 		} else {
 			while (!applied && counter < healingItems.size()) {
 				if (healingItems.get(counter).getHealingItemType() == healingItemType) {
-					//memberList.get(teamMemberIndex).drinkHealingItem(healingItems.get(counter));
+					memberList.get(teamMemberIndex).drinkHealingItem(healingItems.get(counter), this.getTime());
 					result = "Healing item applied!\n";
 					healingItems.remove(counter);
 					applied = true;
@@ -407,6 +392,7 @@ public class Team {
 		return healingItems.size();
 	}
 	
+	
 	//***************************Maps******************************************
 	
 	/**
@@ -429,7 +415,7 @@ public class Team {
 		getMaps();
 		
 	}
-	//*************************************************************************
+	//***************************Money**********************************************
 	
 	/**
 	 * Prints to output and returns the amount of money the team has
@@ -452,7 +438,24 @@ public class Team {
 		}
 		return this.getMoney();
 	}
+	//*************************************Time*****************************************
+	/**
+	 * Starts the game clock by setting the value of startTime to the current system time
+	 */
+	public void startClock() {
+	    this.startTime = System.currentTimeMillis();
+	}
 	
+	/**
+	 * Returns the time in seconds since the start of play
+	 * @return a double the time in seconds since the start of the game
+	 */
+	public double getTime() {
+		long currentTime = System.currentTimeMillis() - startTime;
+		return (double)(currentTime * 1000);
+	}
+	
+	//***********************************************************************************
 	@Override
 	public String toString() {
 		String result = "Team " + teamName + " contains: \n";

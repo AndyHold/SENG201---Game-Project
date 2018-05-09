@@ -16,7 +16,6 @@ public class Game {
 	private String teamName;
 	private int nCities;
 	private int nHeroes;
-	private long startTime;//0 until game play starts
 	private Cities cities;
 	private Team heroTeam; //null pointer until buildTeam() is called
 	private Selector gameSelector = new Selector();
@@ -44,6 +43,7 @@ public class Game {
 		heroTeam.buildTeam(nHeroes);
 		System.out.println(heroTeam);
 	    this.cities = new Cities(heroTeam, nCities);
+	    heroTeam.startClock();
 	    this.cities.runCities();
 	}
 	
