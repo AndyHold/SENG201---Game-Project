@@ -302,6 +302,8 @@ public class TeamBuildScreen {
 	public void finishedTeamBuildScreen() {
 		manager.closeTeamBuildScreen(this);
 	}
+	
+	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
