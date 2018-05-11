@@ -71,9 +71,26 @@ public class GameManager {
 		//launchMainGameLoop
 	}
 	
+	public void launchBattleScreen(Hero player, Villain baddie) {
+		BattleScreen battleScreen = new BattleScreen(player, baddie, heroTeam, this);
+		//Andy - may be able to get villain via methods rather than passing in?
+	}
+	
+	public void closeBattleScreen(BattleScreen battleScreen ) {
+		battleScreen.closeScreen();
+		//return to wherever in game
+	}
+	
 	public static void main(String[] args) {
 		GameManager manager = new GameManager();
-		manager.launchWelcomeScreen();
+		//manager.launchWelcomeScreen();
+		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
+		Villain v1 = Villain.AUSSIECRICKETER;
+		Team t1 = new Team("Awesome");
+		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+		t1.addMember(h1);
+		h1.eatPowerUp(p1);
+		manager.launchBattleScreen(h1, v1);
 
 	}
 

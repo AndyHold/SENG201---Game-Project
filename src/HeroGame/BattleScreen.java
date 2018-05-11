@@ -18,18 +18,20 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 
 public class BattleScreen {
 
 	private JFrame frmBattleTheVillain;
+	private GameManager manager;
 	private Hero player;
 	private Villain baddie;
 	private Team team;
 	private Random rnd = new Random();
 	//Game display elements	
-	JLabel lblHealth = new JLabel();
+	private JButton btnPlayAgain = new JButton("Play Again");
+	private JLabel lblHealth = new JLabel();
 	private JLabel lblVillainHealth = new JLabel();
 	private JPanel gamePanel = new JPanel();
 	private JTextArea txtrHint = new JTextArea();
@@ -47,6 +49,7 @@ public class BattleScreen {
 	private String guessNumChoices[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 	private JComboBox numComBox = new JComboBox(guessNumChoices);
 	private int attempts;
+	private int MAX_ATTEMPTS = 2; //From game spec
 	private int playerNumGuess;
 	private String numResult = null;
 	
@@ -55,14 +58,13 @@ public class BattleScreen {
 	/**
 	 * Create the application.
 	 */
-	public BattleScreen(Hero player, Villain baddie, Team team) {
+	public BattleScreen(Hero player, Villain baddie, Team team, GameManager incomingManager) {
 		this.player = player;
 		this.baddie = baddie;
 		this.team = team;
+		this.manager = incomingManager;
 		initialize(randomGame());
 		frmBattleTheVillain.setVisible(true);
-		
-
 	}
 
 	/**
@@ -122,7 +124,6 @@ public class BattleScreen {
 		lblVillainHealth.setBounds(12, 78, 150, 15);
 		panel_1.add(lblVillainHealth);
 		
-		JButton btnPlayAgain = new JButton("Play Again");
 		btnPlayAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				newGame(player, baddie, team);
@@ -130,11 +131,14 @@ public class BattleScreen {
 		});
 		btnPlayAgain.setBounds(515, 388, 112, 25);
 		frmBattleTheVillain.getContentPane().add(btnPlayAgain);
+		btnPlayAgain.setVisible(false);
 		
 		JButton btnLeave = new JButton("Leave");
 		btnLeave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				finishedBattleScreen();
 			}
+			
 		});
 		btnLeave.setBounds(515, 425, 112, 25);
 		frmBattleTheVillain.getContentPane().add(btnLeave);
@@ -186,42 +190,14 @@ public class BattleScreen {
 		//*************************Branch Game Panel for 3 Different Games*********************
 		if (gameType == "PaperScissorsRock") {
 			
-			villainChoice = rnd.nextInt(rPSChoices.length);
+
 			txtrChallenge.setText("Now you have to play me at Paper Scissors Rock. Make your choice "
 					+ "and let's see who has the stronger hand:");
 
 			rpsComBox.setBounds(12, 150, 104, 24);
 			gamePanel.add(rpsComBox);
-
-			
-			//*****Skew game if Pavlova PowerUp is present*********
-			if (player.getPowerUp() != null) {
-				
-				if (player.getPowerUp().getType() == PowerUpType.PAVLOVA) {
-					txtrHint.setText("The lightning quick reflexes brought on by the slice of pavlova " +
-							player.getName() + " ate earlier enables them to see " + baddie.getName() + 
-							" play " + rPSChoices[villainChoice]); 
-					player.clearPowerUp();
-				}
-			}//*******************************************************
-			
-			btnPlay.setText("Play");
-			btnPlay.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					playerChoiceString = rpsComBox.getSelectedItem().toString();
-					lblVillainChoice.setText(baddie.getName() + " plays " + rPSChoices[villainChoice]);
-					int playerChoiceInt = 0;
-					for (int i = 0; i < rPSChoices.length; i++) {
-						if (rPSChoices[i] == playerChoiceString) {
-							playerChoiceInt = i;
-						}
-					}
-					paperScissorsRock(playerChoiceInt, villainChoice);
-					btnPlay.setVisible(false);
+			paperScissorsRock();
 					
-				}
-			});
-			
 			
 		} else if (gameType == "GuessNumber") {
 			txtrChallenge.setText("Now you have to guess the number I'm thinking of between 1 and 10. "
@@ -229,7 +205,6 @@ public class BattleScreen {
 
 			numComBox.setBounds(12, 150, 50, 24);
 			gamePanel.add(numComBox);
-			//txtrHint.setText("Guess num Hint");
 			btnPlay.setText("Play");
 			guessNumber();
 			
@@ -247,63 +222,57 @@ public class BattleScreen {
 			
 		}
 		
-		
 	}
 	
 	
-	/**
-	 * Close the window when required
-	 */
-	public void closeScreen() {
-		frmBattleTheVillain.dispose();
 
-	}
-	
-	/**
-	 * Creates a new game when the 'Play Again' button is clicked
-	 * @param hero a Hero the hero passed into the original constructor
-	 * @param villain a Villain the villain passed into the original constructor
-	 * @param team a Team the team passed into the original constructor
-	 * @param gameType a String the type of game to be played
-	 */
-	public void newGame(Hero hero, Villain villain, Team team) {
-		closeScreen();
-		new BattleScreen(hero, villain, team);
-		
-	}
-	
-	/**
-	 * Randomly allocate a game to play
-	 * @return a String from the gameType list
-	 */
-	public String randomGame() {
-		int gameTypeIndex = rnd.nextInt(gameTypes.length);
-		return gameTypes[gameTypeIndex];
-	}
 	
 	/**
 	 * Rock paper scissors battle game decision mechanics
 	 * As per tradition, rock beats scissors, paper beats rock, scissors beat paper
 	 * No lizard or spock implemented at this stage
 	 * Decides game outcome and triggers the consequences
-	 * 0 - Rock, 1 - Paper, 2 - Scissors
-	 * @param playerChoice an int the int representing the player's choice
-	 * @param villainChoice an int the int representing the player's choice
 	 */
-	public void paperScissorsRock(int playerChoice, int villainChoice){
-		String playerResult;
-		if (playerChoice == villainChoice) {
-			playerResult = outcomes[0]; //Draw
-		
-		} else if (playerChoice == (villainChoice + 1) //Player win paper > rock or scissors over paper
-				|| playerChoice == (villainChoice - 2)) { //Player win rock > scissors
-			playerResult = outcomes[1]; //Player win
+	public void paperScissorsRock(){
+		villainChoice = rnd.nextInt(rPSChoices.length);
+		//*****Skew game if Pavlova PowerUp is present*********
+		if (player.getPowerUp() != null) {
 			
-		} else {
-			playerResult = outcomes[2];
-		}
-		battleConsequence(playerResult);
-
+			if (player.getPowerUp().getType() == PowerUpType.PAVLOVA) {
+				txtrHint.setText("The lightning quick reflexes brought on by the slice of pavlova " +
+						player.getName() + " ate earlier enables them to see " + baddie.getName() + 
+						" play " + rPSChoices[villainChoice]); 
+				player.clearPowerUp();
+			}
+		}//*******************************************************
+		
+		btnPlay.setText("Play");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playerChoiceString = rpsComBox.getSelectedItem().toString();
+				lblVillainChoice.setText(baddie.getName() + " plays " + rPSChoices[villainChoice]);
+				int playerChoiceInt = 0;
+				for (int i = 0; i < rPSChoices.length; i++) {
+					if (rPSChoices[i] == playerChoiceString) {
+						playerChoiceInt = i;
+					}
+				}
+				btnPlay.setVisible(false);
+				String playerResult;
+				if (playerChoiceInt == villainChoice) {
+					playerResult = outcomes[0]; //Draw
+				
+				} else if (playerChoiceInt == (villainChoice + 1) //Player win paper > rock or scissors over paper
+						|| playerChoiceInt == (villainChoice - 2)) { //Player win rock > scissors
+					playerResult = outcomes[1]; //Player win
+					
+				} else {
+					playerResult = outcomes[2];
+				}
+				battleConsequence(playerResult);
+				
+			}
+		});
 	}
 	
 	/**
@@ -311,13 +280,9 @@ public class BattleScreen {
 	 * Player guesses a number between 1 & 10 (per game specification)
 	 * Villain says "higher" or "lower" and options adjust accordingly. 
 	 * Two attempts allowed (per game specification) 
-	 * @param player a Hero the player's chosen team member for the battle
-	 * @param baddie a Villain the villain being played
-	 * @return a String "draw", "win" or "lose"
 	 */
 	public void guessNumber(){
 		int max_num = 10; //From game specification
-		int max_attempts = 2; //From game specification
 		attempts = 0;
 		numResult = outcomes[2];
 
@@ -332,40 +297,38 @@ public class BattleScreen {
 						"\" thinks " + player.getName()); 
 			player.clearPowerUp();
 			}
-		}//*******************************************************
+		}
+		//*******************************************************
 		
 		
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (attempts >= MAX_ATTEMPTS) {
+					btnPlay.setVisible(false);
+					battleConsequence(numResult);
+				}
 				playerNumGuess = (Integer.parseInt(numComBox.getSelectedItem().toString()));
-				lblVillainChoice.setText("\"Higher\" says " + baddie.getName());
+				if (playerNumGuess == villainChoice) { //Player win
+					numResult = outcomes[1];
+					lblVillainChoice.setText("\"Damn, you guessed it\" says " + baddie.getName());
+					btnPlay.setVisible(false);
+					battleConsequence(numResult);
+				
+				} else if (playerNumGuess < villainChoice) { //Player choice too low
+					lblVillainChoice.setText("\"Higher\" says " + baddie.getName());
+					attempts++; 
+			
+				} else { //Player choice too high
+					lblVillainChoice.setText("\"Lower\" says " + baddie.getName());
+					attempts++;
+				}
 			}
-		});
-		
-//		while (attempts < max_attempts && numResult != outcomes[1]) {
-//			if (playerNumGuess == villainChoice) { //Player win
-//				numResult = outcomes[1]; 
-//			
-//			} else if (playerNumGuess < villainChoice) { //Player choice too low
-//				lblVillainChoice.setText("\"Higher\" says " + baddie.getName());
-//				attempts++; 
-//			
-//			} else { //Player choice too high
-//				lblVillainChoice.setText("\"Lower\" says " + baddie.getName());
-//				attempts++;
-//			}
-//
-//		}
-//		btnPlay.setVisible(false);
-//		battleConsequence(numResult);			
+		});		
 	}
 	
 	/**
-	 * Dice rolls battle game. Player rolls a six sided dice by pressing Enter
+	 * Dice rolls battle game. Player rolls a six sided dice
 	 * Then baddie rolls, and the game is decided on the highest roll
-	 * @param player a Hero the player's chosen team member for the battle
-	 * @param baddie a Villain the villain being played
-	 * @return a String "draw", "win" or "lose"
 	 */
 	public void diceRolls() {
 		int SMALLEST_ROLL = 1;
@@ -400,12 +363,9 @@ public class BattleScreen {
 	
 	}
 	
-	
-	
-	
 	/**
-	 *  
-	 * @param result
+	 * Sets damage values for player and villain, updates screen.
+	 * Brings up a warning and collapses screen when either protagonist dies
 	 */
 	public void battleConsequence(String result) {
 		int damage = 34; //Damage in a normal fight. 1/3 of normal strength
@@ -413,6 +373,12 @@ public class BattleScreen {
 			damage = ((player.getStrength()/3) + 1);//Roughly 3 games to finish an opponent - per inconsistent game spec
 			baddie.takeDamage(damage);
 			lblVillainHealth.setText("Health: " +  baddie.getHealth());
+			if (!baddie.isAlive()) {
+				JOptionPane.showMessageDialog(frmBattleTheVillain, baddie.getName() + " is dead! You will now move on to the next town.",
+						"Hooray", JOptionPane.INFORMATION_MESSAGE);
+				finishedBattleScreen();
+				
+			}
 		} else if (result == "lose") {
 			damage = ((baddie.getStrength()/3) + 1);
 			if (player.getType() == HeroType.RETURNED_SERVICEMAN) {//Returned serviceman takes half damage
@@ -421,24 +387,50 @@ public class BattleScreen {
 			player.changeHealth(-damage);
 			lblHealth.setText("Health: " + player.getHealth());
 			if (player.getHealth() <= 0) {
-				System.out.println(player.getName() + " is dead.");
+				JOptionPane.showMessageDialog(frmBattleTheVillain, "Unfortunately " + player.getName() + " is dead.",
+						"Uh-Oh...", JOptionPane.ERROR_MESSAGE);
 				team.removeMember(team.getIndex(player));
+				finishedBattleScreen();
 			}
 		}
 		lblOutcome.setText(player.getName() + " " + result + "s! Click Play Again to continue or leave to retreat.");
+		btnPlayAgain.setVisible(true);
 	}
 	
+
 	
-	
-	
-	//*********************************Test Code************************************************
-	public static void main(String[] args) {
-		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
-		Villain v1 = Villain.AUSSIECRICKETER;
-		Team t1 = new Team("Awesome");
-		PowerUp p1 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		t1.addMember(h1);
-		h1.eatPowerUp(p1);
-		BattleScreen b1 = new BattleScreen(h1, v1, t1);
+	/**
+	 * Creates a new game when the 'Play Again' button is clicked
+	 * @param hero a Hero the hero passed into the original constructor
+	 * @param villain a Villain the villain passed into the original constructor
+	 * @param team a Team the team passed into the original constructor
+	 * @param gameType a String the type of game to be played
+	 */
+	public void newGame(Hero hero, Villain villain, Team team) {
+		closeScreen();
+		new BattleScreen(hero, villain, team, manager);
+		
 	}
+	
+	/**
+	 * Randomly allocate a game to play
+	 * @return a String from the gameType list
+	 */
+	public String randomGame() {
+		int gameTypeIndex = rnd.nextInt(gameTypes.length);
+		return gameTypes[gameTypeIndex];
+	}
+	
+	/**
+	 * Close the window when required
+	 */
+	public void closeScreen() {
+		frmBattleTheVillain.dispose();
+
+	}
+	
+	public void finishedBattleScreen() {
+		manager.closeBattleScreen(this);
+	}
+	
 }
