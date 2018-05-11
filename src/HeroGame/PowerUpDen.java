@@ -1,5 +1,7 @@
 package HeroGame;
 
+import javax.swing.ImageIcon;
+
 /**
  * PowerUpDen Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -8,9 +10,17 @@ package HeroGame;
 public class PowerUpDen extends Location {
 	
 	
+	/**
+	 * Constructor Method for PowerUpDen Class
+	 * @param thisCity City, city containing this power up den
+	 * @param heroTeam Team, current team being played by the user
+	 */
 	PowerUpDen(City thisCity, Team heroTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " PowerUpDen"), heroTeam, thisCity.getName(), LocationType.POWERUPDEN);
+		super(thisCity.getPlaceName(thisCity.getName() + " PowerUpDen"), heroTeam, thisCity.getName(), LocationType.POWERUPDEN, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/PowerUpDen.png")));
 	}
+	
+	
+	
 	
 	
 	/**

@@ -59,6 +59,21 @@ public class City {
 	}
 	
 	
+	public Villain getVillain() {
+		return this.cityVillain;
+	}
+	
+	
+	public void launchCityScreen() {
+		CityScreen cityScreen = new CityScreen(this);
+	}
+	
+	
+	public void closeCityScreen() {
+		
+	}
+	
+	
 	/**
 	 * Method to get whether or not the city is mapped yet.
 	 * @return boolean, true if city is mapped already.
@@ -173,108 +188,109 @@ public class City {
 	 * run loop for this city.
 	 */
 	public void runCity() {
-		int n = this.centerArea.runLocation();
-		while(this.cityVillain.isAlive()) {
-			switch(n) {
-			case 0:
-				System.out.println("Center Area: ");
-				n = this.centerArea.runLocation();
-				break;
-				
-			case 1:
-				System.out.println("North Area: ");
-				switch(this.northArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.northArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VilliansLair) this.northArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.northArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.northArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 2:
-				System.out.println("East Area: ");
-				switch(this.eastArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.eastArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VilliansLair) this.eastArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.eastArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.eastArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 3:
-				System.out.println("South Area: ");
-				switch(this.southArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.southArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VilliansLair) this.southArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.southArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.southArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 4:
-				System.out.println("West Area: ");
-				switch(this.westArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.westArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VilliansLair) this.westArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.westArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.westArea).runLocation();
-					break;
-				}
-				break;
-				
-			}
-		}
+		launchCityScreen();
+//		int n = this.centerArea.runLocation();
+//		while(this.cityVillain.isAlive()) {
+//			switch(n) {
+//			case 0:
+//				System.out.println("Center Area: ");
+//				n = this.centerArea.runLocation();
+//				break;
+//				
+//			case 1:
+//				System.out.println("North Area: ");
+//				switch(this.northArea.getLocationType()) {
+//				
+//				case HOSPITAL:
+//					n = ((Hospital) this.northArea).runLocation();
+//					System.out.println(n);
+//					break;
+//					
+//				case VILLIANSLAIR:
+//					n = ((VilliansLair) this.northArea).runLocation();
+//					break;
+//					
+//				case SHOP:
+//					n = ((Shop) this.northArea).runLocation();
+//					break;
+//					
+//				case POWERUPDEN:
+//					n = ((PowerUpDen) this.northArea).runLocation();
+//					break;
+//				}
+//				break;
+//				
+//			case 2:
+//				System.out.println("East Area: ");
+//				switch(this.eastArea.getLocationType()) {
+//				
+//				case HOSPITAL:
+//					n = ((Hospital) this.eastArea).runLocation();
+//					System.out.println(n);
+//					break;
+//					
+//				case VILLIANSLAIR:
+//					n = ((VilliansLair) this.eastArea).runLocation();
+//					break;
+//					
+//				case SHOP:
+//					n = ((Shop) this.eastArea).runLocation();
+//					break;
+//					
+//				case POWERUPDEN:
+//					n = ((PowerUpDen) this.eastArea).runLocation();
+//					break;
+//				}
+//				break;
+//				
+//			case 3:
+//				System.out.println("South Area: ");
+//				switch(this.southArea.getLocationType()) {
+//				
+//				case HOSPITAL:
+//					n = ((Hospital) this.southArea).runLocation();
+//					System.out.println(n);
+//					break;
+//					
+//				case VILLIANSLAIR:
+//					n = ((VilliansLair) this.southArea).runLocation();
+//					break;
+//					
+//				case SHOP:
+//					n = ((Shop) this.southArea).runLocation();
+//					break;
+//					
+//				case POWERUPDEN:
+//					n = ((PowerUpDen) this.southArea).runLocation();
+//					break;
+//				}
+//				break;
+//				
+//			case 4:
+//				System.out.println("West Area: ");
+//				switch(this.westArea.getLocationType()) {
+//				
+//				case HOSPITAL:
+//					n = ((Hospital) this.westArea).runLocation();
+//					System.out.println(n);
+//					break;
+//					
+//				case VILLIANSLAIR:
+//					n = ((VilliansLair) this.westArea).runLocation();
+//					break;
+//					
+//				case SHOP:
+//					n = ((Shop) this.westArea).runLocation();
+//					break;
+//					
+//				case POWERUPDEN:
+//					n = ((PowerUpDen) this.westArea).runLocation();
+//					break;
+//				}
+//				break;
+//				
+//			}
+//		}
 	}
 	
 	

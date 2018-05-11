@@ -1,6 +1,8 @@
 package HeroGame;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 /**
  * VillainsLair Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -13,13 +15,14 @@ public class VilliansLair extends Location {
 	private Random rand = new Random();
 	private Villain cityVillain;
 	
+	
 	/**
-	 * Constructor for VillainsLair Class.
+	 * Constructor for VillainsLair Class Text Version.
 	 * @param cityName Name of the City containing this Villains Lair
 	 * @param currentVillian Current Villain of this city.
 	 */
 	VilliansLair(City thisCity, Villain currentVillain, Team heroTeam) {
-		super(currentVillain.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR);
+		super(currentVillain.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Shop.png")));
 		this.cityVillain = currentVillain;
 	}
 	

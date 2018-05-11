@@ -1,6 +1,8 @@
 package HeroGame;
 import java.text.DecimalFormat;
 
+import javax.swing.ImageIcon;
+
 /**
  * Hospital Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -15,7 +17,7 @@ public class Hospital extends Location {
 	 * @param newTeam Team, Team being controlled by the user.
 	 */
 	Hospital(City thisCity, Team newTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " Hospital"), newTeam, thisCity.getName(), LocationType.HOSPITAL);
+		super(thisCity.getPlaceName(thisCity.getName() + " Hospital"), newTeam, thisCity.getName(), LocationType.HOSPITAL, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Hospital.png")));
 	}
 	
 	

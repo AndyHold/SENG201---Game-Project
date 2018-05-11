@@ -1,6 +1,8 @@
 package HeroGame;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 
 /**
  * Shop Class for Heroes & Villains Game
@@ -20,7 +22,7 @@ public class Shop extends Location {
 	 * @param newTeam Team, Team being controlled by the user
 	 */
 	Shop(City thisCity, Team newTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP);
+		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Shop.png")));
 		this.fillHealingItems();
 		this.fillPowerUpItems();
 	}

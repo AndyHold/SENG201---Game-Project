@@ -1,5 +1,6 @@
 package HeroGame;
 
+import javax.swing.ImageIcon;
 
 /**
  * Place Class for Heroes & Villains Game
@@ -8,6 +9,7 @@ package HeroGame;
  */
 public class Location {
 	
+	private ImageIcon icon;
 	private String placeName;
 	protected Team heroTeam;
 	protected String cityName;
@@ -17,17 +19,27 @@ public class Location {
 	
 	
 	/**
-	 * Constructor method for Location class
+	 * Constructor method for Location class Text Version
 	 * @param locationName String, Name of the location
 	 * @param newTeam Team, Team being controller by the user
 	 * @param newCityName String, Name of the city containing the location
 	 * @param newType LocationType, Enum of the type of location
 	 */
-	Location(String locationName, Team newTeam, String newCityName, LocationType newType) {
+	Location(String locationName, Team newTeam, String newCityName, LocationType newType, ImageIcon newIcon) {
 		this.placeName = locationName;
 		this.heroTeam = newTeam;
 		this.cityName = newCityName;
 		this.locationType = newType;
+		this.icon = newIcon;
+	}
+	
+	
+	/**
+	 * Method to get icon
+	 * @return ImageIcon, icon ascociated with this location
+	 */
+	public ImageIcon getIcon() {
+		return icon;
 	}
 	
 	

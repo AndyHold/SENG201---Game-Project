@@ -57,6 +57,15 @@ public class Cities {
 		}
 	}
 	
+	/**
+	 * Run loop for Cities class GUI Version, calls each city in the stages ArrayList until completion.
+	 */
+	public void runCitiesGUI() {
+		for(City currentCity: this.stages) {
+			currentCity.runCity();
+		}
+	}
+	
 	
 	/**
 	 * Method to get a city from a given stage number.

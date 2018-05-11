@@ -1,5 +1,6 @@
 package HeroGame;
 
+import javax.swing.ImageIcon;
 
 /**
  * HomeBase Class for Heroes & Villains Game
@@ -10,19 +11,20 @@ public class HomeBase extends Location {
 	
 	
 	private City currentCity;
+	private CityScreen currentCityScreen;
 	
 
 	/**
-	 * Constructor for HomeBase Class
+	 * Constructor for HomeBase Class Text Version
 	 * @param cityName String, Name of the city HomeBase is located in.
 	 * @param newTeam Team, Team being controlled by the Player.
 	 */
 	HomeBase(City thisCity, Team newTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName(), LocationType.HOMEBASE);
+		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName(), LocationType.HOMEBASE, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/HomeBase.png")));
 		this.currentCity = thisCity;
 		super.setDirection(Direction.CENTER);
 	}
-
+	
 	
 	/**
 	 * Shows the Teams Heroes and their current Status
