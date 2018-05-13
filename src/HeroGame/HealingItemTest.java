@@ -19,6 +19,7 @@ public class HealingItemTest {
 	HealingItem h1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
 	HealingItem h2 = new HealingItem(HealingItemType.LINDAUER);
 	HealingItem h3 = new HealingItem(HealingItemType.LION_RED);
+	HealingItem h4 = new HealingItem(HealingItemType.DOUBLE_BROWN);
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -69,12 +70,31 @@ public class HealingItemTest {
 		assertEquals(h3.getResponse(),
 				HealingItemType.LION_RED.getResponse());
 	}
+	
+	@Test
+	public void testChangeHealthValue() {
+		//Positive
+		h1.changeHealthValue(50);
+		assertEquals(75, h1.getHealthValue());
+		//negative
+		h1.changeHealthValue(-100);
+		assertEquals(-25, h1.getHealthValue());
+	}
 
 
 	@Test
 	public void testToString() {
 		assertEquals(HealingItemType.DOUBLE_BROWN.getDescription(), 
 				h1.toString());
+	}
+	
+	@Test
+	public void testEquals() {
+		assertTrue(h1.equals(h1));
+		assertFalse(h1.equals(h2));
+		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+		assertFalse(h1.equals(p1));
+		assertTrue(h1.equals(h4));
 	}
 
 }

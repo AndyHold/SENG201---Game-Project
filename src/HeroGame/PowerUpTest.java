@@ -18,6 +18,7 @@ public class PowerUpTest {
 	private PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
 	private PowerUp p2 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
 	private PowerUp p3 = new PowerUp(PowerUpType.PAVLOVA);
+	private PowerUp p4 = new PowerUp(PowerUpType.CHEESE_ROLL);
 	
 	
 	@BeforeClass
@@ -71,6 +72,15 @@ public class PowerUpTest {
 	@Test
 	public void testToString() {
 		assertEquals("Pavlova", p3.toString());
+	}
+	
+	@Test
+	public void testEquals() {
+		assertTrue(p1.equals(p1));
+		assertFalse(p1.equals(p2));
+		HealingItem h1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
+		assertFalse(p1.equals(h1));
+		assertTrue(p1.equals(p4));
 	}
 
 }

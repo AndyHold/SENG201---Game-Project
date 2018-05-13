@@ -70,6 +70,7 @@ public class Team {
 	
 	/**
 	 * Interactive method for adding members to a Team
+	 * Only used in the command line version of the game
 	 * @param size an int the number of members to add to the team
 	 */
 	public void buildTeam(int size) {
@@ -164,8 +165,11 @@ public class Team {
 	 * @return the Hero at the given index. Returns a null pointer otherwise
 	 */
 	public Hero getHero(int heroIndex) {
-		Hero result;
-		if (heroIndex >= 0 && heroIndex < memberList.size());{
+		Hero result = null;
+//		if (heroIndex < 0) {
+//			//do nothing
+//		} else 
+		if (heroIndex >= 0 && heroIndex < memberList.size()) {
 			result = memberList.get(heroIndex);
 		} 
 		return result;
@@ -230,7 +234,7 @@ public class Team {
 		boolean applied = false;
 		int counter = 0;
 		if (teamMemberIndex < 0 || teamMemberIndex >= memberList.size()) {
-			result = "No hero found!";
+			result = "No hero found!\n";
 		} else {
 			while (!applied && counter < powerUps.size()) {
 				if (powerUps.get(counter).getType() == powerUpType) {
@@ -285,7 +289,11 @@ public class Team {
 	 * @return
 	 */
 	public PowerUpType getPowerUpType(int powerUpIndex) {
-		return powerUps.get(powerUpIndex).getType();
+		PowerUpType result = null;
+		if (powerUpIndex >= 0 && powerUpIndex < powerUps.size()) {
+			result = powerUps.get(powerUpIndex).getType();
+		}
+		return result;
 	}
 	
 	
@@ -298,7 +306,7 @@ public class Team {
 	 */
 	public int addHealingItem(HealingItem healingItem){
 		if (this.checkPresent(HeroType.NURSE)) {//Apply special power of nurse if present 
-			healingItem.changeHealthValue(healingItem.getHealthValue()* 2);
+			healingItem.changeHealthValue(healingItem.getHealthValue());
 		}
 		this.healingItems.add(healingItem);
 		return healingItems.size();
@@ -326,7 +334,7 @@ public class Team {
 		boolean applied = false;
 		int counter = 0;
 		if (teamMemberIndex < 0 || teamMemberIndex >= memberList.size()) {
-			result = "No hero found!";
+			result = "No hero found!\n";
 		} else {
 			while (!applied && counter < healingItems.size()) {
 				if (healingItems.get(counter).getHealingItemType() == healingItemType) {
@@ -348,7 +356,11 @@ public class Team {
 	 * @return a HealingItemType the type of healing item at the given index in the healing items ArrayList
 	 */
 	public HealingItemType getHealingItemType(int healingItemIndex) {
-		return healingItems.get(healingItemIndex).getHealingItemType();
+		HealingItemType result = null;
+		if (healingItemIndex >= 0 && healingItemIndex < healingItems.size()) {
+			result = healingItems.get(healingItemIndex).getHealingItemType();
+		}
+		return result;
 	}
 	
 	/**
@@ -452,7 +464,7 @@ public class Team {
 	 */
 	public double getTime() {
 		long currentTime = System.currentTimeMillis() - startTime;
-		return (double)(currentTime * 1000);
+		return (double)(currentTime / 1000);
 	}
 	
 	//***********************************************************************************
@@ -464,22 +476,22 @@ public class Team {
 		}
 		return result;
 	}
-
-	public static void main(String[] args) {
-		Team t1 = new Team("Awesome");
-		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
-		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
-		PowerUp p2 = new PowerUp(PowerUpType.CHEESE_ROLL);
-		PowerUp p3 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		t1.addMember(h1);
-		t1.addPowerUp(p1);
-		t1.addPowerUp(p2);
-		t1.addPowerUp(p3);
-		System.out.print(t1.showPowerUps());
-		System.out.print(t1.applyPowerUp(PowerUpType.PAVLOVA, 0));
-		System.out.print(t1.applyPowerUp(PowerUpType.CHEESE_ROLL, 0));
-		System.out.print(t1.showPowerUps());
-		
-	}
+//*****************************Test Code***********************************
+//	public static void main(String[] args) {
+//		Team t1 = new Team("Awesome");
+//		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
+//		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+//		PowerUp p2 = new PowerUp(PowerUpType.CHEESE_ROLL);
+//		PowerUp p3 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
+//		t1.addMember(h1);
+//		t1.addPowerUp(p1);
+//		t1.addPowerUp(p2);
+//		t1.addPowerUp(p3);
+//		System.out.print(t1.showPowerUps());
+//		System.out.print(t1.applyPowerUp(PowerUpType.PAVLOVA, 0));
+//		System.out.print(t1.applyPowerUp(PowerUpType.CHEESE_ROLL, 0));
+//		System.out.print(t1.showPowerUps());
+//		
+//	}
 
 }

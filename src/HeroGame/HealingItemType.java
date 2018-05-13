@@ -88,4 +88,5 @@ public enum HealingItemType {
 	public String getResponse() {
 		return response;
 	}
+	
 }
