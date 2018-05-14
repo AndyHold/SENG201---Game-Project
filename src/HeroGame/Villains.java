@@ -31,7 +31,7 @@ public class Villains {
 	 * Gets the number of Villains currently not in use.
 	 * @return int number of Villains not in use. 
 	 */
-	public static int getNumberOfVillains() {
+	public int getNumberOfVillains() {
 		return availableVillains.size();
 	}
 	
@@ -62,16 +62,17 @@ public class Villains {
 		// TODO Auto-generated method stub
 //		Villains baddies = new Villains();
 //		System.out.println(baddies);
-//		Villain baddie1 = Villains.getVillain();
+//		Villain baddie1 = baddies.getVillain();
 //		System.out.println(baddie1);
-//		Villain baddie2 = Villains.getVillain();
+//		Villain baddie2 = baddies.getVillain();
 //		System.out.println(baddie2);
-//		Villain baddie3 = Villains.getVillain();
+//		Villain baddie3 = baddies.getVillain();
 //		System.out.println(baddie3);
-//		Villain baddie4 = Villains.getVillain();
+//		Villain baddie4 = baddies.getVillain();
 //		System.out.println(baddie4);
-//		Villain baddie5 = Villains.getVillain();
+//		Villain baddie5 = baddies.getVillain();
 //		System.out.println(baddie5);
+//		System.out.println(baddies.getNumberOfVillains());
 		// GET AN ERROR WHEN TRYING TO PRINT AN EMPTY VILLAINS!!!
 	}
 

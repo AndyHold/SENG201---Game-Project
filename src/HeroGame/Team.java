@@ -35,6 +35,10 @@ public class Team {
 		this.maps = 0;
 		this.money = STARTING_MONEY;
 	}
+	
+	public ArrayList<Hero> getMemberList() {
+		return this.memberList;
+	}
 	 
 	/**
 	 * The current size of the team

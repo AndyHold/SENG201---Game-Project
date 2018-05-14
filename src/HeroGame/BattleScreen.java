@@ -52,17 +52,21 @@ public class BattleScreen {
 	private int MAX_ATTEMPTS = 2; //From game spec
 	private int playerNumGuess;
 	private String numResult = null;
+	private Direction direction;
+	private City city;
 	
 
 
 	/**
 	 * Create the application.
 	 */
-	public BattleScreen(Hero player, Villain baddie, Team team, GameManager incomingManager) {
+	public BattleScreen(Hero player, City city, Team team, GameManager incomingManager, Direction direction) {
 		this.player = player;
-		this.baddie = baddie;
+		this.city = city;
+		this.baddie = city.getVillain();
 		this.team = team;
 		this.manager = incomingManager;
+		this.direction = direction;
 		initialize(randomGame());
 		frmBattleTheVillain.setVisible(true);
 	}
@@ -126,7 +130,7 @@ public class BattleScreen {
 		
 		btnPlayAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newGame(player, baddie, team);
+				newGame(player, city, team);
 			}
 		});
 		btnPlayAgain.setBounds(515, 388, 112, 25);
@@ -406,9 +410,9 @@ public class BattleScreen {
 	 * @param team a Team the team passed into the original constructor
 	 * @param gameType a String the type of game to be played
 	 */
-	public void newGame(Hero hero, Villain villain, Team team) {
+	public void newGame(Hero hero, City city, Team team) {
 		closeScreen();
-		new BattleScreen(hero, villain, team, manager);
+		new BattleScreen(hero, city, team, manager, Direction.CENTER);
 		
 	}
 	
@@ -430,7 +434,7 @@ public class BattleScreen {
 	}
 	
 	public void finishedBattleScreen() {
-		manager.closeBattleScreen(this);
+		manager.closeBattleScreen(this, city, direction);
 	}
 	
 }

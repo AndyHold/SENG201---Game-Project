@@ -15,6 +15,7 @@ public class Cities {
 	private ArrayList<City> stages = new ArrayList<City>();
 	private ArrayList<String> cityNames = new ArrayList<String>();
 	private Random rand = new Random();
+	private int currentStage;
 	
 	
 	/**
@@ -29,15 +30,28 @@ public class Cities {
 	}
 	
 	
+	public City getStage() {
+		if(currentStage < stages.size()) {
+			int newStage = currentStage;
+			currentStage++;
+			return stages.get(newStage);
+		}
+		else {
+			return null;
+		}
+	}
+	
+	
 	/**
 	 * Method to create random cities and add them to the ArrayList stages.
 	 * @param numOfCities int, Number of cities to be created
 	 */
 	private void createCities(int numOfCities) {
-		for(int x=0; x < (numOfCities); x++) {
-			int n = this.rand.nextInt(6);
+		for(int x=0; x < numOfCities; x++) {
+			int n = this.rand.nextInt(cityNames.size());
 			String cityName = cityNames.get(n);
-			if(x == numOfCities) {
+			cityNames.remove(n);
+			if(x == numOfCities - 1) {
 				Villain cityVillain = Villain.AUSSIECRICKETER;
 				stages.add(new City(cityName, cityVillain, heroTeam));
 			} else {

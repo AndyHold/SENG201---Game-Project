@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-public class VilliansLair extends Location {
+public class VillainsLair extends Location {
 	
 	
 	
@@ -21,9 +21,14 @@ public class VilliansLair extends Location {
 	 * @param cityName Name of the City containing this Villains Lair
 	 * @param currentVillian Current Villain of this city.
 	 */
-	VilliansLair(City thisCity, Villain currentVillain, Team heroTeam) {
+	VillainsLair(City thisCity, Villain currentVillain, Team heroTeam) {
 		super(currentVillain.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Shop.png")));
 		this.cityVillain = currentVillain;
+	}
+	
+	
+	public ImageIcon getVillainImage() {
+		return this.cityVillain.getImage();
 	}
 	
 	

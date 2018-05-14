@@ -24,6 +24,7 @@ public class City {
 	private HashMap<String, String> placeNames = new HashMap<String, String>();
 	private Random rand = new Random();
 	private ArrayList<Location> availableLocations = new ArrayList<Location>();
+	private ArrayList<String> badDirectionMessages;
 	
 	
 	/**
@@ -41,6 +42,74 @@ public class City {
 		this.fillAvailableLocations();
 		this.centerArea = new HomeBase(this, this.currentTeam);
 		this.setDirections();
+		this.setBadDirectionMessages();
+	}
+	
+	
+	private void setBadDirectionMessages() {
+		badDirectionMessages = new ArrayList<String>();
+		badDirectionMessages.add("Can't go that way cuz, Jake the Muss is down there");
+		badDirectionMessages.add("That area has been hit by an earthquake, better turn around...");
+		badDirectionMessages.add("You have reached the ocean. Well Done! But you can't go any further");
+		badDirectionMessages.add("Jim's Mowers are currently grooming that area, please keep clear");
+		badDirectionMessages.add("A sleeping politician is blocking the path...");
+		badDirectionMessages.add("You forgot to bring your 4WD, best be safe and turn around...");
+	}
+	
+	
+	public String getBadDirectionMessage() {
+		int n = rand.nextInt(this.badDirectionMessages.size());
+		return badDirectionMessages.get(n);
+	}
+	
+	
+	public Team getTeam() {
+		return this.currentTeam;
+	}
+	
+	
+	/**
+	 * Method to get the location in the north area of the city
+	 * @return Location, north location of the city
+	 */
+	public Location getNorthLocation() {
+		return this.northArea;
+	}
+	
+	
+	/**
+	 * Method to get the location in the south area of the city
+	 * @return Location, south location of the city
+	 */
+	public Location getSouthLocation() {
+		return this.southArea;
+	}
+	
+	
+	/**
+	 * Method to get the location in the west area of the city
+	 * @return Location, west location of the city
+	 */
+	public Location getWestLocation() {
+		return this.westArea;
+	}
+	
+	
+	/**
+	 * Method to get the location in the east area of the city
+	 * @return Location, east location of the city
+	 */
+	public Location getEastLocation() {
+		return this.eastArea;
+	}
+	
+	
+	/**
+	 * Method to get the location in the west area of the city
+	 * @return Location, west location of the city
+	 */
+	public Location getCenterLocation() {
+		return this.centerArea;
 	}
 	
 	
@@ -64,9 +133,9 @@ public class City {
 	}
 	
 	
-	public void launchCityScreen() {
-		CityScreen cityScreen = new CityScreen(this);
-	}
+//	public void launchCityScreen() {
+//		CityScreen cityScreen = new CityScreen(this);
+//	}
 	
 	
 	public void closeCityScreen() {
@@ -177,7 +246,7 @@ public class City {
 	 * Method to fill the ArrayList availableLocations with the 4 types of location (excluding HomeBase)
 	 */
 	private void fillAvailableLocations() {
-		availableLocations.add(new VilliansLair(this, cityVillain, this.currentTeam));
+		availableLocations.add(new VillainsLair(this, cityVillain, this.currentTeam));
 		availableLocations.add(new Hospital(this, this.currentTeam));
 		availableLocations.add(new PowerUpDen(this, this.currentTeam));
 		availableLocations.add(new Shop(this, this.currentTeam));
@@ -188,109 +257,109 @@ public class City {
 	 * run loop for this city.
 	 */
 	public void runCity() {
-		launchCityScreen();
-//		int n = this.centerArea.runLocation();
-//		while(this.cityVillain.isAlive()) {
-//			switch(n) {
-//			case 0:
-//				System.out.println("Center Area: ");
-//				n = this.centerArea.runLocation();
-//				break;
-//				
-//			case 1:
-//				System.out.println("North Area: ");
-//				switch(this.northArea.getLocationType()) {
-//				
-//				case HOSPITAL:
-//					n = ((Hospital) this.northArea).runLocation();
-//					System.out.println(n);
-//					break;
-//					
-//				case VILLIANSLAIR:
-//					n = ((VilliansLair) this.northArea).runLocation();
-//					break;
-//					
-//				case SHOP:
-//					n = ((Shop) this.northArea).runLocation();
-//					break;
-//					
-//				case POWERUPDEN:
-//					n = ((PowerUpDen) this.northArea).runLocation();
-//					break;
-//				}
-//				break;
-//				
-//			case 2:
-//				System.out.println("East Area: ");
-//				switch(this.eastArea.getLocationType()) {
-//				
-//				case HOSPITAL:
-//					n = ((Hospital) this.eastArea).runLocation();
-//					System.out.println(n);
-//					break;
-//					
-//				case VILLIANSLAIR:
-//					n = ((VilliansLair) this.eastArea).runLocation();
-//					break;
-//					
-//				case SHOP:
-//					n = ((Shop) this.eastArea).runLocation();
-//					break;
-//					
-//				case POWERUPDEN:
-//					n = ((PowerUpDen) this.eastArea).runLocation();
-//					break;
-//				}
-//				break;
-//				
-//			case 3:
-//				System.out.println("South Area: ");
-//				switch(this.southArea.getLocationType()) {
-//				
-//				case HOSPITAL:
-//					n = ((Hospital) this.southArea).runLocation();
-//					System.out.println(n);
-//					break;
-//					
-//				case VILLIANSLAIR:
-//					n = ((VilliansLair) this.southArea).runLocation();
-//					break;
-//					
-//				case SHOP:
-//					n = ((Shop) this.southArea).runLocation();
-//					break;
-//					
-//				case POWERUPDEN:
-//					n = ((PowerUpDen) this.southArea).runLocation();
-//					break;
-//				}
-//				break;
-//				
-//			case 4:
-//				System.out.println("West Area: ");
-//				switch(this.westArea.getLocationType()) {
-//				
-//				case HOSPITAL:
-//					n = ((Hospital) this.westArea).runLocation();
-//					System.out.println(n);
-//					break;
-//					
-//				case VILLIANSLAIR:
-//					n = ((VilliansLair) this.westArea).runLocation();
-//					break;
-//					
-//				case SHOP:
-//					n = ((Shop) this.westArea).runLocation();
-//					break;
-//					
-//				case POWERUPDEN:
-//					n = ((PowerUpDen) this.westArea).runLocation();
-//					break;
-//				}
-//				break;
-//				
-//			}
-//		}
+//		launchCityScreen();
+		int n = this.centerArea.runLocation();
+		while(this.cityVillain.isAlive()) {
+			switch(n) {
+			case 0:
+				System.out.println("Center Area: ");
+				n = this.centerArea.runLocation();
+				break;
+				
+			case 1:
+				System.out.println("North Area: ");
+				switch(this.northArea.getLocationType()) {
+				
+				case HOSPITAL:
+					n = ((Hospital) this.northArea).runLocation();
+					System.out.println(n);
+					break;
+					
+				case VILLIANSLAIR:
+					n = ((VillainsLair) this.northArea).runLocation();
+					break;
+					
+				case SHOP:
+					n = ((Shop) this.northArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					n = ((PowerUpDen) this.northArea).runLocation();
+					break;
+				}
+				break;
+				
+			case 2:
+				System.out.println("East Area: ");
+				switch(this.eastArea.getLocationType()) {
+				
+				case HOSPITAL:
+					n = ((Hospital) this.eastArea).runLocation();
+					System.out.println(n);
+					break;
+					
+				case VILLIANSLAIR:
+					n = ((VillainsLair) this.eastArea).runLocation();
+					break;
+					
+				case SHOP:
+					n = ((Shop) this.eastArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					n = ((PowerUpDen) this.eastArea).runLocation();
+					break;
+				}
+				break;
+				
+			case 3:
+				System.out.println("South Area: ");
+				switch(this.southArea.getLocationType()) {
+				
+				case HOSPITAL:
+					n = ((Hospital) this.southArea).runLocation();
+					System.out.println(n);
+					break;
+					
+				case VILLIANSLAIR:
+					n = ((VillainsLair) this.southArea).runLocation();
+					break;
+					
+				case SHOP:
+					n = ((Shop) this.southArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					n = ((PowerUpDen) this.southArea).runLocation();
+					break;
+				}
+				break;
+				
+			case 4:
+				System.out.println("West Area: ");
+				switch(this.westArea.getLocationType()) {
+				
+				case HOSPITAL:
+					n = ((Hospital) this.westArea).runLocation();
+					System.out.println(n);
+					break;
+					
+				case VILLIANSLAIR:
+					n = ((VillainsLair) this.westArea).runLocation();
+					break;
+					
+				case SHOP:
+					n = ((Shop) this.westArea).runLocation();
+					break;
+					
+				case POWERUPDEN:
+					n = ((PowerUpDen) this.westArea).runLocation();
+					break;
+				}
+				break;
+				
+			}
+		}
 	}
 	
 	

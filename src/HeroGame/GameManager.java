@@ -68,29 +68,48 @@ public class GameManager {
 	
 	public void closeTeamBuildScreen(TeamBuildScreen teamBuildScreen) {
 		teamBuildScreen.closeScreen();
+		cities = new Cities(this.heroTeam, this.nCities);
+		City first_level = cities.getStage();
+		CityScreen first_level_screen = new CityScreen(first_level, Direction.CENTER, this);
 		//launchMainGameLoop
 	}
 	
-	public void launchBattleScreen(Hero player, Villain baddie) {
-		BattleScreen battleScreen = new BattleScreen(player, baddie, heroTeam, this);
-		//Andy - may be able to get villain via methods rather than passing in?
+	public void closeCityScreen(CityScreen cityScreen, City city, Direction direction, Hero hero) {
+		
+		BattleScreen battlescreen = new BattleScreen(hero, city, heroTeam, this, direction);
 	}
 	
-	public void closeBattleScreen(BattleScreen battleScreen ) {
+	public void launchBattleScreen(Hero player, City city, Direction direction) {
+		BattleScreen battleScreen = new BattleScreen(player, city, heroTeam, this, direction);
+		//Andy - may be able to get villain via methods rather than passing in?
+		//Alex - I needed to pass in city to it anyway so i fixed it for you :-)
+	}
+	
+	public void closeBattleScreen(BattleScreen battleScreen, City city, Direction direction ) {
 		battleScreen.closeScreen();
-		//return to wherever in game
+		if(city.getVillain().isAlive()) {
+			CityScreen thisStage = new CityScreen(city, direction, this);
+		} else {
+			city = cities.getStage();
+			if(city != null) {
+				CityScreen thisStage = new CityScreen(city, Direction.CENTER, this);
+			} else {
+				//DO FINISHED GAME SCREEN
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
 		GameManager manager = new GameManager();
-		//manager.launchWelcomeScreen();
+		manager.launchWelcomeScreen();
 		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
 		Villain v1 = Villain.AUSSIECRICKETER;
 		Team t1 = new Team("Awesome");
+		City c1 = new City("Springfield", v1, t1);
 		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
 		t1.addMember(h1);
 		h1.eatPowerUp(p1);
-		manager.launchBattleScreen(h1, v1);
+//		manager.launchBattleScreen(h1, c1, Direction.CENTER);
 
 	}
 
