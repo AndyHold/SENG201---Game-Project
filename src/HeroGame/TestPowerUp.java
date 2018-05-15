@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class PowerUpTest {
+public class TestPowerUp {
 	private PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
 	private PowerUp p2 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
 	private PowerUp p3 = new PowerUp(PowerUpType.PAVLOVA);

@@ -3,6 +3,9 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import cmdLineVersion.Battle;
+
+
 /**
  * VillainsLair Class for Heroes & Villains Game
  * SENG201 2018S1
