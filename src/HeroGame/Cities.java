@@ -24,7 +24,7 @@ public class Cities {
 	 * @param newTeam Team, Team of heroes being controlled by the player.
 	 * @param numOfCities int, Number of cities to be created
 	 */
-	Cities(Team newTeam, int numOfCities) {
+	public Cities(Team newTeam, int numOfCities) {
 		this.heroTeam = newTeam;
 		fillCityNames();
 		createCities(numOfCities);

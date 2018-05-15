@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HealingItemTest {
+public class TestHealingItem {
 	
 	HealingItem h1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
 	HealingItem h2 = new HealingItem(HealingItemType.LINDAUER);

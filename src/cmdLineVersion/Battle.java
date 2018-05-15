@@ -1,5 +1,11 @@
-package HeroGame;
+package cmdLineVersion;
 import java.util.Random;
+
+import HeroGame.Hero;
+import HeroGame.HeroType;
+import HeroGame.PowerUpType;
+import HeroGame.Team;
+import HeroGame.Villain;
 /**
  * Battle Class for Heroes & Villains Game
  * SENG201 2018S1

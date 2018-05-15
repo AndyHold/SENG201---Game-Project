@@ -1,4 +1,4 @@
-package HeroGame;
+package cmdLineVersion;
 import java.util.Scanner;
 
 /**

@@ -29,7 +29,7 @@ public class Hero {
 	 * @param heroName
 	 * @param heroType
 	 */
-	Hero(String heroName, HeroType heroType) {
+	public Hero(String heroName, HeroType heroType) {
 		this.heroName = heroName;
 		this.heroType = heroType;
 		this.description = heroType.getDescription();

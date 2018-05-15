@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TeamTest {
+public class TestTeam {
 	
 	public Team testTeam = new Team("Test Team");
 	public Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
