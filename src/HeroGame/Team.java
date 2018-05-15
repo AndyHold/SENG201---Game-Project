@@ -5,10 +5,7 @@ import java.util.Scanner;
 
 import cmdLineVersion.Selector;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c781486bec73269b4ccf3ce6f616f9f290b4c1a
 /**
  * Team Class for Heroes & Villains Game
  * SENG201 2018S1
