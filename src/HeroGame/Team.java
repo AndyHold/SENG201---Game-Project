@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import cmdLineVersion.Selector;
+
 /**
  * Team Class for Heroes & Villains Game
  * SENG201 2018S1
@@ -36,6 +38,26 @@ public class Team {
 		this.money = STARTING_MONEY;
 	}
 	
+	/**
+	 * The healing item Array List of the team
+	 * @return an ArrayList<HealingItem> of the Healing items in the Inventory
+	 */
+	public ArrayList<HealingItem> getHealingItems() {
+		return this.healingItems;
+	}
+	
+	/**
+	 * The power up Array List of the team
+	 * @return an ArrayList<PowerUp> of the Power ups in the Inventory
+	 */
+	public ArrayList<PowerUp> getPowerUps() {
+		return this.powerUps;
+	}
+	
+	/**
+	 * The member Array List of the team
+	 * @return an ArrayList<Hero> of the Heroes in the team
+	 */
 	public ArrayList<Hero> getMemberList() {
 		return this.memberList;
 	}

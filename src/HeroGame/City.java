@@ -1,4 +1,5 @@
 package HeroGame;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
@@ -46,6 +47,31 @@ public class City {
 	}
 	
 	
+	/**
+	 * Method to get the location in a given direction
+	 * @param direction Direction, direction of required location
+	 * @return Location, location in given direction for this city
+	 */
+	public Location getLocation(Direction direction) {
+		switch(direction) {
+		case NORTH:
+			return northArea;
+		case SOUTH:
+			return southArea;
+		case WEST:
+			return westArea;
+		case EAST:
+			return eastArea;
+		case CENTER:
+			return centerArea;
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Method to create and fill the ArrayList of badDirectionMessages, for use when the user tries to go the wrong way.
+	 */
 	private void setBadDirectionMessages() {
 		badDirectionMessages = new ArrayList<String>();
 		badDirectionMessages.add("Can't go that way cuz, Jake the Muss is down there");
@@ -57,12 +83,20 @@ public class City {
 	}
 	
 	
+	/**
+	 * Method to get a random error message for when the user tries to go the wrong way
+	 * @return String, Bad direction message
+	 */
 	public String getBadDirectionMessage() {
 		int n = rand.nextInt(this.badDirectionMessages.size());
 		return badDirectionMessages.get(n);
 	}
 	
 	
+	/**
+	 * Method to return Team current being controlled by the user
+	 * @return Team, Users team.
+	 */
 	public Team getTeam() {
 		return this.currentTeam;
 	}
@@ -128,18 +162,12 @@ public class City {
 	}
 	
 	
+	/**
+	 * Method to get the villain controlling this city
+	 * @return Villain, current city's villain
+	 */
 	public Villain getVillain() {
 		return this.cityVillain;
-	}
-	
-	
-//	public void launchCityScreen() {
-//		CityScreen cityScreen = new CityScreen(this);
-//	}
-	
-	
-	public void closeCityScreen() {
-		
 	}
 	
 	
@@ -365,7 +393,7 @@ public class City {
 	
 	@Override
 	public String toString() {
-		return "Welcome to " + cityName + "currently ruled by " + ruler;
+		return MessageFormat.format("Welcome to {0} currently ruled by {1}", cityName, ruler);
 	}
 	
 	

@@ -20,7 +20,7 @@ public enum Villain {
 			"Fair Dinkum! No chocky bikkies for you ya mongrel!", 
 			0,
 			200,
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
 
 	BADRUGBYREFEREE("Barry the Bad Referee", 
 			"I'm going to penalize you off the paddock!", 
@@ -28,7 +28,7 @@ public enum Villain {
 			"Thats a red card for you buddy!", 
 			1,
 			100, 
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
 	
 	BOUNCER("Dan the Doorman", 
 			"Sorry cuz, you've had a bit much to come in tonight!", 
@@ -36,7 +36,7 @@ public enum Villain {
 			"You look like you need a few waters!", 
 			2,
 			100, 
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
 	
 	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
 			"I'll put you on hold for the rest of your life!", 
@@ -44,7 +44,7 @@ public enum Villain {
 			"Let me put you through to our complaints department, Oh wait we don't have one!", 
 			3,
 			100,
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
 	
 	LAWYER("Lionel the Lawyer", 
 			"I object to your presence!", 
@@ -52,7 +52,7 @@ public enum Villain {
 			"You're contractually obliged to lose!",
 			4,
 			100, 
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
 	
 	POLITICIAN("Peter the Politician", 
 			"The people want what I say they want!", 
@@ -60,7 +60,7 @@ public enum Villain {
 			"Election promises are for losers!",
 			5,
 			100, 
-			new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))); 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))); 
 
 	
 	private String name;

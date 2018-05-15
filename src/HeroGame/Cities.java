@@ -1,4 +1,5 @@
 package HeroGame;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -71,15 +72,6 @@ public class Cities {
 		}
 	}
 	
-	/**
-	 * Run loop for Cities class GUI Version, calls each city in the stages ArrayList until completion.
-	 */
-	public void runCitiesGUI() {
-		for(City currentCity: this.stages) {
-			currentCity.runCity();
-		}
-	}
-	
 	
 	/**
 	 * Method to get a city from a given stage number.
@@ -101,6 +93,12 @@ public class Cities {
 		cityNames.add("Ohakune");
 		cityNames.add("Paeroa");
 		cityNames.add("Taihape");
+	}
+	
+	
+	@Override
+	public String toString() {
+		return MessageFormat.format("Cities class currently has {0} stages, and {1} options for city name left", stages.size(), cityNames.size());
 	}
 	
 		public static void main(String[] args) {

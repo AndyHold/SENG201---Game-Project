@@ -18,6 +18,7 @@ import java.awt.Dimension;
 
 import javax.swing.JButton;
 import java.beans.PropertyChangeListener;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -26,6 +27,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
 public class CityScreen {
@@ -50,9 +52,11 @@ public class CityScreen {
 	private GameManager manager;
 	private Direction currentDirection = Direction.CENTER;
 	private CityScreen cityScreen;
+	private JLabel welcomeLbl;
+	private JLabel rulerLbl;
 	
 	
-	public CityScreen(City newCity, Direction newDirection, GameManager newManager) {
+	CityScreen(City newCity, Direction newDirection, GameManager newManager) {
 		this.city = newCity;
 		this.manager = newManager;
 		this.currentDirection = newDirection;
@@ -64,16 +68,24 @@ public class CityScreen {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CityScreen window = new CityScreen();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		GameManager manager = new GameManager(); 
+		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
+		Team team = new Team("Team");
+		PowerUp cheeseRoll = new PowerUp(PowerUpType.CHEESE_ROLL);
+		PowerUp pavlova = new PowerUp(PowerUpType.PAVLOVA);
+		PowerUp pineappleLumps = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		HealingItem doubleBrown = new HealingItem(HealingItemType.DOUBLE_BROWN);
+		HealingItem lindauer = new HealingItem(HealingItemType.LINDAUER);
+		HealingItem lionRed = new HealingItem(HealingItemType.LION_RED);
+		team.addPowerUp(cheeseRoll);
+		team.addPowerUp(pavlova);
+		team.addPowerUp(pineappleLumps);
+		team.addHealingItem(doubleBrown);
+		team.addHealingItem(lindauer);
+		team.addHealingItem(lionRed);
+		team.addMember(hero);
+		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
+		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
 	}
 
 	
@@ -101,12 +113,10 @@ public class CityScreen {
 //			return buildShopPanel((Shop)currentLocation);
 			
 		case POWERUPDEN:
-//			return buildPowerUpDenPanel((PowerUpDen)currentLocation);
-			return new JPanel();
+			return buildPowerUpDenPanel((PowerUpDen)currentLocation);
 			
 		case HOSPITAL:
-//			return buildHospitalPanel((Hospital)currentLocation);
-			return new JPanel();
+			return buildHospitalPanel((Hospital)currentLocation);
 			
 		case HOMEBASE:
 //			return buildHomeBasePanel((HomeBase)currentLocation);
@@ -116,6 +126,204 @@ public class CityScreen {
 	}
 	
 	
+	
+	private JPanel buildPowerUpDenPanel(PowerUpDen powerUpDen) {
+		
+		JPanel powerUpDenPanel = new JPanel();
+		powerUpDenPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		powerUpDenPanel.setBounds(230, 55, 290, 265);
+		frame.getContentPane().add(powerUpDenPanel);
+		powerUpDenPanel.setMinimumSize(new Dimension(290, 265));
+		powerUpDenPanel.setLayout(null);
+		
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", powerUpDen.getName()));
+		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeMessageLbl.setBounds(10, 10, powerUpDenPanel.getWidth(), 15);
+		powerUpDenPanel.add(welcomeMessageLbl, 0);
+		
+		JLabel interiorPictureLbl = new JLabel("");
+		interiorPictureLbl.setIcon(powerUpDen.getInteriorImage());
+		interiorPictureLbl.setBounds(10, 35, 130, 190);
+		interiorPictureLbl.setBorder(new LineBorder(new Color(0, 0, 0)));
+		powerUpDenPanel.add(interiorPictureLbl, 1);
+				
+		JLabel heroChoiceLbl = new JLabel("Please Choose a Hero for the Power Up:");
+		heroChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		heroChoiceLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, 35, powerUpDenPanel.getWidth() - 160, 15);
+		powerUpDenPanel.add(heroChoiceLbl, 2);
+		
+		JComboBox<Hero> heroPickerComboBox = new JComboBox(this.city.getTeam().getMemberList().toArray());
+		heroPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		heroPickerComboBox.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, heroChoiceLbl.getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.add(heroPickerComboBox, 3);
+		heroPickerComboBox.setSelectedItem(null);
+		
+		JLabel itemChoiceLbl = new JLabel("Please Choose a Power Up:");
+		itemChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		itemChoiceLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 15);
+		powerUpDenPanel.add(itemChoiceLbl, 4);
+		System.out.println(powerUpDenPanel.getHeight());
+		
+		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
+		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		itemPickerComboBox.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.add(itemPickerComboBox, 5);
+		itemPickerComboBox.setSelectedItem(null);
+		
+		JButton applyItemBtn = new JButton("Apply Power Up");
+		applyItemBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		applyItemBtn.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (itemPickerComboBox.getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.add(applyItemBtn, 6);	
+		applyItemBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Hero hero = (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(3)).getSelectedItem();
+				if(hero != null) {
+					PowerUp powerUp = (PowerUp) ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
+					if(powerUp != null) {
+						String response = hero.eatPowerUp(powerUp);
+						int powerUpIndex = ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
+						city.getTeam().removePowerUp(powerUpIndex);
+						// DOESNT REMOVE THE ITEM FROM THE COMBOBOX AFTER USE
+						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(frame, MessageFormat.format(((PowerUpDen) city.getLocation(currentDirection)).getBadPowerUpMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});	
+		
+		JButton checkTimersBtn = new JButton("Check Current Power Ups");
+		checkTimersBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		checkTimersBtn.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,   (applyItemBtn.getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.add(checkTimersBtn, 7);
+		checkTimersBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				((JLabel) getPanel(currentDirection).getComponent(8)).setText(((PowerUpDen) city.getLocation(currentDirection)).checkPowerUps());
+				((JLabel) getPanel(currentDirection).getComponent(8)).setBorder(new LineBorder(new Color(0, 0, 0)));
+			}
+		});
+		
+		JLabel timesLbl = new JLabel("");
+		timesLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		timesLbl.setHorizontalAlignment(SwingConstants.LEADING);
+		timesLbl.setVerticalAlignment(SwingConstants.TOP);
+		timesLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,   checkTimersBtn.getY() + 25, powerUpDenPanel.getWidth() - 160, 65);
+		powerUpDenPanel.add(timesLbl, 8);
+		
+		powerUpDenPanel.setVisible(true);
+		return powerUpDenPanel;
+	}
+	
+	
+	/**
+	 * Method to construct a Hospital Panel
+	 * @param hospital Hospital, the hospital this panel is being constructed from
+	 * @return JPanel, the constructed panel for the hospital
+	 */
+	private JPanel buildHospitalPanel(Hospital hospital) {
+		
+		JPanel hospitalPanel = new JPanel();
+		hospitalPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		hospitalPanel.setBounds(230, 55, 290, 265);
+		frame.getContentPane().add(hospitalPanel);
+		hospitalPanel.setMinimumSize(new Dimension(290, 265));
+		hospitalPanel.setLayout(null);
+		hospitalPanel.addComponentListener(new ComponentAdapter() {
+			public void componentShown(ComponentEvent componentEvent) {
+				((Hospital) city.getLocation(currentDirection)).checkHealingTimes();
+			}
+		});
+		
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", hospital.getName()));
+		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeMessageLbl.setBounds(10, 10, hospitalPanel.getWidth(), 15);
+		hospitalPanel.add(welcomeMessageLbl, 0);
+		
+		JLabel interiorPictureLbl = new JLabel("");
+		interiorPictureLbl.setIcon(hospital.getInteriorImage());
+		interiorPictureLbl.setBounds(10, 35, 130, 190);
+		interiorPictureLbl.setBorder(new LineBorder(new Color(0, 0, 0)));
+		hospitalPanel.add(interiorPictureLbl, 1);
+				
+		JLabel heroChoiceLbl = new JLabel("Please Choose a Hero to Heal:");
+		heroChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		heroChoiceLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, 35, hospitalPanel.getWidth() - 160, 15);
+		hospitalPanel.add(heroChoiceLbl, 2);
+		
+		JComboBox<Hero> heroPickerComboBox = new JComboBox(this.city.getTeam().getMemberList().toArray());
+		heroPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		heroPickerComboBox.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, heroChoiceLbl.getY() + 15, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.add(heroPickerComboBox, 3);
+		heroPickerComboBox.setSelectedItem(null);
+		
+		JLabel itemChoiceLbl = new JLabel("Please Choose a Healing Item:");
+		itemChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		itemChoiceLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 15);
+		hospitalPanel.add(itemChoiceLbl, 4);
+		System.out.println(hospitalPanel.getHeight());
+		
+		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
+		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		itemPickerComboBox.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.add(itemPickerComboBox, 5);
+		itemPickerComboBox.setSelectedItem(null);
+		
+		JButton applyItemBtn = new JButton("Apply Item");
+		applyItemBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		applyItemBtn.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (itemPickerComboBox.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.add(applyItemBtn, 6);	
+		applyItemBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Hero hero = (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(3)).getSelectedItem();
+				if(hero != null) {
+					HealingItem healingItem = (HealingItem) ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
+					if(healingItem != null) {
+						double drinkTime = city.getTeam().getTime();
+						String response = hero.drinkHealingItem(healingItem, drinkTime);
+						int healingItemIndex = ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
+						city.getTeam().removeHealingItem(healingItemIndex);
+						// DOESNT REMOVE THE ITEM FROM THE COMBOBOX AFTER USE
+						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(frame, MessageFormat.format(((Hospital) city.getLocation(currentDirection)).getBadHealingItemMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});	
+		
+		JButton checkTimersBtn = new JButton("Check Timers");
+		checkTimersBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		checkTimersBtn.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,   (applyItemBtn.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.add(checkTimersBtn, 7);
+		checkTimersBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				((JLabel) getPanel(currentDirection).getComponent(8)).setText(((Hospital) city.getLocation(currentDirection)).checkHealingTimes());
+				((JLabel) getPanel(currentDirection).getComponent(8)).setBorder(new LineBorder(new Color(0, 0, 0)));
+			}
+		});
+		
+		JLabel timesLbl = new JLabel("");
+		timesLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		timesLbl.setHorizontalAlignment(SwingConstants.LEADING);
+		timesLbl.setVerticalAlignment(SwingConstants.TOP);
+		timesLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,   checkTimersBtn.getY() + 25, hospitalPanel.getWidth() - 160, 65);
+		hospitalPanel.add(timesLbl, 8);
+		
+		return hospitalPanel;
+	}
+	
+	
+	/**
+	 * Method to construct the panel containing the villains lair
+	 * @param villiansLair the villains lair this panel is constructed from
+	 * @return JPanel, the constructed panel for villains lair
+	 */
 	private JPanel buildVilliansLairPanel(VillainsLair villiansLair) {
 		JPanel villainsLairPanel = new JPanel();
 		
@@ -124,7 +332,8 @@ public class CityScreen {
 		villainsLairPanel.setMinimumSize(new Dimension(290, 265));
 		villainsLairPanel.setLayout(null);
 		
-		JLabel vLWelcomeMessageLbl = new JLabel("Welcome to " + villiansLair.getName());
+		JLabel vLWelcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", villiansLair.getName()));
+		vLWelcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		vLWelcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 		vLWelcomeMessageLbl.setBounds(10, 10, villainsLairPanel.getWidth(), 15);
 		villainsLairPanel.add(vLWelcomeMessageLbl, 0);
@@ -161,15 +370,7 @@ public class CityScreen {
 			public void actionPerformed(ActionEvent e) {
 				manager.closeCityScreen(cityScreen, city, currentDirection, (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(4)).getSelectedItem());
 			}
-		});
-		
-		JButton rollDiceBtn = new JButton("Roll the Dice");
-		rollDiceBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		rollDiceBtn.setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, 200, villainsLairPanel.getWidth() - 160, 25);
-		villainsLairPanel.add(rollDiceBtn, 6);
-		rollDiceBtn.setVisible(false);
-		
-		
+		});		
 		
 		return villainsLairPanel;
 	}
@@ -218,13 +419,31 @@ public class CityScreen {
 	}
 	
 	
+	/**
+	 * moves the Components in hospital panel when the panel is resized
+	 * @param hospitalPanel JPanel, hospital Panel
+	 */
 	private void hospitalResizeRules(JPanel hospitalPanel) {
-		
+		hospitalPanel.getComponent(0).setBounds(10, 10, hospitalPanel.getWidth(), 15);
+		hospitalPanel.getComponent(2).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, 35, hospitalPanel.getWidth() - 160, 15);
+		hospitalPanel.getComponent(3).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, hospitalPanel.getComponent(2).getY() + 15, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.getComponent(4).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (hospitalPanel.getComponent(3).getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 15);
+		hospitalPanel.getComponent(5).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, hospitalPanel.getComponent(4).getY() + 15, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.getComponent(6).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (hospitalPanel.getComponent(5).getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.getComponent(7).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,   (hospitalPanel.getComponent(6).getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 25);
+		hospitalPanel.getComponent(8).setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,   hospitalPanel.getComponent(7).getY() + 25, hospitalPanel.getWidth() - 160, 65);
 	}
 	
 	
 	private void powerUpDenResizeRules(JPanel powerUpDenPanel) {
-		
+		powerUpDenPanel.getComponent(0).setBounds(10, 10, powerUpDenPanel.getWidth(), 15);
+		powerUpDenPanel.getComponent(2).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, 35, powerUpDenPanel.getWidth() - 160, 15);
+		powerUpDenPanel.getComponent(3).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, powerUpDenPanel.getComponent(2).getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.getComponent(4).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (powerUpDenPanel.getComponent(3).getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 15);
+		powerUpDenPanel.getComponent(5).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, powerUpDenPanel.getComponent(4).getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.getComponent(6).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (powerUpDenPanel.getComponent(5).getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.getComponent(7).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,   (powerUpDenPanel.getComponent(6).getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 25);
+		powerUpDenPanel.getComponent(8).setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,   powerUpDenPanel.getComponent(7).getY() + 25, powerUpDenPanel.getWidth() - 160, 65);
 	}
 	
 	
@@ -234,7 +453,7 @@ public class CityScreen {
 	
 	
 	/**
-	 * moves the buttons in villains lair panel when the panel is resized
+	 * moves the Components in villains lair panel when the panel is resized
 	 * @param villiansLairPanel JPanel, villainsLair Panel
 	 */
 	private void villiansLairResizeRules(JPanel villainsLairPanel) {
@@ -242,7 +461,6 @@ public class CityScreen {
 		villainsLairPanel.getComponent(3).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, 35, villainsLairPanel.getWidth() - 160, 25);
 		villainsLairPanel.getComponent(4).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, (villainsLairPanel.getComponent(3).getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
 		villainsLairPanel.getComponent(5).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, (villainsLairPanel.getComponent(4).getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
-		villainsLairPanel.getComponent(6).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, villainsLairPanel.getHeight() - 65, villainsLairPanel.getWidth() - 160, 25);
 	}
 	
 	
@@ -361,6 +579,8 @@ public class CityScreen {
 				centerLocationPanel.setBounds(230, 55, frame.getWidth() - 260, frame.getHeight() - 105);
 				resizePanel(LocationType.HOMEBASE, centerLocationPanel);
 				movePanel.setBounds(40 , (165 + (frame.getHeight() - 270) / 2) , 150, 100);
+				welcomeLbl.setBounds(10, 10, frame.getWidth(), 15);
+				rulerLbl.setBounds(10, 30, frame.getWidth(), 15);
 			}
 		});
 		frame.setBounds(100, 100, 550, 370);
@@ -369,13 +589,15 @@ public class CityScreen {
 		frame.setMinimumSize(new Dimension(550, 370));
 		
 //		JLabel welcomeLbl = new JLabel("Welcome to ");
-		JLabel welcomeLbl = new JLabel("Welcome to " + city.getName());
+		welcomeLbl = new JLabel(MessageFormat.format("Welcome to {0}", city.getName()));
+		welcomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeLbl.setBounds(10, 10, 510, 15);
 		welcomeLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().add(welcomeLbl);
 		
 //		JLabel rulerLbl = new JLabel("Currently Ruled By: ");
-		JLabel rulerLbl = new JLabel("Currently Ruled By: " + this.city.getVillain().getName());
+		rulerLbl = new JLabel(MessageFormat.format("Currently Ruled By: {0}", this.city.getVillain().getName()));
+		rulerLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		rulerLbl.setBounds(10, 30, 510, 15);
 		rulerLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().add(rulerLbl);
@@ -405,73 +627,8 @@ public class CityScreen {
 		centerLocationPanel.setVisible(false);
 		setStartPanel();
 		
-//		JPanel villainsLairPanel = new JPanel();
-//		villainsLairPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		villainsLairPanel.setBounds(230, 55, 290, 265);
-//		frame.getContentPane().add(villainsLairPanel);
-//		villainsLairPanel.setMinimumSize(new Dimension(290, 265));
-//		villainsLairPanel.setLayout(null);
-////		villainsLairPanel.addComponentListener(new ComponentAdapter() {
-////			public void componentResized(ComponentEvent componentEvent) {
-////				villainsLairPanel.getComponent(3).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, 35, villainsLairPanel.getWidth() - 160, 25);
-////				villainsLairPanel.getComponent(4).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, (villainsLairPanel.getComponent(3).getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
-////				villainsLairPanel.getComponent(5).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140,  (villainsLairPanel.getComponent(4).getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
-////				villainsLairPanel.getComponent(6).setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, villainsLairPanel.getHeight() - 65, villainsLairPanel.getWidth() - 160, 25);
-////			}
-////		});
-//		
-//		JLabel vLWelcomeMessageLbl = new JLabel("Welcome to "); //Need to figure out how to get villains Lair name
-//		vLWelcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-//		vLWelcomeMessageLbl.setBounds(10, 10, 270, 15);
-//		villainsLairPanel.add(vLWelcomeMessageLbl);
-//		
-//		JLabel vLVillainPictureLbl = new JLabel("");
-//		vLVillainPictureLbl.setIcon(new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/aussie_cricketer.jpg")));
-//		vLVillainPictureLbl.setBounds(10, 35, 130, 190);
-//		vLVillainPictureLbl.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		villainsLairPanel.add(vLVillainPictureLbl);
-//		
-//		
-//		JLabel vLVillainNameLbl = new JLabel("Villain Name");
-////		JLabel vLVillainNameLbl = new JLabel(this.city.getVillain().getName());
-//		vLVillainNameLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-//		vLVillainNameLbl.setBounds(10, 235, 130, 15);
-//		villainsLairPanel.add(vLVillainNameLbl);
-//		
-//		JButton randomBattleBtn = new JButton("Pick a random battle");
-//		randomBattleBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-//		randomBattleBtn.setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, 35, villainsLairPanel.getWidth() - 160, 25);
-//		villainsLairPanel.add(randomBattleBtn);
-//		randomBattleBtn.setVisible(false);
-//		
-//		JButton paperScissorsRockBtn = new JButton("Paper Scissors Rock");
-//		paperScissorsRockBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-//		paperScissorsRockBtn.setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, (randomBattleBtn.getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
-//		villainsLairPanel.add(paperScissorsRockBtn);
-//		paperScissorsRockBtn.setVisible(false);
-//		
-//		JButton guessNumberBtn = new JButton("Guess a Number");
-//		guessNumberBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-//		guessNumberBtn.setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140,  (paperScissorsRockBtn.getY() + 25) + (villainsLairPanel.getHeight() - 175) / 3, villainsLairPanel.getWidth() - 160, 25);
-//		villainsLairPanel.add(guessNumberBtn);
-//		
-//		JButton rollDiceBtn = new JButton("Roll the Dice");
-//		rollDiceBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-//		rollDiceBtn.setBounds(((villainsLairPanel.getWidth() - 140) / 2) - (villainsLairPanel.getWidth() - 160) / 2 + 140, villainsLairPanel.getHeight() - 65, villainsLairPanel.getWidth() - 160, 25);
-//		villainsLairPanel.add(rollDiceBtn);
-//		
-//		JComboBox<Hero> heroPickerComboBox = new JComboBox(this.city.getTeam().getArray().toArray());
-//		heroPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
-//		heroPickerComboBox.setBounds(150, 60, 130, 25);
-//		villainsLairPanel.add(heroPickerComboBox);
-//		
-//		
-//		JLabel lblNewLabel = new JLabel("Please Choose a Hero:");
-//		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
-//		lblNewLabel.setBounds(150, 35, 130, 15);
-//		villainsLairPanel.add(lblNewLabel);
-//		villainsLairPanel.setVisible(true);
 		
+		//MAP PANEL
 		mapPanel = new JPanel();
 		mapPanel.setBackground(Color.DARK_GRAY);
 		mapPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -579,3 +736,6 @@ public class CityScreen {
 		lblMove.setFont(new Font("Tahoma", Font.BOLD, 13));
 	}
 }
+
+
+

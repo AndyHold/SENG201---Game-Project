@@ -1,7 +1,10 @@
 package HeroGame;
+import java.text.MessageFormat;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+
+import cmdLineVersion.Selector;
 
 /**
  * VillainsLair Class for Heroes & Villains Game
@@ -36,7 +39,7 @@ public class VillainsLair extends Location {
 	 * Method to list available options for player to choose from
 	 */
 	public void listOptions() {
-		System.out.println("Welcome to " + this.getName() + ":");
+		System.out.println(MessageFormat.format("Welcome to {0}:", this.getName()));
 		System.out.println("1) Move to another location");
 		System.out.println("2) Enter Villians Lair");
 	}
@@ -106,7 +109,7 @@ public class VillainsLair extends Location {
 
 	@Override
 	public String toString() {
-		return super.getName() + this.getName();
+		return MessageFormat.format("{0} currently ruled by {1}", this.getName(), this.cityVillain.getName());
 	}
 
 	public static void main(String[] args) {
