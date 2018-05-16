@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class PowerUpDen extends Location {
 	
 	
-	private ImageIcon interior = new ImageIcon(PowerUpDen.class.getResource("/HeroGame/Images/pub_interior.jpg"));
+	private ImageIcon interior = new ImageIcon(PowerUpDen.class.getResource("/HeroGame/Images/cafe_interior.jpg"));
 	private Random rand = new Random();
 	private ArrayList<String> badPowerUpMessages;
 	

@@ -39,7 +39,7 @@ public class Location {
 	
 	/**
 	 * Method to get icon
-	 * @return ImageIcon, icon ascociated with this location
+	 * @return ImageIcon, icon associated with this location
 	 */
 	public ImageIcon getIcon() {
 		return icon;
@@ -66,6 +66,7 @@ public class Location {
 	
 	/**
 	 * Method to get the selector for use in getting player input
+	 * Only used in the command line version of the game
 	 * @return Selector, The selector
 	 */
 	public Selector getSelector() {
@@ -75,6 +76,7 @@ public class Location {
 	
 	/**
 	 * Method to prompt user for a direction to move in
+	 * Used in command line version only
 	 * @return int, Number corresponding to the direction to travel in
 	 */
 	public int moveLocations() {

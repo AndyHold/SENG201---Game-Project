@@ -192,35 +192,35 @@ public class City {
 	 * Method to fill the HashMap with the location names for each city/location type.
 	 */
 	private void setPlaceNames() {
-		this.placeNames.put("Springfield HomeBase", "Springfield HomeBase");
-		this.placeNames.put("Springfield Hospital", "Springfield Hospital");
-		this.placeNames.put("Springfield PowerUpDen", "Springfield PowerUpDen");
+		this.placeNames.put("Springfield HomeBase", "Springfield Town Centre");
+		this.placeNames.put("Springfield Hospital", "The Bealey Hotel");
+		this.placeNames.put("Springfield PowerUpDen", "The Yelloshack Cafe");
 		this.placeNames.put("Springfield Shop", "Springfield Shop");
 		
-		this.placeNames.put("Te Puke HomeBase", "Te Puke HomeBase");
-		this.placeNames.put("Te Puke Hospital", "Te Puke Hospital");
-		this.placeNames.put("Te Puke PowerUpDen", "Te Puke PowerUpDen");
-		this.placeNames.put("Te Puke Shop", "Te Puke Shop");
+		this.placeNames.put("Te Puke HomeBase", "Pyes Pa, Te Puke");
+		this.placeNames.put("Te Puke Hospital", "Te Puke Tavern");
+		this.placeNames.put("Te Puke PowerUpDen", "The Daily Cafe");
+		this.placeNames.put("Te Puke Shop", "Te Puke New World");
 		
-		this.placeNames.put("Gore HomeBase", "Gore HomeBase");
-		this.placeNames.put("Gore Hospital", "Gore Hospital");
-		this.placeNames.put("Gore PowerUpDen", "Gore PowerUpDen");
-		this.placeNames.put("Gore Shop", "Gore Shop");
+		this.placeNames.put("Gore HomeBase", "Gore Country Music Club");
+		this.placeNames.put("Gore Hospital", "The Royal Hotel Gore");
+		this.placeNames.put("Gore PowerUpDen", "The Green Room Cafe");
+		this.placeNames.put("Gore Shop", "Gore Countdown");
 		
-		this.placeNames.put("Ohakune HomeBase", "Ohakune HomeBase");
-		this.placeNames.put("Ohakune Hospital", "Ohakune Hospital");
-		this.placeNames.put("Ohakune PowerUpDen", "Ohakune PowerUpDen");
-		this.placeNames.put("Ohakune Shop", "Ohakune Shop");
+		this.placeNames.put("Ohakune HomeBase", "Ohakune Carrot Adventure Park");
+		this.placeNames.put("Ohakune Hospital", "King's Pub Ohakune");
+		this.placeNames.put("Ohakune PowerUpDen", "Stutz Cafe");
+		this.placeNames.put("Ohakune Shop", "Ohakune Take Note Bookshop");
 		
-		this.placeNames.put("Paeroa HomeBase", "Paeroa HomeBase");
-		this.placeNames.put("Paeroa Hospital", "Paeroa Hospital");
-		this.placeNames.put("Paeroa PowerUpDen", "Paeroa PowerUpDen");
-		this.placeNames.put("Paeroa Shop", "Paeroa Shop");
+		this.placeNames.put("Paeroa HomeBase", "Paeroa Opera House");
+		this.placeNames.put("Paeroa Hospital", "Waikino Hotel Paeroa");
+		this.placeNames.put("Paeroa PowerUpDen", "Cosy Kitchen Cafe");
+		this.placeNames.put("Paeroa Shop", "Paeroa Op Shop");
 		
-		this.placeNames.put("Taihape HomeBase", "Taihape HomeBase");
-		this.placeNames.put("Taihape Hospital", "Taihape Hospital");
-		this.placeNames.put("Taihape PowerUpDen", "Taihape PowerUpDen");
-		this.placeNames.put("Taihape Shop", "Taihape Shop");
+		this.placeNames.put("Taihape HomeBase", "Taihape Railway Station");
+		this.placeNames.put("Taihape Hospital", "Gretna Hotel Taihape");
+		this.placeNames.put("Taihape PowerUpDen", "Le Cafe Telephonique");
+		this.placeNames.put("Taihape Shop", "Taihape Four Square");
 	}
 	
 	
@@ -244,7 +244,7 @@ public class City {
 	
 	
 	/**
-	 * Method to set each direction of the map with a random location.
+	 * Method to set each position on the map to a random location.
 	 */
 	public void setDirections() {
 		this.eastArea = this.getLocation();

@@ -50,16 +50,14 @@ public class TestHero {
 		//Empty constructor builds empty Hero with strength 100
 		Hero testHero1 = new Hero();
 		assertNull(testHero1.getType());
-		assertNull(testHero1.toString());
 		assertNull(testHero1.getAbility());
 		assertEquals(0, testHero1.getStrength());
 		assertEquals(100, testHero1.getHealth());
 		
 		//Parameterised Constructor fills out type and hence 
-		//description (toString), ability, strength
+		//ability, strength (and description - unused in final game
 		Hero testHero2 = new Hero("Jim", HeroType.ALL_BLACK);
 		assertEquals(HeroType.ALL_BLACK, testHero2.getType());
-		assertEquals("An All Black", testHero2.toString());
 		assertEquals("have a virtually unprecedented success in games. Wins 50% more games", testHero2.getAbility());
 		assertEquals(100, testHero2.getStrength());
 		assertEquals(100, testHero2.getHealth());

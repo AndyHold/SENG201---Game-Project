@@ -133,8 +133,7 @@ public class WelcomeScreen {
 				
 				manager.setNCities(Integer.parseInt(nCitiesBox.getSelectedItem().toString()));
 				manager.setNHeroes(Integer.parseInt(nHeroesBox.getSelectedItem().toString()));
-				//Test code
-				System.out.print(manager.getTeamName() + manager.getNCities() + manager.getNHeroes());
+				
 				
 				if (manager.getTeamName() != null) {
 					finishedWelcomeScreen();

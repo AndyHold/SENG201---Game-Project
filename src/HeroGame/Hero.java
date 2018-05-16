@@ -204,7 +204,7 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return description;
+		return heroName + " " + description;
 	}
 	
 	/**
@@ -223,6 +223,10 @@ public class Hero {
 		return counter;
 	}
 	
+	/**
+	 * Prints the status of a given hero. Used in the command line version of the game
+	 * @return a String detailing the name, description, health, strength of a hero and any power ups eaten
+	 */
 	public String heroStatus () {
 		String result = this.heroName + " is a " + this.getType().getDescription() + " with health " + this.health + " and strength " + this.strength + 
 				". \n";
@@ -231,13 +235,5 @@ public class Hero {
 		}
 		return result;
 	}
-	
-	//Test Code - delete
-	public static void main(String[] args) {
-		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
-		PowerUp p1 = new PowerUp(PowerUpType.PAVLOVA);
-		h1.eatPowerUp(p1);
-		h1.getPowerUp();
-		System.out.print(h1.heroStatus());
-	}
+
 }

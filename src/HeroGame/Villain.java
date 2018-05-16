@@ -28,7 +28,7 @@ public enum Villain {
 			"Thats a red card for you buddy!", 
 			1,
 			100, 
-			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/a_bad_referee.jpg"))),
 	
 	BOUNCER("Dan the Doorman", 
 			"Sorry cuz, you've had a bit much to come in tonight!", 
@@ -36,7 +36,7 @@ public enum Villain {
 			"You look like you need a few waters!", 
 			2,
 			100, 
-			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/bouncer.jpg"))), 
 	
 	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
 			"I'll put you on hold for the rest of your life!", 
@@ -44,7 +44,7 @@ public enum Villain {
 			"Let me put you through to our complaints department, Oh wait we don't have one!", 
 			3,
 			100,
-			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/call-center-girl.jpg"))),
 	
 	LAWYER("Lionel the Lawyer", 
 			"I object to your presence!", 
@@ -52,7 +52,7 @@ public enum Villain {
 			"You're contractually obliged to lose!",
 			4,
 			100, 
-			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))), 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/lawyer.jpg"))), 
 	
 	POLITICIAN("Peter the Politician", 
 			"The people want what I say they want!", 
@@ -60,7 +60,7 @@ public enum Villain {
 			"Election promises are for losers!",
 			5,
 			100, 
-			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))); 
+			new ImageIcon(Villain.class.getResource("/HeroGame/Images/politician.jpg"))); 
 
 	
 	private String name;
@@ -86,7 +86,10 @@ public enum Villain {
 		this.image = newImage;
 	}
 	
-	
+	/**
+	 * Returns the image associated with the Villain
+	 * @return an ImageIcon the image associated with the Villain
+	 */
 	public ImageIcon getImage() {
 		return this.image;
 	}
@@ -94,6 +97,7 @@ public enum Villain {
 	
 	/**
 	 * Method to change Strength of Villain
+	 * @param newStrength an int the amount the villain's strength is changed to
 	 */
 	public void changeStrength(int newStrength) {
 		this.currentStrength = newStrength;
@@ -110,13 +114,15 @@ public enum Villain {
 	
 	
 	/**
-	 * Method to set lair names for type of Villain selected and places them in a dictionary with city names as keys.
+	 * Method to set lair names for type of Villain selected and places them in a dictionary with city names as keys
+	 * so that Villains are matched with appropriate lairs.
 	 * Int selectors correspond as follows:
-	 * 0 = Bad Rugby Referee
-	 * 1 = Bouncer
-	 * 2 = Call Centre operator
-	 * 3 = Lawyer
-	 * 4 = Politician
+	 * 0 = Aussie Cricketer
+	 * 1 = Bad Rugby Referee
+	 * 2 = Bouncer
+	 * 3 = Call Centre operator
+	 * 4 = Lawyer
+	 * 5 = Politician
 	 */
 	private void setLairNames(int typeInt) {
 		switch (typeInt) {

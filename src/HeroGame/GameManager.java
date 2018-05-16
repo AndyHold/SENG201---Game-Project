@@ -83,8 +83,6 @@ public class GameManager {
 	
 	public void launchBattleScreen(Hero player, City city, Direction direction) {
 		BattleScreen battleScreen = new BattleScreen(player, city, heroTeam, this, direction);
-		//Andy - may be able to get villain via methods rather than passing in?
-		//Alex - I needed to pass in city to it anyway so i fixed it for you :-)
 	}
 	
 	public void closeBattleScreen(BattleScreen battleScreen, City city, Direction direction ) {
@@ -104,13 +102,14 @@ public class GameManager {
 	public static void main(String[] args) {
 		GameManager manager = new GameManager();
 		manager.launchWelcomeScreen();
-		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
-		Villain v1 = Villain.AUSSIECRICKETER;
-		Team t1 = new Team("Awesome");
-		City c1 = new City("Springfield", v1, t1);
-		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
-		t1.addMember(h1);
-		h1.eatPowerUp(p1);
+//**************Test code******************************************
+//		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
+//		Villain v1 = Villain.AUSSIECRICKETER;
+//		Team t1 = new Team("Awesome");
+//		City c1 = new City("Springfield", v1, t1);
+//		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+//		t1.addMember(h1);
+//		h1.eatPowerUp(p1);
 //		manager.launchBattleScreen(h1, c1, Direction.CENTER);
 
 	}

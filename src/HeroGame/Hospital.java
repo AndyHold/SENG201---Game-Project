@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class Hospital extends Location {
 	
 	
-	private ImageIcon interior = new ImageIcon(Hospital.class.getResource("/HeroGame/Images/cafe_interior.jpg"));
+	private ImageIcon interior = new ImageIcon(Hospital.class.getResource("/HeroGame/Images/pub_interior.jpg"));
 	private ArrayList<String> badHealingItemMessages;
 	private Random rand = new Random();
 	
