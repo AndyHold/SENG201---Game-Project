@@ -24,14 +24,15 @@ public class Hospital extends Location {
 	 * @param thisCity City, City containing the hospital.
 	 * @param newTeam Team, Team being controlled by the user.
 	 */
-	Hospital(City thisCity, Team newTeam) {
+	public Hospital(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " Hospital"), newTeam, thisCity.getName(), LocationType.HOSPITAL, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Hospital.png")));
 	setBadHealingItemMessages();
 	}
 	
 	
 	/**
-	 * Method to create and fill the ArrayList badHealingItems with error messages for no healing item
+	 * Method to create and fill the ArrayList badHealingItems with error messages for 
+	 * when no HealingItem is present
 	 */
 	private void setBadHealingItemMessages() {
 		badHealingItemMessages = new ArrayList<String>();
@@ -43,7 +44,7 @@ public class Hospital extends Location {
 	
 	/**
 	 * Method to return a random badHealingItem message for the error box.
-	 * @return String, message for the Error Box
+	 * @return String, message for the error box
 	 */
 	public String getBadHealingItemMessage() {
 		int n = rand.nextInt(badHealingItemMessages.size());
@@ -52,8 +53,8 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Method to get the image used for the interior of the hospital
-	 * @return ImageIcon, Image ascociated with the interior of the hospital
+	 * Method to get the image used for the interior of the Hospital
+	 * @return ImageIcon, Image associated with the interior of the Hospital
 	 */
 	public ImageIcon getInteriorImage() {
 		return interior;
@@ -61,7 +62,7 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Method to list available options for player to choose from
+	 * Method to list available options for player to choose from. Command line version only.
 	 */
 	public void listOptions() {
 		System.out.println("Welcome to " + this.getName() + ":");
@@ -72,7 +73,7 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Run loop for Hospital class
+	 * Run loop for Hospital class. Command line version only.
 	 * @return int, Number corresponding to the direction to move to next.
 	 */
 	public int runLocation() {
@@ -114,7 +115,7 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Prompts user for which healing item to use and which Hero to apply it to and does so.
+	 * Prompts user for which HealingItem to use and which Hero to apply it to and does so.
 	 */
 	public void useHealingItem() {
 		this.heroTeam.showHealingItems();
@@ -127,7 +128,7 @@ public class Hospital extends Location {
 	}
 	
 	/**
-	 * Check on healing times for each team member
+	 * Check on healing times for each Team member
 	 * @return a string the remaining time for each member
 	 */
 	public String checkHealingTimes() {
@@ -147,7 +148,7 @@ public class Hospital extends Location {
 
 	/**
 	 * Method to check if given direction is allowable.
-	 * @param n int, Number corresponding to the direction given by the player.
+	 * @param n int, Number corresponding to the direction given by the user.
 	 * @return boolean, returns true if player can move in that direction.
 	 */
 	private boolean moveCheck(int n) {
@@ -181,12 +182,6 @@ public class Hospital extends Location {
 	@Override
 	public String toString() {
 		return this.getName();
-	}
-
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

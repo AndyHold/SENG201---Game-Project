@@ -30,6 +30,12 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
+/**
+ * CityScreen Class for Heroes & Villains Game
+ * This is the primary running loop for the GUI game
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 public class CityScreen {
 
 	private JFrame frame;
@@ -55,8 +61,13 @@ public class CityScreen {
 	private JLabel welcomeLbl;
 	private JLabel rulerLbl;
 	
-	
-	CityScreen(City newCity, Direction newDirection, GameManager newManager) {
+	/**
+	 * Parameterised Constructor
+	 * @param newCity a City the City to be displayed/navigated
+	 * @param newDirection a Direction an instance of the Direction Enum
+	 * @param newManager a GameManager the manager maintaining state through the game
+	 */
+	public CityScreen(City newCity, Direction newDirection, GameManager newManager) {
 		this.city = newCity;
 		this.manager = newManager;
 		this.currentDirection = newDirection;
@@ -90,7 +101,7 @@ public class CityScreen {
 
 	
 	/**
-	 * Create the application.
+	 * Non Parameterised constructor. Unused? AH???
 	 */
 	public CityScreen() {
 		initialize();
@@ -98,7 +109,7 @@ public class CityScreen {
 
 	
 	/**
-	 * gets type of panel to build from the location in that direction then builds the panel.
+	 * Gets type of panel to build from the location in that direction then builds the panel.
 	 * @param currentLocation Location, location in the given compass direction
 	 * @return JPanel, panel of type dictated by the location given.
 	 */
@@ -320,9 +331,9 @@ public class CityScreen {
 	
 	
 	/**
-	 * Method to construct the panel containing the villains lair
-	 * @param villiansLair the villains lair this panel is constructed from
-	 * @return JPanel, the constructed panel for villains lair
+	 * Method to construct the panel containing the Villain's lair
+	 * @param villiansLair the Villain's lair this panel is constructed from
+	 * @return JPanel, the constructed panel for villain's lair
 	 */
 	private JPanel buildVilliansLairPanel(VillainsLair villiansLair) {
 		JPanel villainsLairPanel = new JPanel();

@@ -34,7 +34,7 @@ public class City {
 	 * @param newVillain Villain, Villain in the city
 	 * @param newTeam Team, Team being controlled by the player.
 	 */
-	City(String newName, Villain newVillain, Team newTeam) {
+	public City(String newName, Villain newVillain, Team newTeam) {
 		this.cityName = newName;
 		this.cityVillain = newVillain;
 		this.ruler = cityVillain.getName();
@@ -84,7 +84,7 @@ public class City {
 	
 	
 	/**
-	 * Method to get a random error message for when the user tries to go the wrong way
+	 * Method to  a random error message for occasions when the user tries to go the wrong way
 	 * @return String, Bad direction message
 	 */
 	public String getBadDirectionMessage() {
@@ -94,8 +94,8 @@ public class City {
 	
 	
 	/**
-	 * Method to return Team current being controlled by the user
-	 * @return Team, Users team.
+	 * Method to return Team currently being controlled by the user
+	 * @return Team, User's team.
 	 */
 	public Team getTeam() {
 		return this.currentTeam;
@@ -103,8 +103,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the location in the north area of the city
-	 * @return Location, north location of the city
+	 * Method to get the location in the north area of the current City
+	 * @return Location, north location of the current City
 	 */
 	public Location getNorthLocation() {
 		return this.northArea;
@@ -112,8 +112,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the location in the south area of the city
-	 * @return Location, south location of the city
+	 * Method to get the location in the south area of the current City
+	 * @return Location, south location of the current City
 	 */
 	public Location getSouthLocation() {
 		return this.southArea;
@@ -121,8 +121,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the location in the west area of the city
-	 * @return Location, west location of the city
+	 * Method to get the location in the west area of the current City
+	 * @return Location, west location of the current City
 	 */
 	public Location getWestLocation() {
 		return this.westArea;
@@ -130,8 +130,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the location in the east area of the city
-	 * @return Location, east location of the city
+	 * Method to get the location in the east area of the current City
+	 * @return Location, east location of the current City
 	 */
 	public Location getEastLocation() {
 		return this.eastArea;
@@ -139,8 +139,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the location in the west area of the city
-	 * @return Location, west location of the city
+	 * Method to get the location in the center area of the current City
+	 * @return Location, centre location of the current City
 	 */
 	public Location getCenterLocation() {
 		return this.centerArea;
@@ -148,7 +148,7 @@ public class City {
 	
 	
 	/**
-	 * prints the name of the location in each direction of the city map.
+	 * Prints the name of the location in each direction of the city map.
 	 */
 	public void showMap() {
 		System.out.println("To the South is:");
@@ -163,8 +163,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the villain controlling this city
-	 * @return Villain, current city's villain
+	 * Method to get the Villain controlling the current City
+	 * @return Villain, current City's Villain
 	 */
 	public Villain getVillain() {
 		return this.cityVillain;
@@ -172,8 +172,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get whether or not the city is mapped yet.
-	 * @return boolean, true if city is mapped already.
+	 * Method to get whether or not the City is mapped yet.
+	 * @return boolean, true if City is mapped already.
 	 */
 	public boolean isMapped() {
 		return this.mapped;
@@ -181,7 +181,7 @@ public class City {
 	
 	
 	/**
-	 * Method to change the city to mapped
+	 * Method to change the City to mapped
 	 */
 	public void makeMapped() {
 		this.mapped = true;
@@ -189,7 +189,7 @@ public class City {
 	
 	
 	/**
-	 * Method to fill the HashMap with the location names for each city/location type.
+	 * Method to fill the HashMap with the location names for each City/Location type.
 	 */
 	private void setPlaceNames() {
 		this.placeNames.put("Springfield HomeBase", "Springfield Town Centre");
@@ -225,7 +225,7 @@ public class City {
 	
 	
 	/**
-	 * consults the place name dictionary and returns the place name.
+	 * Looks up the placeName dictionary and returns the place name.
 	 * @param key String, City name and Place type representation.
 	 * @return String, PlaceName for location.
 	 */
@@ -235,8 +235,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get the city's name
-	 * @return String, Name of the city
+	 * Method to get the City's name
+	 * @return String, Name of the City
 	 */
 	public String getName() {
 		return this.cityName;
@@ -244,7 +244,7 @@ public class City {
 	
 	
 	/**
-	 * Method to set each position on the map to a random location.
+	 * Method to set each direction on the map (N, S, E, W to a random Location.
 	 */
 	public void setDirections() {
 		this.eastArea = this.getLocation();
@@ -259,8 +259,8 @@ public class City {
 	
 	
 	/**
-	 * Method to get a random location
-	 * @return Location Returns one of the four location types specific to this city.
+	 * Method to get a random Location
+	 * @return Location Returns one of the four Location types specific to this City.
 	 */
 	private Location getLocation() {
 		int n = this.rand.nextInt(availableLocations.size());
@@ -271,7 +271,7 @@ public class City {
 	
 	
 	/**
-	 * Method to fill the ArrayList availableLocations with the 4 types of location (excluding HomeBase)
+	 * Method to fill the ArrayList availableLocations with the 4 types of Location (excluding HomeBase)
 	 */
 	private void fillAvailableLocations() {
 		availableLocations.add(new VillainsLair(this, cityVillain, this.currentTeam));
@@ -282,7 +282,7 @@ public class City {
 	
 	
 	/**
-	 * run loop for this city.
+	 * Run loop for the current City.
 	 */
 	public void runCity() {
 //		launchCityScreen();
@@ -396,19 +396,18 @@ public class City {
 		return MessageFormat.format("Welcome to {0} currently ruled by {1}", cityName, ruler);
 	}
 	
-	
+	/* Test Code
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//		Team testTeam = new Team("Test Team");
-//		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
-//		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
-//		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
-//		testTeam.addMember(h1);
-//		testTeam.addMember(h2);
-//		testTeam.addMember(h3);
-//		Villain peter = Villain.AUSSIECRICKETER;
-//		City newCity = new City("Taihape", peter, testTeam);
-//		System.out.println(newCity.getName());
-	}
+		Team testTeam = new Team("Test Team");
+		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
+		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
+		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
+		testTeam.addMember(h1);
+		testTeam.addMember(h2);
+		testTeam.addMember(h3);
+		Villain peter = Villain.AUSSIECRICKETER;
+		City newCity = new City("Taihape", peter, testTeam);
+		System.out.println(newCity.getName());
+	}*/
 
 }

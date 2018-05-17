@@ -15,11 +15,11 @@ public class HomeBase extends Location {
 	
 
 	/**
-	 * Constructor for HomeBase Class Text Version
+	 * Constructor for HomeBase Class Command Line Version
 	 * @param cityName String, Name of the city HomeBase is located in.
 	 * @param newTeam Team, Team being controlled by the Player.
 	 */
-	HomeBase(City thisCity, Team newTeam) {
+	public HomeBase(City thisCity, Team newTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName(), LocationType.HOMEBASE, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/HomeBase.png")));
 		this.currentCity = thisCity;
 		super.setDirection(Direction.CENTER);
@@ -27,7 +27,7 @@ public class HomeBase extends Location {
 	
 	
 	/**
-	 * Shows the Teams Heroes and their current Status
+	 * Shows the Team's heroes and their current status
 	 */
 	public void teamStatus() {
 		super.heroTeam.listHeroes();
@@ -48,9 +48,9 @@ public class HomeBase extends Location {
 	
 	
 	/**
-	 * If the team has enough maps:
-	 * Consumes a map and lists the places in the current city.
-	 * Or if the city is mapped, lists the places in the current city.
+	 * If the Team has enough maps:
+	 * Consumes a map and lists the places in the current City.
+	 * If the City is mapped, lists the places in the current City.
 	 */
 	public void useMap() {
 		if(!this.currentCity.isMapped() && (this.heroTeam.getMaps() > 0)) {
@@ -67,7 +67,7 @@ public class HomeBase extends Location {
 	
 	
 	/**
-	 * Method to list available options for player to choose from
+	 * Method to list available options for player to choose from. Command line version of the game only
 	 */
 	public void listOptions() {
 		System.out.println("Current Options Are:");
@@ -78,8 +78,8 @@ public class HomeBase extends Location {
 	
 	
 	/**
-	 * Run loop for HomeBase class
-	 * @return int, Number corresponding to the direction to move to next.
+	 * Run loop for HomeBase class in the command line version of the game
+	 * @return int, number corresponding to the direction user wishes to move next
 	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
@@ -93,7 +93,7 @@ public class HomeBase extends Location {
 
 	
 	/**
-	 * Method to choose which method to run based on input from the user.
+	 * Method to choose which method to run based on input from the user. Command line version only
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in location and want to move, false if need menu again.
 	 */
@@ -128,9 +128,4 @@ public class HomeBase extends Location {
 		
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// TESTED FROM CITY CLASS
-	}
-
 }

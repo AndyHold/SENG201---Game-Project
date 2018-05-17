@@ -28,7 +28,7 @@ public class Location {
 	 * @param newCityName String, Name of the city containing the location
 	 * @param newType LocationType, Enum of the type of location
 	 */
-	Location(String locationName, Team newTeam, String newCityName, LocationType newType, ImageIcon newIcon) {
+	public Location(String locationName, Team newTeam, String newCityName, LocationType newType, ImageIcon newIcon) {
 		this.placeName = locationName;
 		this.heroTeam = newTeam;
 		this.cityName = newCityName;

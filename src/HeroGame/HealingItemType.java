@@ -42,48 +42,48 @@ public enum HealingItemType {
 		
 	}
 	/**
-	 * Getter method for cost of this healing item type
-	 * @return a double the cost of this healing item type
+	 * Getter method for cost of this HeslingItemType
+	 * @return a double the cost of this HealingItemType
 	 */
 	public double getCost() {
 		return cost;
 	}
 	
 	/**
-	 * Getter method for time taken to apply this healing item type(in seconds)
-	 * @return a double the time in seconds taken to apply this healing item type
+	 * Getter method for time taken to apply this HealingItemType(in seconds)
+	 * @return a double the time in seconds taken to apply this HealingItemType
 	 */
 	public double getApplyTime() {
 		return applyTime;
 	}
 	
 	/**
-	 * Getter method for the health effect of this healing item type
-	 * @return an int the amount added to a hero's health by this healing item type
+	 * Getter method for the health effect of this HealingItemType
+	 * @return an int the amount added to a hero's health by this HealingItemType
 	 */
 	public int getHealthValue() {
 		return healthValue;
 	}
 	
 	/**
-	 * Getter method for the desciption of this healing item type
-	 * @return a String the description of this healing item type
+	 * Getter method for the desciption of this HealingItemType
+	 * @return a String the description of this HealingItemType
 	 */
 	public String getDescription() {
 		return description;
 	}
 	
 	/**
-	 * Getter method for the long description of this healing item type
-	 * @return a String the long description of this healing item type
+	 * Getter method for the long description of this HealingItemType
+	 * @return a String the long description of this HealingItemType
 	 */
 	public String getLongDescription() {
 		return longDescription;
 	}
 		
 	/**
-	 * Getter method for the hero's response to this healing item type
-	 * @return a String the hero's response upon receiving this healing item type
+	 * Getter method for the Hero's response to this HealingItemType
+	 * @return a String the Hero's response upon receiving this HealingItemType
 	 */
 	public String getResponse() {
 		return response;

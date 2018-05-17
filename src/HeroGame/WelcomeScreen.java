@@ -15,11 +15,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
 /**
- * Welcome Screen Class for Heroes & Villains Game
+ * WelcomeScreen Class for Heroes & Villains Game
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
-
 public class WelcomeScreen {
 	
 	//Variables from spec

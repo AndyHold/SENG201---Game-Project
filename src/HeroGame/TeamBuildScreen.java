@@ -18,6 +18,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+/**
+ * TeamBuildScreen Class for Heroes & Villains Game
+ * Screen where heroes are selected, named and added to team
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 public class TeamBuildScreen {
 
 	private static final int MAX_HERO_NAME_LENGTH = 12;
@@ -256,6 +262,10 @@ public class TeamBuildScreen {
 		member_3.add(member3Type);
 	}
 	
+	/**
+	 * Pop out message to enter hero's name
+	 * @param heroType a HeroType the type of hero under construction
+	 */
 	public void nameEntry(HeroType heroType) {
 		String name;
 		if (manager.getTeam().getTeamSize() >= manager.getNHeroes()) {
@@ -275,7 +285,10 @@ public class TeamBuildScreen {
 		}
 	}
 	
-	public void updateRoster() {
+	/**
+	 * Updates the team roster panel as the heros are added
+	 */
+	private void updateRoster() {
 		if (manager.getTeam().getTeamSize() > 0) {
 			member1Name.setText("Name: "+ manager.getTeam().getHero(0).getName());
 			member1Type.setText("Type: " + manager.getTeam().getHero(0).getType().getDescription());
@@ -294,10 +307,16 @@ public class TeamBuildScreen {
 		
 	}
 	
+	/**
+	 * Close screen upon command
+	 */
 	public void closeScreen() {
 		frmNzCleanUp.dispose();
 	}
 	
+	/**
+	 * Externally callable method to close screen and return to manager
+	 */
 	public void finishedTeamBuildScreen() {
 		manager.closeTeamBuildScreen(this);
 	}

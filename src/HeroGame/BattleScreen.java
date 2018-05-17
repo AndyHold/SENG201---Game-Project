@@ -1,9 +1,4 @@
 package HeroGame;
-/**
- * Battle Class for Heroes & Villains Game
- * SENG201 2018S1
- * @author Andy Holden & Alex Liggett
- */
 
 import java.util.Random;
 import java.awt.EventQueue;
@@ -21,6 +16,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 
+
+/**
+ * BattleScreen Class for Heroes & Villains Game
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 public class BattleScreen {
 
 	private JFrame frmBattleTheVillain;
@@ -233,9 +234,8 @@ public class BattleScreen {
 	
 	/**
 	 * Rock paper scissors battle game decision mechanics
-	 * As per tradition, rock beats scissors, paper beats rock, scissors beat paper
-	 * No lizard or spock implemented at this stage
-	 * Decides game outcome and triggers the consequences
+	 * As per tradition, rock beats scissors, paper beats rock, scissors beat paper. 
+	 * No lizard or spock implemented at this stage.
 	 */
 	public void paperScissorsRock(){
 		villainChoice = rnd.nextInt(rPSChoices.length);
@@ -282,8 +282,8 @@ public class BattleScreen {
 	/**
 	 * Guess a number battle game
 	 * Player guesses a number between 1 & 10 (per game specification)
-	 * Villain says "higher" or "lower" and options adjust accordingly. 
-	 * Two attempts allowed (per game specification) 
+	 * Villain says "higher" or "lower". 
+	 * Two further attempts allowed (per game specification) 
 	 */
 	public void guessNumber(){
 		int max_num = 10; //From game specification
@@ -418,7 +418,8 @@ public class BattleScreen {
 	
 	/**
 	 * Randomly allocate a game to play
-	 * @return a String from the gameType list
+	 * @return a String from the gameType list.  
+	 * {"PaperScissorsRock", "GuessNumber", "RollDice"}
 	 */
 	public String randomGame() {
 		int gameTypeIndex = rnd.nextInt(gameTypes.length);
@@ -433,6 +434,9 @@ public class BattleScreen {
 
 	}
 	
+	/**
+	 * Externally callable method to close screen and return to game state manager
+	 */
 	public void finishedBattleScreen() {
 		manager.closeBattleScreen(this, city, direction);
 	}

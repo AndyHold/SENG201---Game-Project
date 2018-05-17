@@ -24,7 +24,7 @@ public class PowerUpDen extends Location {
 	 * @param thisCity City, city containing this power up den
 	 * @param heroTeam Team, current team being played by the user
 	 */
-	PowerUpDen(City thisCity, Team heroTeam) {
+	public PowerUpDen(City thisCity, Team heroTeam) {
 		super(thisCity.getPlaceName(thisCity.getName() + " PowerUpDen"), heroTeam, thisCity.getName(), LocationType.POWERUPDEN, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/PowerUpDen.png")));
 		setBadPowerUpMessages();
 	}
@@ -52,8 +52,8 @@ public class PowerUpDen extends Location {
 	
 	
 	/**
-	 * Method to get the image associated with the interior of the power up den
-	 * @return ImageIcon, image representing the interior of the power up den
+	 * Method to get the image associated with the interior of the PowerUpDen
+	 * @return ImageIcon, image representing the interior of the PowerUpDen
 	 */
 	public ImageIcon getInteriorImage() {
 		return interior;
@@ -61,7 +61,7 @@ public class PowerUpDen extends Location {
 	
 	
 	/**
-	 * Method to list available options for player to choose from
+	 * Method to list available options for player to choose from. Command line version only.
 	 */
 	public void listOptions() {
 		System.out.println("Welcome to " + this.getName() + ":");
@@ -73,7 +73,7 @@ public class PowerUpDen extends Location {
 	
 	/**
 	 * Run loop for PowerUpDen class
-	 * @return int, Number corresponding to the direction to move to next.
+	 * @return int, Number corresponding to the Direction to move to next.
 	 */
 	public int runLocation() {
 		boolean finishedInLocation = false;
@@ -89,7 +89,7 @@ public class PowerUpDen extends Location {
 	/**
 	 * Method to choose which method to run based on input from the user.
 	 * @param n int, used in the switch statement to find which method to run.
-	 * @return boolean, true if finished in location and want to move, false if need menu again.
+	 * @return boolean, true if finished in Location and want to move, false if need menu again.
 	 */
 	public boolean runOption(int n) {
 		
@@ -107,7 +107,7 @@ public class PowerUpDen extends Location {
 	
 	
 	/**
-	 * Method to prompt user for a power up and a hero and call the team to apply it.
+	 * Method to prompt user for a PowerUp and a Hero and call the Team to apply it.
 	 */
 	public void applyPowerUp() {		
 		heroTeam.showPowerUps();
@@ -119,7 +119,10 @@ public class PowerUpDen extends Location {
 		heroTeam.applyPowerUp(powerUpType, teamMemberIndex);
 	}
 
-
+	/**
+	 * Returns an HTML tagged String showing which Team members have PowerUps applied
+	 * @return an HTML tagged String showing which Team members have PowerUps applied
+	 */
 	public String checkPowerUps() {
 		String result = "<html>The following team members have power ups:<br>";
 		

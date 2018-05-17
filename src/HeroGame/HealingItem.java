@@ -11,10 +11,11 @@ public class HealingItem extends PowerItem {
 	private double applyTime; //In seconds
 	private int healthValue;
 	
-	/*
-	 * Healing item constructor
+	/**
+	 * HealingItem Constructor
+	 * @param healingItemType the type of HealingItem to be constructed
 	 */
-	HealingItem(HealingItemType healingItemType) {
+	public HealingItem(HealingItemType healingItemType) {
 		this.healingItemType = healingItemType;
 		super.setCost(healingItemType.getCost());
 		this.applyTime = healingItemType.getApplyTime();
@@ -26,31 +27,31 @@ public class HealingItem extends PowerItem {
 
 	/**
 	 * Getter method for healing item type
-	 * @return a Healing Item Type the type of healing item
+	 * @return a HealingItemType the type of HealingItem
 	 */
 	public HealingItemType getHealingItemType() {
 		return healingItemType;
 	}
 	
 	/**
-	 * Getter method for time taken to apply healing item (in seconds)
-	 * @return a double the time in seconds taken to apply the healing item
+	 * Getter method for time taken to apply HealingItem (in seconds)
+	 * @return a double the time in seconds taken to apply the HealingItem
 	 */
 	public double getApplyTime() {
 		return applyTime;
 	}
 	
 	/**
-	 * Getter method for the health effect of a healing item
-	 * @return an int the amount added to a hero's health by a healing item
+	 * Getter method for the health effect of a HealingItem
+	 * @return an int the amount added to a Hero's health by a HealingItem
 	 */
 	public int getHealthValue() {
 		return healthValue;
 	}
 	
 	/**
-	 * Setter method for the health effect of a healing item
-	 * @param healthValueChange an int the amount the health value changes by. Can be +/-
+	 * Setter method for the health effect of a HealingItem
+	 * @param healthValueChange an int the amount by which the health value changes. Can be +/-
 	 */
 	public void changeHealthValue(int healthValueChange) {
 		this.healthValue += healthValueChange;

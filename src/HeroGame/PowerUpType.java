@@ -28,9 +28,7 @@ public enum PowerUpType {
 	private String effect;
 	private String response;
 	
-	/*
-	 * PowerUp Constructor
-	 */
+	
 	PowerUpType(double costArg, String descriptionArg, String longDescriptionArg, String effectArg, String responseArg) {
 		this.cost = costArg;
 		this.description = descriptionArg;
@@ -40,40 +38,40 @@ public enum PowerUpType {
 	}
 	
 	/**
-	 * Getter method for cost of this power up type
-	 * @return a double the cost of this power up type
+	 * Getter method for cost of this PowerUpType
+	 * @return a double the cost of this PowerUpType
 	 */
 	public double getCost() {
 		return cost;
 	}
 	
 	/**
-	 * Getter method for description of this power up type 
-	 * @return a String the description of this power up type
+	 * Getter method for description of this PowerUpType
+	 * @return a String the description of this PowerUpType
 	 */
 	public String getDescription() {
 		return description;
 	}
 	
 	/**
-	 * Getter method for the long description of this power up type
-	 * @return a String the long description of this power up type
+	 * Getter method for the long description of this PowerUpType
+	 * @return a String the long description of this PowerUpType
 	 */
 	public String getLongDescription() {
 		return longDescription;
 	}
 	
 	/**
-	 * Getter method for the effect String of this power up type
-	 * @return a String the purported effect of this power up type
+	 * Getter method for the effect String of this PowerUpType
+	 * @return a String the purported effect of this PowerUpType
 	 */
 	public String getEffect() {
 		return effect;
 	}
 	
 	/**
-	 * Getter method for the hero's response to this power up type
-	 * @return a String the hero's response upon receiving this power up type
+	 * Getter method for the hero's response to this PowerUpType
+	 * @return a String the hero's response upon receiving this PowerUpType
 	 */
 	public String getResponse() {
 		return response;

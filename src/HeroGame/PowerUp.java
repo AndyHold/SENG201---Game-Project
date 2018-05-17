@@ -10,10 +10,11 @@ public class PowerUp extends PowerItem {
 	private String effect;
 	private PowerUpType powerUpType;
 	
-	/*
-	 * PowerUp Constructor
+	/**
+	 * PowerUp constructor
+	 * @param powerUpType a PowerUpType the type of PowerUp to be constructed
 	 */
-	PowerUp(PowerUpType powerUpType) {
+	public PowerUp(PowerUpType powerUpType) {
 		this.powerUpType = powerUpType;
 		super.setCost(powerUpType.getCost());
 		super.setDescription(powerUpType.getDescription());
@@ -24,16 +25,16 @@ public class PowerUp extends PowerItem {
 	
 	
 	/**
-	 * Getter method for the effect that this power up has
-	 * @return a String, the effect that this power up has when used
+	 * Getter method for the effect that this PowerUp has
+	 * @return a String, the effect that this PowerUp has when used
 	 */
 	public String getEffect() {
 		return effect;
 	}
 	
 	/**
-	 * Getter method for the type of an individual power up
-	 * @return a PowerUpType the type of this power up
+	 * Getter method for the type of an individual PowerUp 
+	 * @return a PowerUpType the type of this PowerUp 
 	 */
 	public PowerUpType getType() {
 		return powerUpType;

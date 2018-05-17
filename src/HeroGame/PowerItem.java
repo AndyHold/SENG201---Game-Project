@@ -1,8 +1,8 @@
 package HeroGame;
 
 /**
- * PowerItem SuperClass for Heroes & Villains Game
- * Superclass for HealingItem and PowerUp
+ * PowerItem SuperClass for Heroes & Villains Game. 
+ * SuperClass for HealingItem and PowerUp
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */

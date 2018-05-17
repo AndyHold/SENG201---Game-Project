@@ -38,24 +38,24 @@ public class Hero {
 		}
 			
 	/**
-	 * Setter method for individual hero name
-	 * @param newHeroName a String, the individual hero's name
+	 * Setter method for individual Hero name
+	 * @param newHeroName a String, the individual Hero's name
 	 */
 	public void setName(String newHeroName) {
 		this.heroName = newHeroName;
 	}
 	
 	/**
-	 * Getter method for individual hero's name
-	 * @return a String, the hero's name
+	 * Getter method for individual Hero's name
+	 * @return a String, the Hero's name
 	 */
 	public String getName() {
 		return heroName;
 	}
 	
 	/**
-	 * Getter method for individual hero's type
-	 * @return a HeroType, the hero's type
+	 * Getter method for individual Hero's type
+	 * @return a HeroType, the Hero's type
 	 */
 	public HeroType getType() {
 		return heroType;
@@ -63,16 +63,16 @@ public class Hero {
 	
 		
 	/**
-	 * Getter method for particular hero's special ability
-	 * @return a String containing a description of the hero's special ability
+	 * Getter method for particular Hero's special ability
+	 * @return a String containing a description of the Hero's special ability
 	 */
 	public String getAbility() {
 		return ability;
 	}
 	
 	/**
-	 * Getter method for particular hero's strength
-	 * @return an int the hero's current strength
+	 * Getter method for particular Hero's strength
+	 * @return an int the Hero's current strength
 	 */
 	public int getStrength() {
 		return strength;
@@ -80,8 +80,8 @@ public class Hero {
 	
 	/**
 	 * Method for adding or subtracting strength from Hero
-	 * @param strengthChange an int, the amount by which the hero's strength is to be changed
-	 * @return an int, the hero's strength after the change
+	 * @param strengthChange an int, the amount by which the Hero's strength is to be changed
+	 * @return an int, the Hero's strength after the change
 	 */
 	public int changeStrength(int strengthChange) {
 		this.strength += strengthChange;
@@ -89,8 +89,8 @@ public class Hero {
 	}
 	
 	/**
-	 * Getter method for particular hero's health
-	 * @return an int the hero's current health
+	 * Getter method for particular Hero's health
+	 * @return an int the Hero's current health
 	 */
 	public int getHealth() {
 		return health;
@@ -98,8 +98,8 @@ public class Hero {
 	
 	/**
 	 * Method for adding or subtracting health from Hero
-	 * @param healthChange an int, the amount by which the hero's health is to be changed
-	 * @return an int, the hero's health after the change
+	 * @param healthChange an int, the amount by which the Hero's health is to be changed
+	 * @return an int, the Hero's health after the change
 	 */
 	public int changeHealth(int healthChange) {
 		this.health += healthChange;
@@ -108,23 +108,23 @@ public class Hero {
 	
 	/**
 	 * Getter method to return any PowerUp that the Hero has eaten
-	 * @return a PowerUp, the PowerUp most recently eaten by the hero
+	 * @return a PowerUp, the PowerUp most recently eaten by the Hero
 	 */
 	public PowerUp getPowerUp() {
 		return powerUpEaten;
 	}
 	
 	/**
-	 * Clears any power ups the Hero has eaten back to null
+	 * Clears any PowerUps the Hero has eaten back to null
 	 */
 	public void clearPowerUp() {
 		this.powerUpEaten = null;
 	}
 	
 	/**
-	 * Setter method to have hero eat power up
+	 * Setter method to have Hero eat PowerUp
 	 * @param powerUpToEat
-	 * @return a String the hero's response to eating the power up
+	 * @return a String the Hero's response to eating the PowerUp
 	 */
 	public String eatPowerUp(PowerUp powerUpToEat) {
 		this.powerUpEaten = powerUpToEat;
@@ -134,10 +134,10 @@ public class Hero {
 	}
 	
 	/**
-	 * Starts process of applying healing item by setting time value when item will apply
-	 * @param healingItemToDrink the type of healing item to be applied
-	 * @param drinkTime the time in seconds int he game when the healing item was drunk
-	 * @return a string the hero's response to drinking the healing item
+	 * Starts process of applying HealingItem by setting time value when item will apply
+	 * @param healingItemToDrink the type of HealingItem to be applied
+	 * @param drinkTime the time in seconds in the game when the HealingItem was drunk
+	 * @return a string the hero's response to drinking the HealingItem
 	 */
 	public String drinkHealingItem(HealingItem healingItemToDrink, double drinkTime) {
 		this.healingItemTime = drinkTime + healingItemToDrink.getApplyTime();
@@ -149,10 +149,10 @@ public class Hero {
 
 	
 	/**
-	 * Check whether the apply time on a healing item has been fulfilled. After certain time
+	 * Check whether the apply time on a HealingItem has been fulfilled. After certain time
 	 * applies a percentage of the health benefit and reduces the amount remaining
 	 * @param currentTime a double the time in seconds since the start of play
-	 * @return a double the time remaining before the healing item will fully apply. O if it can apply now, or if none present.
+	 * @return a double the time remaining before the HealingItem will fully apply. O if it can apply now, or if none present.
 	 */
 	public double checkHealingItemTime(double currentTime) {
 		double remainingTime = this.healingItemTime - currentTime;
@@ -208,8 +208,8 @@ public class Hero {
 	}
 	
 	/**
-	 * Prints to output a list of the available heros in type Hero, and their abilities
-	 * @return an Int, the number of different heroes available
+	 * Prints to output a list of the available heroes in type Hero, and their abilities
+	 * @return an int, the number of different heroes available
 	 */
 	public int printHeroList() {
 		int counter = 0;
@@ -224,8 +224,8 @@ public class Hero {
 	}
 	
 	/**
-	 * Prints the status of a given hero. Used in the command line version of the game
-	 * @return a String detailing the name, description, health, strength of a hero and any power ups eaten
+	 * Prints the status of a given Hero. Used in the command line version of the game
+	 * @return a String detailing the name, description, health, strength of a Hero and any PowerUps eaten
 	 */
 	public String heroStatus () {
 		String result = this.heroName + " is a " + this.getType().getDescription() + " with health " + this.health + " and strength " + this.strength + 

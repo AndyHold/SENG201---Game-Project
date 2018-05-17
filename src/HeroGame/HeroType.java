@@ -29,24 +29,24 @@ public enum HeroType {
 	}
 	
 	/**
-	 * Getter method for hero type's description
-	 * @return a String containing a short description of the hero 
+	 * Getter method for HeroType's description
+	 * @return a String containing a short description of this HeroType 
 	 */
 	public String getDescription() {
 		return description;
 	}
 	
 	/**
-	 * Getter method for hero type's special ability
-	 * @return a String containing a description of the hero type's special ability
+	 * Getter method for HeroType's special ability
+	 * @return a String containing a description of the HeroType's special ability
 	 */
 	public String getAbility() {
 		return ability;
 	}
 	
 	/**
-	 * Getter method for particular hero type's default strength
-	 * @return an int the hero type's default strength
+	 * Getter method for particular HeroType's default strength
+	 * @return an int the HeroType's default strength
 	 */
 	public int getStrength() {
 		return strength;
