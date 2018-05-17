@@ -75,6 +75,14 @@ public class CityScreen {
 		initialize();
 		this.frame.setVisible(true);
 	}
+	
+	/**
+	 * Closes the screen when required
+	 */
+	public void closeScreen() {
+		this.frame.dispose();
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -174,7 +182,7 @@ public class CityScreen {
 		itemChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		itemChoiceLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 15);
 		powerUpDenPanel.add(itemChoiceLbl, 4);
-		System.out.println(powerUpDenPanel.getHeight());
+		
 		
 		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -275,7 +283,6 @@ public class CityScreen {
 		itemChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		itemChoiceLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 15);
 		hospitalPanel.add(itemChoiceLbl, 4);
-		System.out.println(hospitalPanel.getHeight());
 		
 		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));

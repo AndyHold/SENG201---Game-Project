@@ -124,7 +124,7 @@ public class GameManager {
 	 * @param hero the Hero chosen for the current Battle
 	 */
 	public void closeCityScreen(CityScreen cityScreen, City city, Direction direction, Hero hero) {
-		
+		cityScreen.closeScreen();
 		BattleScreen battlescreen = new BattleScreen(hero, city, heroTeam, this, direction);
 	}
 	
