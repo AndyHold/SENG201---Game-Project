@@ -47,7 +47,7 @@ public class BattleScreen {
 	private String rPSChoices[] = {"Rock", "Paper", "Scissors"}; 
 	private JComboBox rpsComBox = new JComboBox(rPSChoices);
 	//Specific to Guess Number Game
-	private String guessNumChoices[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	private String guessNumChoices[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	private JComboBox numComBox = new JComboBox(guessNumChoices);
 	private int attempts;
 	private int MAX_ATTEMPTS = 2; //From game spec
@@ -304,6 +304,15 @@ public class BattleScreen {
 		}
 		//*******************************************************
 		
+		//*****Skew game if Foster Mum is playing*****************
+		if (player.getType() == HeroType.FOSTER_MUM) {
+			boolean canSeeFuture = rnd.nextBoolean();
+			if (canSeeFuture) {
+				txtrHint.setText("With her long experience of the human condition, " + player.getName() + 
+						" can tell that " + baddie.getName() + " is thinking of a " + villainChoice);
+			}
+		}
+		//************************************************************
 		
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -373,6 +382,16 @@ public class BattleScreen {
 	 */
 	public void battleConsequence(String result) {
 		int damage = 34; //Damage in a normal fight. 1/3 of normal strength
+		boolean stillWins = rnd.nextBoolean();
+		
+		if (result == "lose") { //But hero is an All Black - half the time randomly wins anyway
+			if (player.getType() == HeroType.ALL_BLACK && stillWins) {
+				JOptionPane.showMessageDialog(frmBattleTheVillain, "In a surprise twist, " + player.getName() + " the All Black slots a drop goal from 50m out "
+						+ "to win the game", "Hooray", JOptionPane.INFORMATION_MESSAGE);
+				result = "win";
+			}
+		}
+		
 		if (result == "win") {
 			damage = ((player.getStrength()/3) + 1);//Roughly 3 games to finish an opponent - per inconsistent game spec
 			baddie.takeDamage(damage);
@@ -383,8 +402,9 @@ public class BattleScreen {
 				finishedBattleScreen();
 				
 			}
-		} else if (result == "lose") {
+		} else if (result == "lose") {	
 			damage = ((baddie.getStrength()/3) + 1);
+			
 			if (player.getType() == HeroType.RETURNED_SERVICEMAN) {//Returned serviceman takes half damage
 				damage /= 2; 
 			}
