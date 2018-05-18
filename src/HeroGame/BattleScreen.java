@@ -399,12 +399,15 @@ public class BattleScreen {
 			damage = ((player.getStrength()/3) + 1);//Roughly 3 games to finish an opponent - per inconsistent game spec
 			baddie.takeDamage(damage);
 			lblVillainHealth.setText("Health: " +  baddie.getHealth());
-			if (!baddie.isAlive()) {
+			if (!baddie.isAlive() && baddie != Villain.AUSSIECRICKETER) {//Non-final baddie is dead
 				JOptionPane.showMessageDialog(frmBattleTheVillain, baddie.getName() + " is dead! You will now move on to the next town.",
 						"Hooray", JOptionPane.INFORMATION_MESSAGE);
+				rewards();
 				finishedBattleScreen();
-				
+			} else if (!baddie.isAlive() && baddie == Villain.AUSSIECRICKETER) { //Game is over
+				finishedBattleScreen();
 			}
+			
 		} else if (result == "lose") {	
 			damage = ((baddie.getStrength()/3) + 1);
 			
@@ -424,6 +427,37 @@ public class BattleScreen {
 		btnPlayAgain.setVisible(true);
 	}
 	
+	/**
+	 * Randomly generates the team's cash reward for finishing the Villain, and gives the option to gamble for more
+	 */
+	public void rewards() {
+		int reward = (rnd.nextInt(11) + 5); //generate a random amount between 5 and 15
+		int gamble = JOptionPane.showConfirmDialog(frmBattleTheVillain, "<html>The townsfolk have a whip around, and present you with the "
+				+ "princely sum of $" + reward + ".<br>On the way out of town, the team passes the local pokie room. "
+						+ "Would you like to try to double their reward?</html>",
+				"Hooray", JOptionPane.YES_NO_OPTION);
+		if (gamble == JOptionPane.YES_OPTION) {
+			reward = gamble(reward);
+		}
+		team.changeMoney((double)reward);
+	}
+	
+	/**
+	 * Gamble the Team's reward on the pokies to either double it or lose it
+	 * @param reward an int the amount the Team received from the townsfolk
+	 * @return an int How much money the Team gets back from gambling
+	 */
+	public int gamble(int reward) {
+		boolean moneyDoubled = rnd.nextBoolean();
+		if (moneyDoubled) {
+			JOptionPane.showMessageDialog(frmBattleTheVillain, "Well done. By enabling the team's gambling habit you doubled their reward.",
+					"Hooray", JOptionPane.INFORMATION_MESSAGE);
+			return reward * 2;
+		} else
+			JOptionPane.showMessageDialog(frmBattleTheVillain, "The team lost their reward on the pokies. Remember kids, gambling is a tax on the stupid.",
+					"Uh-Oh...", JOptionPane.ERROR_MESSAGE);
+			return 0;
+	}
 
 	
 	/**
