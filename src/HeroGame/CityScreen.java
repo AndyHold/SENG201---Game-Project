@@ -90,18 +90,12 @@ public class CityScreen {
 		GameManager manager = new GameManager(); 
 		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
 		Team team = new Team("Team");
-		PowerUp cheeseRoll = new PowerUp(PowerUpType.CHEESE_ROLL);
-		PowerUp pavlova = new PowerUp(PowerUpType.PAVLOVA);
-		PowerUp pineappleLumps = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		HealingItem doubleBrown = new HealingItem(HealingItemType.DOUBLE_BROWN);
-		HealingItem lindauer = new HealingItem(HealingItemType.LINDAUER);
-		HealingItem lionRed = new HealingItem(HealingItemType.LION_RED);
-		team.addPowerUp(cheeseRoll);
-		team.addPowerUp(pavlova);
-		team.addPowerUp(pineappleLumps);
-		team.addHealingItem(doubleBrown);
-		team.addHealingItem(lindauer);
-		team.addHealingItem(lionRed);
+		team.addPowerUp(PowerUpType.CHEESE_ROLL);
+		team.addPowerUp(PowerUpType.PAVLOVA);
+		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
+		team.addHealingItem(HealingItemType.LINDAUER);
+		team.addHealingItem(HealingItemType.LION_RED);
 		team.addMember(hero);
 		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
 		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
@@ -119,8 +113,7 @@ public class CityScreen {
 			return buildVilliansLairPanel((VillainsLair)currentLocation);
 			
 		case SHOP:
-			return new JPanel();
-//			return buildShopPanel((Shop)currentLocation);
+			return buildShopPanel((Shop)currentLocation);
 			
 		case POWERUPDEN:
 			return buildPowerUpDenPanel((PowerUpDen)currentLocation);
@@ -135,6 +128,45 @@ public class CityScreen {
 		return null;
 	}
 	
+	
+	/**
+	 * Method to construct a Shop Panel
+	 * @param shop Shop, the shop this panel is being constructed from
+	 * @return JPanel, the constructed panel for the shop
+	 */
+	private JPanel buildShopPanel(final Shop shop) {
+		
+		JPanel shopPanel = new JPanel();
+		shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		shopPanel.setBounds(230, 55, 290, 265);
+		frame.getContentPane().add(shopPanel);
+		shopPanel.setMinimumSize(new Dimension(290, 265));
+		shopPanel.setLayout(null);
+		
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", shop.getName()));
+		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeMessageLbl.setBounds(10, 10, shopPanel.getWidth(), 15);
+		shopPanel.add(welcomeMessageLbl, 0);
+		
+		JLabel interiorPictureLbl = new JLabel("");
+		interiorPictureLbl.setIcon(shop.getInteriorImage());
+		interiorPictureLbl.setBounds(10, 35, 130, 190);
+		interiorPictureLbl.setBorder(new LineBorder(new Color(0, 0, 0)));
+		shopPanel.add(interiorPictureLbl, 1);
+				
+		JButton speakToVendorBtn = new JButton("Talk to the Vendor");
+		speakToVendorBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		speakToVendorBtn.setBounds(((shopPanel.getWidth() - 140) / 2) - (shopPanel.getWidth() - 160) / 2 + 140,  35 + (shopPanel.getHeight() - 60) / 2, shopPanel.getWidth() - 160, 25);
+		shopPanel.add(speakToVendorBtn, 2);	
+		speakToVendorBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchVendorScreen(currentDirection, city, shop, cityScreen);
+			}
+		});	
+		
+		return shopPanel;
+	}
 	
 	
 	private JPanel buildPowerUpDenPanel(PowerUpDen powerUpDen) {
@@ -456,8 +488,9 @@ public class CityScreen {
 	}
 	
 	
-	private void shopResizeRules(JPanel shopLocationPanel) {
-		
+	private void shopResizeRules(JPanel shopPanel) {
+		shopPanel.getComponent(2).setBounds(((shopPanel.getWidth() - 140) / 2) - (shopPanel.getWidth() - 160) / 2 + 140,  35 + (shopPanel.getHeight() - 60) / 2, shopPanel.getWidth() - 160, 25);
+		shopPanel.getComponent(0).setBounds(10, 10, shopPanel.getWidth(), 15);
 	}
 	
 	

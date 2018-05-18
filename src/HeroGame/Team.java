@@ -1,4 +1,5 @@
 package HeroGame;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -92,6 +93,34 @@ public class Team {
 			memberList.remove(heroIndex);
 		}
 		return memberList.size();
+	}
+	
+	
+	/**
+	 * Method to get a list of power ups the team currently has in html format
+	 * @return String, list of power ups
+	 */
+	public String listPowerUps() {
+		String result = "<html><center>Your Power Up Items:<br>";
+		for(PowerUp powerUp: this.powerUps) {
+			result += MessageFormat.format("{0} x{1}<br>", powerUp.toString(), powerUp.getAmount());
+		}
+		result += "</center></html>";
+		return result;
+	}
+	
+	
+	/**
+	 * Method to get a list of healing Items the team currently has in html format
+	 * @return String, list of healing Items
+	 */
+	public String listHealingItems() {
+		String result = "<html><center>Your Healing Items:<br>";
+		for(HealingItem healingItem: this.healingItems) {
+			result += MessageFormat.format("{0} x{1}<br>", healingItem.toString(), healingItem.getAmount());
+		}
+		result += "</center></html>";
+		return result;
 	}
 	
 	
@@ -226,8 +255,14 @@ public class Team {
 	 * Adds a power up to the team's inventory
 	 * @param powerUp a PowerUp, the power up to add to the team's inventory 
 	 */
-	public int addPowerUp(PowerUp powerUp){
-		this.powerUps.add(powerUp);
+	public int addPowerUp(PowerUpType powerUp){
+		PowerUp newPowerUp = new PowerUp(powerUp);
+		if(this.powerUps.contains(newPowerUp)) {
+			int n = this.powerUps.indexOf(newPowerUp);
+			this.powerUps.get(n).changeAmount(1);
+		} else {
+			this.powerUps.add(newPowerUp);
+		}
 		return powerUps.size();
 	}
 	
@@ -237,7 +272,11 @@ public class Team {
 	 */
 	public int removePowerUp(int powerUpIndex){
 		if (powerUpIndex >= 0 && powerUpIndex < powerUps.size()) {
-			this.powerUps.remove(powerUpIndex);
+			if(this.powerUps.get(powerUpIndex).getAmount() > 1) {
+				this.powerUps.get(powerUpIndex).changeAmount(-1);
+			} else {
+				this.powerUps.remove(powerUpIndex);
+			}
 		}
 		return powerUps.size();
 	}
@@ -331,11 +370,17 @@ public class Team {
 	 * power of item doubles
 	 * @param healingItem a HealingItem, the healing item to add to the team's inventory 
 	 */
-	public int addHealingItem(HealingItem healingItem){
+	public int addHealingItem(HealingItemType healingItemType){
+		HealingItem healingItem = new HealingItem(healingItemType);
 		if (this.checkPresent(HeroType.NURSE)) {//Apply special power of nurse if present 
 			healingItem.changeHealthValue(healingItem.getHealthValue());
 		}
-		this.healingItems.add(healingItem);
+		if(this.healingItems.contains(healingItem)) {
+			int n = this.healingItems.indexOf(healingItem);
+			this.healingItems.get(n).changeAmount(1);
+		} else {
+			this.healingItems.add(healingItem);
+		}
 		return healingItems.size();
 	}
 	
@@ -345,7 +390,11 @@ public class Team {
 	 */
 	public int removeHealingItem(int healingItemIndex){
 		if (healingItemIndex >= 0 && healingItemIndex < healingItems.size()) {
-			this.healingItems.remove(healingItemIndex);
+			if(this.healingItems.get(healingItemIndex).getAmount() > 1) {
+				this.healingItems.get(healingItemIndex).changeAmount(-1);
+			} else {
+				this.healingItems.remove(healingItemIndex);
+			}
 		}
 		return healingItems.size();
 	}

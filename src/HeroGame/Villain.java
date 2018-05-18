@@ -20,6 +20,7 @@ public enum Villain {
 			"Fair Dinkum! No chocky bikkies for you ya mongrel!", 
 			0,
 			200,
+			200, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
 
 	BADRUGBYREFEREE("Barry the Bad Referee", 
@@ -27,6 +28,7 @@ public enum Villain {
 			"Do you even know the rules?!", 
 			"Thats a red card for you buddy!", 
 			1,
+			100, 
 			100, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/a_bad_referee.jpg"))),
 	
@@ -36,6 +38,7 @@ public enum Villain {
 			"You look like you need a few waters!", 
 			2,
 			100, 
+			100, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/bouncer.jpg"))), 
 	
 	CALLCENTREOPERATOR("Carol the Call Centre Operator", 
@@ -43,7 +46,8 @@ public enum Villain {
 			"Your call is not important to us!", 
 			"Let me put you through to our complaints department, Oh wait we don't have one!", 
 			3,
-			100,
+			100, 
+			100, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/call-center-girl.jpg"))),
 	
 	LAWYER("Lionel the Lawyer", 
@@ -52,6 +56,7 @@ public enum Villain {
 			"You're contractually obliged to lose!",
 			4,
 			100, 
+			100, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/lawyer.jpg"))), 
 	
 	POLITICIAN("Peter the Politician", 
@@ -59,6 +64,7 @@ public enum Villain {
 			"Let's mine the national parks for oil!", 
 			"Election promises are for losers!",
 			5,
+			100, 
 			100, 
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/politician.jpg"))); 
 
@@ -77,13 +83,26 @@ public enum Villain {
 	 * @param newName name of the Villain
 	 * @param currentHealth health of the Villain
 	 */
-	private Villain(String newName, String taunt1, String taunt2, String taunt3, int typeInt, int newStrength,ImageIcon newImage) {
+	private Villain(String newName, String taunt1, String taunt2, String taunt3, int typeInt, int newStrength, int health, ImageIcon newImage) {
 		this.name = newName;
-		this.currentHealth = 100;
+		this.currentHealth = health;
 		this.currentStrength = newStrength;
 		setTaunts(taunt1, taunt2, taunt3);
 		setLairNames(typeInt);
 		this.image = newImage;
+	}
+	
+	
+	/**
+	 * Method to reset values, for use when starting a new game
+	 * @param villain, this Villain
+	 */
+	public void resetValues(Villain villain) {
+		if(villain == Villain.AUSSIECRICKETER) {
+			this.currentHealth = 200;
+		} else {
+			this.currentHealth = 100;
+		}
 	}
 	
 	/**

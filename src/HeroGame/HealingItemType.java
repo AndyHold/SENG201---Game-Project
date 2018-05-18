@@ -10,17 +10,17 @@ package HeroGame;
 
 public enum HealingItemType {
 	DOUBLE_BROWN(4.99, 30.0, 25,
-			"A crate bottle of DoublÃ© Bronze",
+			"A crate bottle of Doublé Bronze",
 			"A crate bottle of Double Brown, 745 millilitres of slightly fizzy cow's wee",
-			"flicks the top off the bottle with a cigarette lighter and drains the bottle. \"Gawd that's horrid\""), 
+			"Flicks the top off the bottle with a cigarette lighter and drains the bottle. \"Gawd that's horrid\""), 
 	LION_RED(9.99, 15.0, 25,
 			"A pint of Lion Red",
 			"A foaming pint of Lion Red, lovingly described as NZ's most generic beer",
-			"grins and skulls the pint. \"Huh. Surprisingly good\""), 
+			"Grins and skulls the pint. \"Huh. Surprisingly good\""), 
 	LINDAUER(14.99, 30.0, 50,
 			"A bottle of Lindauer Methode Traditionale",
 			"A bottle of Lindauer Methode Traditionale, the chosen tipple of drunken racegoers throughout NZ",
-			"delicately pours a glass, and takes a sip. \"Dahling, it's simply mah-vellous\"");
+			"Delicately pours a glass, and takes a sip. \"Dahling, it's simply mah-vellous\"");
 
 	private double cost;
 	private double applyTime; //In seconds
@@ -87,6 +87,11 @@ public enum HealingItemType {
 	 */
 	public String getResponse() {
 		return response;
+	}
+	
+	@Override
+	public String toString() {
+		return this.description;
 	}
 	
 }

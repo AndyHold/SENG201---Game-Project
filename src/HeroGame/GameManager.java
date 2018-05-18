@@ -1,5 +1,7 @@
 package HeroGame;
 
+import java.awt.event.ActionListener;
+
 import cmdLineVersion.Selector;
 
 /**
@@ -187,6 +189,18 @@ public class GameManager {
 //		h1.eatPowerUp(p1);
 //		manager.launchBattleScreen(h1, c1, Direction.CENTER);
 
+	}
+
+	public void closeVendorScreen(VendorScreen vendor, City city, Direction direction) {
+		vendor.closeScreen();
+		CityScreen cityScreen = new CityScreen(city, direction, this);
+		
+	}
+	
+	
+	public void launchVendorScreen(Direction direction, City city, Shop shop, CityScreen cityScreen) {
+		cityScreen.closeScreen();
+		VendorScreen vendor = new VendorScreen(this, direction, city, shop);
 	}
 
 }

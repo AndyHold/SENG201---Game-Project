@@ -9,6 +9,7 @@ public class PowerUp extends PowerItem {
 
 	private String effect;
 	private PowerUpType powerUpType;
+	private int amount = 1;
 	
 	/**
 	 * PowerUp constructor
@@ -21,6 +22,7 @@ public class PowerUp extends PowerItem {
 		super.setLongDescription(powerUpType.getLongDescription());
 		this.effect = powerUpType.getEffect();
 		super.setResponse(powerUpType.getResponse());
+		
 	}
 	
 	
@@ -38,6 +40,21 @@ public class PowerUp extends PowerItem {
 	 */
 	public PowerUpType getType() {
 		return powerUpType;
+	}
+	
+	/**
+	 * Setter method for the amount of this item currently in the team inventory
+	 * @param amount an int the amount of this item in the teams inventory
+	 */
+	public void changeAmount(int amount) {
+		this.amount += amount;
+	}
+	
+	/**
+	 * Getter method for the amount of this item in the teams inventory
+	 */
+	public int getAmount() {
+		return this.amount;
 	}
 	
 	

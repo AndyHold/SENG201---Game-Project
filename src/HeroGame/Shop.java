@@ -1,5 +1,6 @@
 package HeroGame;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -14,6 +15,10 @@ public class Shop extends Location {
 	
 	private ArrayList<HealingItemType> healingItems = new ArrayList<HealingItemType>();
 	private ArrayList<PowerUpType> powerUps = new ArrayList<PowerUpType>();
+	private ImageIcon interior = new ImageIcon(Shop.class.getResource("/HeroGame/Images/dairy_interior.jpg"));
+	private ImageIcon vendor = new ImageIcon(Shop.class.getResource("/HeroGame/Images/vendor.jpg"));
+	private ArrayList<String> moneyErrors;
+	private Random rand = new Random();
 	
 	
 	/**
@@ -22,9 +27,46 @@ public class Shop extends Location {
 	 * @param newTeam Team, Team being controlled by the user
 	 */
 	Shop(City thisCity, Team newTeam) {
-		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Shop.png")));
+		super(thisCity.getPlaceName(thisCity.getName() + " Shop"), newTeam, thisCity.getName(), LocationType.SHOP, new ImageIcon(Shop.class.getResource("/HeroGame/Images/Shop.png")));
 		this.fillHealingItems();
 		this.fillPowerUpItems();
+		this.fillMoneyErrors();
+	}
+	
+	
+	/**
+	 * Method to create and fill the ArrayList lowMoneyErrors for use in the said error box
+	 */
+	private void fillMoneyErrors() {
+		moneyErrors = new ArrayList<String>();
+		moneyErrors.add("You have insufficient funds, best do some busking");
+		moneyErrors.add("The bank has not approved your loan, leaving you in a sticky situation...");
+		moneyErrors.add("You cannot pay with willpower alone");
+		moneyErrors.add("Gary the Vendor looks you up and down in disgust as you cannot produce enough coins");
+	}
+	
+	
+	public String getMoneyError() {
+		int n = this.rand.nextInt(this.moneyErrors.size() - 1);
+		return moneyErrors.get(n);
+	}
+
+
+	/**
+	 * Method to get the image associated with the interior of the shop
+	 * @return ImageIcon, Image associated with the interior of the shop
+	 */
+	public ImageIcon getInteriorImage() {
+		return this.interior;
+	}
+	
+	
+	/**
+	 * Method to get the image associated with the waitress
+	 * @return ImageIcon, Image associated with the waitress
+	 */
+	public ImageIcon getVendorImage() {
+		return this.vendor;
 	}
 	
 	
@@ -232,7 +274,7 @@ public class Shop extends Location {
 		int n = this.getSelector().intSelector(0, this.healingItems.size(), "Please select a Healing Item", "Invalid Healing Item please try again");
 		if(this.heroTeam.getMoney() >= this.healingItems.get(n).getCost()) {
 			this.heroTeam.changeMoney(this.healingItems.get(n).getCost() * (-1));
-			this.heroTeam.addHealingItem(new HealingItem(this.healingItems.get(n)));
+			this.heroTeam.addHealingItem(this.healingItems.get(n));
 			return true;
 		}
 		else {
@@ -253,7 +295,7 @@ public class Shop extends Location {
 		int n = this.getSelector().intSelector(0, this.powerUps.size(), "Please select a power up", "Invalid Power Up please try again");
 		if(this.heroTeam.getMoney() >= this.powerUps.get(n).getCost()) {
 			this.heroTeam.changeMoney(this.powerUps.get(n).getCost() * (-1));
-			this.heroTeam.addPowerUp(new PowerUp(this.powerUps.get(n)));
+			this.heroTeam.addPowerUp(this.powerUps.get(n));
 			return true;
 		}
 		else {

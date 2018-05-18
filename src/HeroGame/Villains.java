@@ -20,10 +20,16 @@ public class Villains {
 	 */
 	Villains() {
 		availableVillains.add(Villain.BADRUGBYREFEREE);
+		Villain.BADRUGBYREFEREE.resetValues(Villain.BADRUGBYREFEREE);
 		availableVillains.add(Villain.BOUNCER);
+		Villain.BOUNCER.resetValues(Villain.BOUNCER);
 		availableVillains.add(Villain.CALLCENTREOPERATOR);
+		Villain.CALLCENTREOPERATOR.resetValues(Villain.CALLCENTREOPERATOR);
 		availableVillains.add(Villain.LAWYER);
+		Villain.LAWYER.resetValues(Villain.LAWYER);
 		availableVillains.add(Villain.POLITICIAN);
+		Villain.POLITICIAN.resetValues(Villain.POLITICIAN);
+		Villain.AUSSIECRICKETER.resetValues(Villain.AUSSIECRICKETER);
 	}
 	
 	
