@@ -107,15 +107,6 @@ public class CityScreen {
 		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
 	}
 
-	
-	/**
-	 * Non Parameterised constructor. Unused? AH???
-	 */
-	public CityScreen() {
-		initialize();
-	}
-
-	
 	/**
 	 * Gets type of panel to build from the location in that direction then builds the panel.
 	 * @param currentLocation Location, location in the given compass direction

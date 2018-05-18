@@ -275,8 +275,14 @@ public class TeamBuildScreen {
 			name = JOptionPane.showInputDialog(frmNzCleanUp, "Enter a name (1-12 Characters:");
 			if (name == null) {
 				return;
+				
 			} else if ((name.length() == 0) || (name.length() > MAX_HERO_NAME_LENGTH)) {
-			JOptionPane.showMessageDialog(frmNzCleanUp, "Name must be 1-12 character long", "Uh-oh...", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frmNzCleanUp, "Name must be 1-12 character long", "Uh-oh...", JOptionPane.ERROR_MESSAGE);
+				
+			} else if (!manager.getTeam().checkNameUnique(name)) {
+				JOptionPane.showMessageDialog(frmNzCleanUp, "You already have a Hero named " + name + 
+						". Short memory, huh?", "Uh-oh...", JOptionPane.ERROR_MESSAGE);
+				
 			} else {
 				Hero newHero = new Hero(name, heroType);
 				manager.getTeam().addMember(newHero);

@@ -62,6 +62,7 @@ public class WelcomeScreen {
 		txtpnWelcomeToNz.setText("Welcome to NZ Clean Up, in which a ballsy band of kiwi legends will attempt to eliminate some of society's little problems.");
 		txtpnWelcomeToNz.setBounds(12, 43, 524, 36);
 		frmNzCleanUp.getContentPane().add(txtpnWelcomeToNz);
+		txtpnWelcomeToNz.setEditable(false);
 		
 		JLabel lblNzCleanUp = new JLabel("NZ Clean Up");
 		lblNzCleanUp.setFont(new Font("Dialog", Font.BOLD, 16));

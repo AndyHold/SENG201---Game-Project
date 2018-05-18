@@ -161,6 +161,7 @@ public class BattleScreen {
 		txtrVillainTaunt.setWrapStyleWord(true);
 		txtrVillainTaunt.setBounds(12, 10, 467, 35);
 		gamePanel.add(txtrVillainTaunt);
+		txtrVillainTaunt.setEditable(false);
 		
 		JTextArea txtrChallenge = new JTextArea();
 		txtrChallenge.setLineWrap(true);
@@ -169,6 +170,7 @@ public class BattleScreen {
 		txtrChallenge.setWrapStyleWord(true);
 		txtrChallenge.setBounds(12, 53, 467, 35);
 		gamePanel.add(txtrChallenge);
+		txtrChallenge.setEditable(false);
 		
 		txtrHint.setLineWrap(true);
 		txtrHint.setFont(new Font("Dialog", Font.ITALIC, 10));
@@ -176,6 +178,7 @@ public class BattleScreen {
 		txtrHint.setWrapStyleWord(true);
 		txtrHint.setBounds(12, 100, 467, 25);
 		gamePanel.add(txtrHint);
+		txtrHint.setEditable(false);
 				
 
 		btnPlay.setBounds(163, 150, 117, 25);

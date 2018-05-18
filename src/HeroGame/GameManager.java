@@ -147,16 +147,27 @@ public class GameManager {
 	public void closeBattleScreen(BattleScreen battleScreen, City city, Direction direction ) {
 		battleScreen.closeScreen();
 		if(city.getVillain().isAlive()) {
-			//Check if any heroes left in team. If not got to game over screen, otherwise,
-			CityScreen thisStage = new CityScreen(city, direction, this);
-		} else {
+			if (heroTeam.getTeamSize() < 1) {//Team are all dead
+				launchFinalScreen("lose");
+			} else { //Carry on with game
+				CityScreen thisStage = new CityScreen(city, direction, this);
+			}
+		} else {//Villain has been defeated
 			city = cities.getStage();
 			if(city != null) {
 				CityScreen thisStage = new CityScreen(city, Direction.CENTER, this);
 			} else {
-				//DO FINISHED GAME SCREEN
+				launchFinalScreen("win");
 			}
 		}
+	}
+	
+	/**
+	 * Launch the final screen.
+	 * @param outcome a String denoting win or lose
+	 */
+	public void launchFinalScreen(String outcome) {
+		FinalScreen finalScreen = new FinalScreen(outcome, this);
 	}
 	
 	/**
