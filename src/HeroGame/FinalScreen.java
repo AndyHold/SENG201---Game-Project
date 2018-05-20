@@ -77,8 +77,7 @@ public class FinalScreen {
 		txtTeamDone.setBackground(UIManager.getColor("Panel.background"));
 		txtTeamDone.setFont(new Font("Dialog", Font.PLAIN, 13));
 		txtTeamDone.setLineWrap(true);
-		txtTeamDone.setText("Team " + manager.getTeamName() + " have cleaned up the villains from Paeroa, Ohakune, "
-				+ "TePuke, Springfield, Taihape and Gore. They celebrate with a trip to Rainbow's End and a feed of "
+		txtTeamDone.setText("Team " + manager.getTeamName() + " have cleaned up the villains from " + manager.getCities().getCityList() + ". They celebrate with a trip to Rainbow's End and a feed of "
 				+ "shark and tatties.");
 		txtTeamDone.setWrapStyleWord(true);
 		txtTeamDone.setBounds(12, 272, 369, 74);

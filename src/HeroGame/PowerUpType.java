@@ -10,7 +10,7 @@ public enum PowerUpType {
 	PAVLOVA(4.99, "Pavlova", "A slice of pavlova topped with cream and kiwifruit", 
 			"Gives a hero the lightning quick speed to see the opponent's" +
 			" move in rock, paper, scissors and play the appropriate move",
-			"Smiles and bites into the totally non-Australian glory of a slice of pav. " +
+			" smiles and bites into the totally non-Australian glory of a slice of pav. " +
 			"\"I can feel my reaction time improving - watch me throw this slice of " +
 			"kiwifruit up and catch it in my mouth!\""),
 	CHEESE_ROLL(7.49, "Cheese Roll", "A perfectly cooked cheese roll - a little piece of Southland", 

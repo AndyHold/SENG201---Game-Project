@@ -129,7 +129,7 @@ public class PowerUpDen extends Location {
 		for (Hero hero: heroTeam.getMemberList()) {//Iterate through team, check time remaining for each member
 			PowerUp powerUp = hero.getPowerUp();
 			if(powerUp != null) {
-				result += MessageFormat.format("{0} currently has {1}<br>", hero.getName(), powerUp.getLongDescription());
+				result += MessageFormat.format("{0}: {1}<br>", hero.getName(), powerUp.toString());
 			}
 		}
 		result += "</html>";

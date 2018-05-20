@@ -146,85 +146,85 @@ public class TestTeam {
 		assertEquals(h1, testTeam.getHero(0));
 	}
 
-	@Test
-	public void testAddRemoveApplyPowerUp() {
-		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
-		PowerUp p2 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		assertEquals(0, testTeam.getPowerUpsSize());
-		testTeam.addPowerUp(p1);
-		testTeam.addMember(h1);
-		//Remove power up at non-existent index
-		assertEquals(1, testTeam.removePowerUp(1));
-		//Remove power up at negative index
-		assertEquals(1, testTeam.removePowerUp(-1));
-		//Remove power up at existent index
-		assertEquals(0, testTeam.removePowerUp(0));
-		//Check get powerUp Type - none in list
-		assertNull(testTeam.getPowerUpType(0));
-		//Check get power up type negative index
-		assertNull(testTeam.getPowerUpType(-1));
-		//Check list of 1
-		testTeam.addPowerUp(p1);
-		assertEquals(PowerUpType.CHEESE_ROLL, testTeam.getPowerUpType(0));
-		//Check list of two
-		testTeam.addPowerUp(p2);
-		assertEquals(PowerUpType.PINEAPPLE_LUMPS, testTeam.getPowerUpType(1));
-		//Check get size
-		assertEquals(2, testTeam.getPowerUpsSize());
-		//Eat non-existent power up 
-		testTeam.applyPowerUp(PowerUpType.PAVLOVA, 0);
-		assertNull(h1.getPowerUp());
-		//Eat power up by non-existent team member
-		assertEquals("No hero found!\n", testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 1));
-		//Eat power up by negative index team member
-		assertEquals("No hero found!\n", testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, -1));
-		//Eat power up
-		testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 0);
-		assertEquals(h1.getPowerUp().toString(), "Cheese Roll");
-		//Check power up removed from list - can't eat twice
-		h1.clearPowerUp();
-		testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 0);
-		assertNull(h1.getPowerUp());
-	}
+//	@Test
+//	public void testAddRemoveApplyPowerUp() {
+//		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
+//		PowerUp p2 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
+//		assertEquals(0, testTeam.getPowerUpsSize());
+//		testTeam.addPowerUp(p1);
+//		testTeam.addMember(h1);
+//		//Remove power up at non-existent index
+//		assertEquals(1, testTeam.removePowerUp(1));
+//		//Remove power up at negative index
+//		assertEquals(1, testTeam.removePowerUp(-1));
+//		//Remove power up at existent index
+//		assertEquals(0, testTeam.removePowerUp(0));
+//		//Check get powerUp Type - none in list
+//		assertNull(testTeam.getPowerUpType(0));
+//		//Check get power up type negative index
+//		assertNull(testTeam.getPowerUpType(-1));
+//		//Check list of 1
+//		testTeam.addPowerUp(p1);
+//		assertEquals(PowerUpType.CHEESE_ROLL, testTeam.getPowerUpType(0));
+//		//Check list of two
+//		testTeam.addPowerUp(p2);
+//		assertEquals(PowerUpType.PINEAPPLE_LUMPS, testTeam.getPowerUpType(1));
+//		//Check get size
+//		assertEquals(2, testTeam.getPowerUpsSize());
+//		//Eat non-existent power up 
+//		testTeam.applyPowerUp(PowerUpType.PAVLOVA, 0);
+//		assertNull(h1.getPowerUp());
+//		//Eat power up by non-existent team member
+//		assertEquals("No hero found!\n", testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 1));
+//		//Eat power up by negative index team member
+//		assertEquals("No hero found!\n", testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, -1));
+//		//Eat power up
+//		testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 0);
+//		assertEquals(h1.getPowerUp().toString(), "Cheese Roll");
+//		//Check power up removed from list - can't eat twice
+//		h1.clearPowerUp();
+//		testTeam.applyPowerUp(PowerUpType.CHEESE_ROLL, 0);
+//		assertNull(h1.getPowerUp());
+//	}
 
-	@Test
-	public void testAddRemoveApplyHealingItem() {
-		HealingItem hI1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
-		testTeam.addMember(h1);
-		testTeam.addHealingItem(hI1);
-		assertEquals(25, hI1.getHealthValue());
-		//Check that power up added with Nurse present doubles health value
-		testTeam.addMember(h4);
-		HealingItem hI2 = new HealingItem(HealingItemType.DOUBLE_BROWN);
-		testTeam.addHealingItem(hI2);
-		assertEquals(50, hI2.getHealthValue());
-		//Check get size
-		assertEquals(2, testTeam.getHealingItemsSize());
-		//check get type - negative index
-		assertNull(testTeam.getHealingItemType(-1));
-		//check get type - non existent index
-		assertNull(testTeam.getHealingItemType(3));
-		//check get type - existing index
-		assertEquals(HealingItemType.DOUBLE_BROWN, testTeam.getHealingItemType(0));
-		//Remove healing item at negative index
-		assertEquals(2, testTeam.removeHealingItem(-1));
-		//Remove healing item at non-existent index
-		assertEquals(2, testTeam.removeHealingItem(2));
-		//Remove healing item at existing index
-		assertEquals(1, testTeam.removeHealingItem(1));
-		//Apply non existent healing item
-		assertEquals("Healing item not found\n", testTeam.applyHealingItem(HealingItemType.LINDAUER, 0));
-		//Apply healing item to non-existent team member
-		assertEquals("No hero found!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, 3));
-		//Apply healing item to negative team member index
-		assertEquals("No hero found!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, -1));
-		//Apply healing item to existing team member
-		assertEquals("Healing item applied!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, 1));
-		//Healing item removed from list
-		assertEquals(0, testTeam.getHealingItemsSize());
-		
-		
-	}
+//	@Test
+//	public void testAddRemoveApplyHealingItem() {
+//		HealingItem hI1 = new HealingItem(HealingItemType.DOUBLE_BROWN);
+//		testTeam.addMember(h1);
+//		testTeam.addHealingItem(hI1);
+//		assertEquals(25, hI1.getHealthValue());
+//		//Check that power up added with Nurse present doubles health value
+//		testTeam.addMember(h4);
+//		HealingItem hI2 = new HealingItem(HealingItemType.DOUBLE_BROWN);
+//		testTeam.addHealingItem(hI2);
+//		assertEquals(50, hI2.getHealthValue());
+//		//Check get size
+//		assertEquals(2, testTeam.getHealingItemsSize());
+//		//check get type - negative index
+//		assertNull(testTeam.getHealingItemType(-1));
+//		//check get type - non existent index
+//		assertNull(testTeam.getHealingItemType(3));
+//		//check get type - existing index
+//		assertEquals(HealingItemType.DOUBLE_BROWN, testTeam.getHealingItemType(0));
+//		//Remove healing item at negative index
+//		assertEquals(2, testTeam.removeHealingItem(-1));
+//		//Remove healing item at non-existent index
+//		assertEquals(2, testTeam.removeHealingItem(2));
+//		//Remove healing item at existing index
+//		assertEquals(1, testTeam.removeHealingItem(1));
+//		//Apply non existent healing item
+//		assertEquals("Healing item not found\n", testTeam.applyHealingItem(HealingItemType.LINDAUER, 0));
+//		//Apply healing item to non-existent team member
+//		assertEquals("No hero found!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, 3));
+//		//Apply healing item to negative team member index
+//		assertEquals("No hero found!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, -1));
+//		//Apply healing item to existing team member
+//		assertEquals("Healing item applied!\n", testTeam.applyHealingItem(HealingItemType.DOUBLE_BROWN, 1));
+//		//Healing item removed from list
+//		assertEquals(0, testTeam.getHealingItemsSize());
+//		
+//		
+//	}
 
 
 

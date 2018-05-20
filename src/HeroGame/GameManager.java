@@ -74,6 +74,14 @@ public class GameManager {
 	}
 	
 	/**
+	 * Getter method for the Cities the team will play through
+	 * @return a Cities the Cities the tema will play through
+	 */
+	public Cities getCities () {
+		return cities;
+	}
+	
+	/**
 	 * Getter method for the Team to play the game
 	 * @return a Team, the team of heroes the user will play the game with
 	 */
@@ -111,6 +119,7 @@ public class GameManager {
 	 */
 	public void closeTeamBuildScreen(TeamBuildScreen teamBuildScreen) {
 		teamBuildScreen.closeScreen();
+		heroTeam.startClock();
 		cities = new Cities(this.heroTeam, this.nCities);
 		City first_level = cities.getStage();
 		//launchMainGameLoop

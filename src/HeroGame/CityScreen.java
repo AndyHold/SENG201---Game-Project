@@ -60,6 +60,7 @@ public class CityScreen {
 	private CityScreen cityScreen;
 	private JLabel welcomeLbl;
 	private JLabel rulerLbl;
+	private JComboBox<Hero> itemPickerComboBox;
 	
 	/**
 	 * Parameterised Constructor
@@ -207,7 +208,7 @@ public class CityScreen {
 		powerUpDenPanel.add(itemChoiceLbl, 4);
 		
 		
-		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
+		itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		itemPickerComboBox.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
 		powerUpDenPanel.add(itemPickerComboBox, 5);
@@ -223,10 +224,12 @@ public class CityScreen {
 				if(hero != null) {
 					PowerUp powerUp = (PowerUp) ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
 					if(powerUp != null) {
-						String response = hero.eatPowerUp(powerUp);
+						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.eatPowerUp(powerUp)+"</html>";
 						int powerUpIndex = ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
 						city.getTeam().removePowerUp(powerUpIndex);
-						// DOESNT REMOVE THE ITEM FROM THE COMBOBOX AFTER USE
+						if (!city.getTeam().checkPowerUpInList(powerUp.getType())) {
+							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());
+						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(frame, MessageFormat.format(((PowerUpDen) city.getLocation(currentDirection)).getBadPowerUpMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
@@ -307,7 +310,7 @@ public class CityScreen {
 		itemChoiceLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 15);
 		hospitalPanel.add(itemChoiceLbl, 4);
 		
-		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
+		itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		itemPickerComboBox.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, hospitalPanel.getWidth() - 160, 25);
 		hospitalPanel.add(itemPickerComboBox, 5);
@@ -324,10 +327,13 @@ public class CityScreen {
 					HealingItem healingItem = (HealingItem) ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
 					if(healingItem != null) {
 						double drinkTime = city.getTeam().getTime();
-						String response = hero.drinkHealingItem(healingItem, drinkTime);
+						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.drinkHealingItem(healingItem, drinkTime) + "</html>";
 						int healingItemIndex = ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
 						city.getTeam().removeHealingItem(healingItemIndex);
-						// DOESNT REMOVE THE ITEM FROM THE COMBOBOX AFTER USE
+						//This works for PowerUps but not healing items. Why????
+						if (!city.getTeam().checkHealingItemInList(healingItem.getHealingItemType())) {
+							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());
+						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(frame, MessageFormat.format(((Hospital) city.getLocation(currentDirection)).getBadHealingItemMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
@@ -777,6 +783,7 @@ public class CityScreen {
 		movePanel.add(lblMove);
 		lblMove.setFont(new Font("Tahoma", Font.BOLD, 13));
 	}
+
 }
 
 

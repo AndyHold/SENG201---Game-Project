@@ -129,7 +129,6 @@ public class Hero {
 	public String eatPowerUp(PowerUp powerUpToEat) {
 		this.powerUpEaten = powerUpToEat;
 		String result = this.heroName + " " + powerUpToEat.getResponse();
-		System.out.println(result);
 		return result;
 	}
 	
@@ -143,7 +142,6 @@ public class Hero {
 		this.healingItemTime = drinkTime + healingItemToDrink.getApplyTime();
 		String result = this.heroName + " " + healingItemToDrink.getResponse();
 		this.healingItemDrunk = healingItemToDrink;
-		System.out.println(result);
 		return result;
 	}
 

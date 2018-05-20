@@ -98,6 +98,14 @@ public class Cities {
 		cityNames.add("Taihape");
 	}
 	
+	public String getCityList() {
+		String result = "";
+		for (int i = 0; i < (stages.size() -2); i++) { //Return cities up to last two separated by a comma
+			result += (stages.get(i).getName() + ", ");
+		}
+		result += (stages.get(stages.size() - 2).getName() + " & " + stages.get(stages.size()-1).getName()); //Last two separated by &
+		return result;
+	}
 	
 	@Override
 	public String toString() {

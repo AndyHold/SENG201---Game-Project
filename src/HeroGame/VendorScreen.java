@@ -630,7 +630,7 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.DOUBLE_BROWN.getCost()) {
 					team.addHealingItem(HealingItemType.DOUBLE_BROWN);
 					team.changeMoney(HealingItemType.DOUBLE_BROWN.getCost() * -1);
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", HealingItemType.DOUBLE_BROWN.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.DOUBLE_BROWN.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
@@ -665,7 +665,7 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.LION_RED.getCost()) {
 					team.addHealingItem(HealingItemType.LION_RED);
 					team.changeMoney(HealingItemType.LION_RED.getCost() * -1);
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", HealingItemType.LION_RED.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LION_RED.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
@@ -700,7 +700,7 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.LINDAUER.getCost()) {
 					team.addHealingItem(HealingItemType.LINDAUER);
 					team.changeMoney(HealingItemType.LINDAUER.getCost() * -1);
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", HealingItemType.LINDAUER.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LINDAUER.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);

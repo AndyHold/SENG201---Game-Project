@@ -16,7 +16,7 @@ import cmdLineVersion.Selector;
 public class Team {
 
 	private static final int MAX_HERO_NAME_LENGTH = 12;
-	private static final double STARTING_MONEY = 10;
+	private static final double STARTING_MONEY = 15;
 	private String teamName;
 	private ArrayList<Hero> memberList;
 	private ArrayList<PowerUp> powerUps;
@@ -94,35 +94,6 @@ public class Team {
 		}
 		return memberList.size();
 	}
-	
-	
-	/**
-	 * Method to get a list of power ups the team currently has in html format
-	 * @return String, list of power ups
-	 */
-	public String listPowerUps() {
-		String result = "<html><center>Your Power Up Items:<br>";
-		for(PowerUp powerUp: this.powerUps) {
-			result += MessageFormat.format("{0} x{1}<br>", powerUp.toString(), powerUp.getAmount());
-		}
-		result += "</center></html>";
-		return result;
-	}
-	
-	
-	/**
-	 * Method to get a list of healing Items the team currently has in html format
-	 * @return String, list of healing Items
-	 */
-	public String listHealingItems() {
-		String result = "<html><center>Your Healing Items:<br>";
-		for(HealingItem healingItem: this.healingItems) {
-			result += MessageFormat.format("{0} x{1}<br>", healingItem.toString(), healingItem.getAmount());
-		}
-		result += "</center></html>";
-		return result;
-	}
-	
 	
 	/**
 	 * Interactive method for adding members to a Team
@@ -363,6 +334,34 @@ public class Team {
 	}
 	
 	
+	/**
+	 * Method to get a list of power ups the team currently has in html format
+	 * @return String, list of power ups
+	 */
+	public String listPowerUps() {
+		String result = "<html><center>Your Power Up Items:<br>";
+		for(PowerUp powerUp: this.powerUps) {
+			result += MessageFormat.format("{0} x{1}<br>", powerUp.toString(), powerUp.getAmount());
+		}
+		result += "</center></html>";
+		return result;
+	}
+	
+	/**
+	 * Checks whether a specified PowerUpType is present in the list
+	 * @param powerUpType the PowerUpType to check for 
+	 * @return a boolean true if the specified PowerUpType is present in the team's inventory, otherwise false
+	 */
+	public boolean checkPowerUpInList(PowerUpType powerUpType) {
+		boolean result = false;
+		for (PowerUp which : powerUps) {
+			if (which.getType() == powerUpType){ 
+				result = true;
+			}
+		}
+		return result;
+	}
+	
 	//**********************************Healing Items***************************
 	
 	/**
@@ -481,13 +480,40 @@ public class Team {
 	}
 	
 	
+	/**
+	 * Method to get a list of healing Items the team currently has in html format
+	 * @return String, list of healing Items
+	 */
+	public String listHealingItems() {
+		String result = "<html><center>Your Healing Items:<br>";
+		for(HealingItem healingItem: this.healingItems) {
+			result += MessageFormat.format("{0} x{1}<br>", healingItem.toString(), healingItem.getAmount());
+		}
+		result += "</center></html>";
+		return result;
+	}
+	
+	/**
+	 * Checks whether a specified HealingItemType is present in the list
+	 * @param healingItemType the HealingItemType to check for 
+	 * @return a boolean true if the specified HealingItemType is present in the team's inventory, otherwise false
+	 */
+	public boolean checkHealingItemInList(HealingItemType HealingItemType) {
+		boolean result = false;
+		for (HealingItem which : healingItems) {
+			if (which.getHealingItemType() == HealingItemType){ 
+				result = true;
+			}
+		}
+		return result;
+	}
+	
 	//***************************Maps******************************************
 	
 	/**
 	 * Outputs the number of maps the team is carrying
 	 */
 	public int getMaps(){
-		System.out.println("Team " + teamName + " are carrying " + maps + " maps");
 		return maps;
 	}
 	
@@ -510,7 +536,6 @@ public class Team {
 	 * @return a double the amount of money the team has
 	 */
 	public double getMoney() {
-		System.out.println("The members of " + teamName + " have a whip around. They have $" + this.money );
 		return this.money;
 	}
 	
