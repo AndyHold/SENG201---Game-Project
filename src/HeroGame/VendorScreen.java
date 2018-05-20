@@ -1,6 +1,7 @@
 package HeroGame;
 
 import java.awt.EventQueue;
+import javax.sound.sampled.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +26,7 @@ import java.text.MessageFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.IOException;
 import java.awt.Dimension;
 
 /**
@@ -118,6 +120,9 @@ public class VendorScreen {
 	private JPanel cheeseRollPricePanel;
 	private JPanel pavlovaPricePanel;
 	private JPanel mapsPricePanel;
+	private Clip transaction;
+	private Clip badSound;
+	private Clip hello;
 
 	/**
 	 * Constructor for new VendorScreen, the screen where items are pruchased from the shop
@@ -137,12 +142,77 @@ public class VendorScreen {
 	}
 	
 	
+	/**
+	 * Method to play a transaction sound
+	 */
+	public void playTransaction() {
+		try {
+			transaction = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/transaction.wav"));
+			transaction.open(ais);
+			transaction.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play a hello sound
+	 */
+	public void playHello() {
+		try {
+			hello = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/hello.wav"));
+			hello.open(ais);
+			hello.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play a bad sound
+	 */
+	public void playBadSound() {
+		try {
+			badSound = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/bad.wav"));
+			badSound.open(ais);
+			badSound.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
 
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		playHello();
 		frame = new JFrame();
 		frame.getContentPane().addComponentListener(new ComponentAdapter() {
 			@Override
@@ -172,7 +242,6 @@ public class VendorScreen {
 		showPricesPanel.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-//				.setBounds(10, buyCheeseRollPanel.getY() + 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				mapsPricePanel.setBounds(10, 35, 280, 15);
 				pavlovaPricePanel.setBounds(10, mapsPricePanel.getY() + 15 + (showPricesPanel.getHeight() - 170) / 7, 280, 15);
 				cheeseRollPricePanel.setBounds(10, pavlovaPricePanel.getY() + 15 + (showPricesPanel.getHeight() - 170) / 7, 280, 15);
@@ -493,9 +562,11 @@ public class VendorScreen {
 				if(team.getMoney() >= PowerUpType.PAVLOVA.getCost()) {
 					team.addPowerUp(PowerUpType.PAVLOVA);
 					team.changeMoney(PowerUpType.PAVLOVA.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.PAVLOVA.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -527,9 +598,11 @@ public class VendorScreen {
 				if(team.getMoney() >= PowerUpType.CHEESE_ROLL.getCost()) {
 					team.addPowerUp(PowerUpType.CHEESE_ROLL);
 					team.changeMoney(PowerUpType.CHEESE_ROLL.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.CHEESE_ROLL.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -561,9 +634,11 @@ public class VendorScreen {
 				if(team.getMoney() >= PowerUpType.PINEAPPLE_LUMPS.getCost()) {
 					team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
 					team.changeMoney(PowerUpType.PINEAPPLE_LUMPS.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.PINEAPPLE_LUMPS.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -614,9 +689,11 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.DOUBLE_BROWN.getCost()) {
 					team.addHealingItem(HealingItemType.DOUBLE_BROWN);
 					team.changeMoney(HealingItemType.DOUBLE_BROWN.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.DOUBLE_BROWN.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -649,9 +726,11 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.LION_RED.getCost()) {
 					team.addHealingItem(HealingItemType.LION_RED);
 					team.changeMoney(HealingItemType.LION_RED.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LION_RED.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -684,9 +763,11 @@ public class VendorScreen {
 				if(team.getMoney() >= HealingItemType.LINDAUER.getCost()) {
 					team.addHealingItem(HealingItemType.LINDAUER);
 					team.changeMoney(HealingItemType.LINDAUER.getCost() * -1);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LINDAUER.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -743,9 +824,11 @@ public class VendorScreen {
 				if(team.getMoney() >= 5.00) {
 					team.changeMaps(1);
 					team.changeMoney(-5.00);
+					playTransaction();
 					JOptionPane.showMessageDialog(frame, "You have successfully bought a map! Best go back to base and study the local landmarks!", "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsMAPLbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
 			}

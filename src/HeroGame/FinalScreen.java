@@ -2,14 +2,20 @@ package HeroGame;
 
 
 import java.awt.EventQueue;
+import javax.sound.sampled.*;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
@@ -31,6 +37,8 @@ public class FinalScreen {
 	private JPanel panelWin = new JPanel();
 	private JPanel panelCredits = new JPanel();
 	private Boolean creditsVisible = false;
+	private Clip evilLaugh;
+	private Clip applause;
 
 
 
@@ -42,6 +50,48 @@ public class FinalScreen {
 		this.outcome = outcome;
 		initialize();
 		frmNzCleanUp.setVisible(true);
+	}
+	
+	/**
+	 * Method to play Evil Laugh sound
+	 */
+	public void playEvilLaugh() {
+		try {
+			evilLaugh = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/evil laugh.wav"));
+			evilLaugh.open(ais);
+			evilLaugh.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frmNzCleanUp, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	/**
+	 * Method to play Applause sound
+	 */
+	public void playApplause() {
+		try {
+			applause = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/applause.wav"));
+			applause.open(ais);
+			applause.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frmNzCleanUp, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
 	}
 
 	/**
@@ -78,6 +128,11 @@ public class FinalScreen {
 		frmNzCleanUp.getContentPane().add(panelWin);
 		panelWin.setLayout(null);
 		panelWin.setVisible(false);
+		panelWin.addComponentListener(new ComponentAdapter() {
+			public void componentShown(ComponentEvent componentEvent) {
+				playApplause();
+			}
+		});
 		
 		JTextArea txtTeamDone = new JTextArea();
 		txtTeamDone.setBackground(UIManager.getColor("Panel.background"));
@@ -110,6 +165,11 @@ public class FinalScreen {
 		frmNzCleanUp.getContentPane().add(panelLose);
 		panelLose.setLayout(null);
 		panelLose.setVisible(false);
+		panelLose.addComponentListener(new ComponentAdapter() {
+			public void componentShown(ComponentEvent componentEvent) {
+				playEvilLaugh();
+			}
+		});
 		
 		JTextArea txtTeamUndone = new JTextArea();
 		txtTeamUndone.setBackground(UIManager.getColor("Panel.background"));

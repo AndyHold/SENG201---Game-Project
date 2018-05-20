@@ -1,5 +1,7 @@
 package HeroGame;
 
+import java.util.HashMap;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -12,6 +14,8 @@ public class HomeBase extends Location {
 	
 	private City currentCity;
 	private CityScreen currentCityScreen;
+	private ImageIcon interior;
+	private HashMap<String, ImageIcon> interiors = new HashMap<String, ImageIcon>();
 	
 
 	/**
@@ -23,9 +27,33 @@ public class HomeBase extends Location {
 		super(thisCity.getPlaceName(thisCity.getName() + " HomeBase"), newTeam, thisCity.getName(), LocationType.HOMEBASE, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/HomeBase.png")));
 		this.currentCity = thisCity;
 		super.setDirection(Direction.CENTER);
+		populateImages();
+		interior = interiors.get(thisCity.getName());
 	}
 	
 	
+	/**
+	 * Method to get the Image associated with the interior of the Home Base
+	 * @return ImageIcon, Image associated with the interior of the Home Base
+	 */
+	public ImageIcon getInteriorImage() {
+		return this.interior;
+	}
+	
+	
+	/**
+	 * Populates Images for HashMap interiors
+	 */
+	private void populateImages() {
+		interiors.put("Springield", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/springfieldHomeBase.jpg")));
+		interiors.put("Te Puke", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/tePukeHomeBase.jpg")));
+		interiors.put("Gore", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/goreHomeBase.jpg")));
+		interiors.put("Ohakune", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/ohakuneHomeBase.jpg")));
+		interiors.put("Paeroa", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/paeroaHomeBase.jpg")));
+		interiors.put("Taihape", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/taihapeHomeBase.jpg")));
+	}
+
+
 	/**
 	 * Shows the Team's heroes and their current status
 	 */

@@ -6,18 +6,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import javax.sound.sampled.*;
+
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +67,18 @@ public class CityScreen {
 	private CityScreen cityScreen;
 	private JLabel welcomeLbl;
 	private JLabel rulerLbl;
-	private JComboBox<Hero> itemPickerComboBox;
+	private Random rand = new Random();
+	private JPanel hospitalPanel;
+	private JPanel villainsLairPanel;
+	private JPanel shopPanel;
+	private JPanel homeBasePanel;
+	private JPanel powerUpDenPanel;
+	private Clip goodSound;
+	private Clip badSound;
+	private Clip ohNoSound;
+	private Clip openCan;
+	private Clip munching;
+	private Clip marching;
 	
 	/**
 	 * Parameterised Constructor
@@ -77,6 +95,7 @@ public class CityScreen {
 		this.frame.setVisible(true);
 	}
 	
+	
 	/**
 	 * Closes the screen when required
 	 */
@@ -84,6 +103,137 @@ public class CityScreen {
 		this.frame.dispose();
 	}
 	
+	
+	/**
+	 * Method to play Oh No sound
+	 */
+	public void playOhNo() {
+		try {
+			ohNoSound = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/oh no.wav"));
+			ohNoSound.open(ais);
+			ohNoSound.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play Munching sound
+	 */
+	public void playMunching() {
+		try {
+			munching = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/munching.wav"));
+			munching.open(ais);
+			munching.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play Marching sound
+	 */
+	public void playMarching() {
+		try {
+			marching = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/marching.wav"));
+			marching.open(ais);
+			marching.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play Open Can sound
+	 */
+	public void playOpenCan() {
+		try {
+			openCan = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/opencan.wav"));
+			openCan.open(ais);
+			openCan.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play a bad sound
+	 */
+	public void playBadSound() {
+		try {
+			badSound = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/bad.wav"));
+			badSound.open(ais);
+			badSound.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
+	
+	
+	/**
+	 * Method to play a good sound
+	 */
+	public void playGoodSound() {
+		try {
+			goodSound = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/good.wav"));
+			goodSound.open(ais);
+			goodSound.start();
+			} catch(IOException error) {
+				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				error.printStackTrace();
+			} catch (LineUnavailableException e) {
+				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+	}
 
 
 	/**
@@ -91,24 +241,24 @@ public class CityScreen {
 	 * @param currentLocation Location, location in the given compass direction
 	 * @return JPanel, panel of type dictated by the location given.
 	 */
-	private JPanel buildLocationPanel(Location currentLocation) {
+	private JPanel buildLocationPanel(Location currentLocation, Direction direction) {
 		LocationType type = currentLocation.getLocationType();
 		switch(type) {
 		case VILLIANSLAIR:
-			return buildVilliansLairPanel((VillainsLair)currentLocation);
+			return buildVilliansLairPanel((VillainsLair)currentLocation, direction);
 			
 		case SHOP:
-			return buildShopPanel((Shop)currentLocation);
+			return buildShopPanel((Shop)currentLocation, direction);
 			
 		case POWERUPDEN:
-			return buildPowerUpDenPanel((PowerUpDen)currentLocation);
+			return buildPowerUpDenPanel((PowerUpDen)currentLocation, direction);
 			
 		case HOSPITAL:
-			return buildHospitalPanel((Hospital)currentLocation);
+			return buildHospitalPanel((Hospital)currentLocation, direction);
 			
 		case HOMEBASE:
-//			return buildHomeBasePanel((HomeBase)currentLocation);
-			return new JPanel();
+			return buildHomeBasePanel((HomeBase)currentLocation, direction);
+			
 		}
 		return null;
 	}
@@ -119,7 +269,7 @@ public class CityScreen {
 	 * @param shop Shop, the shop this panel is being constructed from
 	 * @return JPanel, the constructed panel for the shop
 	 */
-	private JPanel buildShopPanel(final Shop shop) {
+	private JPanel buildShopPanel(final Shop shop, Direction direction) {
 		
 		JPanel shopPanel = new JPanel();
 		shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -128,7 +278,7 @@ public class CityScreen {
 		shopPanel.setMinimumSize(new Dimension(290, 265));
 		shopPanel.setLayout(null);
 		
-		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", shop.getName()));
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("{0} Area: Welcome to {1}", direction.toString(), shop.getName()));
 		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeMessageLbl.setBounds(10, 10, shopPanel.getWidth(), 15);
@@ -149,12 +299,170 @@ public class CityScreen {
 				manager.launchVendorScreen(currentDirection, city, shop, cityScreen);
 			}
 		});	
-		
+		this.shopPanel = shopPanel;
 		return shopPanel;
 	}
 	
 	
-	private JPanel buildPowerUpDenPanel(PowerUpDen powerUpDen) {
+	/**
+	 * Method to construct a Home Base Panel
+	 * @param homeBase HomeBase, the HomeBase this panel is being constructed from
+	 * @return JPanel, the constructed panel for the shop
+	 */
+	private JPanel buildHomeBasePanel(HomeBase homeBase, Direction direction) {
+		
+		JPanel homeBasePanel = new JPanel();
+		homeBasePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		homeBasePanel.setBounds(230, 55, 290, 265);
+		frame.getContentPane().add(homeBasePanel);
+		homeBasePanel.setMinimumSize(new Dimension(290, 265));
+		homeBasePanel.setLayout(null);
+		homeBasePanel.addComponentListener(new ComponentAdapter() {
+			public void componentShown(ComponentEvent componentEvent) {
+				int n = rand.nextInt(10);
+				switch(n) {
+				case 0:
+					int amount = rand.nextInt((int) city.getTeam().getMoney());
+					city.getTeam().changeMoney(amount * -1);
+					playOhNo();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your wallet which had ${0} in it!", amount), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
+					break;
+				case 1:
+					if(city.getTeam().getPowerUpsSize() > 0) {
+						int index = rand.nextInt(city.getTeam().getPowerUpsSize());
+						playOhNo();
+						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going hungry tonight!", city.getTeam().getPowerUpType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
+						PowerUp powerUp = city.getTeam().getPowerUps().get(index);
+						city.getTeam().removePowerUp(index);
+						powerUp.changeAmount(-1);
+						if(powerUp.getAmount() == 0) {
+							((JComboBox<PowerUp>) powerUpDenPanel.getComponent(5)).removeItemAt(index);
+						}
+						break;
+					}
+				case 2:
+					if(city.getTeam().getHealingItemsSize() > 0) {
+						int index = rand.nextInt(city.getTeam().getHealingItemsSize());
+						playOhNo();
+						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going thirsty tonight!", city.getTeam().getHealingItemType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
+						HealingItem healingItem = city.getTeam().getHealingItems().get(index);
+						city.getTeam().removeHealingItem(index);
+						healingItem.changeAmount(-1);
+						if(healingItem.getAmount() == 0) {
+							((JComboBox<PowerUp>) hospitalPanel.getComponent(5)).removeItemAt(index);
+						}
+						break;
+					}
+				}
+			}
+		});
+		
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("{0} Area: Welcome to {1}", direction.toString(), homeBase.getName()));
+		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeMessageLbl.setBounds(10, 10, homeBasePanel.getWidth(), 15);
+		homeBasePanel.add(welcomeMessageLbl, 0);
+		
+		JLabel interiorPictureLbl = new JLabel("");
+		interiorPictureLbl.setIcon(homeBase.getInteriorImage());
+		interiorPictureLbl.setBounds(10, 35, 130, 190);
+		interiorPictureLbl.setBorder(new LineBorder(new Color(0, 0, 0)));
+		homeBasePanel.add(interiorPictureLbl, 1);
+		
+		JLabel currentMapsLbl = new JLabel(MessageFormat.format("You have {0} maps", this.city.getTeam().getMaps()));
+		currentMapsLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		currentMapsLbl.setBounds(150, 35, homeBasePanel.getWidth() - 160, 15);
+		homeBasePanel.add(currentMapsLbl, 2);
+		
+		JButton useMapBtn = new JButton("Use a Map");
+		useMapBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		useMapBtn.setBounds(150, currentMapsLbl.getY() + 15 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		homeBasePanel.add(useMapBtn, 3);
+		useMapBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(city.getTeam().getMaps() > 0) {
+					if(!city.isMapped()) {
+						northLocationLbl.setIcon(city.getNorthLocation().getIcon());
+						southLocationLbl.setIcon(city.getSouthLocation().getIcon());
+						eastLocationLbl.setIcon(city.getEastLocation().getIcon());
+						westLocationLbl.setIcon(city.getWestLocation().getIcon());
+						city.getTeam().changeMaps(-1);
+						city.makeMapped();
+					} else {
+						playBadSound();
+						JOptionPane.showMessageDialog(frame, "You've already Mapped this city!", "Woops...", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					playBadSound();
+					JOptionPane.showMessageDialog(frame, "You've run out of maps!", "Not good...", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});	
+		
+		JLabel chooseHeroLbl = new JLabel("Please choose a hero:");
+		chooseHeroLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		chooseHeroLbl.setBounds(150, useMapBtn.getY() + 25 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 15);
+		homeBasePanel.add(chooseHeroLbl, 4);
+		
+		JComboBox teamCombo = new JComboBox(this.city.getTeam().getMemberList().toArray());
+		teamCombo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		teamCombo.setBounds(150, chooseHeroLbl.getY() + 15 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		teamCombo.setSelectedItem(null);
+		homeBasePanel.add(teamCombo, 5);
+				
+		JButton getStatusBtn = new JButton("Get Hero Status");
+		getStatusBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		getStatusBtn.setBounds(150, teamCombo.getY() + 25 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		homeBasePanel.add(getStatusBtn, 6);
+		getStatusBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Hero hero = (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
+				if(hero != null) {
+					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(0)).setText(MessageFormat.format("Name: {0}", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getName()));
+					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(1)).setText(MessageFormat.format("Health: {0}", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getHealth()));
+					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(2)).setText(MessageFormat.format("Strength: {0}", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getStrength()));
+					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(3)).setText(MessageFormat.format("<html>Ability: {0}</td></html>", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getAbility()));
+					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(4)).setText(MessageFormat.format("<html>Current Power Up: {0}</html>", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getPowerUp().getLongDescription()));
+					
+				} else {
+					playBadSound();
+					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});	
+		
+		JPanel heroStatusPanel = new JPanel();
+		heroStatusPanel.setBounds(150, homeBasePanel.getHeight() - 85, homeBasePanel.getWidth() - 160, 75);
+		heroStatusPanel.setLayout(null);
+		heroStatusPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		homeBasePanel.add(heroStatusPanel, 7);	
+		
+		JLabel heroNameLbl = new JLabel("");
+		heroNameLbl.setBounds(0, 0, heroStatusPanel.getWidth() / 3,15);
+		heroStatusPanel.add(heroNameLbl, 0);
+		
+		JLabel heroHealthLbl = new JLabel("");
+		heroHealthLbl.setBounds(0, 30, heroStatusPanel.getWidth() / 3, 15);
+		heroStatusPanel.add(heroHealthLbl, 1);
+		
+		JLabel heroStrengthLbl = new JLabel("");
+		heroStrengthLbl.setBounds(0, 15, heroStatusPanel.getWidth() / 3, 15);
+		heroStatusPanel.add(heroStrengthLbl, 2);
+		
+		JLabel heroAbilityLbl = new JLabel("");
+		heroAbilityLbl.setBounds(heroStatusPanel.getWidth() / 3, 0, 2 * heroStatusPanel.getWidth() / 3, 45);
+		heroStatusPanel.add(heroAbilityLbl, 3);
+		heroAbilityLbl.setVerticalTextPosition(0);
+		
+		JLabel heroPowerUpsLbl = new JLabel("");
+		heroPowerUpsLbl.setBounds(0, 45, heroStatusPanel.getWidth(), 30);
+		heroStatusPanel.add(heroPowerUpsLbl, 4);
+		
+		this.homeBasePanel = homeBasePanel;
+		return homeBasePanel;
+	}
+	
+	private JPanel buildPowerUpDenPanel(PowerUpDen powerUpDen, Direction direction) {
 		
 		JPanel powerUpDenPanel = new JPanel();
 		powerUpDenPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -163,7 +471,7 @@ public class CityScreen {
 		powerUpDenPanel.setMinimumSize(new Dimension(290, 265));
 		powerUpDenPanel.setLayout(null);
 		
-		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", powerUpDen.getName()));
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("{0} Area: Welcome to {1}", direction.toString(), powerUpDen.getName()));
 		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeMessageLbl.setBounds(10, 10, powerUpDenPanel.getWidth(), 15);
@@ -183,20 +491,20 @@ public class CityScreen {
 		JComboBox<Hero> heroPickerComboBox = new JComboBox(this.city.getTeam().getMemberList().toArray());
 		heroPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		heroPickerComboBox.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, heroChoiceLbl.getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
-		powerUpDenPanel.add(heroPickerComboBox, 3);
 		heroPickerComboBox.setSelectedItem(null);
+		powerUpDenPanel.add(heroPickerComboBox, 3);
 		
 		JLabel itemChoiceLbl = new JLabel("Please Choose a Power Up:");
 		itemChoiceLbl.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		itemChoiceLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (powerUpDenPanel.getHeight() - 230) / 3, powerUpDenPanel.getWidth() - 160, 15);
 		powerUpDenPanel.add(itemChoiceLbl, 4);
 		
-		
-		itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
+		JComboBox itemPickerComboBox = new JComboBox(this.city.getTeam().getPowerUps().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		itemPickerComboBox.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, powerUpDenPanel.getWidth() - 160, 25);
 		powerUpDenPanel.add(itemPickerComboBox, 5);
 		itemPickerComboBox.setSelectedItem(null);
+		powerUpDenPanel.add(itemPickerComboBox, 5);
 		
 		JButton applyItemBtn = new JButton("Apply Power Up");
 		applyItemBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -213,13 +521,16 @@ public class CityScreen {
 						powerUp.changeAmount(-1);
 						if (powerUp.getAmount() == 0) {//Last of this type has been consumed
 							city.getTeam().removePowerUp(powerUpIndex);
-							itemPickerComboBox.removeItem(powerUp);//Remove from ComboBox
+							((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).removeItem(powerUp);//Remove from ComboBox
 						}
+						playMunching();
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
+						playBadSound();
 						JOptionPane.showMessageDialog(frame, MessageFormat.format(((PowerUpDen) city.getLocation(currentDirection)).getBadPowerUpMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -243,17 +554,17 @@ public class CityScreen {
 		timesLbl.setBounds(((powerUpDenPanel.getWidth() - 140) / 2) - (powerUpDenPanel.getWidth() - 160) / 2 + 140,   checkTimersBtn.getY() + 25, powerUpDenPanel.getWidth() - 160, 65);
 		powerUpDenPanel.add(timesLbl, 8);
 		
-		powerUpDenPanel.setVisible(true);
+		this.powerUpDenPanel = powerUpDenPanel;
 		return powerUpDenPanel;
 	}
 	
-	
+
 	/**
 	 * Method to construct a Hospital Panel
 	 * @param hospital Hospital, the hospital this panel is being constructed from
 	 * @return JPanel, the constructed panel for the hospital
 	 */
-	private JPanel buildHospitalPanel(Hospital hospital) {
+	private JPanel buildHospitalPanel(Hospital hospital, Direction direction) {
 		
 		JPanel hospitalPanel = new JPanel();
 		hospitalPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -267,7 +578,7 @@ public class CityScreen {
 			}
 		});
 		
-		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", hospital.getName()));
+		JLabel welcomeMessageLbl = new JLabel(MessageFormat.format("{0} Area: Welcome to {1}", direction.toString(), hospital.getName()));
 		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeMessageLbl.setBounds(10, 10, hospitalPanel.getWidth(), 15);
@@ -295,7 +606,7 @@ public class CityScreen {
 		itemChoiceLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,  (heroPickerComboBox.getY() + 25) + (hospitalPanel.getHeight() - 230) / 3, hospitalPanel.getWidth() - 160, 15);
 		hospitalPanel.add(itemChoiceLbl, 4);
 		
-		itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
+		JComboBox<Hero> itemPickerComboBox = new JComboBox(this.city.getTeam().getHealingItems().toArray());
 		itemPickerComboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		itemPickerComboBox.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140, itemChoiceLbl.getY() + 15, hospitalPanel.getWidth() - 160, 25);
 		hospitalPanel.add(itemPickerComboBox, 5);
@@ -317,14 +628,16 @@ public class CityScreen {
 						healingItem.changeAmount(-1);
 						if (healingItem.getAmount() == 0) { //Last of this type has been consumed
 							city.getTeam().removeHealingItem(healingItemIndex);
-							//This works for PowerUps but not healing items. Why the f*** not? Grrrrrr!!!
-							itemPickerComboBox.removeItem(healingItem);//Remove from ComboBox
+							((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).removeItemAt(healingItemIndex);//Remove from ComboBox
 						}
+						playOpenCan();
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
+						playBadSound();
 						JOptionPane.showMessageDialog(frame, MessageFormat.format(((Hospital) city.getLocation(currentDirection)).getBadHealingItemMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -348,6 +661,7 @@ public class CityScreen {
 		timesLbl.setBounds(((hospitalPanel.getWidth() - 140) / 2) - (hospitalPanel.getWidth() - 160) / 2 + 140,   checkTimersBtn.getY() + 25, hospitalPanel.getWidth() - 160, 65);
 		hospitalPanel.add(timesLbl, 8);
 		
+		this.hospitalPanel = hospitalPanel;
 		return hospitalPanel;
 	}
 	
@@ -357,7 +671,7 @@ public class CityScreen {
 	 * @param villiansLair the Villain's lair this panel is constructed from
 	 * @return JPanel, the constructed panel for villain's lair
 	 */
-	private JPanel buildVilliansLairPanel(VillainsLair villiansLair) {
+	private JPanel buildVilliansLairPanel(VillainsLair villiansLair, Direction direction) {
 		JPanel villainsLairPanel = new JPanel();
 		
 		villainsLairPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -365,7 +679,7 @@ public class CityScreen {
 		villainsLairPanel.setMinimumSize(new Dimension(290, 265));
 		villainsLairPanel.setLayout(null);
 		
-		JLabel vLWelcomeMessageLbl = new JLabel(MessageFormat.format("Welcome to {0}", villiansLair.getName()));
+		JLabel vLWelcomeMessageLbl = new JLabel(MessageFormat.format("{0} Area: Welcome to {1}", direction.toString(), villiansLair.getName()));
 		vLWelcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		vLWelcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 		vLWelcomeMessageLbl.setBounds(10, 10, villainsLairPanel.getWidth(), 15);
@@ -405,6 +719,7 @@ public class CityScreen {
 			}
 		});		
 		
+		this.villainsLairPanel = villainsLairPanel;
 		return villainsLairPanel;
 	}
 	
@@ -448,6 +763,18 @@ public class CityScreen {
 	
 	
 	private void homeBaseResizeRules(JPanel homeBasePanel) {
+		homeBasePanel.getComponent(0).setBounds(10, 10, homeBasePanel.getWidth(), 15);
+		homeBasePanel.getComponent(2).setBounds(150, 35, homeBasePanel.getWidth() - 160, 15);
+		homeBasePanel.getComponent(3).setBounds(150, homeBasePanel.getComponent(2).getY() + 15 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		homeBasePanel.getComponent(4).setBounds(150, homeBasePanel.getComponent(3).getY() + 25 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 15);
+		homeBasePanel.getComponent(5).setBounds(150, homeBasePanel.getComponent(4).getY() + 15 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		homeBasePanel.getComponent(6).setBounds(150, homeBasePanel.getComponent(5).getY() + 25 + (homeBasePanel.getHeight() - 225) / 5, homeBasePanel.getWidth() - 160, 25);
+		homeBasePanel.getComponent(7).setBounds(150, homeBasePanel.getHeight() - 85, homeBasePanel.getWidth() - 160, 75);
+		((JPanel) homeBasePanel.getComponent(7)).getComponent(0).setBounds(0, 0, ((JPanel) homeBasePanel.getComponent(7)).getWidth() / 3,15);
+		((JPanel) homeBasePanel.getComponent(7)).getComponent(1).setBounds(0, 30, ((JPanel) homeBasePanel.getComponent(7)).getWidth() / 3, 15);
+		((JPanel) homeBasePanel.getComponent(7)).getComponent(2).setBounds(0, 15, ((JPanel) homeBasePanel.getComponent(7)).getWidth() / 3, 15);
+		((JPanel) homeBasePanel.getComponent(7)).getComponent(3).setBounds(((JPanel) homeBasePanel.getComponent(7)).getWidth() / 3, 0, 2 * ((JPanel) homeBasePanel.getComponent(7)).getWidth() / 3, 45);
+		((JPanel) homeBasePanel.getComponent(7)).getComponent(4).setBounds(0, 45, ((JPanel) homeBasePanel.getComponent(7)).getWidth(), 30);
 		
 	}
 	
@@ -509,12 +836,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				northLocationPanel.setVisible(true);
 				currentDirection = Direction.NORTH;
+				playMarching();
 			} else {
 				if(currentDirection == Direction.SOUTH) {
 					southLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
+					playMarching();
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -525,12 +855,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				southLocationPanel.setVisible(true);
 				currentDirection = Direction.SOUTH;
+				playMarching();
 			} else {
 				if(currentDirection == Direction.NORTH) {
 					northLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
+					playMarching();
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -541,12 +874,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				eastLocationPanel.setVisible(true);
 				currentDirection = Direction.EAST;
+				playMarching();
 			} else {
 				if(currentDirection == Direction.WEST) {
 					westLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
+					playMarching();
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -557,12 +893,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				westLocationPanel.setVisible(true);
 				currentDirection = Direction.WEST;
+				playMarching();
 			} else {
 				if(currentDirection == Direction.EAST) {
 					eastLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
+					playMarching();
 				} else {
+					playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -620,16 +959,14 @@ public class CityScreen {
 		frame.setBounds(100, 100, 550, 370);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setMinimumSize(new Dimension(550, 370));
+		frame.setMinimumSize(new Dimension(780, 370));
 		
-//		JLabel welcomeLbl = new JLabel("Welcome to ");
 		welcomeLbl = new JLabel(MessageFormat.format("Welcome to {0}", city.getName()));
 		welcomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeLbl.setBounds(10, 10, 510, 15);
 		welcomeLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().add(welcomeLbl);
 		
-//		JLabel rulerLbl = new JLabel("Currently Ruled By: ");
 		rulerLbl = new JLabel(MessageFormat.format("Currently Ruled By: {0}", this.city.getVillain().getName()));
 		rulerLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		rulerLbl.setBounds(10, 30, 510, 15);
@@ -637,26 +974,26 @@ public class CityScreen {
 		frame.getContentPane().add(rulerLbl);
 		
 		northType = this.city.getNorthLocation().getLocationType();
-		northLocationPanel = buildLocationPanel(this.city.getNorthLocation());
+		northLocationPanel = buildLocationPanel(this.city.getNorthLocation(), Direction.NORTH);
 		frame.getContentPane().add(northLocationPanel);
 		northLocationPanel.setVisible(false);
 		
 		southType = this.city.getSouthLocation().getLocationType();
-		southLocationPanel = buildLocationPanel(this.city.getSouthLocation());
+		southLocationPanel = buildLocationPanel(this.city.getSouthLocation(), Direction.SOUTH);
 		frame.getContentPane().add(southLocationPanel);
 		southLocationPanel.setVisible(false);
 		
 		eastType = this.city.getEastLocation().getLocationType();
-		eastLocationPanel = buildLocationPanel(this.city.getEastLocation());
+		eastLocationPanel = buildLocationPanel(this.city.getEastLocation(), Direction.EAST);
 		frame.getContentPane().add(eastLocationPanel);
 		eastLocationPanel.setVisible(false);
 		
 		westType = this.city.getWestLocation().getLocationType();
-		westLocationPanel = buildLocationPanel(this.city.getWestLocation());
+		westLocationPanel = buildLocationPanel(this.city.getWestLocation(), Direction.WEST);
 		frame.getContentPane().add(westLocationPanel);
 		westLocationPanel.setVisible(false);
 		
-		centerLocationPanel = buildLocationPanel(this.city.getCenterLocation());
+		centerLocationPanel = buildLocationPanel(this.city.getCenterLocation(), Direction.CENTER);
 		frame.getContentPane().add(centerLocationPanel);
 		centerLocationPanel.setVisible(false);
 		setStartPanel();
@@ -713,6 +1050,14 @@ public class CityScreen {
 		lblMap.setBounds(0, 0, 46, 14);
 		mapPanel.add(lblMap);
 		
+		if(city.getTeam().checkPresent(HeroType.SURVEYOR)) {
+			northLocationLbl.setIcon(city.getNorthLocation().getIcon());
+			southLocationLbl.setIcon(city.getSouthLocation().getIcon());
+			eastLocationLbl.setIcon(city.getEastLocation().getIcon());
+			westLocationLbl.setIcon(city.getWestLocation().getIcon());
+			city.makeMapped();
+		}
+		
 		movePanel = new JPanel();
 		movePanel.setBackground(Color.DARK_GRAY);
 		movePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -726,7 +1071,6 @@ public class CityScreen {
 		northMoveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				move(Direction.NORTH);
-//				useMap();
 			}
 		});
 		northMoveBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -785,6 +1129,11 @@ public class CityScreen {
 		team.addHealingItem(HealingItemType.LINDAUER);
 		team.addHealingItem(HealingItemType.LION_RED);
 		team.addMember(hero);
+		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
+		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
+		team.addMember(new Hero("Stacey", HeroType.NURSE));
+		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
+		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
 		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
 		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
 	}

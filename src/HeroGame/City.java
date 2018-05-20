@@ -212,7 +212,7 @@ public class City {
 		this.placeNames.put("Ohakune PowerUpDen", "Stutz Cafe");
 		this.placeNames.put("Ohakune Shop", "Ohakune Take Note Bookshop");
 		
-		this.placeNames.put("Paeroa HomeBase", "Paeroa Opera House");
+		this.placeNames.put("Paeroa HomeBase", "Paeroa Arts Centre");
 		this.placeNames.put("Paeroa Hospital", "Waikino Hotel Paeroa");
 		this.placeNames.put("Paeroa PowerUpDen", "Cosy Kitchen Cafe");
 		this.placeNames.put("Paeroa Shop", "Paeroa Op Shop");

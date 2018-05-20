@@ -26,7 +26,7 @@ public class VillainsLair extends Location {
 	 * @param currentVillian Current Villain of this city.
 	 */
 	VillainsLair(City thisCity, Villain currentVillain, Team heroTeam) {
-		super(currentVillain.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/Shop.png")));
+		super(currentVillain.getLairName(thisCity.getName()), heroTeam, thisCity.getName(), LocationType.VILLIANSLAIR, new ImageIcon(CityScreen.class.getResource("/HeroGame/Images/VillainsLair.jpg")));
 		this.cityVillain = currentVillain;
 	}
 	
