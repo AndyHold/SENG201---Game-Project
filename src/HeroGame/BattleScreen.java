@@ -465,7 +465,6 @@ public class BattleScreen {
 	 * @param hero a Hero the hero passed into the original constructor
 	 * @param villain a Villain the villain passed into the original constructor
 	 * @param team a Team the team passed into the original constructor
-	 * @param gameType a String the type of game to be played
 	 */
 	public void newGame(Hero hero, City city, Team team) {
 		closeScreen();

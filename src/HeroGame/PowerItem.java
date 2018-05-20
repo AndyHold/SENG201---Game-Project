@@ -13,6 +13,7 @@ public class PowerItem {
 	private String description;
 	private String longDescription;
 	private String response;
+	private int amount = 1;
 	
 	/**
 	 * Getter method for cost of power item
@@ -68,6 +69,26 @@ public class PowerItem {
 	public void setResponse(String response) {
 		this.response = response;
 	}
+	
+	/**
+	 * Setter method for the number of items of this type currently in the team inventory
+	 * @param amount an int the amount of items of this type in the teams inventory
+	 */
+	public void changeAmount(int amount) {
+		this.amount += amount;
+	}
+	
+	/**
+	 * Getter method for the amount of this item in the teams inventory
+	 */
+	public int getAmount() {
+		return this.amount;
+	}
+
+	/**
+	 * Getter method for healing item type
+	 * @return a HealingItemType the type of HealingItem
+	 */
 	
 	@Override
 	public String toString() {

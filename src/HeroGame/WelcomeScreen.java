@@ -36,7 +36,8 @@ public class WelcomeScreen {
 	private JLabel warning = new JLabel("");
 
 	/**
-	 * Create the application.
+	 * Constructor for new WelcomeScreen
+	 * @param incomingManager a GameManager the state manager for the game
 	 */
 	public WelcomeScreen(GameManager incomingManager) {
 		this.manager = incomingManager;
@@ -95,13 +96,6 @@ public class WelcomeScreen {
 		lblNextChoseThe.setBounds(12, 130, 458, 15);
 		frmNzCleanUp.getContentPane().add(lblNextChoseThe);
 		
-//NOT NEEDED HERE BUT WILL BE HANDY ELSEWHERE
-//		nCitiesBox.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent nCitiesArg) {
-//				manager.setNCities(Integer.parseInt(nCitiesBox.getSelectedItem().toString()));
-//			}
-//		});
-		
 		nCitiesBox.setMaximumRowCount(4);
 		nCitiesBox.setBounds(484, 125, 36, 24);
 		frmNzCleanUp.getContentPane().add(nCitiesBox);
@@ -159,10 +153,16 @@ public class WelcomeScreen {
 
 	}
 	
+	/**
+	 * Closes the screen when no longer required
+	 */
 	public void closeScreen() {
 		frmNzCleanUp.dispose();
 	}
 	
+	/**
+	 * Remotely callable method to close the screen and return to the state manager
+	 */
 	public void finishedWelcomeScreen() {
 		manager.closeWelcomeScreen(this);
 	}

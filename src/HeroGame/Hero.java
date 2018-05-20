@@ -20,14 +20,15 @@ public class Hero {
 	/**
 	 * Empty Hero Constructor. Used as a dummy to access HeroList
 	 */
+	@Deprecated
 	Hero(){
 	}
 	
 	
 	/**
 	 * Parameterised constructor for Hero - used in building team
-	 * @param heroName
-	 * @param heroType
+	 * @param heroName a String the name of the new Hero
+	 * @param heroType a HeroType the type of Hero to be created
 	 */
 	public Hero(String heroName, HeroType heroType) {
 		this.heroName = heroName;
@@ -206,9 +207,10 @@ public class Hero {
 	}
 	
 	/**
-	 * Prints to output a list of the available heroes in type Hero, and their abilities
+	 * Prints to output a list of the available heroes in type Hero, and their abilities. Command Line Version Only
 	 * @return an int, the number of different heroes available
 	 */
+	@Deprecated
 	public int printHeroList() {
 		int counter = 0;
 		System.out.println("Available heroes:");
@@ -225,6 +227,7 @@ public class Hero {
 	 * Prints the status of a given Hero. Used in the command line version of the game
 	 * @return a String detailing the name, description, health, strength of a Hero and any PowerUps eaten
 	 */
+	@Deprecated
 	public String heroStatus () {
 		String result = this.heroName + " is a " + this.getType().getDescription() + " with health " + this.health + " and strength " + this.strength + 
 				". \n";

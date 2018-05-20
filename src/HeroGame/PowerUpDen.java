@@ -63,6 +63,7 @@ public class PowerUpDen extends Location {
 	/**
 	 * Method to list available options for player to choose from. Command line version only.
 	 */
+	@Deprecated
 	public void listOptions() {
 		System.out.println("Welcome to " + this.getName() + ":");
 		System.out.println("1) Move to another location");
@@ -72,9 +73,10 @@ public class PowerUpDen extends Location {
 	
 	
 	/**
-	 * Run loop for PowerUpDen class
+	 * Run loop for PowerUpDen class - Command Line Version Only
 	 * @return int, Number corresponding to the Direction to move to next.
 	 */
+	@Deprecated
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -87,10 +89,11 @@ public class PowerUpDen extends Location {
 
 	
 	/**
-	 * Method to choose which method to run based on input from the user.
+	 * Method to choose which method to run based on input from the user. Command Line Version Only
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in Location and want to move, false if need menu again.
 	 */
+	@Deprecated
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -107,8 +110,9 @@ public class PowerUpDen extends Location {
 	
 	
 	/**
-	 * Method to prompt user for a PowerUp and a Hero and call the Team to apply it.
+	 * Method to prompt user for a PowerUp and a Hero and call the Team to apply it. Command Line Version Only
 	 */
+	@Deprecated
 	public void applyPowerUp() {		
 		heroTeam.showPowerUps();
 		int powerUpIndex = this.getSelector().intSelector(0, heroTeam.getPowerUpsSize() - 1, "Please select a power up:", "Invalid selection, Please try again");

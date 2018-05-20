@@ -6,7 +6,7 @@ import cmdLineVersion.Selector;
 
 
 /**
- * Place Class for Heroes & Villains Game
+ * Location SuperClass for Heroes & Villains Game
  * SENG201 2018S1
  * @author Andy Holden & Alex Liggett
  */
@@ -69,6 +69,7 @@ public class Location {
 	 * Only used in the command line version of the game
 	 * @return Selector, The selector
 	 */
+	@Deprecated
 	public Selector getSelector() {
 		return this.optionSelector;
 	}
@@ -79,6 +80,7 @@ public class Location {
 	 * Used in command line version only
 	 * @return int, Number corresponding to the direction to travel in
 	 */
+	@Deprecated
 	public int moveLocations() {
 		boolean locationFound = false;
 		int n = 0;
@@ -101,13 +103,14 @@ public class Location {
 		}
 		
 	}
-	
 
+	
 	/**
-	 * Method to check if a move is legitimate
+	 * Method to check if a move is legitimate. Command Line Version Only
 	 * @param n int, Number corresponding to the direction to move in
 	 * @return boolean, true if the direction is good.
 	 */
+	@Deprecated
 	private boolean moveCheck(int n) {
 		switch(n) {
 		
@@ -157,10 +160,4 @@ public class Location {
 		return this.placeName;
 	}
 	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

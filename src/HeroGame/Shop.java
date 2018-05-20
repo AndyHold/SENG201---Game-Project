@@ -45,7 +45,10 @@ public class Shop extends Location {
 		moneyErrors.add("Gary the Vendor looks you up and down in disgust as you cannot produce enough coins");
 	}
 	
-	
+	/**
+	 * Return one of a random selection of error messages if money is insufficient for a transaction
+	 * @return a String the randomly chosen error message
+	 */
 	public String getMoneyError() {
 		int n = this.rand.nextInt(this.moneyErrors.size() - 1);
 		return moneyErrors.get(n);
@@ -91,8 +94,9 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * Method to list available options for player to choose from
+	 * Method to list available options for player to choose from. Command Line Version Only
 	 */
+	@Deprecated
 	public void listOptions() {
 		System.out.println("Welcome to " + this.getName() + ":");
 		System.out.println("1) Move to another location");
@@ -101,9 +105,10 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * Run loop for Shop class
+	 * Run loop for Shop class. Command Line Version Only
 	 * @return int, Number corresponding to the direction to move to next.
 	 */
+	@Deprecated
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -116,10 +121,11 @@ public class Shop extends Location {
 
 	
 	/**
-	 * Method to choose which method to run based on input from the user.
+	 * Method to choose which method to run based on input from the user. Command Line Version Only
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in location and want to move, false if need menu again.
 	 */
+	@Deprecated
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -136,8 +142,9 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * run loop for the Innkeeper
+	 * run loop for the Innkeeper. Command Line Version Only
 	 */
+	@Deprecated
 	public void runInkeeperLoop() {
 		boolean finished = false;
 		System.out.println("Hi there, welcome to " + this.getName() + "how can i help you?:");
@@ -155,8 +162,9 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * Innkeeper specific method to list available options for player to choose from
+	 * Innkeeper specific method to list available options for player to choose from. Command Line Version Only
 	 */
+	@Deprecated
 	private void listInnKeeperOptions() {
 		System.out.println("1) Purchase map");
 		System.out.println("2) Purchase Power up");
@@ -169,10 +177,11 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * Innkeeper specific method to choose which method to run based on input from the user.
+	 * Innkeeper specific method to choose which method to run based on input from the user. Command Line Version Only 
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished with Innkeeper and want to return to the previous menu, false if need Innkeeper menu again.
 	 */
+	@Deprecated
 	public boolean runInnKeeperOption(int n) {
 		
 		switch(n) {
@@ -209,8 +218,9 @@ public class Shop extends Location {
 	
 	
 	/**
-	 * Method to select an item and show its attributes
+	 * Method to select an item and show its attributes. Command Line Version Only
 	 */
+	@Deprecated
 	private void showItem() {
 		System.out.println("1) Healing Item");
 		System.out.println("2) Power Up");
@@ -264,9 +274,10 @@ public class Shop extends Location {
 
 
 	/**
-	 * Method to purchase a healing item
+	 * Method to purchase a healing item. Command Line Version Only
 	 * @return boolean, true if purchase successful
 	 */
+	@Deprecated
 	private boolean purchaseHealingItem() {
 		for(int x = 0 ; x < this.healingItems.size() ; x++) {
 			System.out.print(x + ") " + this.healingItems.get(x).getCost() + " - " + this.healingItems.get(x).getDescription());
@@ -285,9 +296,10 @@ public class Shop extends Location {
 
 
 	/**
-	 * Method to purchase a Power Up item
+	 * Method to purchase a Power Up item. Command Line Version Only
 	 * @return boolean, true if purchase successful
 	 */
+	@Deprecated
 	private boolean purchasePowerUp() {
 		for(int x = 0 ; x < this.powerUps.size() ; x++) {
 			System.out.print(x + ") " + this.powerUps.get(x).getCost() + " - " + this.powerUps.get(x).getDescription());
@@ -306,9 +318,10 @@ public class Shop extends Location {
 
 
 	/**
-	 * Method to purchase a map
+	 * Method to purchase a map. Command Line Version Only
 	 * @return boolean, true if purchase successful
 	 */
+	@Deprecated
 	private boolean purchaseMap() {
 		if(this.heroTeam.getMoney() >= 5.00) {
 			this.heroTeam.changeMaps(1);
@@ -323,8 +336,9 @@ public class Shop extends Location {
 
 
 	/**
-	 * Method to display shop inventory
+	 * Method to display shop inventory. Command Line Version Only
 	 */
+	@Deprecated
 	public void shopInventory() {
 		System.out.println("Inventory for " + this.getName());
 		System.out.println("Healing Items:");
@@ -337,11 +351,4 @@ public class Shop extends Location {
 		}
 	}
 	
-	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

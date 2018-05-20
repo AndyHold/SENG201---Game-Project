@@ -1,5 +1,6 @@
 package HeroGame;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +17,11 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
+/**
+ * FinalScreen Class for Heroes & Villains Game. Sets up and displays End of Game Screen.
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 public class FinalScreen {
 
 	private JFrame frmNzCleanUp;
@@ -223,6 +229,10 @@ public class FinalScreen {
 	
 	}
 	
+	/**
+	 * Returns a 00:00:00 formatted String containing the time taken to complete the game
+	 * @return  a String formatted hh:mm:ss  being the time taken to complete the game
+	 */
 	public String getWinningTime() {
 		double elapsed = manager.getTeam().getTime(); //in seconds
 		int hours = (int)elapsed / 3600;
@@ -241,15 +251,5 @@ public class FinalScreen {
 		frmNzCleanUp.dispose();
 
 	}
-	
-//	public static void main(String[] args) {
-//		GameManager m1 = new GameManager();
-//		System.out.println(System.currentTimeMillis());
-//		Team t1 = new Team("Awesome");
-//		m1.setTeam(t1);
-//		t1.startClock();
-//		m1.launchFinalScreen("win");
-		
-//	}
 	
 }

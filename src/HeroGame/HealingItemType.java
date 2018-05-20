@@ -42,7 +42,7 @@ public enum HealingItemType {
 		
 	}
 	/**
-	 * Getter method for cost of this HeslingItemType
+	 * Getter method for cost of this HealingItemType
 	 * @return a double the cost of this HealingItemType
 	 */
 	public double getCost() {
@@ -66,7 +66,7 @@ public enum HealingItemType {
 	}
 	
 	/**
-	 * Getter method for the desciption of this HealingItemType
+	 * Getter method for the description of this HealingItemType
 	 * @return a String the description of this HealingItemType
 	 */
 	public String getDescription() {

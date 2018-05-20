@@ -226,9 +226,10 @@ public class CityScreen {
 					if(powerUp != null) {
 						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.eatPowerUp(powerUp)+"</html>";
 						int powerUpIndex = ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
-						city.getTeam().removePowerUp(powerUpIndex);
-						if (!city.getTeam().checkPowerUpInList(powerUp.getType())) {
-							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());
+						powerUp.changeAmount(-1);
+						if (powerUp.getAmount() == 0) {//Last of this type has been consumed
+							city.getTeam().removePowerUp(powerUpIndex);
+							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());//Remove from ComboBox
 						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
@@ -329,10 +330,11 @@ public class CityScreen {
 						double drinkTime = city.getTeam().getTime();
 						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.drinkHealingItem(healingItem, drinkTime) + "</html>";
 						int healingItemIndex = ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
-						city.getTeam().removeHealingItem(healingItemIndex);
-						//This works for PowerUps but not healing items. Why????
-						if (!city.getTeam().checkHealingItemInList(healingItem.getHealingItemType())) {
-							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());
+						healingItem.changeAmount(-1);
+						if (healingItem.getAmount() == 0) { //Last of this type has been consumed
+							city.getTeam().removeHealingItem(healingItemIndex);
+							//This works for PowerUps but not healing items. Why????
+							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem()); //Remove from ComboBox
 						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {

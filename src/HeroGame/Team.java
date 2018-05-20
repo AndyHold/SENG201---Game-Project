@@ -100,6 +100,7 @@ public class Team {
 	 * Only used in the command line version of the game
 	 * @param size an int the number of members to add to the team
 	 */
+	@Deprecated
 	public void buildTeam(int size) {
 		
 		Hero dummyHero = new Hero();
@@ -129,7 +130,7 @@ public class Team {
 	}
 	
 	/**
-	 * Checks the team to see whether a particular name has already been allocated
+	 * Checks the Team to see whether a particular name has already been allocated
 	 * @return a boolean false if the name has been allocated, true if it is unique
 	 */
 	public boolean checkNameUnique(String name) {
@@ -143,9 +144,9 @@ public class Team {
 	}
 	
 	/**
-	 * Checks whether a particular HeroType is present in a team
+	 * Checks whether a particular HeroType is present in the Team
 	 * @param heroTypeInQuestion a HeroType the HeroType to check
-	 * @return a boolean true if heroTypeInQuestion is present, else false
+	 * @return a boolean true if the heroTypeInQuestion is present, else false
 	 */
 	public boolean checkPresent(HeroType heroTypeInQuestion) {
 		boolean result = false;
@@ -174,9 +175,10 @@ public class Team {
 	}
 	
 	/**
-	 * Returns (and prints to output) a list of heroes in the team and their index
-	 * @return
+	 * Returns (and prints to output) a list of heroes in the team and their index. Command Line Version Only
+	 * @return a String the list of heroes in the Team
 	 */
+	@Deprecated
 	public String listHeroes() {
 		String result = "Heroes in team:\n";
 		for (int i = 0; i < memberList.size(); i++) {
@@ -187,8 +189,8 @@ public class Team {
 	}
 	
 	/**
-	 * for a valid index, returns the hero at a given index in the private memberList array
-	 * @param heroIndex an int the index of the required hero
+	 * for a valid index, returns the Hero at a given index in the private memberList array
+	 * @param heroIndex an int the index of the required Hero
 	 * @return the Hero at the given index. Returns a null pointer otherwise
 	 */
 	public Hero getHero(int heroIndex) {
@@ -204,7 +206,7 @@ public class Team {
 	
 	
 	/**
-	 * Print to output a list of the current team members, their special ability 
+	 * Print to output a list of the current Team members, their special ability 
 	 * and their current strength.
 	 */
 	public void teamStatus() {
@@ -223,8 +225,8 @@ public class Team {
 	//*********************************Power Ups*******************************
 	
 	/**
-	 * Adds a power up to the team's inventory
-	 * @param powerUp a PowerUp, the power up to add to the team's inventory 
+	 * Adds a PowerUp type to the team's inventory. Additional instances are added using changeAmount()
+	 * @param powerUp a PowerUp, the PowerUp type to add to the team's inventory. 
 	 */
 	public int addPowerUp(PowerUpType powerUp){
 		PowerUp newPowerUp = new PowerUp(powerUp);
@@ -251,21 +253,26 @@ public class Team {
 		}
 		return powerUps.size();
 	}
-	
+
 	/**
-	 * Returns the number of power ups currently held
+	 * Returns the number of power ups currently held. Fundamental change to PowerUps/HealingItems
+	 * means this method is no longer relevant/correct.
 	 * @return an int the number of power ups currently held
 	 */
+	@Deprecated
 	public int getPowerUpsSize() {
 		return this.powerUps.size();
 	}
-	
+
+
 	/**
-	 * Makes the team member at index teamMember eat a powerup of the given type. Removes the 
-	 * first power up of this type from the team's inventory 
+	 * Makes the Hero at index teamMember eat a PowerUp of the given type. Removes the 
+	 * first power up of this type from the team's inventory. Fundamental change to PowerUps/HealingItems
+	 * means this method is no longer relevant/correct
 	 * @param powerUpType a power up type, the type of power up to apply
 	 * @param teamMemberIndex an int the index of the team member who is to eat the power up
 	 */
+	@Deprecated
 	public String applyPowerUp(PowerUpType powerUpType, int teamMemberIndex) {
 		String result = "Power up not found\n"; //default value
 		boolean applied = false;
@@ -288,9 +295,11 @@ public class Team {
 	}
 	
 	/**
-	 * Returns a list of the power ups in the team's inventory
+	 * Returns a list of the PowerUps in the team's inventory. Fundamental change to PowerUps/HealingItems
+	 * means this method is no longer relevant/correct.
 	 * @return a String a list of quantities of each power up carried by the team
 	 */
+	@Deprecated
 	public String showPowerUps () {
 		
 		int pavlovaCounter = Collections.frequency(powerUps, new PowerUp(PowerUpType.PAVLOVA));
@@ -323,7 +332,7 @@ public class Team {
 	/**
 	 * Returns the type of power up found at a given index of the power ups ArrayList
 	 * @param powerUpIndex an int the index of the power up for which the type is required
-	 * @return
+	 * @return a PowerUpType the PowerUpType at the given index in the ArrayList<PowerUps>
 	 */
 	public PowerUpType getPowerUpType(int powerUpIndex) {
 		PowerUpType result = null;
@@ -344,21 +353,6 @@ public class Team {
 			result += MessageFormat.format("{0} x{1}<br>", powerUp.toString(), powerUp.getAmount());
 		}
 		result += "</center></html>";
-		return result;
-	}
-	
-	/**
-	 * Checks whether a specified PowerUpType is present in the list
-	 * @param powerUpType the PowerUpType to check for 
-	 * @return a boolean true if the specified PowerUpType is present in the team's inventory, otherwise false
-	 */
-	public boolean checkPowerUpInList(PowerUpType powerUpType) {
-		boolean result = false;
-		for (PowerUp which : powerUps) {
-			if (which.getType() == powerUpType){ 
-				result = true;
-			}
-		}
 		return result;
 	}
 	
@@ -400,10 +394,12 @@ public class Team {
 	
 	/**
 	 * Makes the team member at index teamMember drink a healing item of the given type. Removes the 
-	 * first healing item of this type from the team's inventory 
+	 * first healing item of this type from the team's inventory. Fundamental change to PowerUps/HealingItems
+	 * means this method is no longer relevant/correct.
 	 * @param healingItemType a HealingItemType, the type of healing item to apply
 	 * @param teamMemberIndex an int the index of the team member who is to drink the healing item
 	 */
+	@Deprecated
 	public String applyHealingItem(HealingItemType healingItemType, int teamMemberIndex) {
 		String result = "Healing item not found\n"; //default value
 		boolean applied = false;
@@ -439,9 +435,11 @@ public class Team {
 	}
 	
 	/**
-	 * Returns a String listing the quantities of each healing item in the team's inventory
+	 * Returns a String listing the quantities of each healing item in the team's inventory. Fundamental change 
+	 * to PowerUps/HealingItems means this method is no longer relevant/correct.
 	 * @return a multiline String a list of the qunatities of each healing item in the team's inventory
 	 */
+	@Deprecated
 	public String showHealingItems () {
 		
 		int doBroCounter = Collections.frequency(healingItems, new HealingItem(HealingItemType.DOUBLE_BROWN));
@@ -472,9 +470,10 @@ public class Team {
 	}
 	
 	/**
-	 * Returns the number of healing items in the team's inventory
+	 * Returns the number of healing items in the team's inventory. Fundamental change 
+	 * to PowerUps/HealingItems means this method is no longer relevant/correct.
 	 * @return an int the number of healing items in the team's inventory
-	 */
+	 */@Deprecated
 	public int getHealingItemsSize() {
 		return healingItems.size();
 	}
@@ -490,21 +489,6 @@ public class Team {
 			result += MessageFormat.format("{0} x{1}<br>", healingItem.toString(), healingItem.getAmount());
 		}
 		result += "</center></html>";
-		return result;
-	}
-	
-	/**
-	 * Checks whether a specified HealingItemType is present in the list
-	 * @param healingItemType the HealingItemType to check for 
-	 * @return a boolean true if the specified HealingItemType is present in the team's inventory, otherwise false
-	 */
-	public boolean checkHealingItemInList(HealingItemType HealingItemType) {
-		boolean result = false;
-		for (HealingItem which : healingItems) {
-			if (which.getHealingItemType() == HealingItemType){ 
-				result = true;
-			}
-		}
 		return result;
 	}
 	

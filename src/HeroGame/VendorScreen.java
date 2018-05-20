@@ -27,6 +27,11 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.Dimension;
 
+/**
+ * VendorScreen Class for Heroes & Villains Game. Sets up and displays Screen where items are purchased.
+ * SENG201 2018S1
+ * @author Andy Holden & Alex Liggett
+ */
 public class VendorScreen {
 
 	private JFrame frame;
@@ -115,31 +120,11 @@ public class VendorScreen {
 	private JPanel mapsPricePanel;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VendorScreen window = new VendorScreen();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public VendorScreen() {
-		initialize();
-	}
-	
-	
-	/**
-	 * Create the application.
+	 * Constructor for new VendorScreen, the screen where items are pruchased from the shop
+	 * @param manager a GameManager the state manager for the game
+	 * @param direction a Direction, the direction on the map in which the shop is located
+	 * @param city a City the City currently being played
+	 * @param shop a Shop the Shop class containing the functiuon used in this screen
 	 */
 	public VendorScreen(GameManager manager, Direction direction, City city, Shop shop) {
 		this.manager = manager;
@@ -151,9 +136,8 @@ public class VendorScreen {
 		this.frame.setVisible(true);
 	}
 	
-	public void closeScreen() {
-		frame.dispose();
-	}
+	
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -839,5 +823,12 @@ public class VendorScreen {
 				buyMapPanel.setVisible(false);
 			}
 		});
+	}
+	
+	/**
+	 * Closes the screen when no longer required
+	 */
+	public void closeScreen() {
+		frame.dispose();
 	}
 }

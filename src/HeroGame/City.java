@@ -244,7 +244,7 @@ public class City {
 	
 	
 	/**
-	 * Method to set each direction on the map (N, S, E, W to a random Location.
+	 * Method to set each direction on the map (N, S, E, W) to a random Location.
 	 */
 	public void setDirections() {
 		this.eastArea = this.getLocation();
@@ -282,8 +282,9 @@ public class City {
 	
 	
 	/**
-	 * Run loop for the current City.
+	 * Run loop for the current City. Command Line Version Only
 	 */
+	@Deprecated
 	public void runCity() {
 //		launchCityScreen();
 		int n = this.centerArea.runLocation();

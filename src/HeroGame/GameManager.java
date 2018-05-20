@@ -90,14 +90,14 @@ public class GameManager {
 	}
 	
 	/**
-	 * Launches a game welcome screen
+	 * Launches a WelcomeScreen, the initial screen for the game 
 	 */
 	public void launchWelcomeScreen() {
 		WelcomeScreen welcomeScreen = new WelcomeScreen(this);
 	}
 	
 	/**
-	 * Remotely closes a game WelcomeScreen
+	 * Remotely closes a game WelcomeScreen and calls launchTeamBuildScreen()
 	 * @param welcomeScreen a WelcomeScreen the screen to be closed
 	 */
 	public void closeWelcomeScreen(WelcomeScreen welcomeScreen) {
@@ -174,13 +174,40 @@ public class GameManager {
 	}
 	
 	/**
-	 * Launch the final screen.
+	 * Launches a FinalScreen being the screen where win/lose/credits are displayed
 	 * @param outcome a String denoting win or lose
 	 */
 	public void launchFinalScreen(String outcome) {
 		FinalScreen finalScreen = new FinalScreen(outcome, this);
 	}
 	
+	/**
+	 * Launches a VendorScreen, the screen where items are purchased in the shop
+	 * @param direction the Direction within the city from where the screen is launched, and to which it will return  on close
+	 * @param city the City currently being played
+	 * @param shop a Shop class which provides most of the methods required in this location
+	 * @param cityScreen the CityScreen from which the VendorScreen is launched
+	 */
+	public void launchVendorScreen(Direction direction, City city, Shop shop, CityScreen cityScreen) {
+		cityScreen.closeScreen();
+		VendorScreen vendor = new VendorScreen(this, direction, city, shop);
+	}
+
+	/**
+	 * Remotely closes a VendorScreen and creates a new CityScreen
+	 * @param vendor the VendorScreen to be closed
+	 * @param city the City currently being played
+	 * @param direction the direction in which the shop is located within the current city
+	 */
+	public void closeVendorScreen(VendorScreen vendor, City city, Direction direction) {
+		vendor.closeScreen();
+		CityScreen cityScreen = new CityScreen(city, direction, this);
+		
+	}
+	
+	
+
+
 	/**
 	 * Main method for game
 	 * @param args
@@ -199,17 +226,6 @@ public class GameManager {
 //		manager.launchBattleScreen(h1, c1, Direction.CENTER);
 
 	}
-
-	public void closeVendorScreen(VendorScreen vendor, City city, Direction direction) {
-		vendor.closeScreen();
-		CityScreen cityScreen = new CityScreen(city, direction, this);
-		
-	}
 	
 	
-	public void launchVendorScreen(Direction direction, City city, Shop shop, CityScreen cityScreen) {
-		cityScreen.closeScreen();
-		VendorScreen vendor = new VendorScreen(this, direction, city, shop);
-	}
-
 }

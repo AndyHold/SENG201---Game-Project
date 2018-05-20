@@ -64,11 +64,12 @@ public class Cities {
 			}
 		}
 	}
-	
+
 	
 	/**
-	 * Run loop for Cities class, calls each city in the stages ArrayList until completion.
+	 * Run loop for Cities class, calls each city in the stages ArrayList until completion. Command Line Version Only
 	 */
+	@Deprecated
 	public void runCities() {
 		for(City currentCity: this.stages) {
 			currentCity.runCity();
@@ -98,6 +99,10 @@ public class Cities {
 		cityNames.add("Taihape");
 	}
 	
+	/**
+	 * Returns a list of cities in a formatted String. Used in FinalScreen if game is won
+	 * @return a String a formatted list of Cities in the game 
+	 */
 	public String getCityList() {
 		String result = "";
 		for (int i = 0; i < (stages.size() -2); i++) { //Return cities up to last two separated by a comma

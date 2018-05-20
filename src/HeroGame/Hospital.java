@@ -29,7 +29,7 @@ public class Hospital extends Location {
 	setBadHealingItemMessages();
 	}
 	
-	
+
 	/**
 	 * Method to create and fill the ArrayList badHealingItems with error messages for 
 	 * when no HealingItem is present
@@ -64,6 +64,7 @@ public class Hospital extends Location {
 	/**
 	 * Method to list available options for player to choose from. Command line version only.
 	 */
+	@Deprecated
 	public void listOptions() {
 		System.out.println("Welcome to " + this.getName() + ":");
 		System.out.println("1) Move to another Location");
@@ -76,6 +77,7 @@ public class Hospital extends Location {
 	 * Run loop for Hospital class. Command line version only.
 	 * @return int, Number corresponding to the direction to move to next.
 	 */
+	@Deprecated
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -89,10 +91,11 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Method to choose which method to run based on input from the user.
+	 * Method to choose which method to run based on input from the user. Command Line Version Only
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in location and want to move, false if need menu again.
 	 */
+	@Deprecated
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -115,8 +118,9 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Prompts user for which HealingItem to use and which Hero to apply it to and does so.
+	 * Prompts user for which HealingItem to use and which Hero to apply it to and does so. Command Line Version Only.
 	 */
+	@Deprecated
 	public void useHealingItem() {
 		this.heroTeam.showHealingItems();
 		int healingItemIndex = this.getSelector().intSelector(0, this.heroTeam.getHealingItemsSize(), "Please select a healing item", "Invalid healing item please try again");
@@ -147,10 +151,11 @@ public class Hospital extends Location {
 	}
 
 	/**
-	 * Method to check if given direction is allowable.
+	 * Method to check if given direction is allowable. Command Line Version Only
 	 * @param n int, Number corresponding to the direction given by the user.
 	 * @return boolean, returns true if player can move in that direction.
 	 */
+	@Deprecated
 	private boolean moveCheck(int n) {
 		switch(n) {
 		

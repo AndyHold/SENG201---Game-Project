@@ -30,15 +30,19 @@ public class VillainsLair extends Location {
 		this.cityVillain = currentVillain;
 	}
 	
-	
+	/**
+	 * Sets the image associated with a particular Villain
+	 * @return an ImageIcon the image associated with the particular Villain.
+	 */
 	public ImageIcon getVillainImage() {
 		return this.cityVillain.getImage();
 	}
 	
 	
 	/**
-	 * Method to list available options for player to choose from
+	 * Method to list available options for player to choose from. Command Line Version Only
 	 */
+	@Deprecated
 	public void listOptions() {
 		System.out.println(MessageFormat.format("Welcome to {0}:", this.getName()));
 		System.out.println("1) Move to another location");
@@ -47,9 +51,10 @@ public class VillainsLair extends Location {
 	
 	
 	/**
-	 * Run loop for VillainsLair class
+	 * Run loop for VillainsLair class. Command Line Version  Onlyu=
 	 * @return int, Number corresponding to the direction to move to next.
 	 */
+	@Deprecated
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -63,12 +68,12 @@ public class VillainsLair extends Location {
 		return moveLocations();
 	}
 
-	
 	/**
-	 * Method to choose which method to run based on input from the user.
+	 * Method to choose which method to run based on input from the user. Command Line Version Only
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in location and want to move, false if need menu again.
 	 */
+	@Deprecated
 	public boolean runOption(int n) {
 		
 		switch(n) {
@@ -87,7 +92,12 @@ public class VillainsLair extends Location {
 		return false;
 	}
 	
-	
+	/**
+	 * Method to choose random battle. Command Line Version Only
+	 * @param currentBattle the Battle class in which battles are fought
+	 * @param heroIndex the Hero chosen to fight the Battle
+	 */
+	@Deprecated
 	private void chooseBattle(Battle currentBattle, int heroIndex) {
 		int n = this.rand.nextInt(3);
 		
@@ -111,11 +121,6 @@ public class VillainsLair extends Location {
 	@Override
 	public String toString() {
 		return MessageFormat.format("{0} currently ruled by {1}", this.getName(), this.cityVillain.getName());
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
