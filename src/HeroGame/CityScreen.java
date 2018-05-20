@@ -84,23 +84,7 @@ public class CityScreen {
 		this.frame.dispose();
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		GameManager manager = new GameManager(); 
-		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
-		Team team = new Team("Team");
-		team.addPowerUp(PowerUpType.CHEESE_ROLL);
-		team.addPowerUp(PowerUpType.PAVLOVA);
-		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
-		team.addHealingItem(HealingItemType.LINDAUER);
-		team.addHealingItem(HealingItemType.LION_RED);
-		team.addMember(hero);
-		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
-		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
-	}
+
 
 	/**
 	 * Gets type of panel to build from the location in that direction then builds the panel.
@@ -229,7 +213,7 @@ public class CityScreen {
 						powerUp.changeAmount(-1);
 						if (powerUp.getAmount() == 0) {//Last of this type has been consumed
 							city.getTeam().removePowerUp(powerUpIndex);
-							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem());//Remove from ComboBox
+							itemPickerComboBox.removeItem(powerUp);//Remove from ComboBox
 						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
@@ -333,8 +317,8 @@ public class CityScreen {
 						healingItem.changeAmount(-1);
 						if (healingItem.getAmount() == 0) { //Last of this type has been consumed
 							city.getTeam().removeHealingItem(healingItemIndex);
-							//This works for PowerUps but not healing items. Why????
-							itemPickerComboBox.removeItem(itemPickerComboBox.getSelectedItem()); //Remove from ComboBox
+							//This works for PowerUps but not healing items. Why the f*** not? Grrrrrr!!!
+							itemPickerComboBox.removeItem(healingItem);//Remove from ComboBox
 						}
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					} else {
@@ -786,7 +770,22 @@ public class CityScreen {
 		lblMove.setFont(new Font("Tahoma", Font.BOLD, 13));
 	}
 
+
+
+
+	//***************************Test Code
+	public static void main(String[] args) {
+		GameManager manager = new GameManager(); 
+		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
+		Team team = new Team("Team");
+		team.addPowerUp(PowerUpType.CHEESE_ROLL);
+		team.addPowerUp(PowerUpType.PAVLOVA);
+		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
+		team.addHealingItem(HealingItemType.LINDAUER);
+		team.addHealingItem(HealingItemType.LION_RED);
+		team.addMember(hero);
+		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
+		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
+	}
 }
-
-
-
