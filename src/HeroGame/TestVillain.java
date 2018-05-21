@@ -17,6 +17,7 @@ import org.junit.Test;
 public class TestVillain {
 	Villain v1 = Villain.BADRUGBYREFEREE;
 	Villain v2 = Villain.POLITICIAN;
+	Villain v3 = Villain.AUSSIECRICKETER;
 	//Team t1 = new Team("TestTeam");
 	//City c1 = new City("Paeroa", v1, t1);
 	
@@ -67,6 +68,8 @@ public class TestVillain {
 		//bound to be insulting anyway
 		assertNotNull(v1.getTaunt());
 	}
+	
+
 
 	@Test
 	public void testTakeDamageGetHealthIsAlive() {
@@ -84,5 +87,18 @@ public class TestVillain {
 		assertFalse(v1.isAlive());
 	}
 
+	@Test
+	public void testResetVillain() {
+		//Normal Villain
+		v1.takeDamage(90);
+		assertEquals(10, v1.getHealth());
+		v1.resetValues(v1);
+		assertEquals(100, v1.getHealth());
+		//Super Villain
+		v3.takeDamage(190);
+		assertEquals(10, v3.getHealth());
+		v3.resetValues(v3);
+		assertEquals(200, v3.getHealth());
+	}
 
 }

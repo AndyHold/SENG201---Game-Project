@@ -1,10 +1,6 @@
 package HeroGame;
 
-import javax.sound.sampled.*;
-import java.io.*;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import cmdLineVersion.Selector;
 
 /**
@@ -27,31 +23,12 @@ public class GameManager {
 	private Cities cities;
 	private Team heroTeam; //null pointer until buildTeam() is called
 	private Selector gameSelector = new Selector();
-	private JFrame frame = new JFrame();
-	private Clip clip;
+	private Sound sounds = new Sound();
+
+
 	
 	
-	/**
-	 * Method to play background music
-	 */
-	public void playMusic() {
-		try {
-			clip = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/music.wav"));
-			clip.open(ais);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
+
 	/**
 	 * Getter method for teamName
 	 * @return a String, the name of the Team
@@ -121,7 +98,7 @@ public class GameManager {
 	 */
 	public void launchWelcomeScreen() {
 		WelcomeScreen welcomeScreen = new WelcomeScreen(this);
-		playMusic();
+		sounds.playMusic();
 	}
 	
 	/**
@@ -207,7 +184,7 @@ public class GameManager {
 	 */
 	public void launchFinalScreen(String outcome) {
 		FinalScreen finalScreen = new FinalScreen(outcome, this);
-		clip.stop();
+		sounds.stopMusic();
 	}
 	
 	/**

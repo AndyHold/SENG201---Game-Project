@@ -39,7 +39,7 @@ public class TestPowerUp {
 
 	@Test
 	public void testGetEffect() {
-		assertEquals("gives a hero the lightning quick speed to see the opponent's" + 
+		assertEquals("Gives a hero the lightning quick speed to see the opponent's" + 
 				" move in rock, paper, scissors and play the appropriate move", 
 				p3.getEffect());
 	}
@@ -64,7 +64,7 @@ public class TestPowerUp {
 
 	@Test
 	public void testGetResponse() {
-		assertEquals("tears the packet open and begins wolfing them down. \"Nom Nom Nom!\"",
+		assertEquals("Tears the packet open and begins wolfing them down. \"Nom Nom Nom!\"",
 				p2.getResponse());
 	}
 

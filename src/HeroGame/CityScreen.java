@@ -73,12 +73,7 @@ public class CityScreen {
 	private JPanel shopPanel;
 	private JPanel homeBasePanel;
 	private JPanel powerUpDenPanel;
-	private Clip goodSound;
-	private Clip badSound;
-	private Clip ohNoSound;
-	private Clip openCan;
-	private Clip munching;
-	private Clip marching;
+	private Sound sounds = new Sound();
 	
 	/**
 	 * Parameterised Constructor
@@ -104,136 +99,7 @@ public class CityScreen {
 	}
 	
 	
-	/**
-	 * Method to play Oh No sound
-	 */
-	public void playOhNo() {
-		try {
-			ohNoSound = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/oh no.wav"));
-			ohNoSound.open(ais);
-			ohNoSound.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	
-	/**
-	 * Method to play Munching sound
-	 */
-	public void playMunching() {
-		try {
-			munching = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/munching.wav"));
-			munching.open(ais);
-			munching.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	
-	/**
-	 * Method to play Marching sound
-	 */
-	public void playMarching() {
-		try {
-			marching = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/marching.wav"));
-			marching.open(ais);
-			marching.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	
-	/**
-	 * Method to play Open Can sound
-	 */
-	public void playOpenCan() {
-		try {
-			openCan = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/opencan.wav"));
-			openCan.open(ais);
-			openCan.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	
-	/**
-	 * Method to play a bad sound
-	 */
-	public void playBadSound() {
-		try {
-			badSound = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/bad.wav"));
-			badSound.open(ais);
-			badSound.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	
-	/**
-	 * Method to play a good sound
-	 */
-	public void playGoodSound() {
-		try {
-			goodSound = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/good.wav"));
-			goodSound.open(ais);
-			goodSound.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
+
 
 
 	/**
@@ -324,13 +190,13 @@ public class CityScreen {
 				case 0:
 					int amount = rand.nextInt((int) city.getTeam().getMoney());
 					city.getTeam().changeMoney(amount * -1);
-					playOhNo();
+					sounds.playOhNo();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your wallet which had ${0} in it!", amount), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
 					break;
 				case 1:
 					if(city.getTeam().getPowerUpsSize() > 0) {
 						int index = rand.nextInt(city.getTeam().getPowerUpsSize());
-						playOhNo();
+						sounds.playOhNo();
 						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going hungry tonight!", city.getTeam().getPowerUpType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
 						PowerUp powerUp = city.getTeam().getPowerUps().get(index);
 						city.getTeam().removePowerUp(index);
@@ -343,7 +209,7 @@ public class CityScreen {
 				case 2:
 					if(city.getTeam().getHealingItemsSize() > 0) {
 						int index = rand.nextInt(city.getTeam().getHealingItemsSize());
-						playOhNo();
+						sounds.playOhNo();
 						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going thirsty tonight!", city.getTeam().getHealingItemType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
 						HealingItem healingItem = city.getTeam().getHealingItems().get(index);
 						city.getTeam().removeHealingItem(index);
@@ -389,11 +255,11 @@ public class CityScreen {
 						city.getTeam().changeMaps(-1);
 						city.makeMapped();
 					} else {
-						playBadSound();
+						sounds.playBadSound();
 						JOptionPane.showMessageDialog(frame, "You've already Mapped this city!", "Woops...", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, "You've run out of maps!", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -422,10 +288,12 @@ public class CityScreen {
 					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(1)).setText(MessageFormat.format("Health: {0}", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getHealth()));
 					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(2)).setText(MessageFormat.format("Strength: {0}", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getStrength()));
 					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(3)).setText(MessageFormat.format("<html>Ability: {0}</td></html>", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getAbility()));
-					((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(4)).setText(MessageFormat.format("<html>Current Power Up: {0}</html>", ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getPowerUp().getLongDescription()));
-					
+					PowerUp heroPowerUp = ((Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).getSelectedItem()).getPowerUp();
+					if (heroPowerUp != null) {
+						((JLabel) ((JPanel) getPanel(currentDirection).getComponent(7)).getComponent(4)).setText(MessageFormat.format("<html>Current Power Up: {0}</html>", heroPowerUp.getLongDescription()));
+					}
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -515,7 +383,15 @@ public class CityScreen {
 				Hero hero = (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(3)).getSelectedItem();
 				if(hero != null) {
 					PowerUp powerUp = (PowerUp) ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
-					if(powerUp != null) {
+					if (powerUp == null) { //No power up selected
+						sounds.playBadSound();
+						JOptionPane.showMessageDialog(frame, MessageFormat.format(((PowerUpDen) city.getLocation(currentDirection)).getBadPowerUpMessage(), 
+								hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
+					}
+					else if (hero.getPowerUp() != null) { //Hero already has a PowerUp
+						JOptionPane.showMessageDialog(frame, hero.getName() + " you greedy beggar, you've had one", 
+								"Not good...", JOptionPane.ERROR_MESSAGE);
+					} else { //Hero can eat PowerUp
 						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.eatPowerUp(powerUp)+"</html>";
 						int powerUpIndex = ((JComboBox<PowerUp>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
 						powerUp.changeAmount(-1);
@@ -523,14 +399,11 @@ public class CityScreen {
 							city.getTeam().removePowerUp(powerUpIndex);
 							((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).removeItem(powerUp);//Remove from ComboBox
 						}
-						playMunching();
+						sounds.playMunching();
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						playBadSound();
-						JOptionPane.showMessageDialog(frame, MessageFormat.format(((PowerUpDen) city.getLocation(currentDirection)).getBadPowerUpMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
-					}
+					} 
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -621,7 +494,15 @@ public class CityScreen {
 				Hero hero = (Hero) ((JComboBox<Hero>) getPanel(currentDirection).getComponent(3)).getSelectedItem();
 				if(hero != null) {
 					HealingItem healingItem = (HealingItem) ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedItem();
-					if(healingItem != null) {
+					if(healingItem == null) {//No HealingItem selected
+						sounds.playBadSound();
+						JOptionPane.showMessageDialog(frame, MessageFormat.format(((Hospital) city.getLocation(currentDirection)).getBadHealingItemMessage(), 
+								hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
+					} else if (hero.checkHealingItemTime(city.getTeam().getTime()) > 0) {//Hero already has a healing item on the go
+						JOptionPane.showMessageDialog(frame, "Oi " + hero.getName() + " other people are thirsty too ya know!", 
+								"Not good...", JOptionPane.ERROR_MESSAGE);
+						
+					} else { //Hero can consume HealingItem
 						double drinkTime = city.getTeam().getTime();
 						String response = "<html><body style='width: 200px; padding: 5px;'>" + hero.drinkHealingItem(healingItem, drinkTime) + "</html>";
 						int healingItemIndex = ((JComboBox<HealingItem>) getPanel(currentDirection).getComponent(5)).getSelectedIndex();
@@ -630,14 +511,11 @@ public class CityScreen {
 							city.getTeam().removeHealingItem(healingItemIndex);
 							((JComboBox<Hero>) getPanel(currentDirection).getComponent(5)).removeItemAt(healingItemIndex);//Remove from ComboBox
 						}
-						playOpenCan();
+						sounds.playOpenCan();
 						JOptionPane.showMessageDialog(frame, response, "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						playBadSound();
-						JOptionPane.showMessageDialog(frame, MessageFormat.format(((Hospital) city.getLocation(currentDirection)).getBadHealingItemMessage(), hero.getName()), "Not good...", JOptionPane.ERROR_MESSAGE);
-					}
+					} 
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, "You have failed to choose a hero, seriously...one job...", "Not good...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -836,15 +714,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				northLocationPanel.setVisible(true);
 				currentDirection = Direction.NORTH;
-				playMarching();
+				sounds.playMarching();
 			} else {
 				if(currentDirection == Direction.SOUTH) {
 					southLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
-					playMarching();
+					sounds.playMarching();
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -855,15 +733,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				southLocationPanel.setVisible(true);
 				currentDirection = Direction.SOUTH;
-				playMarching();
+				sounds.playMarching();
 			} else {
 				if(currentDirection == Direction.NORTH) {
 					northLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
-					playMarching();
+					sounds.playMarching();
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -874,15 +752,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				eastLocationPanel.setVisible(true);
 				currentDirection = Direction.EAST;
-				playMarching();
+				sounds.playMarching();
 			} else {
 				if(currentDirection == Direction.WEST) {
 					westLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
-					playMarching();
+					sounds.playMarching();
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -893,15 +771,15 @@ public class CityScreen {
 				centerLocationPanel.setVisible(false);
 				westLocationPanel.setVisible(true);
 				currentDirection = Direction.WEST;
-				playMarching();
+				sounds.playMarching();
 			} else {
 				if(currentDirection == Direction.EAST) {
 					eastLocationPanel.setVisible(false);
 					centerLocationPanel.setVisible(true);
 					currentDirection = Direction.CENTER;
-					playMarching();
+					sounds.playMarching();
 				} else {
-					playBadSound();
+					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, this.city.getBadDirectionMessage(), "Whoops...", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -1120,21 +998,22 @@ public class CityScreen {
 	//***************************Test Code
 	public static void main(String[] args) {
 		GameManager manager = new GameManager(); 
-		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
+//		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
 		Team team = new Team("Team");
-		team.addPowerUp(PowerUpType.CHEESE_ROLL);
-		team.addPowerUp(PowerUpType.PAVLOVA);
-		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
-		team.addHealingItem(HealingItemType.LINDAUER);
-		team.addHealingItem(HealingItemType.LION_RED);
-		team.addMember(hero);
-		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
-		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
-		team.addMember(new Hero("Stacey", HeroType.NURSE));
-		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
-		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
-		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
-		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
+//		team.addPowerUp(PowerUpType.CHEESE_ROLL);
+//		team.addPowerUp(PowerUpType.PAVLOVA);
+//		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
+//		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
+//		team.addHealingItem(HealingItemType.LINDAUER);
+//		team.addHealingItem(HealingItemType.LION_RED);
+//		team.addMember(hero);
+//		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
+//		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
+//		team.addMember(new Hero("Stacey", HeroType.NURSE));
+//		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
+//		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
+//		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
+//		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
+//		newCityScreen.playBadSound();
 	}
 }

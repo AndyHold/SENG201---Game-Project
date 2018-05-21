@@ -148,8 +148,9 @@ public class City {
 	
 	
 	/**
-	 * Prints the name of the location in each direction of the city map.
+	 * Prints the name of the location in each direction of the city map. Command Line Version Only
 	 */
+	@Deprecated
 	public void showMap() {
 		System.out.println("To the South is:");
 		System.out.println(southArea.getName());

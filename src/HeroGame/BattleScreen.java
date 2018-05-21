@@ -389,7 +389,8 @@ public class BattleScreen {
 		
 		if (result == "lose") { //But hero is an All Black - half the time randomly wins anyway
 			if (player.getType() == HeroType.ALL_BLACK && stillWins) {
-				JOptionPane.showMessageDialog(frmBattleTheVillain, "In a surprise twist, " + player.getName() + " the All Black slots a drop goal from 50m out "
+				JOptionPane.showMessageDialog(frmBattleTheVillain, "In a surprise twist, " +
+			player.getName() + " the All Black slots a drop goal from 50m out "
 						+ "to win the game", "Hooray", JOptionPane.INFORMATION_MESSAGE);
 				result = "win";
 			}
@@ -400,7 +401,8 @@ public class BattleScreen {
 			baddie.takeDamage(damage);
 			lblVillainHealth.setText("Health: " +  baddie.getHealth());
 			if (!baddie.isAlive() && baddie != Villain.AUSSIECRICKETER) {//Non-final baddie is dead
-				JOptionPane.showMessageDialog(frmBattleTheVillain, baddie.getName() + " is dead! You will now move on to the next town.",
+				JOptionPane.showMessageDialog(frmBattleTheVillain, baddie.getName() +
+						" is dead! You will now move on to the next town.",
 						"Hooray", JOptionPane.INFORMATION_MESSAGE);
 				rewards();
 				finishedBattleScreen();
@@ -432,7 +434,8 @@ public class BattleScreen {
 	 */
 	public void rewards() {
 		int reward = (rnd.nextInt(11) + 5); //generate a random amount between 5 and 15
-		int gamble = JOptionPane.showConfirmDialog(frmBattleTheVillain, "<html>The townsfolk have a whip around, and present you with the "
+		int gamble = JOptionPane.showConfirmDialog(frmBattleTheVillain, "<html>The townsfolk have a whip around, and "
+				+ "present you with the "
 				+ "princely sum of $" + reward + ".<br>On the way out of town, the team passes the local pokie room. "
 						+ "Would you like to try to double their reward?</html>",
 				"Hooray", JOptionPane.YES_NO_OPTION);
@@ -450,11 +453,13 @@ public class BattleScreen {
 	public int gamble(int reward) {
 		boolean moneyDoubled = rnd.nextBoolean();
 		if (moneyDoubled) {
-			JOptionPane.showMessageDialog(frmBattleTheVillain, "Well done. By enabling the team's gambling habit you doubled their reward.",
+			JOptionPane.showMessageDialog(frmBattleTheVillain, "Well done. By enabling the team's gambling habit you doubled "
+					+ "their reward.",
 					"Hooray", JOptionPane.INFORMATION_MESSAGE);
 			return reward * 2;
 		} else
-			JOptionPane.showMessageDialog(frmBattleTheVillain, "The team lost their reward on the pokies. Remember kids, gambling is a tax on the stupid.",
+			JOptionPane.showMessageDialog(frmBattleTheVillain, "The team lost their reward on the pokies. Remember kids, "
+					+ "gambling is a tax on the stupid.",
 					"Uh-Oh...", JOptionPane.ERROR_MESSAGE);
 			return 0;
 	}

@@ -50,13 +50,14 @@ public class HomeBase extends Location {
 		interiors.put("Gore", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/goreHomeBase.jpg")));
 		interiors.put("Ohakune", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/ohakuneHomeBase.jpg")));
 		interiors.put("Paeroa", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/paeroaHomeBase.jpg")));
-		interiors.put("Taihape", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/taihapeHomeBase.jpg")));
+		interiors.put("Taihape", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/taiHapeHomeBase.jpg")));
 	}
 
 
 	/**
-	 * Shows the Team's heroes and their current status
+	 * Shows the Team's heroes and their current status. Command line version only.
 	 */
+	@Deprecated
 	public void teamStatus() {
 		super.heroTeam.listHeroes();
 		int n = this.getSelector().intSelector(0, heroTeam.getTeamSize(), "Which Hero would you like to see?", "Invalid Hero choice please try again");
@@ -65,8 +66,9 @@ public class HomeBase extends Location {
 	
 	
 	/**
-	 * Shows a list of items currently held by the Team.
+	 * Shows a list of items currently held by the Team. Command line veriosn only.
 	 */
+	@Deprecated
 	public void teamInventory() {
 		System.out.println("Current PowerUps in Inventory:");
 		this.heroTeam.showPowerUps();
@@ -79,7 +81,9 @@ public class HomeBase extends Location {
 	 * If the Team has enough maps:
 	 * Consumes a map and lists the places in the current City.
 	 * If the City is mapped, lists the places in the current City.
+	 * Command line version only
 	 */
+	@Deprecated
 	public void useMap() {
 		if(!this.currentCity.isMapped() && (this.heroTeam.getMaps() > 0)) {
 			this.currentCity.makeMapped();
@@ -97,6 +101,7 @@ public class HomeBase extends Location {
 	/**
 	 * Method to list available options for player to choose from. Command line version of the game only
 	 */
+	@Deprecated
 	public void listOptions() {
 		System.out.println("Current Options Are:");
 		System.out.println("1) Move to another location");
@@ -109,6 +114,7 @@ public class HomeBase extends Location {
 	 * Run loop for HomeBase class in the command line version of the game
 	 * @return int, number corresponding to the direction user wishes to move next
 	 */
+	@Deprecated
 	public int runLocation() {
 		boolean finishedInLocation = false;
 		while(!finishedInLocation) {
@@ -125,6 +131,7 @@ public class HomeBase extends Location {
 	 * @param n int, used in the switch statement to find which method to run.
 	 * @return boolean, true if finished in location and want to move, false if need menu again.
 	 */
+	@Deprecated
 	public boolean runOption(int n) {
 		
 		switch(n) {

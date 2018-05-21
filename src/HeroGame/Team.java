@@ -209,6 +209,7 @@ public class Team {
 	 * Print to output a list of the current Team members, their special ability 
 	 * and their current strength.
 	 */
+	@Deprecated
 	public void teamStatus() {
 		System.out.println("At this point, the members of " + teamName + " are:");
 		for (Hero who : memberList) {
@@ -255,11 +256,10 @@ public class Team {
 	}
 
 	/**
-	 * Returns the number of power ups currently held. Fundamental change to PowerUps/HealingItems
-	 * means this method is no longer relevant/correct.
+	 * Returns the number of power ups currently held. 
 	 * @return an int the number of power ups currently held
 	 */
-	@Deprecated
+
 	public int getPowerUpsSize() {
 		return this.powerUps.size();
 	}
@@ -470,10 +470,9 @@ public class Team {
 	}
 	
 	/**
-	 * Returns the number of healing items in the team's inventory. Fundamental change 
-	 * to PowerUps/HealingItems means this method is no longer relevant/correct.
+	 * Returns the number of healing items in the team's inventory. 
 	 * @return an int the number of healing items in the team's inventory
-	 */@Deprecated
+	 */ 
 	public int getHealingItemsSize() {
 		return healingItems.size();
 	}
@@ -561,22 +560,5 @@ public class Team {
 		}
 		return result;
 	}
-//*****************************Test Code***********************************
-//	public static void main(String[] args) {
-//		Team t1 = new Team("Awesome");
-//		Hero h1 = new Hero("Jim", HeroType.ALL_BLACK);
-//		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
-//		PowerUp p2 = new PowerUp(PowerUpType.CHEESE_ROLL);
-//		PowerUp p3 = new PowerUp(PowerUpType.PINEAPPLE_LUMPS);
-//		t1.addMember(h1);
-//		t1.addPowerUp(p1);
-//		t1.addPowerUp(p2);
-//		t1.addPowerUp(p3);
-//		System.out.print(t1.showPowerUps());
-//		System.out.print(t1.applyPowerUp(PowerUpType.PAVLOVA, 0));
-//		System.out.print(t1.applyPowerUp(PowerUpType.CHEESE_ROLL, 0));
-//		System.out.print(t1.showPowerUps());
-//		
-//	}
 
 }
