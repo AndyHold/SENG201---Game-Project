@@ -928,7 +928,7 @@ public class CityScreen {
 		lblMap.setBounds(0, 0, 46, 14);
 		mapPanel.add(lblMap);
 		
-		if(city.getTeam().checkPresent(HeroType.SURVEYOR)) {
+		if(city.getTeam().checkPresent(HeroType.SURVEYOR) || city.isMapped()) {//Surveyor knows city map
 			northLocationLbl.setIcon(city.getNorthLocation().getIcon());
 			southLocationLbl.setIcon(city.getSouthLocation().getIcon());
 			eastLocationLbl.setIcon(city.getEastLocation().getIcon());
