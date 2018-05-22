@@ -76,6 +76,7 @@ public class Shop extends Location {
 	/**
 	 * Method to fill ArrayList healingItems
 	 */
+	@Deprecated
 	private void fillHealingItems() {
 		this.healingItems.add(HealingItemType.DOUBLE_BROWN);
 		this.healingItems.add(HealingItemType.LINDAUER);
@@ -86,6 +87,7 @@ public class Shop extends Location {
 	/**
 	 * Method to fill ArrayList powerUpItems
 	 */
+	@Deprecated
 	private void fillPowerUpItems() {
 		this.powerUps.add(PowerUpType.CHEESE_ROLL);
 		this.powerUps.add(PowerUpType.PAVLOVA);
@@ -260,6 +262,7 @@ public class Shop extends Location {
 	/**
 	 * Method to list items and prices available at the shop
 	 */
+	@Deprecated
 	private void showPrices() {
 		System.out.println("Healing Items:");
 		for(HealingItemType healer: this.healingItems) {
