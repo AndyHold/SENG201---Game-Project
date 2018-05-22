@@ -44,6 +44,8 @@ public class TestCity {
 		assertFalse(l3.getLocationType() == l4.getLocationType());
 		assertFalse(l4.getLocationType() == l5.getLocationType());
 		assertFalse(l5.getLocationType() == l1.getLocationType());
+		//check that the centre location is a HomeBase
+		assertEquals(LocationType.HOMEBASE, l5.getLocationType());
 		//Test that generic getLocation returns a Location
 		Object l6 = testCity.getLocation(Direction.CENTER);
 		assertTrue(l6 instanceof Location);
