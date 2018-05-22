@@ -45,7 +45,7 @@ public class HomeBase extends Location {
 	 * Populates Images for HashMap interiors
 	 */
 	private void populateImages() {
-		interiors.put("Springield", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/springfieldHomeBase.jpg")));
+		interiors.put("Springfield", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/springfieldHomeBase.jpg")));
 		interiors.put("Te Puke", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/tePukeHomeBase.jpg")));
 		interiors.put("Gore", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/goreHomeBase.jpg")));
 		interiors.put("Ohakune", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/ohakuneHomeBase.jpg")));

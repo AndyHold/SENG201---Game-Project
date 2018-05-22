@@ -570,10 +570,10 @@ public class CityScreen {
 		villainsLairPanel.add(vLVillainPictureLbl, 1);
 		
 		
-		JLabel vLVillainNameLbl = new JLabel(this.city.getVillain().getName());
+		JLabel vLVillainNameLbl = new JLabel(MessageFormat.format("<html><center>{0}</html>", this.city.getVillain().getName()));
 		vLVillainNameLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		vLVillainNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		vLVillainNameLbl.setBounds(10, 235, 130, 15);
+		vLVillainNameLbl.setBounds(10, 235, 130, 30);
 		villainsLairPanel.add(vLVillainNameLbl, 2);
 		
 		JLabel chooseHeroLbl = new JLabel("Please Choose a Hero:");
@@ -837,7 +837,7 @@ public class CityScreen {
 		frame.setBounds(100, 100, 550, 370);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setMinimumSize(new Dimension(780, 370));
+		frame.setMinimumSize(new Dimension(780, 385));
 		
 		welcomeLbl = new JLabel(MessageFormat.format("Welcome to {0}", city.getName()));
 		welcomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -998,22 +998,22 @@ public class CityScreen {
 	//***************************Test Code
 	public static void main(String[] args) {
 		GameManager manager = new GameManager(); 
-//		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
+		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
 		Team team = new Team("Team");
-//		team.addPowerUp(PowerUpType.CHEESE_ROLL);
-//		team.addPowerUp(PowerUpType.PAVLOVA);
-//		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
-//		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
-//		team.addHealingItem(HealingItemType.LINDAUER);
-//		team.addHealingItem(HealingItemType.LION_RED);
-//		team.addMember(hero);
-//		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
-//		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
-//		team.addMember(new Hero("Stacey", HeroType.NURSE));
-//		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
-//		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
-//		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
-//		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
+		team.addPowerUp(PowerUpType.CHEESE_ROLL);
+		team.addPowerUp(PowerUpType.PAVLOVA);
+		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
+		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
+		team.addHealingItem(HealingItemType.LINDAUER);
+		team.addHealingItem(HealingItemType.LION_RED);
+		team.addMember(hero);
+		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
+		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
+		team.addMember(new Hero("Stacey", HeroType.NURSE));
+		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
+		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
+		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
+		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
 //		newCityScreen.playBadSound();
 	}
 }

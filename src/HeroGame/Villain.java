@@ -100,8 +100,11 @@ public enum Villain {
 	public void resetValues(Villain villain) {
 		if(villain == Villain.AUSSIECRICKETER) {
 			this.currentHealth = 200;
+			this.alive = true;
+			
 		} else {
 			this.currentHealth = 100;
+			this.alive = true;
 		}
 	}
 	
