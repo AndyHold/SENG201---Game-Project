@@ -98,7 +98,6 @@ public class Sound {
 		playEffect("/HeroGame/Sound/transaction.wav");
 	}
 	
-	
 	/**
 	 * Method to play a hello sound
 	 */
@@ -106,14 +105,25 @@ public class Sound {
 		playEffect("/HeroGame/Sound/hello.wav");
 	}
 	
-	
-	
-	
 	/**
 	 * Method to play a good sound
 	 */
 	public void playGoodSound() {
 		playEffect("/HeroGame/Sound/good.wav");
+	}
+	
+	/**
+	 * Method to play Evil Laugh sound
+	 */
+	public void playEvilLaugh() {
+		playEffect("/HeroGame/Sound/evil laugh.wav");
+	}
+	
+	/**
+	 * Method to play Applause sound
+	 */
+	public void playApplause() {
+		playEffect("/HeroGame/Sound/applause.wav");
 	}
 	
 	/**

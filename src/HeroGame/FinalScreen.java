@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import java.io.*;
 
 /**
  * FinalScreen Class for Heroes & Villains Game. Sets up and displays End of Game Screen.
@@ -37,8 +38,10 @@ public class FinalScreen {
 	private JPanel panelWin = new JPanel();
 	private JPanel panelCredits = new JPanel();
 	private Boolean creditsVisible = false;
-	private Clip evilLaugh;
-	private Clip applause;
+	private Sound sounds = new Sound();
+	private String IMAGE_CREDITS_FILENAME = "/HeroGame/Images/image references.txt";
+	private String SOUND_CREDITS_FILENAME = "/HeroGame/Sound/Sounds references.txt";
+
 
 
 
@@ -51,56 +54,14 @@ public class FinalScreen {
 		initialize();
 		frmNzCleanUp.setVisible(true);
 	}
-	
-	/**
-	 * Method to play Evil Laugh sound
-	 */
-	public void playEvilLaugh() {
-		try {
-			evilLaugh = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/evil laugh.wav"));
-			evilLaugh.open(ais);
-			evilLaugh.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frmNzCleanUp, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-	
-	/**
-	 * Method to play Applause sound
-	 */
-	public void playApplause() {
-		try {
-			applause = AudioSystem.getClip();
-			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/applause.wav"));
-			applause.open(ais);
-			applause.start();
-			} catch(IOException error) {
-				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				error.printStackTrace();
-			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frmNzCleanUp, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				 JOptionPane.showMessageDialog(frmNzCleanUp, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-	}
-
+		
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmNzCleanUp = new JFrame();
 		frmNzCleanUp.setTitle("NZ Clean Up - Final Screen");
-		frmNzCleanUp.setBounds(100, 100, 696, 471);
+		frmNzCleanUp.setBounds(100, 100, 696, 559);
 		frmNzCleanUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNzCleanUp.getContentPane().setLayout(null);
 		
@@ -111,7 +72,7 @@ public class FinalScreen {
 				manager.launchWelcomeScreen();
 			}
 		});
-		btnNewGame.setBounds(550, 331, 125, 25);
+		btnNewGame.setBounds(550, 422, 125, 25);
 		frmNzCleanUp.getContentPane().add(btnNewGame);
 		
 		JButton btnExit = new JButton("Exit");
@@ -120,7 +81,7 @@ public class FinalScreen {
 				closeScreen();
 			}
 		});
-		btnExit.setBounds(550, 368, 125, 25);
+		btnExit.setBounds(550, 459, 125, 25);
 		frmNzCleanUp.getContentPane().add(btnExit);
 		
 		//****************************************Win Panel********************************************
@@ -130,7 +91,7 @@ public class FinalScreen {
 		panelWin.setVisible(false);
 		panelWin.addComponentListener(new ComponentAdapter() {
 			public void componentShown(ComponentEvent componentEvent) {
-				playApplause();
+				sounds.playApplause();
 			}
 		});
 		
@@ -167,7 +128,7 @@ public class FinalScreen {
 		panelLose.setVisible(false);
 		panelLose.addComponentListener(new ComponentAdapter() {
 			public void componentShown(ComponentEvent componentEvent) {
-				playEvilLaugh();
+				sounds.playEvilLaugh();
 			}
 		});
 		
@@ -194,7 +155,7 @@ public class FinalScreen {
 		panelLose.add(lblLoserPic);
 		
 		//*****************************************Credits Panel**************************************************
-		panelCredits.setBounds(149, 12, 393, 418);
+		panelCredits.setBounds(149, 12, 393, 509);
 		frmNzCleanUp.getContentPane().add(panelCredits);
 		panelCredits.setLayout(null);
 		panelCredits.setVisible(false);
@@ -223,21 +184,9 @@ public class FinalScreen {
 		
 		JTextArea txtrAttribution = new JTextArea();
 		txtrAttribution.setBackground(UIManager.getColor("Panel.background"));
-		txtrAttribution.setText("https://oliverpreston.wordpress.com/category/australian-cricket/\n"
-				+ "https://thecuriouskiwi.co.nz/rotorua_cafe_guide.php\n"
-				+ "http://www.k2interiors.co.nz/project-red_hummingbird-1-1\n"
-				+ "https://www.aut.ac.nz/__data/assets/image/0005/107996/mardie-healey.jpg\n"
-				+ "https://www.otago.ac.nz/cs/groups/public/@surveying/documents/contributorimg/otago652829.jpg\n"
-				+ "https://teara.govt.nz/files/31971-odt_0.jpg\nhttp://sp.imgci.com/PICTURES/CMS/100/106.1.jpg\n"
-				+ "https://thespinoff.co.nz/wp-content/uploads/2017/10/Roger-Douglas.jpg\n"
-				+ "https://resources.stuff.co.nz/content/dam/images/1/9/7/x/9/u/image.related.StuffLandscapeSixteenByNine.620x349.197x9b.png/1452971758822.jpg\n"
-				+ "https://upload.wikimedia.org/wikipedia/commons/3/3e/Rudy_Giuliani.jpg\n"
-				+ "http://www.icmotorgroup.co.nz/i/images/Thumbnails/team/Service.jpg\n"
-				+ "http://static.tvtropes.org/pmwiki/pub/images/bouncer2_2294.jpg\n"
-				+ "https://i1.wp.com/www.endofthreefitness.com/wp-content/uploads/2012/06/band-of-brothers.jpeg?zoom=2&resize=640%2C360\n"
-				+ "http://p.imgci.com/db/PICTURES/CMS/209800/209877.jpg");
+		txtrAttribution.setText(readCredits(IMAGE_CREDITS_FILENAME) + readCredits(SOUND_CREDITS_FILENAME));
 		txtrAttribution.setFont(new Font("Dialog", Font.PLAIN, 5));
-		txtrAttribution.setBounds(12, 290, 369, 128);
+		txtrAttribution.setBounds(12, 286, 369, 211);
 		panelCredits.add(txtrAttribution);
 		
 		JButton btnCredits = new JButton("Credits");
@@ -247,7 +196,7 @@ public class FinalScreen {
 
 			}
 		});
-		btnCredits.setBounds(550, 405, 125, 25);
+		btnCredits.setBounds(550, 496, 125, 25);
 		frmNzCleanUp.getContentPane().add(btnCredits);
 		
 		JLabel lblGameOver = new JLabel("Game Over");
@@ -304,6 +253,24 @@ public class FinalScreen {
 		return result;
 	}
 	
+	public String readCredits(String filename) {
+		String result = "";
+		try {
+			InputStream images = getClass().getResourceAsStream(filename);
+			BufferedReader brText = new BufferedReader(new InputStreamReader(images));
+			String line = brText.readLine();
+			while(line != null) {
+				result += line + "\n";
+				line = brText.readLine();
+			}
+		} catch (IOException error) {
+			result = "File Not Found";
+		}
+		
+		return result;
+		
+	}
+	
 	/**
 	 * Close the window when required
 	 */
@@ -311,5 +278,12 @@ public class FinalScreen {
 		frmNzCleanUp.dispose();
 
 	}
+	
+//	public static void main(String[] args) {
+//		GameManager m1 = new GameManager();
+//		FinalScreen f1 = new FinalScreen("wins", m1);
+//		System.out.print(f1.readCredits());
+//		
+//	}
 	
 }

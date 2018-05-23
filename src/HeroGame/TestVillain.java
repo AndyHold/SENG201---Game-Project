@@ -90,13 +90,13 @@ public class TestVillain {
 	@Test
 	public void testResetVillain() {
 		//Normal Villain
-		v1.takeDamage(90);
-		assertEquals(10, v1.getHealth());
+		v1.takeDamage(100);
+		assertEquals(0, v1.getHealth());
 		v1.resetValues(v1);
 		assertEquals(100, v1.getHealth());
 		//Super Villain
-		v3.takeDamage(190);
-		assertEquals(10, v3.getHealth());
+		v3.takeDamage(200);
+		assertEquals(0, v3.getHealth());
 		v3.resetValues(v3);
 		assertEquals(200, v3.getHealth());
 	}
