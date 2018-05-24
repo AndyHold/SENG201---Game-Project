@@ -4,8 +4,6 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import cmdLineVersion.Selector;
-import cmdLineVersion.Battle;
 
 /**
  * VillainsLair Class for Heroes & Villains Game

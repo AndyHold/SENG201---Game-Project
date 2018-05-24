@@ -2,8 +2,6 @@ package HeroGame;
 
 import javax.swing.ImageIcon;
 
-import cmdLineVersion.Selector;
-
 
 /**
  * Location SuperClass for Heroes & Villains Game

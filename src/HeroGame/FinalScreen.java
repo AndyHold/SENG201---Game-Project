@@ -170,7 +170,7 @@ public class FinalScreen {
 		txtCredits.setFont(new Font("Dialog", Font.PLAIN, 13));
 		txtCredits.setLineWrap(true);
 		txtCredits.setText("NZ Clean Up was developed for SENG201-S1 2018 by this team of heroes:\n\n"
-				+ "Andy Holden: A rubgy playing bartender from whom code flows like Lion's finest from the tap.\n\n"
+				+ "Andy Holden: A rugby playing bartender from whom code flows like Lion's finest from the tap.\n\n"
 				+ "Alex Liggett: Float like a concrete canoe, sting like a getting a C, his tidy code and silly jokes "
 				+ "hide his average ability.\n\n"
 				+ "This game is not intended for general release. Characters are fictional and any resemblance to famous "
@@ -253,6 +253,12 @@ public class FinalScreen {
 		return result;
 	}
 	
+	/**
+	 * Read a text file and return a string containing the lines in the file separated by
+	 * a newline character. Will stop reading at a blank line.
+	 * @param filename a String, the name of the file to read
+	 * @return a String, the contents of the file, with lines separated by newline characters
+	 */
 	public String readCredits(String filename) {
 		String result = "";
 		try {
