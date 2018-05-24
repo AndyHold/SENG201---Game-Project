@@ -98,7 +98,7 @@ public class GameManager {
 	 */
 	public void launchWelcomeScreen() {
 		WelcomeScreen welcomeScreen = new WelcomeScreen(this);
-		sounds.playMusic();
+//		sounds.playMusic();
 	}
 	
 	/**

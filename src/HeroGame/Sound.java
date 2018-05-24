@@ -60,6 +60,14 @@ public class Sound {
 	
 	
 	/**
+	 * Method to play woohoo sound
+	 */
+	public void playWooHoo() {
+		playEffect("/HeroGame/Sound/woohoo.wav");
+	}
+	
+	
+	/**
 	 * Method to play Munching sound
 	 */
 	public void playMunching() {
@@ -156,6 +164,20 @@ public class Sound {
 	public void stopMusic() {
 		theme.stop();
 	}
-
+	public static void main(String[] args) {
+		Sound sound = new Sound();
+//		sound.playOhNo();
+//		sound.playWooHoo();
+//		sound.playMunching();
+//		sound.playMarching();
+//		sound.playOpenCan();
+//		sound.playBadSound();
+//		sound.playTransaction();
+//		sound.playHello();
+//		sound.playGoodSound();
+//		sound.playEvilLaugh();
+//		sound.playApplause();
+		
+	}
 
 }

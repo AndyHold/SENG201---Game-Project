@@ -57,7 +57,7 @@ public class TestPowerUp {
 	
 	@Test
 	public void testGetLongDescription() {
-		assertEquals("A perfectly cooked cheese roll - a little piece of Southland",
+		assertEquals("a perfectly cooked cheese roll - a little piece of Southland",
 				p1.getLongDescription());
 	}
 

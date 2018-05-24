@@ -12,7 +12,7 @@ public class TestCity {
 	
 	Villain testVillain = Villain.BADRUGBYREFEREE;
 	Team testTeam = new Team("TestTeam");
-	City testCity = new City("TestCity", testVillain, testTeam);
+	City testCity = new City("Springfield", testVillain, testTeam);
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -88,7 +88,7 @@ public class TestCity {
 
 	@Test
 	public void testGetName() {
-		assertEquals("TestCity", testCity.getName());
+		assertEquals("Springfield", testCity.getName());
 	}
 
 }

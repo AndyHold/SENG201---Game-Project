@@ -10,15 +10,15 @@ package HeroGame;
 
 public enum HealingItemType {
 	DOUBLE_BROWN(4.99, 30.0, 25,
-			"A crate bottle of Doble Bronze",
+			"a crate bottle of Doble Bronze",
 			"A crate bottle of Double Brown, 745 millilitres of slightly fizzy cow's wee",
 			"<html>Flicks the top off the bottle with a cigarette lighter<br>and drains the bottle. \"Gawd that's horrid\"</html>"), 
 	LION_RED(9.99, 15.0, 25,
-			"A pint of Lion Red",
+			"a pint of Lion Red",
 			"A foaming pint of Lion Red, lovingly described as NZ's most generic beer",
 			"Grins and skulls the pint. \"Huh. Surprisingly good\""), 
 	LINDAUER(14.99, 30.0, 50,
-			"A bottle of Lindauer Methode Traditionale",
+			"a bottle of Lindauer Methode Traditionale",
 			"A bottle of Lindauer Methode Traditionale, the chosen tipple of drunken racegoers throughout NZ",
 			"Delicately pours a glass, and takes a sip. \"Dahling, it's simply mah-vellous\"");
 

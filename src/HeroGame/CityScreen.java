@@ -185,7 +185,7 @@ public class CityScreen {
 		homeBasePanel.setLayout(null);
 		homeBasePanel.addComponentListener(new ComponentAdapter() {
 			public void componentShown(ComponentEvent componentEvent) {
-				int n = rand.nextInt(10);
+				int n = rand.nextInt(20);
 				switch(n) {
 				case 0:
 					int amount = rand.nextInt((int) city.getTeam().getMoney());
@@ -197,7 +197,7 @@ public class CityScreen {
 					if(city.getTeam().getPowerUpsSize() > 0) {
 						int index = rand.nextInt(city.getTeam().getPowerUpsSize());
 						sounds.playOhNo();
-						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going hungry tonight!", city.getTeam().getPowerUpType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you will be going hungry tonight!", city.getTeam().getPowerUpType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
 						PowerUp powerUp = city.getTeam().getPowerUps().get(index);
 						city.getTeam().removePowerUp(index);
 						powerUp.changeAmount(-1);
@@ -210,7 +210,7 @@ public class CityScreen {
 					if(city.getTeam().getHealingItemsSize() > 0) {
 						int index = rand.nextInt(city.getTeam().getHealingItemsSize());
 						sounds.playOhNo();
-						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you'll be going thirsty tonight!", city.getTeam().getHealingItemType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(frame, MessageFormat.format("The local kids have stolen your sneakers! And also your beloved {0}! Guess you will be going thirsty tonight!", city.getTeam().getHealingItemType(index).toString()), "Oh No!!!", JOptionPane.ERROR_MESSAGE);
 						HealingItem healingItem = city.getTeam().getHealingItems().get(index);
 						city.getTeam().removeHealingItem(index);
 						healingItem.changeAmount(-1);
@@ -219,6 +219,34 @@ public class CityScreen {
 						}
 						break;
 					}
+				case 3:
+					int gift = rand.nextInt(15);
+					city.getTeam().changeMoney(gift);
+					sounds.playWooHoo();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You found some poor fullas wallet! Better take the ${0} in it before you hand it in to the cops.", gift), "Oh shot!", JOptionPane.INFORMATION_MESSAGE);
+					break;
+				case 4:
+					int puIndex = rand.nextInt(3);
+					ArrayList<PowerUpType> powerUps = new ArrayList<PowerUpType>();
+					powerUps.add(PowerUpType.CHEESE_ROLL);
+					powerUps.add(PowerUpType.PAVLOVA);
+					powerUps.add(PowerUpType.PINEAPPLE_LUMPS);
+					PowerUpType powerUpType = powerUps.get(puIndex);
+					city.getTeam().addPowerUp(powerUpType);
+					sounds.playWooHoo();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You found a {0} just lying on the ground! 2 second rule cuz.", powerUpType), "Oh shot!", JOptionPane.INFORMATION_MESSAGE);
+					break;
+				case 5:
+					int HIIndex = rand.nextInt(3);
+					ArrayList<HealingItemType> healingItems = new ArrayList<HealingItemType>();
+					healingItems.add(HealingItemType.DOUBLE_BROWN);
+					healingItems.add(HealingItemType.LINDAUER);
+					healingItems.add(HealingItemType.LION_RED);
+					HealingItemType healingItemType = healingItems.get(HIIndex);
+					city.getTeam().addHealingItem(healingItemType);
+					sounds.playWooHoo();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("Your mate Bazza bought you {0} on the way home! You Beauty!", healingItemType), "Oh shot!", JOptionPane.INFORMATION_MESSAGE);
+					break;
 				}
 			}
 		});

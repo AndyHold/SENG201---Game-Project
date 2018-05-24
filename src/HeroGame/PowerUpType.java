@@ -7,18 +7,18 @@ package HeroGame;
  */
 
 public enum PowerUpType {
-	PAVLOVA(4.99, "Pavlova", "A slice of pavlova topped with cream and kiwifruit", 
+	PAVLOVA(4.99, "Pavlova", "a slice of pavlova topped with cream and kiwifruit", 
 			"Gives a hero the lightning quick speed to see the opponent's" +
 			" move in rock, paper, scissors and play the appropriate move",
 			" smiles and bites into the totally non-Australian glory of a slice of pav. " +
 			"\"I can feel my reaction time improving - watch me throw this slice of " +
 			"kiwifruit up and catch it in my mouth!\""),
-	CHEESE_ROLL(7.49, "Cheese Roll", "A perfectly cooked cheese roll - a little piece of Southland", 
+	CHEESE_ROLL(7.49, "Cheese Roll", "a perfectly cooked cheese roll - a little piece of Southland", 
 			"Gives a hero the ability to read an opponent's mind, " +
 			"curiously limited only to what number they are thinking of", 
 			"Frowns and suspiciously views the cheese roll from all angles, then reluctantly" +
 			" begins to eat. \"Hey, this isn't bad!\""),
-	PINEAPPLE_LUMPS(5.99, "Pineapple Lumps", "A packet of pineapple lumps, New Zealand's premier indigenous confection", 
+	PINEAPPLE_LUMPS(5.99, "Pineapple Lumps", "a packet of pineapple lumps, New Zealand's premier indigenous confection", 
 			"Gives a hero the amazing ability to roll sixes",
 			"Tears the packet open and begins wolfing them down. \"Nom Nom Nom!\"");
 	
