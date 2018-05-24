@@ -94,39 +94,7 @@ public class Team {
 		return memberList.size();
 	}
 	
-	/**
-	 * Interactive method for adding members to a Team
-	 * Only used in the command line version of the game
-	 * @param size an int the number of members to add to the team
-	 */
-	@Deprecated
-	public void buildTeam(int size) {
-		
-		Hero dummyHero = new Hero();
-		HeroType newHeroType;
-		int numPossibleHeroes = (dummyHero.printHeroList() - 1);
-	    Selector teamSelector = new Selector();
-		boolean selected = false;
-		while (memberList.size() < size){
-	    	String heroName = teamSelector.stringSelector(1, MAX_HERO_NAME_LENGTH, 
-	    			"Enter the hero's name (1-12 Characters)", 
-	    			"Name must be 1-12 characters.");
-	    	if (checkNameUnique(heroName) == false) {
-	    		System.out.println("There is already a hero named " 
-	    				+ heroName + " in the team");
-	    	} else {
-	    		int heroNum = teamSelector.intSelector(0, numPossibleHeroes, 
-	    				"Choose a type of hero " + "(0-"+ numPossibleHeroes +"):", 
-	    				"Choice must be between 0 & " + numPossibleHeroes);
-	    		
-	    		newHeroType = HeroType.values()[heroNum];
-	    		
-	    		addMember(new Hero(heroName, newHeroType));
-	    		System.out.println(newHeroType.getDescription() +" called " 
-	    				+ heroName + " has joined the team");
-	    	}
-		}
-	}
+
 	
 	/**
 	 * Checks the Team to see whether a particular name has already been allocated

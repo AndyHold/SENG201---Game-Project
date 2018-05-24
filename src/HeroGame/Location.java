@@ -15,7 +15,6 @@ public class Location {
 	protected Team heroTeam;
 	protected String cityName;
 	private Direction locationOnMap;
-	private Selector optionSelector = new Selector();
 	private LocationType locationType;
 	
 	
@@ -61,85 +60,6 @@ public class Location {
 		this.locationOnMap = currentDirection;
 	}
 
-	
-	/**
-	 * Method to get the selector for use in getting player input
-	 * Only used in the command line version of the game
-	 * @return Selector, The selector
-	 */
-	@Deprecated
-	public Selector getSelector() {
-		return this.optionSelector;
-	}
-	
-	
-	/**
-	 * Method to prompt user for a direction to move in
-	 * Used in command line version only
-	 * @return int, Number corresponding to the direction to travel in
-	 */
-	@Deprecated
-	public int moveLocations() {
-		boolean locationFound = false;
-		int n = 0;
-		while(!locationFound) {
-			System.out.println("Current options:");
-			System.out.println("1) North");
-			System.out.println("2) East");
-			System.out.println("3) South");
-			System.out.println("4) West");
-			n = this.optionSelector.intSelector(1, 4, "Please enter a direction: ", "Invalid direction, please try again: ");
-			locationFound = this.moveCheck(n);
-			if(!locationFound) {
-				System.out.println("Can't go that way bro, Jake the Muss is in the way");
-			}
-		}
-		if(this.locationType == LocationType.HOMEBASE) {
-			return n;
-		} else {
-			return 0;
-		}
-		
-	}
-
-	
-	/**
-	 * Method to check if a move is legitimate. Command Line Version Only
-	 * @param n int, Number corresponding to the direction to move in
-	 * @return boolean, true if the direction is good.
-	 */
-	@Deprecated
-	private boolean moveCheck(int n) {
-		switch(n) {
-		
-		case 1:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.SOUTH)) {
-				return true;
-			}
-			break;
-		
-		case 2:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.WEST)) {
-				return true;
-			}
-			break;
-			
-		case 3:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.NORTH)) {
-				return true;
-			}
-			break;
-		
-		case 4:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.EAST)) {
-				return true;
-			}
-			break;
-		}
-		return false;
-		
-	}
-	
 	
 	/**
 	 * Method to get the direction allocated to this location

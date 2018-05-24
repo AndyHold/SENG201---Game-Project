@@ -64,17 +64,6 @@ public class Cities {
 			}
 		}
 	}
-
-	
-	/**
-	 * Run loop for Cities class, calls each city in the stages ArrayList until completion. Command Line Version Only
-	 */
-	@Deprecated
-	public void runCities() {
-		for(City currentCity: this.stages) {
-			currentCity.runCity();
-		}
-	}
 	
 	
 	/**

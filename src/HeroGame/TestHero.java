@@ -173,12 +173,6 @@ public class TestHero {
 	}
 
 
-	@Test
-	public void testPrintHeroList() {
-		//Difficult to test, as outputs to console
-		Hero testHero = new Hero();
-		assertEquals(6, testHero.printHeroList());
-		
-	}
+
 
 }

@@ -22,7 +22,6 @@ public class GameManager {
 	private long startTime;//0 until game play starts
 	private Cities cities;
 	private Team heroTeam; //null pointer until buildTeam() is called
-	private Selector gameSelector = new Selector();
 	private Sound sounds = new Sound();
 
 
@@ -98,7 +97,7 @@ public class GameManager {
 	 */
 	public void launchWelcomeScreen() {
 		WelcomeScreen welcomeScreen = new WelcomeScreen(this);
-//		sounds.playMusic();
+		//sounds.playMusic();
 	}
 	
 	/**
@@ -184,7 +183,7 @@ public class GameManager {
 	 */
 	public void launchFinalScreen(String outcome) {
 		FinalScreen finalScreen = new FinalScreen(outcome, this);
-		sounds.stopMusic();
+		//sounds.stopMusic();
 	}
 	
 	/**

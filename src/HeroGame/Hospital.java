@@ -62,76 +62,6 @@ public class Hospital extends Location {
 	
 	
 	/**
-	 * Method to list available options for player to choose from. Command line version only.
-	 */
-	@Deprecated
-	public void listOptions() {
-		System.out.println("Welcome to " + this.getName() + ":");
-		System.out.println("1) Move to another Location");
-		System.out.println("2) Heal a hero");
-		System.out.println("3) Show current healing timer(s)");
-	}
-	
-	
-	/**
-	 * Run loop for Hospital class. Command line version only.
-	 * @return int, Number corresponding to the direction to move to next.
-	 */
-	@Deprecated
-	public int runLocation() {
-		boolean finishedInLocation = false;
-		while(!finishedInLocation) {
-			this.listOptions();
-			int n = this.getSelector().intSelector(1, 3, "Please select an option", "Invalid option, try again");
-			finishedInLocation = this.runOption(n);
-		}
-		int n = this.moveLocations();
-		return n;
-	}
-	
-	
-	/**
-	 * Method to choose which method to run based on input from the user. Command Line Version Only
-	 * @param n int, used in the switch statement to find which method to run.
-	 * @return boolean, true if finished in location and want to move, false if need menu again.
-	 */
-	@Deprecated
-	public boolean runOption(int n) {
-		
-		switch(n) {
-		
-		case 1:
-			return true;
-			
-		case 2:
-			this.useHealingItem();
-			return false;
-			
-		case 3:
-			//this.checkHealingStatus();
-			return false;
-			
-		
-		}
-		return false;
-	}
-	
-	
-	/**
-	 * Prompts user for which HealingItem to use and which Hero to apply it to and does so. Command Line Version Only.
-	 */
-	@Deprecated
-	public void useHealingItem() {
-		this.heroTeam.showHealingItems();
-		int healingItemIndex = this.getSelector().intSelector(0, this.heroTeam.getHealingItemsSize(), "Please select a healing item", "Invalid healing item please try again");
-		HealingItemType healingItemType = heroTeam.getHealingItemType(healingItemIndex);
-		this.heroTeam.listHeroes();
-		int teamMemberIndex = this.getSelector().intSelector(0, this.heroTeam.getTeamSize(), "Please select a Hero to heal", "Invalid Hero please try again");
-		this.heroTeam.removeHealingItem(healingItemIndex);
-		this.heroTeam.applyHealingItem(healingItemType, teamMemberIndex);
-	}
-	
-	/**
 	 * Check on healing times for each Team member
 	 * @return a string the remaining time for each member
 	 */
@@ -148,39 +78,6 @@ public class Hospital extends Location {
 		}
 		result += "</html>";
 		return result;
-	}
-
-	/**
-	 * Method to check if given direction is allowable. Command Line Version Only
-	 * @param n int, Number corresponding to the direction given by the user.
-	 * @return boolean, returns true if player can move in that direction.
-	 */
-	@Deprecated
-	private boolean moveCheck(int n) {
-		switch(n) {
-		
-		case 1:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.SOUTH)) {
-				return true;
-			}
-		
-		case 2:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.WEST)) {
-				return true;
-			}
-			
-		case 3:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.NORTH)) {
-				return true;
-			}
-		
-		case 4:
-			if((this.getDirection() == Direction.CENTER) || (this.getDirection() == Direction.EAST)) {
-				return true;
-			}
-		}
-		return false;
-		
 	}
 	
 	

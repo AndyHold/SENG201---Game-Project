@@ -292,7 +292,7 @@ public class BattleScreen {
 		int max_num = 10; //From game specification
 		attempts = 0;
 		numResult = outcomes[2];
-
+ 
 		villainChoice = (rnd.nextInt(max_num) + 1);
 			
 		//*****Skew game if Cheese Roll PowerUp is present*********
@@ -319,24 +319,24 @@ public class BattleScreen {
 		
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (attempts >= MAX_ATTEMPTS) {
-					btnPlay.setVisible(false);
-					battleConsequence(numResult);
-				}
 				playerNumGuess = (Integer.parseInt(numComBox.getSelectedItem().toString()));
 				if (playerNumGuess == villainChoice) { //Player win
 					numResult = outcomes[1];
 					lblVillainChoice.setText("\"Damn, you guessed it\" says " + baddie.getName());
 					btnPlay.setVisible(false);
 					battleConsequence(numResult);
-				
 				} else if (playerNumGuess < villainChoice) { //Player choice too low
 					lblVillainChoice.setText("\"Higher\" says " + baddie.getName());
-					attempts++; 
-			
 				} else { //Player choice too high
 					lblVillainChoice.setText("\"Lower\" says " + baddie.getName());
-					attempts++;
+				}
+				
+				attempts++;
+				if (attempts == MAX_ATTEMPTS && numResult == outcomes[2]) { //Player lose
+					btnPlay.setVisible(false);
+					lblVillainChoice.setText("\"Haha, the number was " + villainChoice +"\"" + 
+					" says " + baddie.getName());
+					battleConsequence(numResult);
 				}
 			}
 		});		

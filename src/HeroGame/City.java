@@ -148,22 +148,6 @@ public class City {
 	
 	
 	/**
-	 * Prints the name of the location in each direction of the city map. Command Line Version Only
-	 */
-	@Deprecated
-	public void showMap() {
-		System.out.println("To the South is:");
-		System.out.println(southArea.getName());
-		System.out.println("To the East is:");
-		System.out.println(eastArea.getName());
-		System.out.println("To the North is:");
-		System.out.println(northArea.getName());
-		System.out.println("To the West is:");
-		System.out.println(westArea.getName());
-	}
-	
-	
-	/**
 	 * Method to get the Villain controlling the current City
 	 * @return Villain, current City's Villain
 	 */
@@ -281,135 +265,12 @@ public class City {
 		availableLocations.add(new Shop(this, this.currentTeam));
 	}
 	
-	
-	/**
-	 * Run loop for the current City. Command Line Version Only
-	 */
-	@Deprecated
-	public void runCity() {
-//		launchCityScreen();
-		int n = this.centerArea.runLocation();
-		while(this.cityVillain.isAlive()) {
-			switch(n) {
-			case 0:
-				System.out.println("Center Area: ");
-				n = this.centerArea.runLocation();
-				break;
-				
-			case 1:
-				System.out.println("North Area: ");
-				switch(this.northArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.northArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VillainsLair) this.northArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.northArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.northArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 2:
-				System.out.println("East Area: ");
-				switch(this.eastArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.eastArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VillainsLair) this.eastArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.eastArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.eastArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 3:
-				System.out.println("South Area: ");
-				switch(this.southArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.southArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VillainsLair) this.southArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.southArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.southArea).runLocation();
-					break;
-				}
-				break;
-				
-			case 4:
-				System.out.println("West Area: ");
-				switch(this.westArea.getLocationType()) {
-				
-				case HOSPITAL:
-					n = ((Hospital) this.westArea).runLocation();
-					System.out.println(n);
-					break;
-					
-				case VILLIANSLAIR:
-					n = ((VillainsLair) this.westArea).runLocation();
-					break;
-					
-				case SHOP:
-					n = ((Shop) this.westArea).runLocation();
-					break;
-					
-				case POWERUPDEN:
-					n = ((PowerUpDen) this.westArea).runLocation();
-					break;
-				}
-				break;
-				
-			}
-		}
-	}
-	
+
 	
 	@Override
 	public String toString() {
 		return MessageFormat.format("Welcome to {0} currently ruled by {1}", cityName, ruler);
 	}
-	
-	/* Test Code
-	public static void main(String[] args) {
-		Team testTeam = new Team("Test Team");
-		Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
-		Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
-		Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
-		testTeam.addMember(h1);
-		testTeam.addMember(h2);
-		testTeam.addMember(h3);
-		Villain peter = Villain.AUSSIECRICKETER;
-		City newCity = new City("Taihape", peter, testTeam);
-		System.out.println(newCity.getName());
-	}*/
+
 
 }

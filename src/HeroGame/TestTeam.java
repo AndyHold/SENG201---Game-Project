@@ -69,16 +69,6 @@ public class TestTeam {
 
 
 
-	@Test
-	public void testBuildTeam() {
-		//Build team size 0
-		Team testTeam = new Team("Test Team");
-		testTeam.buildTeam(0);
-		//Build team size non 0
-		//testTeam.buildTeam(2);
-		//Build team size negative?
-		testTeam.buildTeam(-1);
-	}
 
 	@Test
 	public void testCheckNameUnique() {

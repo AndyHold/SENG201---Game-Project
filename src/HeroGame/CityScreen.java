@@ -90,7 +90,7 @@ public class CityScreen {
 		this.frame.setVisible(true);
 	}
 	
-	
+	 
 	/**
 	 * Closes the screen when required
 	 */
@@ -215,7 +215,7 @@ public class CityScreen {
 						city.getTeam().removeHealingItem(index);
 						healingItem.changeAmount(-1);
 						if(healingItem.getAmount() == 0) {
-							((JComboBox<PowerUp>) hospitalPanel.getComponent(5)).removeItemAt(index);
+							((JComboBox<HealingItem>) hospitalPanel.getComponent(5)).removeItemAt(index);
 						}
 						break;
 					}
@@ -233,6 +233,7 @@ public class CityScreen {
 					powerUps.add(PowerUpType.PINEAPPLE_LUMPS);
 					PowerUpType powerUpType = powerUps.get(puIndex);
 					city.getTeam().addPowerUp(powerUpType);
+					((JComboBox<PowerUp>) powerUpDenPanel.getComponent(5)).addItem(new PowerUp(powerUpType));
 					sounds.playWooHoo();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You found a {0} just lying on the ground! 2 second rule cuz.", powerUpType), "Oh shot!", JOptionPane.INFORMATION_MESSAGE);
 					break;
@@ -244,6 +245,7 @@ public class CityScreen {
 					healingItems.add(HealingItemType.LION_RED);
 					HealingItemType healingItemType = healingItems.get(HIIndex);
 					city.getTeam().addHealingItem(healingItemType);
+					((JComboBox<HealingItem>) hospitalPanel.getComponent(5)).addItem(new HealingItem(healingItemType));
 					sounds.playWooHoo();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("Your mate Bazza bought you {0} on the way home! You Beauty!", healingItemType), "Oh shot!", JOptionPane.INFORMATION_MESSAGE);
 					break;
