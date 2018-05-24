@@ -1,8 +1,5 @@
 package cmdLineVersion;
 
-import HeroGame.Cities;
-import HeroGame.Team;
-
 /**
  * Game Class for Heroes & Villains Game
  * SENG201 2018S1
