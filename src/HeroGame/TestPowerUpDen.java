@@ -40,7 +40,7 @@ public class TestPowerUpDen {
 		//Check length before and after adding a Power Up
 		assertEquals(59, testPowerUpDen.checkPowerUps().length());
 		testTeam.addPowerUp(PowerUpType.CHEESE_ROLL);
-		assertTrue(testPowerUpDen.checkPowerUps().length() > 52);
+		assertTrue(testPowerUpDen.checkPowerUps().length() >= 59);
 	}
 
 }

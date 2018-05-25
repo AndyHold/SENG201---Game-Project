@@ -30,7 +30,7 @@ public enum Direction {
 
 	
 	@Override
-	public String toString() {
+	public String toString() { // returns the direction in string format
 		int n = this.getNumberValue();
 		switch(n) {
 		case 0:

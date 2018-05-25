@@ -35,8 +35,8 @@ public class Hospital extends Location {
 	 * when no HealingItem is present
 	 */
 	private void setBadHealingItemMessages() {
-		badHealingItemMessages = new ArrayList<String>();
-		badHealingItemMessages.add("{0} breathed in the empty space where the non existant healing item should have been, nothing happened!");
+		badHealingItemMessages = new ArrayList<String>(); // creates a new arraylist
+		badHealingItemMessages.add("{0} breathed in the empty space where the non existant healing item should have been, nothing happened!"); // fills arraylist with error messages
 		badHealingItemMessages.add("{0} swiped at nothingness for a while before realising no item was chosen");
 		badHealingItemMessages.add("{0} burst into tears at the sight of nothingness you have supplied...for shame...");
 	}
@@ -47,8 +47,8 @@ public class Hospital extends Location {
 	 * @return String, message for the error box
 	 */
 	public String getBadHealingItemMessage() {
-		int n = rand.nextInt(badHealingItemMessages.size());
-		return badHealingItemMessages.get(n);
+		int n = rand.nextInt(badHealingItemMessages.size()); //creates a new random int
+		return badHealingItemMessages.get(n); // indexes arraylist with random int and returns the result
 	}
 	
 	

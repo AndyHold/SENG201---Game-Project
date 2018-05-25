@@ -35,12 +35,12 @@ public class Cities {
 	 * @return a City the next city the team must play
 	 */
 	public City getStage() {
-		if(currentStage < stages.size()) {
+		if(currentStage < stages.size()) { // if this is not the last stage return the next stage
 			int newStage = currentStage;
 			currentStage++;
 			return stages.get(newStage);
 		}
-		else {
+		else { // else return null
 			return null;
 		}
 	}
@@ -51,14 +51,14 @@ public class Cities {
 	 * @param numOfCities int, Number of cities to be created
 	 */
 	private void createCities(int numOfCities) {
-		for(int x=0; x < numOfCities; x++) {
-			int n = this.rand.nextInt(cityNames.size());
-			String cityName = cityNames.get(n);
+		for(int x=0; x < numOfCities; x++) { // iterates through numOfCities times
+			int n = this.rand.nextInt(cityNames.size());  // creates a random int
+			String cityName = cityNames.get(n); // gets random city name from the randomly indexed arraylist and removes it
 			cityNames.remove(n);
-			if(x == numOfCities - 1) {
+			if(x == numOfCities - 1) { // if this is the last stage use super villain to create the city
 				Villain cityVillain = Villain.AUSSIECRICKETER;
 				stages.add(new City(cityName, cityVillain, heroTeam));
-			} else {
+			} else { // get a random villain and add create the city
 				Villain cityVillain = availableVillains.getVillain();
 				stages.add(new City(cityName, cityVillain, heroTeam));
 			}
@@ -79,7 +79,7 @@ public class Cities {
 	/**
 	 * Method to fill cityNames ArrayList
 	 */
-	private void fillCityNames() {
+	private void fillCityNames() { // fills arraylist with city names
 		cityNames.add("Springfield");
 		cityNames.add("Te Puke");
 		cityNames.add("Gore");

@@ -52,9 +52,10 @@ public class TestHospital {
 		//Check that a String is returned
 		String testString = new String();
 		assertEquals(testString.getClass(), testHospital.checkHealingTimes().getClass());
-		assertTrue(testHospital.checkHealingTimes().length() >= 60);
+		//Check length before and after adding a Healing Item
+		assertEquals(testHospital.checkHealingTimes().length(), 72);
 		testTeam.addHealingItem(HealingItemType.DOUBLE_BROWN);
-		assertTrue(testHospital.checkHealingTimes().length() > 65);
+		assertTrue(testHospital.checkHealingTimes().length() >= 72);
 	}
 
 }

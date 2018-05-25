@@ -14,13 +14,13 @@ import java.util.HashMap;
  */
 public enum Villain {
 	
-	AUSSIECRICKETER("Darin the Aussie Cricketer", 
-			"Crikey! A bit of sand paper will deadset sort you out ya drongo!", 
+	AUSSIECRICKETER("Darin the Aussie Cricketer", //name
+			"Crikey! A bit of sand paper will deadset sort you out ya drongo!", // taunts
 			"Strewth! An under arm bowl from me and you'll be in the dunny but!",
 			"Fair Dinkum! No chocky bikkies for you ya mongrel!", 
-			0,
-			200,
-			200, 
+			0, // int associated with the villain (for referencing)
+			200, // health
+			200, // strength
 			new ImageIcon(Villain.class.getResource("/HeroGame/Images/aussie_cricketer.jpg"))),
 
 	BADRUGBYREFEREE("Barry the Bad Referee", 
@@ -98,11 +98,11 @@ public enum Villain {
 	 * @param villain, this Villain
 	 */
 	public void resetValues(Villain villain) {
-		if(villain == Villain.AUSSIECRICKETER) {
+		if(villain == Villain.AUSSIECRICKETER) { // if final vallain reset to final villain values
 			this.currentHealth = 200;
 			this.alive = true;
 			
-		} else {
+		} else { // else reset to regular villain values
 			this.currentHealth = 100;
 			this.alive = true;
 		}
@@ -147,7 +147,7 @@ public enum Villain {
 	 * 5 = Politician
 	 */
 	private void setLairNames(int typeInt) {
-		switch (typeInt) {
+		switch (typeInt) { // puts lairnames in a hash map with the city name as key and the lairname as value depending on the type of villain
 
 		case 0:
 			lairNames.put("Springfield", "Hagley Oval");
@@ -222,7 +222,7 @@ public enum Villain {
 	 * @param taunts3 String, Third taunt specific to the Villain type
 	 */
 	private void setTaunts(String taunt1, String taunt2, String taunt3){
-		taunts.add(taunt1);
+		taunts.add(taunt1); // adds taunts to the arraylist
 		taunts.add(taunt2);
 		taunts.add(taunt3);
 	}
@@ -243,8 +243,8 @@ public enum Villain {
 	 */
 	public String getTaunt() {
 		Random rand = new Random();
-		int n = rand.nextInt(3);
-		return taunts.get(n);
+		int n = rand.nextInt(3); // creates a random int
+		return taunts.get(n); // returns the taunt at that index
 	}
 	
 	
@@ -253,11 +253,11 @@ public enum Villain {
 	 * @return String representation of the damage done and notifies when villain is defeated.
 	 */
 	public String takeDamage(int amount) {
-		if(amount > currentHealth) {
+		if(amount > currentHealth) { // if damage amount is greater than the current health set the damage amount to the current health
 			amount = currentHealth;
 		}
-		currentHealth -= amount;
-		if(currentHealth == 0) {
+		currentHealth -= amount; // take the damage
+		if(currentHealth == 0) { // if villain is killed set to dead and return a string
 			alive = false;
 			currentHealth = 0;
 			return name + " has taken " + amount + " damage \n" + name + " has been defeated!";
@@ -288,111 +288,5 @@ public enum Villain {
 	@Override
 	public String toString() {
 		return name + " says: \n" + getTaunt();
-	}
-	
-	
-	/**
-	 * Test code only
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// CRICKETER TESTS
-//		Villain cricketer = Villain.AUSSIECRICKETER;
-//		System.out.println(cricketer.getTaunt());
-//		System.out.println(cricketer);
-//		System.out.println(cricketer);
-//		System.out.println(cricketer);
-//		System.out.println(cricketer);
-//		System.out.println(cricketer);
-//		System.out.println(cricketer.getLairName("Springfield"));
-//		System.out.println(cricketer.getLairName("Te Puke"));
-//		System.out.println(cricketer.getLairName("Gore"));
-//		System.out.println(cricketer.getLairName("Ohakune"));
-//		System.out.println(cricketer.getLairName("Paeroa"));
-//		System.out.println(cricketer.getLairName("Taihape"));
-//
-		// REFEREE TESTS
-//		Villain ref = Villain.BADRUGBYREFEREE;
-//		System.out.println(ref.getTaunt());
-//		System.out.println(ref);
-//		System.out.println(ref);
-//		System.out.println(ref);
-//		System.out.println(ref);
-//		System.out.println(ref);
-//		System.out.println(ref.getLairName("Springfield"));
-//		System.out.println(ref.getLairName("Te Puke"));
-//		System.out.println(ref.getLairName("Gore"));
-//		System.out.println(ref.getLairName("Ohakune"));
-//		System.out.println(ref.getLairName("Paeroa"));
-//		System.out.println(ref.getLairName("Taihape"));
-//		
-//		// BOUNCER TESTS
-//		Villain doorman = Villain.BOUNCER;
-//		System.out.println(doorman.getTaunt());
-//		System.out.println(doorman);
-//		System.out.println(doorman);
-//		System.out.println(doorman);
-//		System.out.println(doorman);
-//		System.out.println(doorman);
-//		System.out.println(doorman.getLairName("Springfield"));
-//		System.out.println(doorman.getLairName("Te Puke"));
-//		System.out.println(doorman.getLairName("Gore"));
-//		System.out.println(doorman.getLairName("Ohakune"));
-//		System.out.println(doorman.getLairName("Paeroa"));
-//		System.out.println(doorman.getLairName("Taihape"));
-//		
-//		// CALLCENTREOPERATOR TESTS
-//		Villain operator = Villain.CALLCENTREOPERATOR;
-//		System.out.println(operator.getTaunt());
-//		System.out.println(operator);
-//		System.out.println(operator);
-//		System.out.println(operator);
-//		System.out.println(operator);
-//		System.out.println(operator);
-//		System.out.println(operator.getLairName("Springfield"));
-//		System.out.println(operator.getLairName("Te Puke"));
-//		System.out.println(operator.getLairName("Gore"));
-//		System.out.println(operator.getLairName("Ohakune"));
-//		System.out.println(operator.getLairName("Paeroa"));
-//		System.out.println(operator.getLairName("Taihape"));
-//		
-//		// LAWYER TESTS
-//		Villain lawyer = Villain.LAWYER;
-//		System.out.println(lawyer.getTaunt());
-//		System.out.println(lawyer);
-//		System.out.println(lawyer);
-//		System.out.println(lawyer);
-//		System.out.println(lawyer);
-//		System.out.println(lawyer);
-//		System.out.println(lawyer.getLairName("Springfield"));
-//		System.out.println(lawyer.getLairName("Te Puke"));
-//		System.out.println(lawyer.getLairName("Gore"));
-//		System.out.println(lawyer.getLairName("Ohakune"));
-//		System.out.println(lawyer.getLairName("Paeroa"));
-//		System.out.println(lawyer.getLairName("Taihape"));
-//		
-//		//POLITICIAN TESTS
-//		Villain minister = Villain.POLITICIAN;
-//		System.out.println(minister.getTaunt());
-//		System.out.println(minister);
-//		System.out.println(minister);
-//		System.out.println(minister);
-//		System.out.println(minister);
-//		System.out.println(minister);
-//		System.out.println(minister.getLairName("Springfield"));
-//		System.out.println(minister.getLairName("Te Puke"));
-//		System.out.println(minister.getLairName("Gore"));
-//		System.out.println(minister.getLairName("Ohakune"));
-//		System.out.println(minister.getLairName("Paeroa"));
-//		System.out.println(minister.getLairName("Taihape"));
-//		
-//		// OTHER METHOD TESTS
-//		System.out.println(ref.isAlive());
-//		System.out.println(ref.getHealth());
-//		System.out.println(ref.takeDamage(30));
-//		System.out.println(ref.getHealth());
-//		System.out.println(ref.takeDamage(300));
-//		System.out.println(ref.getHealth());
-//		System.out.println(ref.isAlive());
 	}
 }

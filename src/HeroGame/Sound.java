@@ -32,18 +32,15 @@ public class Sound {
 	 * Method to play background music
 	 */
 	public void playMusic() {
-		if(soundFX != null) {
-			soundFX.close();
-		}
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/music.wav"));
 			AudioFormat format = ais.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			theme = (Clip)AudioSystem.getLine(info);
+			theme = (Clip)AudioSystem.getLine(info); // create the clip from the wav file
 			theme.open(ais);
 			theme.start();
-			theme.loop(Clip.LOOP_CONTINUOUSLY);
-			} catch(IOException error) {
+			theme.loop(Clip.LOOP_CONTINUOUSLY); // set to loop continuously
+			} catch(IOException error) { // error messages
 				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
 				error.printStackTrace();
 			} catch (LineUnavailableException e) {
@@ -143,14 +140,17 @@ public class Sound {
 	 * @param filename a String the filename of the sound effect to be played
 	 */
 	public void playEffect(String filename) {
+		if(soundFX != null) {// closes the previous clip played unless it is the first sound clip
+			soundFX.close();
+		}
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource(filename));
 			AudioFormat format = ais.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			soundFX = (Clip)AudioSystem.getLine(info);
+			soundFX = (Clip)AudioSystem.getLine(info); // creates a new clip for each instance of the sound so it can be played more than once
 			soundFX.open(ais);
 			soundFX.start();
-			} catch(IOException error) {
+			} catch(IOException error) {// error messages
 				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
 				error.printStackTrace();
 			} catch (LineUnavailableException e) {

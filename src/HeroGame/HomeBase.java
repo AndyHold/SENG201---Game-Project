@@ -44,7 +44,7 @@ public class HomeBase extends Location {
 	/**
 	 * Populates Images for HashMap interiors
 	 */
-	private void populateImages() {
+	private void populateImages() { // fills hashmap with keys as city name and values as the image icons for the homebase
 		interiors.put("Springfield", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/springfieldHomeBase.jpg")));
 		interiors.put("Te Puke", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/tePukeHomeBase.jpg")));
 		interiors.put("Gore", new ImageIcon(HomeBase.class.getResource("/HeroGame/Images/goreHomeBase.jpg")));
@@ -57,11 +57,7 @@ public class HomeBase extends Location {
 	
 	@Override
 	public String toString() {
-		if(currentCity.isMapped()) {
-			return this.getName() + "\n" + "Current Options:" + "\n" + "See Team Status" + "\n" + "See Team Inventory" + "\n" + "Show Map";
-		} else {
-			return this.getName() + "\n" + "Current Options:" + "\n" + "See Team Status" + "\n" + "See Team Inventory" + "\n" + "Use a Map";
-		}
+		return this.getName();
 		
 	}
 	

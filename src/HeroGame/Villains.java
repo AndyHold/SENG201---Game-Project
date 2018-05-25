@@ -19,7 +19,7 @@ public class Villains {
 	 * @param availableVillains ArrayList<Villain> list of all available villains
 	 */
 	Villains() {
-		availableVillains.add(Villain.BADRUGBYREFEREE);
+		availableVillains.add(Villain.BADRUGBYREFEREE); // Resets each villain (in case its a new game) and adds them to the arraylist
 		Villain.BADRUGBYREFEREE.resetValues(Villain.BADRUGBYREFEREE);
 		availableVillains.add(Villain.BOUNCER);
 		Villain.BOUNCER.resetValues(Villain.BOUNCER);
@@ -47,9 +47,9 @@ public class Villains {
 	 * @return Villain a random villain picked from availableVillains.
 	 */
 	public Villain getVillain() {
-		Random rand = new Random();
-		int n = rand.nextInt(getNumberOfVillains());
-		Villain currentVillain = availableVillains.get(n);
+		Random rand = new Random(); 
+		int n = rand.nextInt(getNumberOfVillains()); // creates a random int
+		Villain currentVillain = availableVillains.get(n); // indexes arraylist at the random int and returns the result after removing it from the arraylist
 		availableVillains.remove(n);
 		return currentVillain;
 	}
@@ -58,7 +58,7 @@ public class Villains {
 	@Override
 	public String toString() {
 		String result = "The available Villains are: \n";
-		for(Villain badguy: availableVillains) {
+		for(Villain badguy: availableVillains) { // for each villain add a string of its name plus a newline
 			result += (badguy + "\n");
 		}
 		return result;

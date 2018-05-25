@@ -77,6 +77,7 @@ public class BattleScreen {
 	 */
 	private void initialize(String gameType) {
 		frmBattleTheVillain = new JFrame();
+		frmBattleTheVillain.setResizable(false);
 		frmBattleTheVillain.getContentPane().setBackground(Color.WHITE);
 		frmBattleTheVillain.setTitle("Battle the Villain");
 		frmBattleTheVillain.setBounds(100, 100, 642, 488);

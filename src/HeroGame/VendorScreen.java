@@ -43,12 +43,9 @@ public class VendorScreen {
 	private JPanel buyHealthItemPanel;
 	private JPanel showInventoryPanel;
 	private JPanel showPricesPanel;
-	private Team team = new Team("AwesomeTeam");
-	private City city = new City("Springfield", Villain.AUSSIECRICKETER, team);
-	private Shop shop = new Shop(city, team);
-//	private Team team;
-//	private City city;
-//	private Shop shop;
+	private Team team;
+	private City city;
+	private Shop shop;
 	private JLabel currentFundsMAPLbl;
 	private JLabel currentFundsPULbl;
 	private JLabel currentFundsHILbl; 
@@ -147,7 +144,7 @@ public class VendorScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		sounds.playHello();
+		//----------------------Creates the frame-----------------------
 		frame = new JFrame();
 		frame.setTitle("NZ Clean Up - " + shop.getName());
 		frame.getContentPane().addComponentListener(new ComponentAdapter() {
@@ -169,15 +166,18 @@ public class VendorScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		vendorImageLbl = new JLabel("");
+		//-------------------------------------------------------------
+		
+		vendorImageLbl = new JLabel(""); // image of the vendor
 		vendorImageLbl.setIcon(new ImageIcon(VendorScreen.class.getResource("/HeroGame/Images/vendor.jpg")));
 		vendorImageLbl.setBounds(125, 10, 300, 180);
 		frame.getContentPane().add(vendorImageLbl);
 		
+		//----------------------Creates the prices panel-----------------------
 		showPricesPanel = new JPanel();
 		showPricesPanel.addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentResized(ComponentEvent e) {
+			public void componentResized(ComponentEvent e) { // updates sizes and positions of panels when fram resized
 				mapsPricePanel.setBounds(10, 35, 280, 15);
 				pavlovaPricePanel.setBounds(10, mapsPricePanel.getY() + 15 + (showPricesPanel.getHeight() - 170) / 7, 280, 15);
 				cheeseRollPricePanel.setBounds(10, pavlovaPricePanel.getY() + 15 + (showPricesPanel.getHeight() - 170) / 7, 280, 15);
@@ -188,95 +188,6 @@ public class VendorScreen {
 				mainMenuPricesBtn.setBounds(10, showPricesPanel.getHeight() - 35, 280, 25);
 			}
 		});
-		
-		mainMenuPanel = new JPanel();
-		mainMenuPanel.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				buyPowerUpBtn.setBounds(10, buyMapBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
-				buyHealingItemBtn.setBounds(10, buyPowerUpBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
-				showPricesBtn.setBounds(10, buyHealingItemBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
-				showInventoryBtn.setBounds(10, showPricesBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
-				nothingThanksBtn.setBounds(10, mainMenuPanel.getHeight() - 35, 280, 25);
-			}
-		});
-		mainMenuPanel.setVisible(true);
-		
-		mainMenuPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		mainMenuPanel.setBounds(125, 200, 300, 233);
-		frame.getContentPane().add(mainMenuPanel);
-		mainMenuPanel.setLayout(null);
-		
-		welcomeMessageLbl = new JLabel("Hi I'm Gary, how can I help you?");
-		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		welcomeMessageLbl.setBounds(10, 10, 280, 15);
-		mainMenuPanel.add(welcomeMessageLbl);
-		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		buyMapBtn = new JButton("Purchase Map");
-		buyMapBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyMapBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(false);
-				buyMapPanel.setVisible(true);
-			}
-		});
-		buyMapBtn.setBounds(10, 35, 280, 25);
-		mainMenuPanel.add(buyMapBtn);
-		
-		buyPowerUpBtn = new JButton("Purchase Power Up");
-		buyPowerUpBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyPowerUpBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(false);
-				buyPowerUpPanel.setVisible(true);
-			}
-		});
-		buyPowerUpBtn.setBounds(10, 65, 280, 25);
-		mainMenuPanel.add(buyPowerUpBtn);
-		
-		buyHealingItemBtn = new JButton("Purchase Healing Item");
-		buyHealingItemBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyHealingItemBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(false);
-				buyHealthItemPanel.setVisible(true);
-			}
-		});
-		buyHealingItemBtn.setBounds(10, 100, 280, 25);
-		mainMenuPanel.add(buyHealingItemBtn);
-		
-		showPricesBtn = new JButton("Show All Prices");
-		showPricesBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		showPricesBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(false);
-				showPricesPanel.setVisible(true);
-			}
-		});
-		showPricesBtn.setBounds(10, 134, 280, 25);
-		mainMenuPanel.add(showPricesBtn);
-		
-		showInventoryBtn = new JButton("Show Current Inventory");
-		showInventoryBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		showInventoryBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(false);
-				showInventoryPanel.setVisible(true);
-			}
-		});
-		showInventoryBtn.setBounds(10, 168, 280, 25);
-		mainMenuPanel.add(showInventoryBtn);
-		
-		nothingThanksBtn = new JButton("Nothing Thanks");
-		nothingThanksBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				manager.closeVendorScreen(vendor, city, direction);
-			}
-		});
-		nothingThanksBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		nothingThanksBtn.setBounds(10, 204, 280, 25);
-		mainMenuPanel.add(nothingThanksBtn);
 		showPricesPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		showPricesPanel.setBounds(125, 200, 300, 233);
 		frame.getContentPane().add(showPricesPanel);
@@ -289,7 +200,7 @@ public class VendorScreen {
 		inventoryWelcomeLbl.setBounds(10, 10, 280, 15);
 		showPricesPanel.add(inventoryWelcomeLbl);
 		
-		mapsPricePanel = new JPanel();
+		mapsPricePanel = new JPanel(); // contains the price and name of maps
 		mapsPricePanel.setBounds(10, 35, 280, 15);
 		showPricesPanel.add(mapsPricePanel);
 		mapsPricePanel.setLayout(null);
@@ -306,7 +217,7 @@ public class VendorScreen {
 		mapsPriceLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		mapsPriceLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		pavlovaPricePanel = new JPanel();
+		pavlovaPricePanel = new JPanel(); // contains the price and name of pavlova
 		pavlovaPricePanel.setBounds(10, 50, 280, 15);
 		showPricesPanel.add(pavlovaPricePanel);
 		pavlovaPricePanel.setLayout(null);
@@ -324,7 +235,7 @@ public class VendorScreen {
 		pavlovaPriceLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		pavlovaPriceLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		cheeseRollPricePanel = new JPanel();
+		cheeseRollPricePanel = new JPanel();// contains the price and name of cheese roll
 		cheeseRollPricePanel.setBounds(10, 65, 280, 15);
 		showPricesPanel.add(cheeseRollPricePanel);
 		cheeseRollPricePanel.setLayout(null);
@@ -342,7 +253,7 @@ public class VendorScreen {
 		cheeseRollPriceLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		cheeseRollPriceLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		pineappleLumpsPricePanel = new JPanel();
+		pineappleLumpsPricePanel = new JPanel(); // contains the price and name of pineapple lumps
 		pineappleLumpsPricePanel.setBounds(10, 80, 280, 15);
 		showPricesPanel.add(pineappleLumpsPricePanel);
 		pineappleLumpsPricePanel.setLayout(null);
@@ -360,7 +271,7 @@ public class VendorScreen {
 		pineappleLumpsPriceLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		pineappleLumpsPriceLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		doubleBrownPricePanel = new JPanel();
+		doubleBrownPricePanel = new JPanel(); // contains the price and name of double brown
 		doubleBrownPricePanel.setBounds(10, 95, 280, 15);
 		showPricesPanel.add(doubleBrownPricePanel);
 		doubleBrownPricePanel.setLayout(null);
@@ -378,7 +289,7 @@ public class VendorScreen {
 		doubleBrownPrice.setHorizontalAlignment(SwingConstants.RIGHT);
 		doubleBrownPrice.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		lionRedPricePanel = new JPanel();
+		lionRedPricePanel = new JPanel(); // contains the price and name of lion red
 		lionRedPricePanel.setBounds(10, 110, 280, 15);
 		showPricesPanel.add(lionRedPricePanel);
 		lionRedPricePanel.setLayout(null);
@@ -401,7 +312,7 @@ public class VendorScreen {
 		showPricesPanel.add(lindauerPricePanel);
 		lindauerPricePanel.setLayout(null);
 		
-		lindauerLbl = new JLabel("Lindauer");
+		lindauerLbl = new JLabel("Lindauer"); // contains the price and name of lindauer
 		lindauerLbl.setBounds(0, 0, 130, 15);
 		lindauerPricePanel.add(lindauerLbl);
 		lindauerLbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.LINDAUER.getLongDescription(), HealingItemType.LINDAUER.getHealthValue(), HealingItemType.LINDAUER.getApplyTime()));
@@ -414,7 +325,7 @@ public class VendorScreen {
 		lindauerPriceLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		lindauerPriceLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		mainMenuPricesBtn = new JButton("Choose Another Option");
+		mainMenuPricesBtn = new JButton("Choose Another Option"); // Button to return to the main menu
 		mainMenuPricesBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		mainMenuPricesBtn.setBounds(10, 170, 280, 25);
 		showPricesPanel.add(mainMenuPricesBtn);
@@ -425,29 +336,254 @@ public class VendorScreen {
 			}
 		});
 		
-		buyHealthItemPanel = new JPanel();
+		// --------------------------Creates Main Menu Panel------------
+		mainMenuPanel = new JPanel();
+		mainMenuPanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) { // updates sizes and positions of panels when fram resized
+				buyPowerUpBtn.setBounds(10, buyMapBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
+				buyHealingItemBtn.setBounds(10, buyPowerUpBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
+				showPricesBtn.setBounds(10, buyHealingItemBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
+				showInventoryBtn.setBounds(10, showPricesBtn.getY() + 25 + (showPricesPanel.getHeight() - 195) / 5, 280, 25);
+				nothingThanksBtn.setBounds(10, mainMenuPanel.getHeight() - 35, 280, 25);
+			}
+		});
+		mainMenuPanel.setVisible(true);
+		
+		mainMenuPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mainMenuPanel.setBounds(125, 200, 300, 233);
+		frame.getContentPane().add(mainMenuPanel);
+		mainMenuPanel.setLayout(null);
+		
+		welcomeMessageLbl = new JLabel("Hi I'm Gary, how can I help you?");
+		welcomeMessageLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeMessageLbl.setBounds(10, 10, 280, 15);
+		mainMenuPanel.add(welcomeMessageLbl);
+		welcomeMessageLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		buyMapBtn = new JButton("Purchase Map"); // goes to buy map panel
+		buyMapBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyMapBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(false);
+				buyMapPanel.setVisible(true);
+			}
+		});
+		buyMapBtn.setBounds(10, 35, 280, 25);
+		mainMenuPanel.add(buyMapBtn);
+		
+		buyPowerUpBtn = new JButton("Purchase Power Up"); // goes to buy power up panel
+		buyPowerUpBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyPowerUpBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(false);
+				buyPowerUpPanel.setVisible(true);
+			}
+		});
+		buyPowerUpBtn.setBounds(10, 65, 280, 25);
+		mainMenuPanel.add(buyPowerUpBtn);
+		
+		buyHealingItemBtn = new JButton("Purchase Healing Item"); // goes to buy healing item panel
+		buyHealingItemBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyHealingItemBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(false);
+				buyHealthItemPanel.setVisible(true);
+			}
+		});
+		buyHealingItemBtn.setBounds(10, 100, 280, 25);
+		mainMenuPanel.add(buyHealingItemBtn);
+		
+		showPricesBtn = new JButton("Show All Prices"); // goes to show prices panel
+		showPricesBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		showPricesBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(false);
+				showPricesPanel.setVisible(true);
+			}
+		});
+		showPricesBtn.setBounds(10, 134, 280, 25);
+		mainMenuPanel.add(showPricesBtn);
+		
+		showInventoryBtn = new JButton("Show Current Inventory"); // goes to show inventory panel
+		showInventoryBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		showInventoryBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(false);
+				showInventoryPanel.setVisible(true);
+			}
+		});
+		showInventoryBtn.setBounds(10, 168, 280, 25);
+		mainMenuPanel.add(showInventoryBtn);
+		
+		nothingThanksBtn = new JButton("Nothing Thanks"); // exits the shop
+		nothingThanksBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				manager.closeVendorScreen(vendor, city, direction);
+			}
+		});
+		nothingThanksBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		nothingThanksBtn.setBounds(10, 204, 280, 25);
+		mainMenuPanel.add(nothingThanksBtn);
+		
+		// -----------------------Creates Buy Health Item Panel---------------
+		buyHealthItemPanel = new JPanel(); 
 		buyHealthItemPanel.addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentShown(ComponentEvent arg0) {
+			public void componentShown(ComponentEvent arg0) { // updates current funds when shown
 				currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 			}
 			@Override
-			public void componentResized(ComponentEvent e) {
+			public void componentResized(ComponentEvent e) { // updates sizes and positions of panels when fram resized
 				buyDoubleBrownPanel.setBounds(10, 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				buyLionRedPanel.setBounds(10, buyDoubleBrownPanel.getY() + 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				buyLindauerPanel.setBounds(10, buyLionRedPanel.getY() + 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				mainMenuHIBtn.setBounds(10, buyHealthItemPanel.getHeight() - 35, 280, 25);
 			}
 		});
+		buyHealthItemPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buyHealthItemPanel.setLayout(null);
+		buyHealthItemPanel.setBounds(125, 200, 300, 233);
+		frame.getContentPane().add(buyHealthItemPanel);
+		buyHealthItemPanel.setVisible(false);
 		
+		currentFundsHILbl = new JLabel(MessageFormat.format("You Have ${0}", team.getMoney()));
+		currentFundsHILbl.setBounds(10, 10, 280, 15); // displays current funds
+		buyHealthItemPanel.add(currentFundsHILbl);
+		currentFundsHILbl.setHorizontalAlignment(SwingConstants.CENTER);
+		currentFundsHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		buyDoubleBrownPanel = new JPanel(); // displays double brown with a buy button
+		buyDoubleBrownPanel.setBounds(10, 35, 280, 25);
+		buyHealthItemPanel.add(buyDoubleBrownPanel);
+		buyDoubleBrownPanel.setLayout(null);
+		
+		doubleBrownHILbl = new JLabel("Double Brown");
+		doubleBrownHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.DOUBLE_BROWN.getLongDescription(), HealingItemType.DOUBLE_BROWN.getHealthValue(), HealingItemType.DOUBLE_BROWN.getApplyTime()));
+		doubleBrownHILbl.setBounds(0, 0, 130, 25);
+		buyDoubleBrownPanel.add(doubleBrownHILbl);
+		doubleBrownHILbl.setHorizontalAlignment(SwingConstants.LEFT);
+		doubleBrownHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		doubleBrownPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.DOUBLE_BROWN.getCost()));
+		doubleBrownPriceHILbl.setBounds(150, 0, 60, 25);
+		buyDoubleBrownPanel.add(doubleBrownPriceHILbl);
+		doubleBrownPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		doubleBrownPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		buyDoubleBrownBtn = new JButton("Buy"); 
+		buyDoubleBrownBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyDoubleBrownBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {// checks if money is sufficient and adds item if so with transaction sound and updates current funds label
+				if(team.getMoney() >= HealingItemType.DOUBLE_BROWN.getCost()) {
+					team.addHealingItem(HealingItemType.DOUBLE_BROWN);
+					team.changeMoney(HealingItemType.DOUBLE_BROWN.getCost() * -1);
+					sounds.playTransaction();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.DOUBLE_BROWN.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
+				} else { // else displays error message
+					sounds.playBadSound();
+					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		buyDoubleBrownBtn.setBounds(210, 0, 70, 25);
+		buyDoubleBrownPanel.add(buyDoubleBrownBtn);
+		
+		buyLionRedPanel = new JPanel(); // displays lion red with a buy button
+		buyLionRedPanel.setBounds(10, 70, 280, 25);
+		buyHealthItemPanel.add(buyLionRedPanel);
+		buyLionRedPanel.setLayout(null);
+		
+		lionRedHILbl = new JLabel("Lion Red");
+		lionRedHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.LION_RED.getLongDescription(), HealingItemType.LION_RED.getHealthValue(), HealingItemType.LION_RED.getApplyTime()));
+		lionRedHILbl.setBounds(0, 0, 130, 25);
+		buyLionRedPanel.add(lionRedHILbl);
+		lionRedHILbl.setHorizontalAlignment(SwingConstants.LEFT);
+		lionRedHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		lionRedPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LION_RED.getCost()));
+		lionRedPriceHILbl.setBounds(150, 0, 60, 25);
+		buyLionRedPanel.add(lionRedPriceHILbl);
+		lionRedPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		lionRedPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		buyLionRedBtn = new JButton("Buy");
+		buyLionRedBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyLionRedBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {// checks if money is sufficient and adds item if so with transaction sound and updates current funds label
+				if(team.getMoney() >= HealingItemType.LION_RED.getCost()) {
+					team.addHealingItem(HealingItemType.LION_RED);
+					team.changeMoney(HealingItemType.LION_RED.getCost() * -1);
+					sounds.playTransaction();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LION_RED.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
+				} else { // else displays error message
+					sounds.playBadSound();
+					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		buyLionRedBtn.setBounds(210, 0, 70, 25);
+		buyLionRedPanel.add(buyLionRedBtn);
+		
+		buyLindauerPanel = new JPanel(); // displays lindauer with a buy button
+		buyLindauerPanel.setBounds(10, 105, 280, 25);
+		buyHealthItemPanel.add(buyLindauerPanel);
+		buyLindauerPanel.setLayout(null);
+		
+		lindauerHILbl = new JLabel("Lindauer");
+		lindauerHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.LINDAUER.getLongDescription(), HealingItemType.LINDAUER.getHealthValue(), HealingItemType.LINDAUER.getApplyTime()));
+		lindauerHILbl.setBounds(0, 0, 130, 25);
+		buyLindauerPanel.add(lindauerHILbl);
+		lindauerHILbl.setHorizontalAlignment(SwingConstants.LEFT);
+		lindauerHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		lindauerPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LINDAUER.getCost()));
+		lindauerPriceHILbl.setBounds(150, 0, 60, 25);
+		buyLindauerPanel.add(lindauerPriceHILbl);
+		lindauerPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		lindauerPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		buyLindauerBtn = new JButton("Buy");
+		buyLindauerBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		buyLindauerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { // checks if money is sufficient and adds item if so with transaction sound and updates current funds label
+				if(team.getMoney() >= HealingItemType.LINDAUER.getCost()) {
+					team.addHealingItem(HealingItemType.LINDAUER);
+					team.changeMoney(HealingItemType.LINDAUER.getCost() * -1);
+					sounds.playTransaction();
+					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LINDAUER.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
+				} else { // else displays error message
+					sounds.playBadSound();
+					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		buyLindauerBtn.setBounds(210, 0, 70, 25);
+		buyLindauerPanel.add(buyLindauerBtn);
+		
+		mainMenuHIBtn = new JButton("Choose Another Option");
+		mainMenuHIBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		mainMenuHIBtn.setBounds(10, 170, 280, 25);
+		buyHealthItemPanel.add(mainMenuHIBtn);
+		mainMenuHIBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(true);
+				buyHealthItemPanel.setVisible(false);
+			}
+		});
+		
+		// -------------------Creates Buy Power Up Panel--------------------
 		buyPowerUpPanel = new JPanel();
 		buyPowerUpPanel.addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentShown(ComponentEvent arg0) {
+			public void componentShown(ComponentEvent arg0) { // updates current funds whenever it is displayed
 				currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 			}
 			@Override
-			public void componentResized(ComponentEvent e) {
+			public void componentResized(ComponentEvent e) { // updates sizes and positions of panels when fram resized
 				buyPavlovaPanel.setBounds(10, 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				buyCheeseRollPanel.setBounds(10, buyPavlovaPanel.getY() + 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
 				buyPineappleLumpsPanel.setBounds(10, buyCheeseRollPanel.getY() + 25 + (buyHealthItemPanel.getHeight() - 135) / 4, 280, 25);
@@ -455,9 +591,6 @@ public class VendorScreen {
 				
 			}
 		});
-		
-		
-		
 		buyPowerUpPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buyPowerUpPanel.setBounds(125, 200, 300, 233);
 		frame.getContentPane().add(buyPowerUpPanel);
@@ -465,7 +598,7 @@ public class VendorScreen {
 		buyPowerUpPanel.setVisible(false);
 		
 		currentFundsPULbl = new JLabel(MessageFormat.format("You Have ${0}", team.getMoney()));
-		currentFundsPULbl.setHorizontalAlignment(SwingConstants.CENTER);
+		currentFundsPULbl.setHorizontalAlignment(SwingConstants.CENTER); // shows current funds
 		currentFundsPULbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		currentFundsPULbl.setBounds(10, 10, 280, 15);
 		buyPowerUpPanel.add(currentFundsPULbl);
@@ -496,13 +629,13 @@ public class VendorScreen {
 		buyPavlovaBtn = new JButton("Buy");
 		buyPavlovaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(team.getMoney() >= PowerUpType.PAVLOVA.getCost()) {
+				if(team.getMoney() >= PowerUpType.PAVLOVA.getCost()) { // if you have enough money, purchases the item and updates current funds label with transaction sound and success message
 					team.addPowerUp(PowerUpType.PAVLOVA);
 					team.changeMoney(PowerUpType.PAVLOVA.getCost() * -1);
 					sounds.playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.PAVLOVA.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
+				} else { // else displays an error
 					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
@@ -532,14 +665,14 @@ public class VendorScreen {
 		
 		buyCheeseRollBtn = new JButton("Buy");
 		buyCheeseRollBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {// if you have enough money, purchases the item and updates current funds label with transaction sound and success message
 				if(team.getMoney() >= PowerUpType.CHEESE_ROLL.getCost()) {
 					team.addPowerUp(PowerUpType.CHEESE_ROLL);
 					team.changeMoney(PowerUpType.CHEESE_ROLL.getCost() * -1);
 					sounds.playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.CHEESE_ROLL.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
+				} else { // else displays an error
 					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
@@ -569,14 +702,14 @@ public class VendorScreen {
 		
 		buyPineappleLumpsBtn = new JButton("Buy");
 		buyPineappleLumpsBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { // if you have enough money, purchases the item and updates current funds label with transaction sound and success message
 				if(team.getMoney() >= PowerUpType.PINEAPPLE_LUMPS.getCost()) {
 					team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
 					team.changeMoney(PowerUpType.PINEAPPLE_LUMPS.getCost() * -1);
 					sounds.playTransaction();
 					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the cafe and tuck in!", PowerUpType.PINEAPPLE_LUMPS.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsPULbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
+				} else { // else displays an error
 					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
@@ -591,148 +724,17 @@ public class VendorScreen {
 				buyPowerUpPanel.setVisible(false);
 			}
 		});
-		buyHealthItemPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buyHealthItemPanel.setLayout(null);
-		buyHealthItemPanel.setBounds(125, 200, 300, 233);
-		frame.getContentPane().add(buyHealthItemPanel);
-		buyHealthItemPanel.setVisible(false);
 		
-		currentFundsHILbl = new JLabel(MessageFormat.format("You Have ${0}", team.getMoney()));
-		currentFundsHILbl.setBounds(10, 10, 280, 15);
-		buyHealthItemPanel.add(currentFundsHILbl);
-		currentFundsHILbl.setHorizontalAlignment(SwingConstants.CENTER);
-		currentFundsHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		buyDoubleBrownPanel = new JPanel();
-		buyDoubleBrownPanel.setBounds(10, 35, 280, 25);
-		buyHealthItemPanel.add(buyDoubleBrownPanel);
-		buyDoubleBrownPanel.setLayout(null);
-		
-		doubleBrownHILbl = new JLabel("Double Brown");
-		doubleBrownHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.DOUBLE_BROWN.getLongDescription(), HealingItemType.DOUBLE_BROWN.getHealthValue(), HealingItemType.DOUBLE_BROWN.getApplyTime()));
-		doubleBrownHILbl.setBounds(0, 0, 130, 25);
-		buyDoubleBrownPanel.add(doubleBrownHILbl);
-		doubleBrownHILbl.setHorizontalAlignment(SwingConstants.LEFT);
-		doubleBrownHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		doubleBrownPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.DOUBLE_BROWN.getCost()));
-		doubleBrownPriceHILbl.setBounds(150, 0, 60, 25);
-		buyDoubleBrownPanel.add(doubleBrownPriceHILbl);
-		doubleBrownPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		doubleBrownPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		buyDoubleBrownBtn = new JButton("Buy");
-		buyDoubleBrownBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyDoubleBrownBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(team.getMoney() >= HealingItemType.DOUBLE_BROWN.getCost()) {
-					team.addHealingItem(HealingItemType.DOUBLE_BROWN);
-					team.changeMoney(HealingItemType.DOUBLE_BROWN.getCost() * -1);
-					sounds.playTransaction();
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.DOUBLE_BROWN.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
-					sounds.playBadSound();
-					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		buyDoubleBrownBtn.setBounds(210, 0, 70, 25);
-		buyDoubleBrownPanel.add(buyDoubleBrownBtn);
-		
-		buyLionRedPanel = new JPanel();
-		buyLionRedPanel.setBounds(10, 70, 280, 25);
-		buyHealthItemPanel.add(buyLionRedPanel);
-		buyLionRedPanel.setLayout(null);
-		
-		lionRedHILbl = new JLabel("Lion Red");
-		lionRedHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.LION_RED.getLongDescription(), HealingItemType.LION_RED.getHealthValue(), HealingItemType.LION_RED.getApplyTime()));
-		lionRedHILbl.setBounds(0, 0, 130, 25);
-		buyLionRedPanel.add(lionRedHILbl);
-		lionRedHILbl.setHorizontalAlignment(SwingConstants.LEFT);
-		lionRedHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		lionRedPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LION_RED.getCost()));
-		lionRedPriceHILbl.setBounds(150, 0, 60, 25);
-		buyLionRedPanel.add(lionRedPriceHILbl);
-		lionRedPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
-		lionRedPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		buyLionRedBtn = new JButton("Buy");
-		buyLionRedBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyLionRedBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(team.getMoney() >= HealingItemType.LION_RED.getCost()) {
-					team.addHealingItem(HealingItemType.LION_RED);
-					team.changeMoney(HealingItemType.LION_RED.getCost() * -1);
-					sounds.playTransaction();
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LION_RED.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
-					sounds.playBadSound();
-					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		buyLionRedBtn.setBounds(210, 0, 70, 25);
-		buyLionRedPanel.add(buyLionRedBtn);
-		
-		buyLindauerPanel = new JPanel();
-		buyLindauerPanel.setBounds(10, 105, 280, 25);
-		buyHealthItemPanel.add(buyLindauerPanel);
-		buyLindauerPanel.setLayout(null);
-		
-		lindauerHILbl = new JLabel("Lindauer");
-		lindauerHILbl.setToolTipText(MessageFormat.format("<html>{0}<br>Heals {1} health in {2} seconds</html>", HealingItemType.LINDAUER.getLongDescription(), HealingItemType.LINDAUER.getHealthValue(), HealingItemType.LINDAUER.getApplyTime()));
-		lindauerHILbl.setBounds(0, 0, 130, 25);
-		buyLindauerPanel.add(lindauerHILbl);
-		lindauerHILbl.setHorizontalAlignment(SwingConstants.LEFT);
-		lindauerHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		lindauerPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LINDAUER.getCost()));
-		lindauerPriceHILbl.setBounds(150, 0, 60, 25);
-		buyLindauerPanel.add(lindauerPriceHILbl);
-		lindauerPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
-		lindauerPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		buyLindauerBtn = new JButton("Buy");
-		buyLindauerBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyLindauerBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(team.getMoney() >= HealingItemType.LINDAUER.getCost()) {
-					team.addHealingItem(HealingItemType.LINDAUER);
-					team.changeMoney(HealingItemType.LINDAUER.getCost() * -1);
-					sounds.playTransaction();
-					JOptionPane.showMessageDialog(frame, MessageFormat.format("You have successfully bought a {0}! Quick head to the local pub and get it down!", HealingItemType.LINDAUER.toString()) , "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-					currentFundsHILbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
-					sounds.playBadSound();
-					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		buyLindauerBtn.setBounds(210, 0, 70, 25);
-		buyLindauerPanel.add(buyLindauerBtn);
-		
-		mainMenuHIBtn = new JButton("Choose Another Option");
-		mainMenuHIBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		mainMenuHIBtn.setBounds(10, 170, 280, 25);
-		buyHealthItemPanel.add(mainMenuHIBtn);
-		mainMenuHIBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(true);
-				buyHealthItemPanel.setVisible(false);
-			}
-		});
-		
+
+		// -------------------Creates Buy Map Panel--------------------
 		buyMapPanel = new JPanel();
 		buyMapPanel.addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentShown(ComponentEvent arg0) {
+			public void componentShown(ComponentEvent arg0) { // updates current funds when displayed
 				currentFundsMAPLbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 			}
 			@Override
-			public void componentResized(ComponentEvent e) {
+			public void componentResized(ComponentEvent e) { // updates sizes and positions of panels when fram resized
 				mapCostLbl.setBounds(10, 25 + (buyMapPanel.getHeight() - 100) / 3, 280, 15);
 				purchaseMapBtn.setBounds(10, mapCostLbl.getY() + 15 + (buyMapPanel.getHeight() - 100) / 3, 280, 25);
 				mainMenuMAPBtn.setBounds(10, purchaseMapBtn.getY() + 25 + (buyMapPanel.getHeight() - 100) / 3, 280, 25);
@@ -745,7 +747,7 @@ public class VendorScreen {
 		buyMapPanel.setVisible(false);
 		
 		currentFundsMAPLbl = new JLabel(MessageFormat.format("You Have ${0}", team.getMoney()));
-		currentFundsMAPLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		currentFundsMAPLbl.setHorizontalAlignment(SwingConstants.CENTER); // displays current funds
 		currentFundsMAPLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		currentFundsMAPLbl.setBounds(10, 10, 280, 15);
 		buyMapPanel.add(currentFundsMAPLbl);
@@ -760,13 +762,13 @@ public class VendorScreen {
 		purchaseMapBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		purchaseMapBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(team.getMoney() >= 5.00) {
+				if(team.getMoney() >= 5.00) {// if you have enough money, purchases the item and updates current funds label with transaction sound and success message
 					team.changeMaps(1);
 					team.changeMoney(-5.00);
 					sounds.playTransaction();
 					JOptionPane.showMessageDialog(frame, "You have successfully bought a map! Best go back to base and study the local landmarks!", "Well Done!", JOptionPane.INFORMATION_MESSAGE);
 					currentFundsMAPLbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
-				} else {
+				} else { // else displays error message
 					sounds.playBadSound();
 					JOptionPane.showMessageDialog(frame, shop.getMoneyError(), "Uh Oh!", JOptionPane.ERROR_MESSAGE);
 				}
@@ -779,18 +781,25 @@ public class VendorScreen {
 		mainMenuMAPBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		mainMenuMAPBtn.setBounds(10, 170, 280, 25);
 		buyMapPanel.add(mainMenuMAPBtn);
+		mainMenuMAPBtn.addActionListener(new ActionListener() { // returns to main menu
+			public void actionPerformed(ActionEvent arg0) {
+				mainMenuPanel.setVisible(true);
+				buyMapPanel.setVisible(false);
+			}
+		});
 		
+		// -----------Creates Show Inventory Panel---------------------		
 		showInventoryPanel = new JPanel();
 		showInventoryPanel.addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentShown(ComponentEvent arg0) {
+			public void componentShown(ComponentEvent arg0) { // updates values for current funds, maps, power ups, healing items
 				currentFundsInventoryLbl.setText(MessageFormat.format("You Have ${0}", team.getMoney()));
 				numberMapsLbl.setText(MessageFormat.format("You have {0} maps", team.getMaps()));
 				yourPowerUpItemsLbl.setText(team.listPowerUps());
 				yourHealingItemsLbl.setText(team.listHealingItems());
 			}
 			@Override
-			public void componentResized(ComponentEvent arg0) {
+			public void componentResized(ComponentEvent arg0) { // updates sizes and positions of panels when fram resized
 				numberMapsLbl.setBounds(10, 25 + (showInventoryPanel.getHeight() - 215) / 4, 280, 15);
 				yourPowerUpItemsLbl.setBounds(10, numberMapsLbl.getY() + 15 + (showInventoryPanel.getHeight() - 215) / 4, 280, 70);
 				yourHealingItemsLbl.setBounds(10, yourPowerUpItemsLbl.getY() + 70 + (showInventoryPanel.getHeight() - 215) / 4, 280, 70);
@@ -804,32 +813,32 @@ public class VendorScreen {
 		showInventoryPanel.setVisible(false);
 		
 		currentFundsInventoryLbl = new JLabel(MessageFormat.format("You Have ${0}", team.getMoney()));
-		currentFundsInventoryLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		currentFundsInventoryLbl.setHorizontalAlignment(SwingConstants.CENTER); // shows current funds
 		currentFundsInventoryLbl.setBounds(10, 5, 280, 15);
 		currentFundsInventoryLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		showInventoryPanel.add(currentFundsInventoryLbl);
 		
 		numberMapsLbl = new JLabel(MessageFormat.format("You have {0} maps", team.getMaps()));
-		numberMapsLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
+		numberMapsLbl.setFont(new Font("Tahoma", Font.BOLD, 13)); // shows the number of maps the team has
 		numberMapsLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		numberMapsLbl.setBounds(10, 25, 280, 15);
 		showInventoryPanel.add(numberMapsLbl);
 		
-		yourPowerUpItemsLbl = new JLabel(team.listPowerUps());
+		yourPowerUpItemsLbl = new JLabel(team.listPowerUps()); // shows the teams current power ups
 		yourPowerUpItemsLbl.setVerticalAlignment(SwingConstants.TOP);
 		yourPowerUpItemsLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		yourPowerUpItemsLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		yourPowerUpItemsLbl.setBounds(10, 45, 280, 70);
 		showInventoryPanel.add(yourPowerUpItemsLbl);
 		
-		yourHealingItemsLbl = new JLabel(this.team.listHealingItems());
+		yourHealingItemsLbl = new JLabel(this.team.listHealingItems()); // shows the teams current healing items
 		yourHealingItemsLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		yourHealingItemsLbl.setVerticalAlignment(SwingConstants.TOP);
 		yourHealingItemsLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		yourHealingItemsLbl.setBounds(10, 126, 280, 70);
 		showInventoryPanel.add(yourHealingItemsLbl);
 		
-		mainMenuInventoryBtn = new JButton("Choose Another Option");
+		mainMenuInventoryBtn = new JButton("Choose Another Option"); // returns to main menu
 		mainMenuInventoryBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		mainMenuInventoryBtn.setBounds(10, 197, 280, 25);
 		mainMenuInventoryBtn.addActionListener(new ActionListener() {
@@ -838,13 +847,8 @@ public class VendorScreen {
 				showInventoryPanel.setVisible(false);
 			}
 		});
-		showInventoryPanel.add(mainMenuInventoryBtn);
-		mainMenuMAPBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mainMenuPanel.setVisible(true);
-				buyMapPanel.setVisible(false);
-			}
-		});
+		showInventoryPanel.add(mainMenuInventoryBtn); 
+		sounds.playHello(); // Plays the welcome sound effect
 	}
 	
 	/**

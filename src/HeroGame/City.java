@@ -53,7 +53,7 @@ public class City {
 	 * @return Location, location in given direction for this city
 	 */
 	public Location getLocation(Direction direction) {
-		switch(direction) {
+		switch(direction) { // returns the location in the given direction
 		case NORTH:
 			return northArea;
 		case SOUTH:
@@ -73,8 +73,8 @@ public class City {
 	 * Method to create and fill the ArrayList of badDirectionMessages, for use when the user tries to go the wrong way.
 	 */
 	private void setBadDirectionMessages() {
-		badDirectionMessages = new ArrayList<String>();
-		badDirectionMessages.add("Can't go that way cuz, Jake the Muss is down there");
+		badDirectionMessages = new ArrayList<String>();// create new arraylist
+		badDirectionMessages.add("Can't go that way cuz, Jake the Muss is down there"); // fill arraylist with error messages
 		badDirectionMessages.add("That area has been hit by an earthquake, better turn around...");
 		badDirectionMessages.add("You have reached the ocean. Well Done! But you can't go any further");
 		badDirectionMessages.add("Jim's Mowers are currently grooming that area, please keep clear");
@@ -88,8 +88,8 @@ public class City {
 	 * @return String, Bad direction message
 	 */
 	public String getBadDirectionMessage() {
-		int n = rand.nextInt(this.badDirectionMessages.size());
-		return badDirectionMessages.get(n);
+		int n = rand.nextInt(this.badDirectionMessages.size()); // create random int
+		return badDirectionMessages.get(n); // return indexed message from the arraylist
 	}
 	
 	
@@ -176,7 +176,7 @@ public class City {
 	/**
 	 * Method to fill the HashMap with the location names for each City/Location type.
 	 */
-	private void setPlaceNames() {
+	private void setPlaceNames() { // fills the hashmap with "cityname locationtype" as the key and the location name as the value 
 		this.placeNames.put("Springfield HomeBase", "Springfield Town Centre");
 		this.placeNames.put("Springfield Hospital", "The Bealey Hotel");
 		this.placeNames.put("Springfield PowerUpDen", "The Yelloshack Cafe");
@@ -231,7 +231,7 @@ public class City {
 	/**
 	 * Method to set each direction on the map (N, S, E, W) to a random Location.
 	 */
-	public void setDirections() {
+	public void setDirections() { // gets a random location and puts it in each direction
 		this.eastArea = this.getLocation();
 		this.eastArea.setDirection(Direction.EAST);
 		this.westArea = this.getLocation();
@@ -248,8 +248,8 @@ public class City {
 	 * @return Location Returns one of the four Location types specific to this City.
 	 */
 	private Location getLocation() {
-		int n = this.rand.nextInt(availableLocations.size());
-		Location location = availableLocations.get(n);
+		int n = this.rand.nextInt(availableLocations.size()); // create random int
+		Location location = availableLocations.get(n); // returns indexed location from arraylist after removing it from the arraylist
 		this.availableLocations.remove(n);
 		return location;
 	}
@@ -259,7 +259,7 @@ public class City {
 	 * Method to fill the ArrayList availableLocations with the 4 types of Location (excluding HomeBase)
 	 */
 	private void fillAvailableLocations() {
-		availableLocations.add(new VillainsLair(this, cityVillain, this.currentTeam));
+		availableLocations.add(new VillainsLair(this, cityVillain, this.currentTeam)); // fills arraylist with a location of each type accept home base 
 		availableLocations.add(new Hospital(this, this.currentTeam));
 		availableLocations.add(new PowerUpDen(this, this.currentTeam));
 		availableLocations.add(new Shop(this, this.currentTeam));

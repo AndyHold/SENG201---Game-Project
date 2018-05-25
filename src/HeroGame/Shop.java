@@ -36,8 +36,8 @@ public class Shop extends Location {
 	 * Method to create and fill the ArrayList lowMoneyErrors for use in the said error box
 	 */
 	private void fillMoneyErrors() {
-		moneyErrors = new ArrayList<String>();
-		moneyErrors.add("You have insufficient funds, best do some busking");
+		moneyErrors = new ArrayList<String>(); // create new Arraylist
+		moneyErrors.add("You have insufficient funds, best do some busking"); // fill arraylist with strings
 		moneyErrors.add("The bank has not approved your loan, leaving you in a sticky situation...");
 		moneyErrors.add("You cannot pay with willpower alone");
 		moneyErrors.add("Gary the Vendor looks you up and down in disgust as you cannot produce enough coins");
@@ -48,8 +48,8 @@ public class Shop extends Location {
 	 * @return a String the randomly chosen error message
 	 */
 	public String getMoneyError() {
-		int n = this.rand.nextInt(this.moneyErrors.size() - 1);
-		return moneyErrors.get(n);
+		int n = this.rand.nextInt(this.moneyErrors.size() - 1); // get a random int
+		return moneyErrors.get(n);// get the indexed money error and return it
 	}
 
 
@@ -70,16 +70,6 @@ public class Shop extends Location {
 		return this.vendor;
 	}
 	
-	
-	/**
-	 * Method to fill ArrayList healingItems
-	 */
-	@Deprecated
-	private void fillHealingItems() {
-		this.healingItems.add(HealingItemType.DOUBLE_BROWN);
-		this.healingItems.add(HealingItemType.LINDAUER);
-		this.healingItems.add(HealingItemType.LION_RED);
-	}
 	
 	
 

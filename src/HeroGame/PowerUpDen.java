@@ -34,8 +34,8 @@ public class PowerUpDen extends Location {
 	 * Method to create and fill the ArrayList badHealingItems with error messages for no healing item
 	 */
 	private void setBadPowerUpMessages() {
-		badPowerUpMessages = new ArrayList<String>();
-		badPowerUpMessages.add("{0} breathed in the empty space where the non existant power up should have been, nothing happened!");
+		badPowerUpMessages = new ArrayList<String>(); // creates a new arraylist
+		badPowerUpMessages.add("{0} breathed in the empty space where the non existant power up should have been, nothing happened!"); // fills arraylist with error messages
 		badPowerUpMessages.add("{0} swiped at nothingness for a while before realising no power up was chosen");
 		badPowerUpMessages.add("{0} burst into tears at the sight of nothingness you have supplied...for shame...");
 	}
@@ -46,8 +46,8 @@ public class PowerUpDen extends Location {
 	 * @return String, message for the Error Box
 	 */
 	public String getBadPowerUpMessage() {
-		int n = rand.nextInt(badPowerUpMessages.size());
-		return badPowerUpMessages.get(n);
+		int n = rand.nextInt(badPowerUpMessages.size()); //creates a new random int
+		return badPowerUpMessages.get(n); // indexes the array with the random int and returns that message
 	}
 	
 	
