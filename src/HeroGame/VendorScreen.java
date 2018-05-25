@@ -149,6 +149,7 @@ public class VendorScreen {
 	private void initialize() {
 		sounds.playHello();
 		frame = new JFrame();
+		frame.setTitle("NZ Clean Up - " + shop.getName());
 		frame.getContentPane().addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
@@ -488,7 +489,8 @@ public class VendorScreen {
 		
 		pavlovaPricePULbl = new JLabel(MessageFormat.format("${0}", PowerUpType.PAVLOVA.getCost()));
 		pavlovaPricePULbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		pavlovaPricePULbl.setBounds(160, 0, 60, 25);
+		pavlovaPricePULbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		pavlovaPricePULbl.setBounds(150, 0, 60, 25);
 		buyPavlovaPanel.add(pavlovaPricePULbl);
 		
 		buyPavlovaBtn = new JButton("Buy");
@@ -507,7 +509,7 @@ public class VendorScreen {
 			}
 		});
 		buyPavlovaBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyPavlovaBtn.setBounds(220, 0, 60, 25);
+		buyPavlovaBtn.setBounds(210, 0, 70, 25);
 		buyPavlovaPanel.add(buyPavlovaBtn);
 		
 		buyCheeseRollPanel = new JPanel();
@@ -524,7 +526,8 @@ public class VendorScreen {
 		
 		cheeseRollPricePULbl = new JLabel(MessageFormat.format("${0}", PowerUpType.CHEESE_ROLL.getCost()));
 		cheeseRollPricePULbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		cheeseRollPricePULbl.setBounds(160, 0, 60, 25);
+		cheeseRollPricePULbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		cheeseRollPricePULbl.setBounds(150, 0, 60, 25);
 		buyCheeseRollPanel.add(cheeseRollPricePULbl);
 		
 		buyCheeseRollBtn = new JButton("Buy");
@@ -543,7 +546,7 @@ public class VendorScreen {
 			}
 		});
 		buyCheeseRollBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyCheeseRollBtn.setBounds(220, 0, 60, 25);
+		buyCheeseRollBtn.setBounds(210, 0, 70, 25);
 		buyCheeseRollPanel.add(buyCheeseRollBtn);
 		
 		buyPineappleLumpsPanel = new JPanel();
@@ -551,7 +554,7 @@ public class VendorScreen {
 		buyPineappleLumpsPanel.setBounds(10, 105, 280, 25);
 		buyPowerUpPanel.add(buyPineappleLumpsPanel);
 		
-		pineappleLumpsPULbl = new JLabel("PineappleLumps");
+		pineappleLumpsPULbl = new JLabel("Pineapple Lumps");
 		pineappleLumpsPULbl.setToolTipText(MessageFormat.format("<html>{0}<br>{1}</html>", PowerUpType.PINEAPPLE_LUMPS.getLongDescription(), PowerUpType.PINEAPPLE_LUMPS.getEffect()));
 		pineappleLumpsPULbl.setHorizontalAlignment(SwingConstants.LEFT);
 		pineappleLumpsPULbl.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -560,7 +563,8 @@ public class VendorScreen {
 		
 		pineappleLumpsPricePULbl = new JLabel(MessageFormat.format("${0}", PowerUpType.PINEAPPLE_LUMPS.getCost()));
 		pineappleLumpsPricePULbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-		pineappleLumpsPricePULbl.setBounds(160, 0, 60, 25);
+		pineappleLumpsPricePULbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		pineappleLumpsPricePULbl.setBounds(150, 0, 60, 25);
 		buyPineappleLumpsPanel.add(pineappleLumpsPricePULbl);
 		
 		buyPineappleLumpsBtn = new JButton("Buy");
@@ -579,7 +583,7 @@ public class VendorScreen {
 			}
 		});
 		buyPineappleLumpsBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		buyPineappleLumpsBtn.setBounds(220, 0, 60, 25);
+		buyPineappleLumpsBtn.setBounds(210, 0, 70, 25);
 		buyPineappleLumpsPanel.add(buyPineappleLumpsBtn);
 		mainMenuPUBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -612,7 +616,7 @@ public class VendorScreen {
 		doubleBrownHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		doubleBrownPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.DOUBLE_BROWN.getCost()));
-		doubleBrownPriceHILbl.setBounds(160, 0, 60, 25);
+		doubleBrownPriceHILbl.setBounds(150, 0, 60, 25);
 		buyDoubleBrownPanel.add(doubleBrownPriceHILbl);
 		doubleBrownPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		doubleBrownPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -633,7 +637,7 @@ public class VendorScreen {
 				}
 			}
 		});
-		buyDoubleBrownBtn.setBounds(220, 0, 60, 25);
+		buyDoubleBrownBtn.setBounds(210, 0, 70, 25);
 		buyDoubleBrownPanel.add(buyDoubleBrownBtn);
 		
 		buyLionRedPanel = new JPanel();
@@ -649,7 +653,7 @@ public class VendorScreen {
 		lionRedHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		lionRedPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LION_RED.getCost()));
-		lionRedPriceHILbl.setBounds(160, 0, 60, 25);
+		lionRedPriceHILbl.setBounds(150, 0, 60, 25);
 		buyLionRedPanel.add(lionRedPriceHILbl);
 		lionRedPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		lionRedPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -670,7 +674,7 @@ public class VendorScreen {
 				}
 			}
 		});
-		buyLionRedBtn.setBounds(220, 0, 60, 25);
+		buyLionRedBtn.setBounds(210, 0, 70, 25);
 		buyLionRedPanel.add(buyLionRedBtn);
 		
 		buyLindauerPanel = new JPanel();
@@ -686,7 +690,7 @@ public class VendorScreen {
 		lindauerHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		lindauerPriceHILbl = new JLabel(MessageFormat.format("${0}", HealingItemType.LINDAUER.getCost()));
-		lindauerPriceHILbl.setBounds(160, 0, 60, 25);
+		lindauerPriceHILbl.setBounds(150, 0, 60, 25);
 		buyLindauerPanel.add(lindauerPriceHILbl);
 		lindauerPriceHILbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		lindauerPriceHILbl.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -707,7 +711,7 @@ public class VendorScreen {
 				}
 			}
 		});
-		buyLindauerBtn.setBounds(220, 0, 60, 25);
+		buyLindauerBtn.setBounds(210, 0, 70, 25);
 		buyLindauerPanel.add(buyLindauerBtn);
 		
 		mainMenuHIBtn = new JButton("Choose Another Option");

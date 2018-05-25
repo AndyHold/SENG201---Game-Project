@@ -105,16 +105,6 @@ public class Cities {
 	public String toString() {
 		return MessageFormat.format("Cities class currently has {0} stages, and {1} options for city name left", stages.size(), cityNames.size());
 	}
-	
-		/* Test Code
-		public static void main(String[] args) {
-			Team testTeam = new Team("Test Team");
-			Hero h1 = new Hero("Cletus", HeroType.ALL_BLACK);
-			Hero h2 = new Hero("Ethel Aardvark", HeroType.SURVEYOR);
-			Hero h3 = new Hero("Abraham Lincoln", HeroType.SURVEYOR);
-			testTeam.addMember(h1);
-			testTeam.addMember(h2);
-			testTeam.addMember(h3);
-	}*/
+
 
 }

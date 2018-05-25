@@ -54,6 +54,7 @@ public class TeamBuildScreen {
 		frmNzCleanUp.setTitle("NZ Clean Up - Build Team");
 		frmNzCleanUp.getContentPane().setBackground(Color.WHITE);
 		frmNzCleanUp.setBounds(100, 100, 550, 370);
+		frmNzCleanUp.setResizable(false);
 		frmNzCleanUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNzCleanUp.getContentPane().setLayout(null);
 		

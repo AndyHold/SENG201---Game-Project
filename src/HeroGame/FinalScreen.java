@@ -62,6 +62,7 @@ public class FinalScreen {
 		frmNzCleanUp = new JFrame();
 		frmNzCleanUp.setTitle("NZ Clean Up - Final Screen");
 		frmNzCleanUp.setBounds(100, 100, 696, 559);
+		frmNzCleanUp.setResizable(false);
 		frmNzCleanUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNzCleanUp.getContentPane().setLayout(null);
 		

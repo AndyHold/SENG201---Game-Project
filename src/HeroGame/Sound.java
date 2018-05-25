@@ -25,12 +25,16 @@ import javax.swing.JOptionPane;
 public class Sound {
 	
 	private Clip theme;
+	private Clip soundFX;
 	private JFrame frame = new JFrame();
 	
 	/**
 	 * Method to play background music
 	 */
 	public void playMusic() {
+		if(soundFX != null) {
+			soundFX.close();
+		}
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource("/HeroGame/Sound/music.wav"));
 			AudioFormat format = ais.getFormat();
@@ -143,15 +147,14 @@ public class Sound {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(GameManager.class.getResource(filename));
 			AudioFormat format = ais.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			Clip clip = (Clip)AudioSystem.getLine(info);
-			clip.open(ais);
-			clip.start();
+			soundFX = (Clip)AudioSystem.getLine(info);
+			soundFX.open(ais);
+			soundFX.start();
 			} catch(IOException error) {
 				JOptionPane.showMessageDialog(frame, "Couldn't find the music file!", "Not Good...", JOptionPane.ERROR_MESSAGE);
 				error.printStackTrace();
 			} catch (LineUnavailableException e) {
-				JOptionPane.showMessageDialog(frame, "Couldn't get the clip!", "Not Good...", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
+				
 			} catch (UnsupportedAudioFileException e) {
 				 JOptionPane.showMessageDialog(frame, "Unsupported File Type!", "Not Good...", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
@@ -164,20 +167,6 @@ public class Sound {
 	public void stopMusic() {
 		theme.stop();
 	}
-	public static void main(String[] args) {
-		Sound sound = new Sound();
-//		sound.playOhNo();
-//		sound.playWooHoo();
-//		sound.playMunching();
-//		sound.playMarching();
-//		sound.playOpenCan();
-//		sound.playBadSound();
-//		sound.playTransaction();
-//		sound.playHello();
-//		sound.playGoodSound();
-//		sound.playEvilLaugh();
-//		sound.playApplause();
-		
-	}
+
 
 }

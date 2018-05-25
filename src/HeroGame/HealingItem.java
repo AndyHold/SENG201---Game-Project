@@ -25,7 +25,10 @@ public class HealingItem extends PowerItem {
 		super.setResponse(healingItemType.getResponse());
 	}
 	
-
+	/**
+	 * Returns the HealingItemType of the HealingItem
+	 * @return a HealingItemType, the HealingItemType of the HealingItem
+	 */
 	public HealingItemType getHealingItemType() {
 		return healingItemType;
 	}

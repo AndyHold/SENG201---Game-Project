@@ -8,6 +8,8 @@ import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -27,6 +29,8 @@ public class WelcomeScreen {
 	private static final int MIN_NAME_LENGTH = 2;
 	private static final String NUMCITIES[] = {"3", "4", "5", "6"};
 	private static final String TEAMSIZE[] = {"1", "2", "3"};
+	private static final int FRAME_WIDTH = 550;
+	private static final int FRAME_HEIGHT = 370;
 	
 	private JFrame frmNzCleanUp;
 	private GameManager manager;
@@ -51,10 +55,11 @@ public class WelcomeScreen {
 	 */
 	private void initialize() {
 		frmNzCleanUp = new JFrame();
+		frmNzCleanUp.setBounds(100, 100, FRAME_WIDTH, FRAME_HEIGHT);
+		frmNzCleanUp.setResizable(false);
 		frmNzCleanUp.setBackground(Color.LIGHT_GRAY);
 		frmNzCleanUp.getContentPane().setBackground(Color.WHITE);
 		frmNzCleanUp.setTitle("NZ Clean Up - Welcome");
-		frmNzCleanUp.setBounds(100, 100, 550, 370);
 		frmNzCleanUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNzCleanUp.getContentPane().setLayout(null);
 		

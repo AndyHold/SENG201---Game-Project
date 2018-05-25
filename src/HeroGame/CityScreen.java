@@ -846,6 +846,7 @@ public class CityScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("NZ Clean Up - " + city.getName());
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
 //				setupPanel.setBounds(230, 55, frame.getWidth() - 260, frame.getHeight() - 105);
@@ -1022,28 +1023,4 @@ public class CityScreen {
 		lblMove.setFont(new Font("Tahoma", Font.BOLD, 13));
 	}
 
-
-
-
-	//***************************Test Code
-	public static void main(String[] args) {
-		GameManager manager = new GameManager(); 
-		Hero hero = new Hero("Jim", HeroType.ALL_BLACK);
-		Team team = new Team("Team");
-		team.addPowerUp(PowerUpType.CHEESE_ROLL);
-		team.addPowerUp(PowerUpType.PAVLOVA);
-		team.addPowerUp(PowerUpType.PINEAPPLE_LUMPS);
-		team.addHealingItem(HealingItemType.DOUBLE_BROWN);
-		team.addHealingItem(HealingItemType.LINDAUER);
-		team.addHealingItem(HealingItemType.LION_RED);
-		team.addMember(hero);
-		team.addMember(new Hero("Tim", HeroType.FIREFIGHTER));
-		team.addMember(new Hero("Gav", HeroType.FOSTER_MUM));
-		team.addMember(new Hero("Stacey", HeroType.NURSE));
-		team.addMember(new Hero("dan", HeroType.RETURNED_SERVICEMAN));
-		team.addMember(new Hero("ladjn", HeroType.SURVEYOR));
-		City newerCity = new City("Springfield", Villain.AUSSIECRICKETER, team);
-		CityScreen newCityScreen = new CityScreen(newerCity, Direction.CENTER, manager);
-//		newCityScreen.playBadSound();
-	}
 }

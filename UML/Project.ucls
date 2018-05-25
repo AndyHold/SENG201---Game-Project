@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.2" icons="true" automaticImage="JPEG" always-add-relationships="false" 
-  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
-  router="FAN">  
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="HeroGame.Team" project="SENG201-Assignment" 
     file="/SENG201-Assignment/src/HeroGame/Team.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="743" y="221"/>    
@@ -76,7 +75,7 @@
   </enumeration>  
   <class id="9" language="java" name="HeroGame.Shop" project="SENG201-Assignment" 
     file="/SENG201-Assignment/src/HeroGame/Shop.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1035" y="372"/>    
+    <position height="-1" width="-1" x="1036" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -94,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="HeroGame.Hospital" project="SENG201-Assignment" 
     file="/SENG201-Assignment/src/HeroGame/Hospital.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1565" y="274"/>    
+    <position height="-1" width="-1" x="1566" y="266"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -103,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="HeroGame.HomeBase" project="SENG201-Assignment" 
     file="/SENG201-Assignment/src/HeroGame/HomeBase.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1828" y="271"/>    
+    <position height="-1" width="-1" x="1835" y="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,187 +227,207 @@
     </display>  
   </class>  
   <association id="26">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="27" name="manager"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+    <bendpoint x="1337" y="-124"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="27" name="southArea">        
+        <position height="16" width="58" x="1356" y="-110"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="14" width="23" x="1386" y="-157"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="29">    
-    <bendpoint x="1335" y="-124"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="30" name="westArea">        
-        <position height="16" width="54" x="1359" y="-79"/>      
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="30" name="availableVillains">        
+        <position height="16" width="83" x="1484" y="-715"/>      
       </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="14" width="23" x="1388" y="-189"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="32">    
-    <bendpoint x="263" y="105"/>    
-    <bendpoint x="263" y="168"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="33">    
-    <bendpoint x="572" y="332"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="34" name="healingItems">        
-        <position height="16" width="69" x="521" y="301"/>      
-      </attribute>      
-      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="36">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="37" name="manager"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="39">    
-    <bendpoint x="2053" y="74"/>    
-    <bendpoint x="1563" y="76"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <association id="40">    
-    <bendpoint x="1336" y="-124"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="41" name="eastArea">        
-        <position height="16" width="52" x="1359" y="-204"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="14" width="23" x="1388" y="-93"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="43">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="44" name="heroType"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="47" name="healingItemType"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="50" name="cityVillain">        
-        <position height="16" width="52" x="1512" y="-570"/>      
-      </attribute>      
-      <multiplicity id="51" minimum="0" maximum="1">        
-        <position height="14" width="23" x="1539" y="-549"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+        <position height="14" width="21" x="1540" y="-697"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="52">    
-    <bendpoint x="555" y="102"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="53" name="powerUps"/>      
-      <multiplicity id="54" minimum="0" maximum="2147483647">        
-        <position height="14" width="21" x="504" y="106"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="55">    
-    <bendpoint x="1338" y="-122"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="56" name="availableLocations">        
-        <position height="16" width="97" x="1317" y="-234"/>      
-      </attribute>      
-      <multiplicity id="57" minimum="0" maximum="2147483647">        
-        <position height="14" width="21" x="1389" y="-219"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="58">    
-    <bendpoint x="601" y="-178"/>    
-    <bendpoint x="573" y="182"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="59" name="healingItemDrunk">        
-        <position height="16" width="93" x="520" y="234"/>      
-      </attribute>      
-      <multiplicity id="60" minimum="0" maximum="1">        
-        <position height="14" width="23" x="530" y="254"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="61">    
-    <bendpoint x="599" y="-242"/>    
-    <bendpoint x="547" y="-39"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="62" name="powerUpEaten">        
-        <position height="16" width="80" x="487" y="26"/>      
-      </attribute>      
-      <multiplicity id="63" minimum="0" maximum="1">        
-        <position height="14" width="23" x="496" y="42"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="64">    
-    <bendpoint x="1037" y="80"/>    
-    <bendpoint x="1563" y="76"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <association id="65">    
+  <association id="32">    
     <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="66" name="manager">        
+      <attribute id="33" name="manager">        
         <position height="16" width="51" x="1020" y="-1482"/>      
       </attribute>      
-      <multiplicity id="67" minimum="0" maximum="1">        
+      <multiplicity id="34" minimum="0" maximum="1">        
         <position height="14" width="23" x="1023" y="-1464"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="68">    
-    <bendpoint x="1336" y="-123"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="69" name="northArea">        
-        <position height="16" width="56" x="1357" y="-172"/>      
+  <association id="35">    
+    <bendpoint x="927" y="-722"/>    
+    <bendpoint x="930" y="-91"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="36" name="heroTeam">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="70" minimum="0" maximum="1">        
-        <position height="14" width="23" x="1389" y="-64"/>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="39" name="cityVillain">        
+        <position height="16" width="52" x="1512" y="-570"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="14" width="23" x="1539" y="-549"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="42" name="powerUpType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <bendpoint x="572" y="332"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="45" name="healingItems">        
+        <position height="16" width="69" x="521" y="301"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <bendpoint x="555" y="102"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="48" name="powerUps">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="2147483647">        
+        <position height="14" width="21" x="504" y="106"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <association id="51">    
+    <bendpoint x="601" y="-178"/>    
+    <bendpoint x="573" y="182"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="52" name="healingItemDrunk">        
+        <position height="16" width="93" x="520" y="234"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="14" width="23" x="530" y="254"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="55" name="healingItemType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="57">    
+    <bendpoint x="1303" y="78"/>    
+    <bendpoint x="1563" y="76"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="58">    
+    <bendpoint x="2053" y="74"/>    
+    <bendpoint x="1563" y="76"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <association id="59">    
+    <bendpoint x="1335" y="-124"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="60" name="westArea">        
+        <position height="16" width="54" x="1359" y="-79"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="14" width="23" x="1388" y="-189"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="71">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="72" name="stages"/>      
-      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
+  <association id="62">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="63" name="manager">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="66" name="heroType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="69" name="availableVillains">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="72" name="manager">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="14" width="23" x="660" y="-1386"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="74">    
@@ -417,119 +436,149 @@
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="75">    
-    <bendpoint x="927" y="-722"/>    
-    <bendpoint x="930" y="-91"/>    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="76" name="heroTeam"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="79" name="memberList"/>      
-      <multiplicity id="80" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="81">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="82" name="availableVillains"/>      
-      <multiplicity id="83" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="84">    
-    <bendpoint x="1303" y="78"/>    
-    <bendpoint x="1563" y="76"/>    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="14"/>  
+  <generalization id="75">    
+    <bendpoint x="263" y="105"/>    
+    <bendpoint x="263" y="168"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="85">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="86" name="manager"/>      
-      <multiplicity id="87" minimum="0" maximum="1">        
-        <position height="14" width="23" x="660" y="-1386"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="88">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="89" name="locationType"/>      
-      <multiplicity id="90" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="91">    
-    <bendpoint x="1337" y="-124"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="92" name="southArea">        
-        <position height="16" width="58" x="1356" y="-110"/>      
+  <association id="76">    
+    <bendpoint x="599" y="-242"/>    
+    <bendpoint x="547" y="-39"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="77" name="powerUpEaten">        
+        <position height="16" width="80" x="487" y="26"/>      
       </attribute>      
-      <multiplicity id="93" minimum="0" maximum="1">        
-        <position height="14" width="23" x="1386" y="-157"/>      
+      <multiplicity id="78" minimum="0" maximum="1">        
+        <position height="14" width="23" x="496" y="42"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="94">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="95" name="availableVillains">        
-        <position height="16" width="83" x="1484" y="-715"/>      
-      </attribute>      
-      <multiplicity id="96" minimum="0" maximum="2147483647">        
-        <position height="14" width="21" x="1540" y="-697"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="97">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="98">    
+  <generalization id="79">    
     <bendpoint x="1833" y="75"/>    
     <bendpoint x="1563" y="76"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="14"/>  
   </generalization>  
-  <association id="99">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="100" name="powerUpType"/>      
-      <multiplicity id="101" minimum="0" maximum="1"/>    
+  <association id="80">    
+    <bendpoint x="1336" y="-123"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="81" name="northArea">        
+        <position height="16" width="56" x="1357" y="-172"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="14" width="23" x="1389" y="-64"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="102">    
+  <association id="83">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="84" name="locationType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="87" name="memberList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="90" name="manager">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="91" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
     <bendpoint x="961" y="-246"/>    
     <bendpoint x="957" y="56"/>    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="103" name="currentTeam">        
+      <attribute id="93" name="currentTeam">        
         <position height="16" width="70" x="873" y="39"/>      
       </attribute>      
-      <multiplicity id="104" minimum="0" maximum="1">        
+      <multiplicity id="94" minimum="0" maximum="1">        
         <position height="14" width="23" x="902" y="55"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="105">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="106" name="manager"/>      
-      <multiplicity id="107" minimum="0" maximum="1"/>    
+  <association id="95">    
+    <bendpoint x="1338" y="-122"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="96" name="availableLocations">        
+        <position height="16" width="97" x="1317" y="-234"/>      
+      </attribute>      
+      <multiplicity id="97" minimum="0" maximum="2147483647">        
+        <position height="14" width="21" x="1389" y="-219"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="99" name="stages">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="100" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="102" name="manager">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="103" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="104">    
+    <bendpoint x="1037" y="80"/>    
+    <bendpoint x="1563" y="76"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <association id="105">    
+    <bendpoint x="1336" y="-124"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="106" name="eastArea">        
+        <position height="16" width="52" x="1359" y="-204"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="14" width="23" x="1388" y="-93"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 

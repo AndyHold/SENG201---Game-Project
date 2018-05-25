@@ -64,22 +64,5 @@ public class Villains {
 		return result;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//		Villains baddies = new Villains();
-//		System.out.println(baddies);
-//		Villain baddie1 = baddies.getVillain();
-//		System.out.println(baddie1);
-//		Villain baddie2 = baddies.getVillain();
-//		System.out.println(baddie2);
-//		Villain baddie3 = baddies.getVillain();
-//		System.out.println(baddie3);
-//		Villain baddie4 = baddies.getVillain();
-//		System.out.println(baddie4);
-//		Villain baddie5 = baddies.getVillain();
-//		System.out.println(baddie5);
-//		System.out.println(baddies.getNumberOfVillains());
-		// GET AN ERROR WHEN TRYING TO PRINT AN EMPTY VILLAINS!!!
-	}
 
 }

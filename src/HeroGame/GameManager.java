@@ -220,16 +220,6 @@ public class GameManager {
 	public static void main(String[] args) {
 		GameManager manager = new GameManager();
 		manager.launchWelcomeScreen();
-//**************Test code******************************************
-//		Hero h1 = new Hero("Jim", HeroType.RETURNED_SERVICEMAN);
-//		Villain v1 = Villain.AUSSIECRICKETER;
-//		Team t1 = new Team("Awesome");
-//		City c1 = new City("Springfield", v1, t1);
-//		PowerUp p1 = new PowerUp(PowerUpType.CHEESE_ROLL);
-//		t1.addMember(h1);
-//		h1.eatPowerUp(p1);
-//		manager.launchBattleScreen(h1, c1, Direction.CENTER);
-
 	}
 	
 	
